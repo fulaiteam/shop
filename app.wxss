@@ -1,0 +1,38 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+.banner-swiper {
+  width: 100%;
+  height: 500rpx;
+  overflow: hidden;
+ }
+  
+ swiper {
+  display: block;
+  height: 500rpx;
+  position: relative;
+ }
+  
+ .slide-image {
+  width: 96%;
+  display: block;
+  margin: 0 auto;
+  height: 450rpx;
+  margin-top:25rpx;
+ }
+ .active{
+  margin-top:0rpx;
+  height: 500rpx;
+ }
+ .grid{
+   width: 750rpx;
+ }
+
+
+

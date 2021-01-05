@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup/index"
+  },
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}
