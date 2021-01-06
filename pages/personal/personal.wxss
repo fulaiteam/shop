@@ -131,7 +131,7 @@
     border-bottom:0;
 }
 .bottom_module_item_left{
-    width:180rpx;
+    width:150rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -144,4 +144,12 @@
 .bottom_module_item_left_img{
     width:26rpx;
     height:30rpx;
+}
+.bottom_module_item_left_text{
+line-height: 24px;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #333333;
+
 }

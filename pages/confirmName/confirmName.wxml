@@ -1,0 +1,27 @@
+<view class='all_grey'>
+<!-- 顶部区域开始 -->
+<view  class='top_area' >
+<!-- 顶部背景图开始 -->
+<image  class='top_yellow_bg'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'  ></image>
+<!-- 顶部背景图结束 -->
+<!-- 顶部白色区域开始 -->
+<view   class='top_white_area'  >
+    <!-- 图片区域开始 -->
+    <image  class='top_white_area_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/idCard_bg.png'  ></image>
+   
+    <!-- 图片区域结束 -->
+</view>
+<!-- 顶部白色区域结束 -->
+</view>
+<!-- 顶部区域结束 -->
+
+<!-- 底部白色区域开始 -->
+<view class='bottom_white_area' >
+
+</view>
+<!-- 底部白色区域结束 -->
+
+
+</view>
+
+

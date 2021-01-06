@@ -1,0 +1,42 @@
+.all_grey{
+    width:100%;
+    overflow: hidden;
+    padding-bottom:30rpx;
+    background: #EEEEEE;
+}
+.top_area{
+    z-index: 1;
+    width:100%;
+    position: relative;
+    height:485rpx;
+}
+.top_yellow_bg{
+    z-index: 2;
+    width:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    height:485rpx;
+}
+.top_white_area{
+    z-index: 3;
+    width:100%;
+    position: absolute;
+    left:40rpx;
+    top:109rpx;
+    width:674rpx;
+    height:462rpx;
+    background:#FFFFFF;
+}
+.bottom_white_area{
+    margin:153rpx auto 0rpx;
+    width:671rpx;
+    height:802rpx;
+    background:#FFFFFF;
+}
+.top_white_area_img{
+    display: block;
+    width:158rpx;
+    height:139rpx;
+    margin:91rpx auto 0;
+}

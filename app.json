@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/personal/personal",
-    "pages/release/release"
+    "pages/release/release",
+    "pages/confirmName/confirmName"
   ],
   "window": {
     "backgroundTextStyle": "light",
