@@ -1,0 +1,69 @@
+
+<view  class='all_grey' >
+<!-- 顶部背景区域开始 -->
+<view  class='top_bg' >
+<!-- 背景图开始 -->
+<image  class='top_bg_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'  ></image>
+<!-- 背景图结束 -->
+<!-- 加油按钮区域开始 -->
+<image  class='add_oil'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/struggle.png'  ></image>
+<!-- 加油按钮区域结束 -->
+</view>
+<!-- 顶部背景区域结束 -->
+<!-- 发布产品区域开始 -->
+<view class='my_release_area' >
+<!-- 一项产品开始  -->
+<view  class='my_release_item'  wx:for='{{3}}'  >
+        <!-- 项目中间区域开始 -->
+        <view class='shelf_item_middle'  >
+            <!-- 项目中间区域左半部分开始 -->
+            <image class='shelf_item_middle_left'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/helmet.png' >
+    
+            </image >
+            <!-- 项目中间区域左半部分结束 -->
+            <!-- 项目中间区域右半部分开始 -->
+            <view class='shelf_item_middle_right' >
+                <!-- 项目中间区域右半部分标题开始 -->
+                <view class='shelf_item_middle_right_title'  >
+                    AGV k1摩特车头盔
+                </view>
+                <!-- 项目中间区域右半部分标题结束 -->
+                <!-- 项目中间区域右半部分参数开始 -->
+                <view class='shelf_item_middle_right_param'  >
+                    <view class='shelf_item_middle_right_param_item'  >
+                        曝光 111
+                    </view>
+                    <view class='shelf_item_middle_right_param_item'  >
+                        想买 11
+                    </view>
+                    <view class='shelf_item_middle_right_param_item'  >
+                        浏览 233
+                    </view>
+                </view>
+                <!-- 项目中间区域右半部分参数结束 -->
+                <!-- 项目中间区域右半部分价格开始 -->
+                <view class='shelf_item_middle_right_param_price'  >
+                    ￥620.80
+                </view>
+                <!-- 项目中间区域右半部分价格结束 -->
+
+                <view class='shelf_item_middle_right_param_btn'  >
+                    编辑
+                </view>
+                <view class='shelf_item_middle_right_param_btn'  >
+                    下架
+                </view>
+
+
+            </view >
+            <!-- 项目中间区域右半部分结束 -->
+        </view>
+        <!-- 项目中间区域结束 -->
+
+</view>
+<!-- 一项产品结束 -->
+</view>
+<!-- 发布产品区域结束 -->
+
+
+</view>

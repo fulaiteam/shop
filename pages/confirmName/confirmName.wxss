@@ -30,6 +30,8 @@
 }
 .bottom_white_area{
     margin:153rpx auto 0rpx;
+    box-sizing: border-box;
+    padding-top:34rpx;
     width:671rpx;
     height:802rpx;
     background:#FFFFFF;
@@ -39,4 +41,86 @@
     width:158rpx;
     height:139rpx;
     margin:91rpx auto 0;
+}
+.real_name_area{
+    margin-top:47rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left:85rpx;
+    width:100%;
+    height:30rpx;
+}
+.real_name_area_left{
+    font-size: 25rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #000000;
+    line-height: 18rpx;
+}
+.real_name_area_input{
+    margin-left:30rpx;
+    width:400rpx;
+    font-size: 25rpx;
+    font-family: Source Han Sans CN;
+    color: #000000;
+    line-height: 18rpx;
+    border-bottom:1rpx solid #CCCCCC;
+}
+.margin_top56{
+    margin-top:50rpx;
+}
+.bottom_white_area_text{
+    display: block;
+    padding-left:88rpx;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 25rpx;
+    line-height: 25rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #000000;
+}
+.bottom_white_area_pic{
+    margin:33rpx auto 0;
+    width: 492rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 274rpx;
+    background: #FFFFFF;
+    border: 1rpx solid #CCCCCC;
+}
+.bottom_white_area_pic_center{
+    width:81rpx;
+    height:90rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.bottom_white_area_pic_center_img{
+    width:60rpx;
+    height:48rpx;
+}
+.bottom_white_area_pic_center_text{
+    font-size: 21rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #DEBB91;
+}
+.confirm_btn{
+    text-align: center;
+    line-height: 67rpx;
+    margin:33rpx auto 0;
+    width: 603rpx;
+    height: 67rpx;
+    background: #FFBA1E;
+    border-radius: 17rpx;
+    font-size: 26rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #FFFFFF;
+    
 }

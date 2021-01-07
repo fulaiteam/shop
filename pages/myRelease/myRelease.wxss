@@ -1,0 +1,123 @@
+page {
+    height: 100% ;
+    background: #EEEEEE;
+}
+.all_grey{
+    width:100%;
+    overflow: hidden;
+    background: #EEEEEE;
+}
+.top_bg{
+    width:100%;
+    height:485rpx;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:pink;
+}
+.top_bg_img{
+    z-index: 1;
+    width:100%;
+    height:485rpx;
+    position: absolute;
+    left:0;
+    top:0;
+}
+.add_oil{
+    z-index: 3;
+    width:253rpx;
+    height:253rpx;
+}
+.my_release_area{
+    position: absolute;
+    left:39rpx;
+    top:425rpx;
+    padding-bottom:129rpx;
+    z-index: 5;
+    width:671rpx;
+    overflow: hidden;
+}
+.my_release_item{
+    z-index: 888;
+    width: 671rpx;
+    height: 247rpx;
+    margin-bottom:28rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    border-radius: 21rpx;
+
+}
+.shelf_item_middle{
+    width:611rpx;
+    height:212rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.shelf_item_middle_left{
+    width: 212rpx;
+    height:212rpx;
+}
+.shelf_item_middle_right{
+    width:461rpx;
+    box-sizing: border-box;
+    padding-left:26rpx;
+    height:185rpx;
+}
+.shelf_item_middle_right_title{
+    width: 100%;
+    font-size: 25rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #333333;
+    line-height: 31px;
+}
+.shelf_item_middle_right_param{
+    width:100%;
+    height:16rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top:5rpx;
+}
+.shelf_item_middle_right_param_item{
+    line-height: 16rpx;
+    font-size: 17rpx;
+    margin-right:35rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #999999;
+}
+.shelf_item_middle_right_param_price{
+    margin-top:70rpx;
+    float: left;
+    font-size: 33rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #FF8D02;
+    line-height: 27rpx;
+}
+.shelf_item_middle_right_param_btn{
+    text-align: center;
+    margin-top:65rpx;
+    float: right;
+    margin-right: 15rpx;
+    width: 89rpx;
+    height: 35rpx;
+    border: 1px solid #8F8D8D;
+    border-radius: 14px;
+    font-size: 22rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #8F8D8D;
+    line-height: 35rpx;
+}
+.shelf_item_middle_right_param_btn:nth-child(1){
+    margin-right: 30rpx;
+}
+

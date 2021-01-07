@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/personal/personal",
     "pages/release/release",
-    "pages/confirmName/confirmName"
+    "pages/confirmName/confirmName",
+    "pages/offShelf/offShelf",
+    "pages/myRelease/myRelease"
   ],
   "window": {
     "backgroundTextStyle": "light",
