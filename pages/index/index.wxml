@@ -1,0 +1,105 @@
+
+ <!-- 首页开始 -->
+ <view class='head'>
+   <!-- 版心 -->
+ <view class="w">
+  <view class="h_title">首页</view>
+  <!-- 搜索 -->
+ <view class="seach">
+ <!-- 搜索区域开始 -->
+  <input class='search_allarea_input' bindinput='getInputContent'    value="{{searchInput}}"  placeholder="请输出">
+  </input>
+<image src='https://jgl.oss-cn-beijing.aliyuncs.com/seach.png' class='seach_icon'></image>
+<!-- 搜索区域结束 -->
+ </view>
+<!-- 轮播图 -->
+<view class="swiper">
+  <view class="page-body">
+  <swiper style="width: 100%;" indicator-dots="{{indicatorDots}}" style="height: 237rpx !important;">
+    <swiper-item style="width: 100%;">
+      <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
+    </swiper-item>
+    <swiper-item style="width: 100%;">
+      <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
+    </swiper-item>
+    <swiper-item style="width: 100%;">
+      <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
+    </swiper-item>
+  </swiper>
+</view>
+ </view>
+
+
+ <!-- 拍卖列表 -->
+<view class="pailist">
+  <view class="pailist_one">
+    拍卖列表
+  </view>
+  <view class="pailist_two">售卖列表</view>
+</view>
+<!-- 即将开拍和立即抢购 -->
+<view class="gou">
+  <view class="gou_one">立即抢购</view>
+  <view class="gou_two">即将开拍</view>
+</view>
+<!-- 导航 -->
+<view class="tab">
+
+  <view class="btns">
+ 
+    <view wx:for="{{btns}}" wx:key="key" class="{{index==active?'cur':''}}" data-index="{{index}}" bindtap="toggle">{{item}}</view>
+ 
+  </view>
+ 
+  <view class="cons">
+ 
+    <view wx:for="{{cons}}" wx:key="key" class="{{index==active?'cur':''}}">{{item}}</view>
+ 
+  </view>
+ 
+ </view>
+
+<view class="tabs">
+  <view class="tabs_title">
+      <view wx:for="{{dataList}}"
+      wx:key="id"
+      class="title_item  {{item.isActive?'active':''}}"
+      bindtap = "toggle"
+      data-index="{{index}}"
+      >
+          {{item.goods_name}}
+      </view>
+        
+  </view>
+    <view class="tabs-content">
+        <slot></slot>
+    </view>
+</view>
+
+ <!-- 数据列表 -->
+ <view class='list'>
+  <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+  <view class="list_item">
+      <navigator url='details?id={{item.goods_id}}'>
+      <view class='img'>
+        <image src="{{imghref}}{{item.goods_img}}"  mode="scaleToFill"/>
+      </view>
+      <view class='info'>
+        <view class='title'>{{item.goods_title}}</view>
+        <view class='text'>{{item.goods_text}}</view>
+        <view class='price'>￥{{item.goods_price}}</view>
+        <view class='original_price'>￥{{item.goods_original_price}}</view>
+        <view class='num'>{{item.goods_xiaoliang}}</view>
+        <view class='btn'>查看详情</view>
+
+      </view>
+       </navigator>
+      <view class='clear'></view>
+  </view>
+  </block>
+</view>
+
+
+</view>
+</view>
+

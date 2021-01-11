@@ -1,0 +1,83 @@
+<view class="content">
+<!-- 发布信息 -->
+
+<view class="shop_shangchuan">
+<!-- 上传 -->
+<text class="shop_shangchuan_text">上传主图</text>
+<view class="shangchuan_img">
+  <view class="weui-uploader">
+    <view class="weui-uploader__hd">
+    </view>
+    <view class="weui-uploader__bd">
+    <block wx:for="{{imagesList}}" wx:key="*this" >
+    <view class="weui-uploader__file">
+    <image class="weui-uploader__img" src="{{item}}"></image>
+    </view>
+    </block>
+    <view class="weui-uploader__input-box">
+    <input class="weui-uploader__input js_file" type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" bindtap='uploader' name="images"></input>
+    </view>
+    </view>
+    </view>
+</view>
+<!-- 标题 -->
+<view class="shangchuan_title">
+  <text class="shangchuan_title_text">标题</text>
+  <input class="weui-input" placeholder="商品标题、品牌型号可以帮助搜索" selection-start="-1" selection-end="1" cursor="-1"></input>
+</view>
+<!-- 商品描述 -->
+<view class="shop_title shangchuan_title">
+  <text class="shangchuan_title_text">商品自述</text>
+  <textarea class="areas" placeholder-class="input-placeholder" placeholder='详细描述商品的购买详情、使用情况及出售原因 能够更快的出售商品哟～'> 
+</textarea>
+</view>
+<!-- 商品照片 -->
+<view class="shop_img">
+  <text class="shop_img_text">商品描述</text>
+</view>
+<!-- 价格 -->
+<view class="shop_money">
+      <text>价格</text>
+      <text class="shop_money_seclect"> 选择 > </text>
+      <picker name="state" mode="selector" range="{{state}}" range-key="name" value="{{stateInd}}" bindchange="state">
+        <input class="shop_money_seclect_input" id='{{state[stateInd].id}}' name="state" type='text' value='{{state[stateInd].name}}'disabled='true'></input>
+      </picker>
+</view>
+<!-- 商品类型 -->
+<view class="status">
+  <text>商品类型</text>
+  <text class="shop_money_seclect"> 选择 > </text>
+  <picker name="state" mode="selector" range="{{state}}" range-key="name" value="{{stateInd}}" bindchange="state">
+    <input class="shop_money_seclect_input" id='{{state[stateInd].id}}' name="state" type='text' value='{{state[stateInd].name}}'disabled='true'></input>
+  </picker>
+</view>
+<!-- 交易支付 -->
+<view class="status">
+  <text>交易支付</text>
+ 
+</view>
+
+<!-- 新旧程度 -->
+<view class="status">
+  <text>新旧程度</text>
+ 
+</view>
+
+<!-- 需缴纳保证金 -->
+<view class="status">
+  <text>需缴纳保证金</text>
+  <text class="shop_money_seclect"> 选择 > </text>
+  <picker name="state" mode="selector" range="{{state}}" range-key="name" value="{{stateInd}}" bindchange="state">
+    <input class="shop_money_seclect_input" id='{{state[stateInd].id}}' name="state" type='text' value='{{state[stateInd].name}}'disabled='true'></input>
+  </picker>
+</view>
+
+<view class="btn">
+  <button type="default" plain="true">按钮</button>
+</view>
+
+
+</view>
+
+
+</view>

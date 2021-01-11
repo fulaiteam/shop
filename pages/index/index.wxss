@@ -1,0 +1,260 @@
+.head{
+  width: 100%;
+  /* height: 350rpx; */
+  background: #eee;
+  /* background-image:; */
+  text-align: center;
+  padding-top: 25rpx;
+  
+}
+.w {
+  margin: 0 28rpx;
+}
+.h_title {
+font-size: 11px;
+font-family: Source Han Sans CN;
+font-weight: 500;
+color: #000000;
+line-height: 16px;
+margin-bottom: 34rpx;
+}
+.seach {
+  position: relative;
+  height: 32rpx;
+  line-height: 32rpx;
+margin-bottom: 20px;
+}
+.search_allarea_input{
+  height:51rpx;
+  padding-left:87rpx;
+  padding-right:80rpx;
+  box-sizing: border-box;
+  background:rgba(255,255,255,1);
+  border:1rpx solid #fff;
+  font-size:7px;
+  font-family:Aktiv Grotesk CNSG;
+  font-weight:400;
+  border-radius: 11rpx;
+  color:rgba(173,171,170,1);
+}
+.seach_icon{
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  height: 100%;
+  width: 4%;
+}
+.swiper {
+  width: 100%;
+  height: 232rpx;
+  border-radius: 5px;
+  background-color: gray;
+  margin-bottom: 30rpx;
+}
+.swiper_img {
+  width: 100%;
+  height: 232rpx;
+}
+.pailist {
+  width: 100%;
+  height: 92rpx;
+  position: relative;
+  background-color: #eee;
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+.pailist_one {
+  position: absolute;
+  top: 0;
+  width: 55%;
+  height: 92rpx;
+border-radius: 15rpx 174rpx 0 0; 
+  background-color: #fe8117;
+  
+font-size: 9px;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
+line-height: 92rpx;
+z-index: 9999999999999999999999;
+}
+.pailist_two {
+  position: absolute;
+  left: 310rpx;
+  width: 55%;
+  height: 92rpx;
+border-radius: 145rpx 15rpx 0  0; 
+  background-color: #b3b3b3;
+  font-size: 9px;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
+
+line-height: 92rpx;
+}
+.gou {
+  width: 100%;
+  height: 35rpx;
+  position: relative;
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+.gou_one {
+  position: absolute;
+  top: 0;
+  width: 60%;
+  height: 35rpx;
+  /* background-color: #fe8117; */
+  background: linear-gradient(to right, #fe1107, #fe6e2c);
+font-size: 9px;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
+line-height: 35rpx;
+z-index: 9999999999999999999999;
+}
+.gou_two {
+  position: absolute;
+  left: 310rpx;
+  width: 55%;
+  height: 35rpx;
+  /* background-color: #b3b3b3; */
+  font-size: 9px;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
+line-height: 35rpx;
+background: linear-gradient(to right, #b35f5f, #f5a09f);
+}
+
+
+/* 列表 */
+.clear{
+  clear: both;
+  overflow: hidden;
+}
+navigator{
+  display:inline;
+}
+.list{
+  margin-top:10px;
+  background-color: #fff;
+}
+ 
+.list .list_item{
+  margin-top:10px;
+  padding:10px;
+  height:100px;
+  border-bottom:1px solid #E8E8E8;
+}
+.list .list_item .img{
+  float:left;
+  width:40%;
+  height:100%;
+}
+.list .list_item .img image{
+   width:100%;
+   height:100%;
+}
+ 
+.list .list_item .info{
+  width:59%;
+  float:left;
+  height:100px;
+  position:relative;
+}
+.list .list_item .info .title{
+  position: absolute;
+  left:25rpx;
+font-size: 10px;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #333333;
+line-height: 23rpx;
+}
+.list .list_item .info .text{
+  position: absolute;
+  left:25rpx;
+  bottom: 160rpx;
+font-size: 9px;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #666666;
+}
+ 
+.list .list_item .info .price{
+  color: #FF9214;
+  position: absolute;
+  left:25rpx;
+  bottom: 0rpx;
+
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  font-size:12px;
+
+}
+.list .list_item .info .original_price{
+ 
+color: #999999;
+  position: absolute;
+  left:94rpx;
+  bottom: 0rpx;
+
+  text-decoration: line-through;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  font-size:9px;
+
+}
+.list .list_item .info .num{
+  position: absolute;
+  left:0rpx;
+  bottom:53rpx;
+  color:#747474;
+  margin-left:10px;
+  font-size:9px;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #999999;
+}
+.list .list_item .info .btn{
+  position: absolute;
+  right:-21rpx;
+  bottom:53rpx;
+  font-size:8px;
+  width: 60px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+font-family: Source Han Sans CN;
+font-weight: 400;
+border-radius: 17px 0 0 17px;
+background-color: #fda8a6;
+color: #fff;
+}
+
+.tabs_title{
+  display: flex;
+ }
+  .title_item{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      padding: 15rpx 0; 
+      color:#333333;
+      font-size:9px
+  }
+  .active{
+      color: var(--themeColor);
+      border-bottom: 3px solid #FE8119;
+  }
+
+
+
+  
+
+  .tab .btns{ display: flex;}
+  .tab .btns view{flex: 1; text-align: center;font-size: 9px;color: #333;}
+  .tab .cons view{height: 480rpx;display: none; text-align: center; line-height:480rpx; font-size:18rpx;}
+  .tab .cons .cur{display: block;}

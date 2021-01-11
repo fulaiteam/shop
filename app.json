@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/personal/personal",
+    "pages/release/release"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffd057",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#868686",
+    "selectedColor": "#8BB63B",
+    "borderStyle": "white",
+    "backgroundColor": "#ffd057",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./images/index/index.png",
+        "selectedIconPath": "./images/index/index_cover.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/release/release",
+        "iconPath": "./images/index/secure.png",
+        "selectedIconPath": "./images/index/secure_cover.png",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "iconPath": "./images/index/person.png",
+        "selectedIconPath": "./images/index/person_cover.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx91d27dbf599dff74"
+  ],
+  "sitemapLocation": "sitemap.json"
+}
