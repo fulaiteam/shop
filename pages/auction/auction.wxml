@@ -4,6 +4,12 @@
 <!-- 顶部背景图开始 -->
 <image  class='top_yellow_bg'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'  ></image>
 <!-- 顶部背景图结束 -->
+<!-- 拍卖按钮区域开始 -->
+<view  class='auction_top_btn_area' >
+    <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/saling.png'  ></image>
+    <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/saled_cover.png'  ></image>
+</view>
+<!-- 拍卖按钮区域结束 -->
 <!-- 下架项目白色区域开始 -->
 <view   class='shelf_allarea'  >
 <!-- 一项下架项目开始 -->
@@ -13,6 +19,9 @@
         <image class='shelf_item_top_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/avatar.png' ></image>
         <view  class='shelf_item_top_nickname' >
             菠萝
+        </view>
+        <view  class='shelf_item_top_condition' >
+            已拍下
         </view>
     </view>
     <!-- 项目顶部区域结束 -->

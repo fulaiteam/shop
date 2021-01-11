@@ -119,16 +119,38 @@ page {
     height: 35rpx;
     border: 1px solid #8F8D8D;
     border-radius: 14rpx;
-    text-align: center;
-    line-height: 35rpx;
-    text-align: center;
     font-size: 22rpx;
     font-family: Source Han Sans CN;
     font-weight: 400;
     float: left;
     margin-left:260rpx;
     margin-top:28rpx;
-    color: #FF6F61;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8F8D8D;
+}
+.shelf_item_top_condition{
+    font-size: 22rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #8F8D8D;
+    line-height: 27rpx;
+    margin-left:330rpx;
+}
+.auction_top_btn_area{
+    z-index: 80;
+    width:388rpx;
+    height:53rpx;
+    position: absolute;
+    left:180rpx;
+    top:131rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.auction_top_btn{
+    width:194rpx;
+    height:53rpx;
 }
 
