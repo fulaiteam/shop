@@ -6,7 +6,8 @@
     "pages/confirmName/confirmName",
     "pages/offShelf/offShelf",
     "pages/myRelease/myRelease",
-    "pages/myCollect/myCollect"
+    "pages/myCollect/myCollect",
+    "pages/auctionDetails/auctionDetails"
   ],
   "window": {
     "backgroundTextStyle": "light",

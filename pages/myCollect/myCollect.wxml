@@ -1,83 +1,103 @@
-<view class="all_grey">
-  <!-- 背景图 -->
-  <image class="top_img" src="../../images/myCollect/椭圆 2@2x.png"></image>
-  <!-- 背景图结束 -->
-  <!-- 收藏信息 -->
-  <view class="collect_box">
-    <!-- 切换栏 -->
-    <view class="collect_table">
-      <view
-        class="collect_table_word {{highlight === index? 'active_table': ''}}"
-        wx:for="{{table}}" 
-        wx:key="index"
-        bindtap="changeLight"
-        data-index="{{index}}"
-      >
-      {{item}}
-      </view>
-      <view class="collect_table_img">
-        <image src="../../images/myCollect/管理.png"></image>
-      </view>
+<!-- 背景图 -->
+<image class="top_img" src="../../images/myCollect/椭圆 2@2x.png"></image>
+<!-- 背景图结束 -->
+<!-- 收藏信息 -->
+<view class="collect_box">
+  <!-- 切换栏 -->
+  <view class="collect_table">
+    <view
+      class="collect_table_word {{highlight === index? 'active_table': ''}}"
+      wx:for="{{table}}" 
+      wx:key="index"
+      bindtap="changeLight"
+      data-index="{{index}}"
+    >
+    {{item}}
     </view>
-    <!-- 切换栏结束 -->
-    <!-- 收藏列表 -->
-    <view class="collect_info_list">
-      <!-- 单个收藏商品信息 -->
-      <view
-        class="collect_info_box"
-        wx:for="{{list}}"
-        wx:key="index"
-      >
-        <view class="collect_info_smallbox">
-          <!-- 收藏商品图片 -->
-          <image src="../../images/myCollect/30ab95497431412999262e474b3696af.png" class="collect_info_img"></image>
-          <!-- 收藏商品详情 -->
-          <view class="collect_info">
-            <view class="collect_info_font">
-              <view class="collect_info_title">{{item.title}}</view>
-              <view class="collect_info_start_time">开拍时间：{{item.start_time}}</view>
-              <view class="collect_info_stop_time">结束时间：{{item.stop_time}}</view>
-              <view class="collect_info_browse_data">
-                <view class="collect_info_browse">
-                  <image src="../../images/myCollect/浏览 拷贝.png"></image>
-                  <text>{{item.browse_data}}</text>
-                </view>
-                <view class="collect_info_like">
-                  <image src="../../images/myCollect/矢量智能对象.png"></image>
-                  <text>{{item.like_data}}</text>
-                </view>
+    <view class="collect_table_img">
+      <image src="../../images/myCollect/管理.png"></image>
+    </view>
+  </view>
+  <!-- 切换栏结束 -->
+  <!-- 收藏列表 -->
+  <view class="collect_info_list">
+    <!-- 单个收藏商品信息 -->
+    <view
+      class="collect_info_box {{index == list.length - 1? '.collect_info_last_box': ''}}"
+      wx:for="{{list}}"
+      wx:key="index"
+    >
+      <view class="collect_info_smallbox">
+        <!-- 收藏商品图片 -->
+        <image src="../../images/myCollect/30ab95497431412999262e474b3696af.png" class="collect_info_img"></image>
+        <!-- 收藏商品详情 -->
+        <view class="collect_info">
+          <view class="collect_info_font">
+            <view class="collect_info_title">{{item.title}}</view>
+            <view class="collect_info_start_time">开拍时间：{{item.start_time}}</view>
+            <view class="collect_info_stop_time">结束时间：{{item.stop_time}}</view>
+            <view class="collect_info_browse_data">
+              <view class="collect_info_browse">
+                <image src="../../images/myCollect/浏览 拷贝.png"></image>
+                <text>{{item.browse_data}}</text>
               </view>
-            </view> 
-            <view class="collect_info_price">
-              ￥{{item.price}}
+              <view class="collect_info_like">
+                <image src="../../images/myCollect/矢量智能对象.png"></image>
+                <text>{{item.like_data}}</text>
+              </view>
             </view>
+          </view> 
+          <view class="collect_info_price">
+            ￥{{item.price}}
           </view>
         </view>
-        <!-- 拍卖提醒 -->
-        <!-- 即将进行 -->
-        <view class="collect_remind" wx:if="{{item.collect_state == 0}}">
-          <image src="../../images/myCollect/时间.png" class="remind_img"></image>
-          <text class="remind_font">即将进行</text>
-          <text class="remind_font">明天上午12点开始</text> 
-        </view>
-        <!-- 正在进行 -->
-        <view class="collect_remind" wx:elif="{{item.collect_state == 1}}">
-          <image src="../../images/myCollect/时间.png" class="remind_img"></image>
-          <text class="remind_font">正在进行</text>
-          <text class="remind_font">今天晚上12点结束</text> 
-        </view>
-        <!-- 已结束 -->
-        <view class="collect_remind remind_gray" wx:else>
-          <image src="../../images/myCollect/时间.png" class="remind_img"></image>
-          <text class="remind_font">拍卖已结束</text>
-          <text class="remind_font">昨天晚上12点结束</text> 
-        </view>
-        <!-- 限时提醒 -->
-        <view class="limit">
+      </view>
+      <!-- 拍卖提醒 -->
+      <!-- 即将进行 -->
+      <view class="collect_remind" wx:if="{{item.collect_state == 0}}">
+        <image src="../../images/myCollect/时间.png" class="remind_img"></image>
+        <text class="remind_font">即将进行</text>
+        <text class="remind_font">明天上午12点开始</text> 
+      </view>
+      <!-- 正在进行 -->
+      <view class="collect_remind" wx:elif="{{item.collect_state == 1}}">
+        <image src="../../images/myCollect/时间.png" class="remind_img"></image>
+        <text class="remind_font">正在进行</text>
+        <text class="remind_font">今天晚上12点结束</text> 
+      </view>
+      <!-- 已结束 -->
+      <view class="collect_remind remind_gray" wx:else>
+        <image src="../../images/myCollect/时间.png" class="remind_img"></image>
+        <text class="remind_font">拍卖已结束</text>
+        <text class="remind_font">昨天晚上12点结束</text> 
+      </view>
+      <!-- 限时提醒 -->
+      <view class="limit">
+        <view class="flag">
           限时
           <view class="triangle"></view>
+        </view>
+        <view class="icon">
+          <icon
+            type="success"
+            color="#FF8D02"
+            size="12"
+          >
+          </icon>
         </view>
       </view>
     </view>
   </view>
+</view>
+<!-- 底部全选栏 -->
+<view class="bottom_check">
+  <view class="check_all">
+    <icon
+    type="success"
+    color="#fff"
+    size="12"
+    ></icon>
+    <text>全选</text>
+  </view>
+  <image src="../../images/myCollect/删除.png"></image>
 </view>

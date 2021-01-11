@@ -1,9 +1,10 @@
 page {
   background-color: #EEEEEE;
-}
-.all_grey{
   position: relative;
+  width: 100%;
+  height: 100vh;
 }
+
 .top_img{
   z-index: 1;
   width:100%;
@@ -16,8 +17,7 @@ page {
   position: absolute;
   z-index: 2;
   width: 100%;
-  padding: 0 40rpx;
-  margin-top: 20rpx;
+  padding: 20rpx 40rpx 40rpx 40rpx;
   box-sizing: border-box;
 }
 .collect_table {
@@ -54,15 +54,19 @@ page {
 
 .collect_info_list {
   width: 100%;
-  background: #fff;
   overflow-y: scroll;
 }
 .collect_info_box {
   position: relative;
-  padding: 20rpx 20rpx 90rpx 20rpx;
+  background: #fff;
+  padding: 20rpx 20rpx 75rpx 20rpx;
   box-sizing: border-box;
   width: 100%;
   border-bottom: 1px solid #FF0000;
+}
+.collect_info_last_box {
+  border-radius: 0 0 20rpx 20rpx;
+  border-bottom: none;
 }
 .collect_info_smallbox {
   display: flex;
@@ -130,7 +134,7 @@ page {
 
 .collect_remind {
   position: absolute;
-  bottom: 50rpx;
+  bottom: 35rpx;
   left: 0;
   display: flex;
   align-items: center;
@@ -176,6 +180,15 @@ page {
   top: 0; 
   right: 20rpx;
   width: 70rpx;
+  height: 250rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.flag {
+  position: relative;
+  width: 100%;
   height: 70rpx;
   text-align: center;
   padding: 6rpx;
@@ -193,4 +206,39 @@ page {
   border-bottom: 20rpx solid #fff;
   border-left: 35rpx solid transparent;
   border-right: 35rpx solid transparent;
+}
+.icon icon {
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+.bottom_check {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60rpx 0 30rpx;
+  box-sizing: border-box;
+  background: #fff;
+  margin-top: 80rpx;
+}
+.check_all {
+  display: flex;
+  align-items: center;
+}
+.check_all icon {
+  margin-right: 15rpx;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+.check_all text {
+  font-size: 12px;
+}
+.bottom_check image {
+  width: 12px;
+  height: 12px;
 }

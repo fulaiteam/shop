@@ -1,0 +1,167 @@
+<!-- 背景图 -->
+<image class="top_img" src="../../images/myCollect/椭圆 2@2x.png"></image>
+<!-- 拍卖商品详情 -->
+<view class="auction_details">
+  <!-- 拍卖商品头部 -->
+  <view class="auction_head">
+    <!-- 拍卖商品图片 -->
+    <view class="auction_img">
+      <image src="../../images/auctionDetails/图层 618.png" class="auction_photo"></image>
+      <!-- 正在进行 -->
+      <view class="collect_remind">
+        <image src="../../images/myCollect/时间.png" class="remind_img"></image>
+        <text class="remind_font">正在进行</text>
+        <text class="remind_font">今天晚上12点结束</text> 
+      </view>
+    </view>
+
+    <!-- 拍卖商品标题 -->
+    <view class="auction_info">
+      <!-- 标题 -->
+      <view class="auction_font">
+        <view class="auction_title">{{list.title}}</view>
+        <view class="icon_share">
+          <image src="../../images/auctionDetails/2.png"></image>
+          <text>分享</text>
+        </view>
+      </view>
+      <!-- 报名、围观 -->
+      <view class="auction_cir">
+        <!-- 报名 -->
+        <view class="auction_apply">
+          <text>报名</text>
+          <text>{{list.apply_num}}人</text>
+        </view>
+        <!-- 围观 -->
+        <view class="auction_circusee">
+          <text>围观</text>
+          <text>{{list.circusee_time}}次</text>
+        </view>
+      </view>
+      <!-- 价格 -->
+      <view class="auction_price_box">
+        <view class="auction_rmb">RMB</view>
+        <view class="auction_price_bottom">
+          <view class="auction_pirce_font">当前价</view>
+          <view class="auction_price">{{list.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 拍卖商品头部结束 -->
+
+  <!-- 提示 -->
+  <view class="auction_hint">
+    <image src="../../images/auctionDetails/icon.png"></image>
+    <view>友情提示：出价需谨慎</view>
+  </view>
+  <!-- 提示结束 -->
+
+  <!-- 拍卖类型列表 -->
+  <view class="auction_type_info">
+    <view class="auction_type_title">
+      <view>拍卖类型</view>
+      <view>保证金</view>
+      <view>开拍时间</view>
+      <view class="auction_type_reserve_price">
+        <image src="../../images/auctionDetails/提问.png"></image>
+        <text>保留价</text>
+      </view>
+    </view>
+    <view class="auction_type_title auction_type_value">
+      <view>{{list.auction_info.auction_type}}</view>
+      <view>{{list.auction_info.auction_earnest_money}}</view>
+      <view>{{list.auction_info.auction_start}}</view>
+      <view>{{list.auction_info.auction_reserve_price}}</view>
+    </view>
+    <view class="auction_type_title">
+      <view>起拍价</view>
+      <view>加价涨幅</view>
+      <view>结束时间</view>
+      <view>延时周期</view>
+    </view>
+    <view class="auction_type_title auction_type_value">
+      <view>{{list.auction_info.auction_starting_price}}</view>
+      <view>{{list.auction_info.auction_amount}}</view>
+      <view>{{list.auction_info.auction_over}}</view>
+      <view>{{list.auction_info.auction_delayed}}</view>
+    </view>
+  </view>
+  <!-- 拍卖类型列表结束 -->
+
+  <!-- 出价记录 -->
+  <view class="auction_bid_record">
+    <view class="auction_bid_record_title">
+      <view class="auction_bid_record_font">
+        <view class="auction_bid_font">出价记录</view>
+        <view>(22)</view>
+      </view>
+      <view class="auction_bid_all_btn">
+        <view class="auction_bid_all_font">全部</view>
+        <view class="arrows"></view>
+      </view>
+    </view>
+    <view class="auction_bid_info" wx:for="{{5}}">
+      <view class="auction_bid_info_left">
+        <image src="../../images/auctionDetails/icon.png"></image>
+        <text>k123</text>
+        <text>领先</text>
+        <text>12:11</text>
+        <text>18:45:42</text>
+      </view>
+      <view class="auction_bid_info_right">
+        ￥2222
+      </view>
+    </view>
+  </view>
+  <!-- 出价记录结束 -->
+
+  <!-- 店铺信息 -->
+  <view class="store_info">
+    <!-- 店主信息 -->
+    <view class="shopkeeper_info">
+      <view class="shopkeeper_info_left">
+        <image src="../../images/auctionDetails/摄图网_501358222_wx 拷贝.png"></image>
+        <view>宝主</view>
+        <view>12344444</view>
+      </view>
+      <view class="shopkeeper_info_right">
+        <view>查看全部宝贝</view>
+        <view class="arrows"></view>
+      </view>
+    </view>
+    <!-- 认证 -->
+    <view class="store_attestation">
+      <view>加入捡个漏55天</view>
+      <image src="../../images/auctionDetails/图层 1063.png"></image>
+      <view>已实名认证</view>
+    </view>
+    <!-- 推荐 -->
+    <view class="store_recommend">
+      <!-- 横杠 -->
+      <view class="store_bar"></view>
+      <!-- table栏 -->
+      <view class="store_table">
+        <view class="store_auction_goods">拍卖宝贝</view>
+        <view class="store_sell_goods">售卖宝贝</view>
+      </view>
+      <!-- 商品列表 -->
+      <view class="store_goods_list">
+        <view class="store_goods_info">
+          <image src="../../images/auctionDetails/30ab95497431412999262e474b3696af.png"></image>
+          <view class="store_goods_info_box">
+            <view class="store_goods_info_title">AGV k1摩特车头盔</view>
+            <view class="store_goods_info_price">¥620.80</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 店铺信息结束 -->
+
+
+</view>
+<!-- 参与出价 -->
+<!-- <view class="bottom_bid">
+  <view class="bid_btn">参与出价</view>
+</view> -->
