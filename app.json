@@ -5,7 +5,8 @@
     "pages/release/release",
     "pages/confirmName/confirmName",
     "pages/offShelf/offShelf",
-    "pages/myRelease/myRelease"
+    "pages/myRelease/myRelease",
+    "pages/myCollect/myCollect"
   ],
   "window": {
     "backgroundTextStyle": "light",
