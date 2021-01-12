@@ -8,7 +8,11 @@
     "pages/myRelease/myRelease",
     "pages/myCollect/myCollect",
     "pages/auctionDetails/auctionDetails",
-    "pages/auction/auction"
+    "pages/auction/auction",
+    "pages/immediately/immediately",
+    "pages/Sale/Sale",
+    "pages/payment/payment",
+    "pages/payment_Info/payment_Info"
   ],
   "window": {
     "backgroundTextStyle": "light",

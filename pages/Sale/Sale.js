@@ -11,64 +11,69 @@ Page({
         goods_name:'全部', 
         isActive: true,
     goods_id:1,
-    goods_title:'AGV k1摩特车头盔',
+    goods_title:'重庆路宝宝奔雷名车1314646 11635',
     goods_text:'男女四季全盔街车跑车冬季',
     goods_img:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
     goods_xiaoliang:'限量抢购',
-    goods_price:'60',     //打折后
-    goods_original_price: '100'   //原价
+    goods_price:'售价： ¥59,000',     //打折后
+    goods_original_price: '¥1750.00'   //原价
   },
   {
     goods_name:'全部', 
     isActive: false,
 
     goods_id:1,
-    goods_title:'AGV k1摩特车头盔',
+    goods_title:'重庆路宝宝奔雷名车1314646 11635',
     goods_text:'男女四季全盔街车跑车冬季',
 
     goods_img:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
     goods_xiaoliang:'限量抢购',
-    goods_price:'70',
-    goods_original_price: '100'   //原价
+    goods_price:'售价： ¥59,000',
+    goods_original_price: '¥1750.00'   //原价
+
 
   }, {
     goods_name:'全部', 
     isActive: false,
 
     goods_id: 1,
-    goods_title: 'AGV k1摩特车头盔',
+    goods_title: '重庆路宝宝奔雷名车1314646 11635',
     goods_text:'男女四季全盔街车跑车冬季',
-    goods_original_price: '100',   //原价
+    goods_original_price: '¥1750.00',   //原价
+
 
     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
     goods_xiaoliang: '限量抢购',
-    goods_price: '80'
+    goods_price:'售价： ¥59,000',
   }, {
     goods_name:'全部', 
     isActive: false,
 
     goods_id: 1,
-    goods_title: 'AGV k1摩特车头盔',
+    goods_title: '重庆路宝宝奔雷名车1314646 11635',
     goods_text:'男女四季全盔街车跑车冬季',
-    goods_original_price: '100'   //原价
+    goods_original_price: '¥1750.00'   //原价
+
 ,
     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
     goods_xiaoliang: '限量抢购',
-    goods_price: '90'
+    goods_price:'售价： ¥59,000',
   }, {
     goods_name:'全部', 
     isActive: false,
 
     goods_id: 1,
-    goods_title: 'AGV k1摩特车头盔',
+    goods_title: '重庆路宝宝奔雷名车1314646 11635',
     goods_text:'男女四季全盔街车跑车冬季',
-    goods_original_price: '100'   //原价
+    goods_original_price: '¥1750.00'   //原价
+
 ,
     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
     goods_xiaoliang: '限量抢购',
-    goods_price: '110'
+    goods_price:'售价： ¥59,000',
   }
 ],
+
 },
 
   //获取输入框的内容

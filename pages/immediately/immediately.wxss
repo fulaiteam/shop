@@ -107,7 +107,7 @@ line-height: 65rpx;
 .gou_one {
   /* position: absolute; */
   /* top: 0; */
-  width: 45%;
+  width: 55%;
   height: 48rpx;
   background-image: url(https://jgl.oss-cn-beijing.aliyuncs.com/index/lijiqianggou.png);
 font-size: 25rpx;
@@ -122,7 +122,7 @@ z-index: 9999999999999999999999;
   /* left: 310rpx; */
 border-radius: 2px;
 
-  width: 55%;
+  width: 45%;
   height: 48rpx;
   font-size: 9px;
 font-family: Source Han Sans CN;
@@ -178,6 +178,16 @@ navigator{
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #333333;
+}
+.list .list_item .info .time {
+  position: absolute;
+  right:-50rpx;
+  bottom:96rpx;
+  width: 120rpx;
+font-size: 21rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #D2312C;
 }
 .list .list_item .info .text{
   position: absolute;
@@ -235,7 +245,7 @@ color: #999999;
 font-family: Source Han Sans CN;
 font-weight: 400;
 border-radius: 17px 0 0 17px;
-background-color: #fda8a6;
+background-color: #f62e48;
 color: #fff;
 }
 

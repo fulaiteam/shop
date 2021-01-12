@@ -1,3 +1,4 @@
+/* pages/Sale/Sale.wxss */
 .head{
   width: 100%;
   /* height: 350rpx; */
@@ -70,7 +71,7 @@ background: #F2F2F2;
   left: 0;
   width: 55%;
   height: 65rpx;
-background-image: url(https://jgl.oss-cn-beijing.aliyuncs.com/index/paimailiebiao.png);
+background-image: url(https://jgl.oss-cn-beijing.aliyuncs.com/sale/paimai.png);
 background-size: 100%;
 font-size: 25rpx;
 font-family: Source Han Sans CN;
@@ -79,7 +80,6 @@ color: #FFFFFF;
 line-height: 65rpx;
 text-align: left;
 padding-left: 31rpx;
-z-index: 9999999999999999999999;
 }
 .pailist_two {
   text-align: right;
@@ -88,7 +88,7 @@ padding-right: 31rpx;
   left: 310rpx;
   width:51%;
   height: 65rpx;
-background-image: url(https://jgl.oss-cn-beijing.aliyuncs.com/index/shoumaoliebiao.png);
+background-image: url(https://jgl.oss-cn-beijing.aliyuncs.com/sale/shoumai.png);
 
   font-size: 25rpx;
 font-family: Source Han Sans CN;
@@ -151,12 +151,15 @@ navigator{
   /* margin-top:10px; */
   padding:10px;
   height:83px;
-  border-bottom:6rpx solid #E8E8E8;
+  line-height: 83rpx;
+  border-bottom:1px solid #E8E8E8;
 }
 .list .list_item .img{
   float:left;
-  width:192rpx;
-  height:192rpx;
+  width:217rpx;
+  height:160rpx;
+  margin-top: 20rpx;
+  margin-left: 50rpx;
   border-radius: 10rpx;
 }
 .list .list_item .img image{
@@ -165,19 +168,22 @@ navigator{
 }
  
 .list .list_item .info{
-  width:59%;
+  width:300rpx;
   float:left;
   height:100px;
   position:relative;
-  margin-left: 39rpx;
+  margin-left: 32rpx;
 }
 .list .list_item .info .title{
-  position: absolute;
-  left:25rpx;
-  font-size: 26rpx;
+  width: 322rpx;
+  height: 47rpx;
+  font-size: 25rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  color: #333333;
+  color: #3C3C3C;
+  line-height: 47rpx;
+  margin-top: 10rpx;
+  text-align: left;
 }
 .list .list_item .info .text{
   position: absolute;
@@ -191,25 +197,27 @@ color: #666666;
  
 .list .list_item .info .price{
   position: absolute;
-  left:25rpx;
-  bottom: 38rpx;
-font-size: 33rpx;
-font-family: Source Han Sans CN;
-font-weight: 400;
-color: #FF9214;
+  left: -5rpx;
+  bottom: 22rpx;
+
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FF9214;
 
 }
 .list .list_item .info .original_price{
  
 color: #999999;
   position: absolute;
-  left:94rpx;
-  bottom: 0rpx;
+  left:0;
+  bottom: 66rpx;
 
-  text-decoration: line-through;
+  font-size: 24rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  font-size:9px;
+  text-decoration: line-through;
+  color: #999999;
 
 }
 .list .list_item .info .num{
@@ -225,18 +233,12 @@ color: #999999;
 }
 .list .list_item .info .btn{
   position: absolute;
-  right:-65rpx;
+  right:-20rpx;
   bottom:40rpx;
-  font-size:8px;
-  width: 150rpx;
-  height: 55rpx;
-  text-align: center;
-  line-height: 20px;
-font-family: Source Han Sans CN;
-font-weight: 400;
-border-radius: 17px 0 0 17px;
-background-color: #fda8a6;
-color: #fff;
+  width: 38rpx;
+  height: 38rpx;
+  background: #FF9214;
+  border-radius: 50%;
 }
 
 .tabs_title{
@@ -260,11 +262,17 @@ color: #fff;
 
   
 .tab {
-  width: 100%;
+  width: 91%;
   height: 90rpx;
+  text-align: left;
+  padding-left: 63rpx;
   line-height: 90rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 500;
+color: #000000;
   background-color: #fff;
-  border-bottom:1rpx solid #eeeeee
+  border-bottom:10rpx solid #eeeeee
 }
   .tab .btns{ display: flex;color: #333; font-size: 25rpx; 
     font-family: Source Han Sans CN;
@@ -272,3 +280,27 @@ color: #fff;
   .tab .btns view{flex: 1; text-align: center;font-size: 25rpx;color: #333;}
   .tab .cons view{height: 480rpx;display: none; text-align: center; line-height:480rpx; font-size:25rpx;}
   .tab .cons .cur{display: block;}
+  .tabs {
+    width: 100%;
+    height: 90rpx;
+    background-color: #fff;
+    border-bottom:1px solid #eeeeee;
+    line-height:90rpx;
+    display:flex;
+    justify-content: space-around;
+  }
+
+.tabs .tabs_heat {
+  
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FF8D03;
+}
+.tabs .tabs_manery {
+  
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #040404;
+}
