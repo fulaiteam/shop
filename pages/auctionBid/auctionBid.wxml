@@ -1,0 +1,62 @@
+<!-- 出价商品信息列表 -->
+<view class="bid_goods_list">
+  <!-- 商品信息 -->
+  <view class="bid_goods_info">
+    <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionBid/u%3D2755485285%2C1155050305%26fm%3D26%26gp%3D0.png"></image>
+    <!-- 标题 -->
+    <view class="bid_goods_font">
+      <view class="bid_goods_title">铃木gsx250sr高配100多公里 12345646</view>
+      <view class="bid_goods_price_box">
+        <view class="bid_goods_rmb">RMB</view>
+        <view class="bid_goods_price_bottom">
+          <view class="bid_goods_pirce_font">当前价</view>
+          <view class="bid_goods_price">
+            ￥<text>2,222</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 商品信息结束 -->
+  <!-- 商品出价信息 -->
+  <view class="bid_goods_bids">
+    <view class="bid_title">
+      <view class="bid_font">出价</view>
+      <view class="bid_hint">出价需谨慎</view>
+    </view>
+    <view
+      class="bid_not_join"
+      wx:if="{{isBid === 2}}"
+    >
+      您未参加报名，请参加报名后参与出价....
+    </view>
+    <!-- 报名 -->
+    <view class="bid_goods_apply" wx:if="{{isBid === 2}}">
+      <button>去报名</button>
+    </view>
+    <!-- 修改价格 -->
+    <view class="bid_goods_price_revise" wx:if="{{isBid === 1}}">
+      <view class="bid_goods_price_revise_box">
+        <view class="bid_goods_btn"> - </view>
+        <view class="bid_goods_price_show"> 
+          ￥<text>2,222</text>
+        </view>
+        <view class="bid_goods_btn"> + </view>
+      </view>
+    </view>
+  </view>
+  <!-- 商品出价信息结束 -->
+  <!-- 拍卖公告 -->
+  <view class="bid_goods_notive">
+    <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionBid/%E2%88%9A.png" class="{{isBid === 1? 'bid_goods_notive_red': 'bid_goods_notive_gray'}}"></image>
+    <view>竞买人知晓并同意竞拍公告</view>
+  </view>
+  <!-- 拍卖公告结束 -->
+</view>
+
+<!-- 底部确认栏 -->
+<view class="bottom_bid">
+  <view class="bid_btn bid_btn_confirm" wx:if="{{isBid === 1}}">确认</view>
+  <view class="bid_btn bid_btn_after" wx:elif="{{isBid === 2}}">下一步</view>
+</view>
+<!-- 底部确认栏结束 -->

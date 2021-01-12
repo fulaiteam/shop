@@ -18,6 +18,7 @@ page {
   width: 100%;
   position: absolute;
   z-index: 2;
+  padding-bottom: 160rpx;
 }
 .auction_head {
   overflow: hidden;

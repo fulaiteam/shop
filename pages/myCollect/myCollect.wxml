@@ -1,5 +1,5 @@
 <!-- 背景图 -->
-<image class="top_img" src="../../images/myCollect/椭圆 2@2x.png"></image>
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png"></image>
 <!-- 背景图结束 -->
 <!-- 收藏信息 -->
 <view class="collect_box">
@@ -15,7 +15,7 @@
     {{item}}
     </view>
     <view class="collect_table_img">
-      <image src="../../images/myCollect/管理.png"></image>
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E7%AE%A1%E7%90%86.png"></image>
     </view>
   </view>
   <!-- 切换栏结束 -->
@@ -29,7 +29,7 @@
     >
       <view class="collect_info_smallbox">
         <!-- 收藏商品图片 -->
-        <image src="../../images/myCollect/30ab95497431412999262e474b3696af.png" class="collect_info_img"></image>
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/30ab95497431412999262e474b3696af.png" class="collect_info_img"></image>
         <!-- 收藏商品详情 -->
         <view class="collect_info">
           <view class="collect_info_font">
@@ -38,11 +38,11 @@
             <view class="collect_info_stop_time">结束时间：{{item.stop_time}}</view>
             <view class="collect_info_browse_data">
               <view class="collect_info_browse">
-                <image src="../../images/myCollect/浏览 拷贝.png"></image>
+                <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%B5%8F%E8%A7%88%20%E6%8B%B7%E8%B4%9D.png"></image>
                 <text>{{item.browse_data}}</text>
               </view>
               <view class="collect_info_like">
-                <image src="../../images/myCollect/矢量智能对象.png"></image>
+                <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E7%9F%A2%E9%87%8F%E6%99%BA%E8%83%BD%E5%AF%B9%E8%B1%A1.png"></image>
                 <text>{{item.like_data}}</text>
               </view>
             </view>
@@ -55,19 +55,19 @@
       <!-- 拍卖提醒 -->
       <!-- 即将进行 -->
       <view class="collect_remind" wx:if="{{item.collect_state == 0}}">
-        <image src="../../images/myCollect/时间.png" class="remind_img"></image>
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
         <text class="remind_font">即将进行</text>
         <text class="remind_font">明天上午12点开始</text> 
       </view>
       <!-- 正在进行 -->
       <view class="collect_remind" wx:elif="{{item.collect_state == 1}}">
-        <image src="../../images/myCollect/时间.png" class="remind_img"></image>
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
         <text class="remind_font">正在进行</text>
         <text class="remind_font">今天晚上12点结束</text> 
       </view>
       <!-- 已结束 -->
       <view class="collect_remind remind_gray" wx:else>
-        <image src="../../images/myCollect/时间.png" class="remind_img"></image>
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
         <text class="remind_font">拍卖已结束</text>
         <text class="remind_font">昨天晚上12点结束</text> 
       </view>
@@ -99,5 +99,5 @@
     ></icon>
     <text>全选</text>
   </view>
-  <image src="../../images/myCollect/删除.png"></image>
+  <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E5%88%A0%E9%99%A4.png"></image>
 </view>

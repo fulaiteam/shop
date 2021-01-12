@@ -40,7 +40,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.11.1",
-  "appid": "wx99be3f937ed5c337",
+  "appid": "wx9c18bb8af5712482",
   "projectname": "fulaishop",
   "debugOptions": {
     "hidedInDevtools": []
@@ -61,14 +61,14 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/personal/personal",
-          "pathName": "pages/personal/personal",
+          "name": "pages/auctionBid/auctionBid",
+          "pathName": "pages/auctionBid/auctionBid",
           "query": "",
           "scene": null
         },
         {
           "name": "dev",
-          "pathName": "pages/auctionDetails/auctionDetails",
+          "pathName": "pages/auctionApply/auctionApply",
           "query": "",
           "scene": null
         }

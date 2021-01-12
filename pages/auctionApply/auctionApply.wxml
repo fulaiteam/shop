@@ -1,0 +1,61 @@
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png"></image>
+<!-- 报名参拍列表 -->
+<view class="auction_apply_list">
+  <!-- 报名参拍人列表 -->
+  <view class="auction_apply_person_list">
+    <!-- 正在进行 -->
+    <view class="auction_apply_collect_remind" wx:if="{{isApply === 1}}">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
+      <text class="remind_font">正在进行</text>
+      <text class="remind_font">今天晚上12点结束</text> 
+    </view>
+    <!-- 即将进行 -->
+    <view class="auction_apply_collect_remind auction_apply_collect_remind_futer" wx:elif="{{isApply === 2}}">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
+      <text class="remind_font">即将进行</text>
+      <text class="remind_font">明天上午12点开始</text> 
+    </view>
+    <!-- 报名参拍人信息列表 -->
+    <view class="auction_apply_message">
+      <view class="auction_apply_message_list" wx:for="{{applyMessage}}" wx:key="index">
+        <view class="auction_apply_message_title">{{item.table}}</view>
+        <view class="auction_apply_message_input" wx:if="{{index !== applyMessage.length - 1}}">
+          <input type="text" placeholder="{{item.placeholder}}" placeholder-class="input-placeholder"/>
+        </view>
+        <view class="auction_apply_message_select" wx:else>
+          <view wx:if="{{isApply === 1}}">100元</view>
+          <view wx:elif="{{isApply === 2}}">{{item.placeholder}}</view>
+          <view class="arrows"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 报名参拍人列表结束 -->
+  <!-- 拍卖注意事项 -->
+  <view class="auction_apply_notes">
+    <view class="scroll_bar"></view>
+    <text>拍卖规则及注意事项：</text> 
+    <text>·本公司依照拍卖标的现状进行拍卖，不能保证拍卖标的的真伪或者品质，不承担瑕疵担保责任。</text> 
+    <text>·竞买人有权了解拍卖标的的瑕疵，有权查验拍卖标的和查阅有关拍卖资料。</text> 
+    <text>·竞买人应当在拍卖标的展示时，详细查看拍卖标的的现状及相关资料，务必对拍卖标的有明确认识方可参与竞买。</text> 
+    <text>·竞买人一旦参与竞买即视作认可拍卖标的的现状。</text> 
+  </view>
+  <!-- 拍卖注意事项结束 -->
+  <!-- 拍卖公告 -->
+  <view class="auction_apply_notive">
+    <view class="auction_apply_notive_box">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionBid/%E2%88%9A.png" class="{{isApply === 1? 'auction_apply_notive_red': 'auction_apply_notive_null'}}"></image>
+      <view>竞买人知晓并同意竞拍公告</view>
+    </view>
+    
+  </view>
+  <!-- 拍卖公告结束 -->
+</view>
+<!-- 报名参拍列表结束 -->
+
+<!-- 底部确认栏 -->
+<view class="bottom_bid">
+  <view class="bid_btn {{isApply === 1? 'bid_btn_submit': 'bid_btn_fail_submit'}}">提交</view>
+</view>
+<!-- 底部确认栏结束 -->

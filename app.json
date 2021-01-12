@@ -8,7 +8,9 @@
     "pages/myRelease/myRelease",
     "pages/myCollect/myCollect",
     "pages/auctionDetails/auctionDetails",
-    "pages/auction/auction"
+    "pages/auction/auction",
+    "pages/auctionBid/auctionBid",
+    "pages/auctionApply/auctionApply"
   ],
   "window": {
     "backgroundTextStyle": "light",

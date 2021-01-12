@@ -1,0 +1,187 @@
+page {
+  background-color: #EEEEEE;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  letter-spacing: 0.5rpx;
+}
+
+.top_img{
+  z-index: 1;
+  width:100%;
+  position: absolute;
+  left:0;
+  top:0;
+  height:417rpx;
+}
+
+.auction_apply_list {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  padding: 60rpx 40rpx 40rpx 40rpx;
+  box-sizing: border-box;
+}
+.auction_apply_person_list {
+  width: 100%;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.auction_apply_collect_remind {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #FF0000;
+  font-size: 8px;
+  color: #fff;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.auction_apply_collect_remind_futer {
+  background: #ff7f7f;
+}
+.remind_gray {
+  background: #999999;
+}
+.remind_img {
+  width: 22rpx;
+  height: 22rpx;
+  margin-right: 30rpx;
+}
+.remind_font {
+  margin-right: 30rpx;
+}
+.auction_apply_message {
+  width: 100%;
+  padding: 0 32rpx;
+  box-sizing: border-box;
+}
+.auction_apply_message_list {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #EEEEEE;
+  padding: 44rpx 19rpx;
+}
+.auction_apply_message_list:last-child {
+  border-bottom: none;
+}
+.auction_apply_message_title {
+  width: 197rpx;
+  font-size: 11px;
+  color: #979797;
+}
+.auction_apply_message_input {
+  flex: 1;
+  font-size: 12px;
+}
+.input-placeholder {
+  color: #000;
+}
+.auction_apply_message_select {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  line-height: 34rpx;
+}
+.auction_apply_message_select .arrows {
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 1px solid #91908F;
+  border-top: 1px solid #91908F;
+  transform: rotate(45deg);
+  margin-left: 10rpx;
+}
+
+.auction_apply_notes {
+  position: relative;
+  padding: 33rpx 36rpx;
+  box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 40rpx;
+  font-size: 8px;
+  color: #010101;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.scroll_bar {
+  position: absolute;
+  top: 34rpx;
+  right: 14rpx;
+  width: 13rpx;
+  height: 198rpx;
+  background: #EEEEEE;
+}
+.scroll_bar::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: '';
+  width: 13rpx;
+  height: 30rpx;
+  background: #B9B6B6;
+}
+
+.auction_apply_notive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8px;
+  color: #666666;
+}
+.auction_apply_notive_box {
+  display: flex;
+  align-items: center;
+}
+.auction_apply_notive_box image {
+  width: 19rpx;
+  height: 19rpx;
+  border-radius: 50%;
+  margin-right: 26rpx;
+}
+.auction_apply_notive_red {
+  background: #FF0000;
+}
+.auction_apply_notive_null {
+  background: #EEEEEE;
+  border: 1px solid #FF0000;
+}
+
+.bottom_bid {
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30rpx 60rpx;
+  box-sizing: border-box;
+  background: #EEEEEE;
+}
+.bid_btn {
+  width: 604rpx;
+  height: 67rpx;
+  line-height: 67rpx;
+  text-align: center;
+  font-size: 13px;
+  border-radius: 20rpx;
+  color: #fff;
+}
+.bid_btn_submit {
+  background: #FF0000;
+}
+.bid_btn_fail_submit {
+  background: #FFBA1E;
+}
+
