@@ -1,0 +1,227 @@
+.content {
+  height: 750px;
+
+  background-color: #eee;
+  padding-top:11px
+}
+.shop_shangchuan {
+  width: 90%;
+  margin: 0 auto;
+  background-color: #fff;
+border-radius: 10px;
+  height: 988rpx;
+
+}
+.shop_shangchuan .shop_shangchuan_text {
+ margin-top: 25rpx;
+ margin-left: 35rpx;
+ margin-bottom: 38rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #1E1E1E;
+}
+.header {
+  height: 337rpx;
+  background-color: #fff;
+  border-radius: 10rpx 10rpx 0 0;
+  border-bottom:2px solid #eee
+}
+.shangchuan_img {
+  width: 90%;
+  height: 222rpx;
+  background-color: #E8E8E8;
+  margin: 38rpx auto 28rpx;
+  border-radius: 10px;
+  
+  line-height: 222rpx;
+}
+.shangchuan_img_hand {
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 70rpx;
+  color: #ccc;
+margin: auto;
+}
+.shangchuan_title {
+  width: 100%;
+  height: 63rpx;
+  background-color: #fff;
+  display: flex;
+  line-height: 63rpx;
+  border-bottom:8rpx solid #eee
+
+}
+.shangchuan_title_text {
+  width: 150rpx;
+margin-left: 31rpx;
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #1E1E1E;
+}
+.shangchuan_title .weui-input {
+  width: 360rpx;
+  height: 26rpx;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 300;
+  line-height: 26rpx;
+  color: #858585;
+}
+.shop_title {
+  width: 100%;
+  height: 128rpx;
+  background-color: #fff;
+  margin: 0 auto;
+  display: flex;
+line-height: 128rpx;
+}
+.areas{
+  width: 482rpx;
+  height: 65rpx;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 300;
+  color: #858585;
+  line-height: 65rpx;
+  opacity: 0.8;
+  margin-top: 30rpx;
+}
+.shop_img {
+  height: 438rpx;
+  width: 100%;
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 35rpx;
+  
+}
+.shop_img_text {
+  margin-left: 31rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #1E1E1E;
+}
+.shop_img_img {
+  display: flex;
+  flex-flow:  row wrap; 
+  justify-content: space-between;
+  width: 600rpx;
+  height: 284rpx;
+  /* background-color: #000; */
+  margin: 0 auto;
+  margin-top: 37rpx;
+}
+.shop_img_img_img {
+  width: 127rpx;
+  height: 127rpx;
+  /* margin-right: 27rpx; */
+
+}
+.shop_img_img_img image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+
+}
+.shop_img_text_text {
+  margin-left: 38rpx;
+font-size: 21rpx;
+font-family: Source Han Sans CN;
+font-weight: 300;
+color: #858585;
+}
+.footer {
+  height: 425rpx;
+border-radius: 10rpx;
+}
+.status {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 92%;
+  height: 78rpx;
+  background-color: #fff;
+  line-height: 78rpx;
+  padding: 0 32rpx;
+
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #232220;
+margin-bottom:2px
+}
+.shop_money {
+  border-radius: 10rpx 10rpx 0 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 92%;
+  height: 86rpx;
+  background-color: #fff;
+  line-height: 86rpx;
+  padding: 0 32rpx;
+
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #232220;
+margin-bottom:2px
+}
+.shop_money_seclect {
+  position: absolute;
+  left:251px;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #818181;
+}
+.shop_money_seclect_input {
+  height: 3rem;
+}
+
+.btn {
+  background: linear-gradient(#ffc955, #ffa022); 
+ margin-top: 80rpx;
+font-size: 29rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #2C2C2C;
+}
+.transaction {
+  display: flex;
+  width: 250rpx;
+  height: 78rpx;
+justify-content: space-between;
+}
+.transaction .transaction_one {
+  flex: 1;
+  height: 40rpx;
+  line-height: 40rpx;
+border: 1px solid #FF6F83;
+text-align: center;
+margin-top: 20rpx;
+color: #FF6F83;
+
+border-radius: 13rpx;
+
+}
+.transaction_two {
+  flex: 1;
+  text-align: center;
+  height: 40rpx;
+  line-height: 40rpx;
+border: 1px solid #D4D4D4;
+color: #D4D4D4;
+border-radius: 13rpx;
+margin-top: 20rpx;
+margin-left: 13rpx;
+
+
+}
+.weui-uploader__img {
+  width: 66%;
+  height: 66%;
+}

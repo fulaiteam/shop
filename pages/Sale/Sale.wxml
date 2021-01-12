@@ -39,17 +39,22 @@
 
 </view>
 
-<!-- 即将开拍和立即抢购 -->
-<view class="gou">
 
- <view class="gou_one">立即抢购</view>
- <view class="gou_two">即将开拍</view>
-</view>
 <!-- 导航 -->
 <view class="tab">
- <view class="btns">
-   <view wx:for="{{btns}}" wx:key="key" class="{{index==active?'cur':''}}" data-index="{{index}}" bindtap="toggle">{{item}}</view>
- </view>
+  <!-- 图标 -->
+  <!-- <image src:></image> -->
+ <view>售卖列表</view>
+</view>
+<!-- 导航 -->
+<view class="tabs">
+<view class="tabs_heat">
+  热度 >
+  <!-- <mp-icon type="field" icon="play" color="black" size="{{25}}"></mp-icon> -->
+
+  </view>
+  <view class="tabs_manery">价格排序 ></view>
+  <view class="tabs_manery">产品类型 ></view>
 </view>
 <!-- 数据列表 -->
 <view class='list'>
@@ -61,8 +66,10 @@
      </view>
      <view class='info'>
        <view class='title'>{{item.goods_title}}</view>
+       <view class='original_price'>{{item.goods_original_price}}</view>
+
        <view class='price'>￥{{item.goods_price}}</view>
-       <view class='btn'>查看详情</view>
+       <view class='btn'></view>
      </view>
       </navigator>
      <view class='clear'></view>

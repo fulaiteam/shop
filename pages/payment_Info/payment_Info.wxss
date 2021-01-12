@@ -1,0 +1,85 @@
+/* pages/payment_Info/payment_Info.wxss *//* pages/payment/payment.wxss */
+.conent {
+  background-color: #eee;
+ padding: 30rpx;
+height: 1120rpx;
+}
+.box {
+  width: 669rpx;
+  height: 348rpx;
+  background-color: #fff;
+  border-radius: 14rpx;
+  margin: auto;
+  border: 1px solid #eee;
+}
+.box_son {
+  width: 570rpx;
+  height: 60rpx;
+  margin:65rpx 35rpx 44rpx 57rpx;
+  
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #010101;
+border-bottom:1px solid #eee
+}
+.box_sons {
+  width: 570rpx;
+  height: 60rpx;
+  margin:65rpx 35rpx 0 57rpx;
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #979797;
+border-bottom:1px solid #eee
+
+}
+.box_sons_son {
+  margin-left: 47rpx;
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FF2A00;
+}
+.payment {
+  display: flex;
+  justify-content: space-between;
+  width: 669rpx;
+  height: 78rpx;
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: 14rpx;
+  margin-top: 32rpx;
+  line-height: 78rpx;
+}
+.payment text {
+  margin-left: 58rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #010101;
+}
+.icon {
+  width: 30rpx;
+height: 30rpx;
+background-color: #FF8D11;
+border-radius: 50%;
+margin-top: 25rpx;
+margin-right: 43rpx;
+}
+
+.btn {
+  width: 603rpx;
+
+  height: 67rpx;
+  background-color: #FFBA1E;
+  text-align: center;
+  line-height: 67rpx;
+border-radius: 17rpx 17rpx 17rpx 17rpx;
+margin: auto;
+color: #fff;
+font-size: 26rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+margin-top: 716rpx;
+}

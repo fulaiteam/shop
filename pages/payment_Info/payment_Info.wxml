@@ -1,0 +1,17 @@
+<view class="conent">
+  <view class="box">
+    <view class="box_son">
+     + 需缴纳保证金
+    </view>
+    <view class="box_sons">
+    <input class='search_allarea_input' bindinput='getInputContent'    value="{{searchInput}}"  placeholder="请输入金额">
+  </input>
+</view>
+<text class="box_sons_son">+ 最低金额不得低于1000元</text>
+    </view>
+    <!-- <view class="payment">
+      <text>+ 微信支付</text>
+      <view class="icon"></view>
+    </view> -->
+ <view class="btn">去支付</view>
+</view>

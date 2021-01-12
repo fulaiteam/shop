@@ -1,3 +1,99 @@
-<view>
-发布
+<view class="content">
+  <!-- 发布信息 -->
+  
+  <view class="shop_shangchuan">
+ <view class="header">
+    <!-- 上传 -->
+  <text class="shop_shangchuan_text">上传主图</text>
+  <view class="shangchuan_img">
+    <view class="shangchuan_img_hand">+</view>
+  </view>
+ </view>
+  <!-- 标题 -->
+  <view class="shangchuan_title">
+    <text class="shangchuan_title_text">标题</text>
+    <input class="weui-input" placeholder="商品标题、品牌型号可以帮助搜索" selection-start="-1" selection-end="1" cursor="-1"></input>
+  </view>
+  <!-- 商品描述 -->
+  <view class="shop_title shangchuan_title">
+    <text class="shangchuan_title_text">商品自述</text>
+    <textarea class="areas" placeholder-class="input-placeholder" placeholder='详细描述商品的购买详情、使用情况及出售原因 能够更快的出售商品哟～'> 
+  </textarea>
+  </view>
+  <!-- 商品照片 -->
+  <view class="shop_img">
+    <text class="shop_img_text">商品描述</text>
+    <view class="shop_img_img">
+      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
+      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
+      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
+      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
+      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
+      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
+      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
+      <view class="shop_img_img_img" style="background-color: #E8E8E8;border-radius: 10rpx;text-align: center;line-height: 127rpx;">
+        +
+        <!-- <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image> -->
+
+      </view>
+    </view>
+    <text class="shop_img_text_text">+ 最多可放八张图</text>
+  </view>
+ 
+
+  <view class="footer">
+     <!-- 价格 -->
+  <view class="shop_money">
+    <text>价格</text>
+    <text class="shop_money_seclect"> 选择 > </text>
+    <picker name="state" mode="selector" range="{{state}}" range-key="name" value="{{stateInd}}" bindchange="state">
+      <input class="shop_money_seclect_input" id='{{state[stateInd].id}}' name="state" type='text' value='{{state[stateInd].name}}'disabled='true'></input>
+    </picker>
 </view>
+<!-- 商品类型 -->
+<view class="status">
+<text>商品类型</text>
+<text class="shop_money_seclect"> 选择 > </text>
+<picker name="state" mode="selector" range="{{state}}" range-key="name" value="{{stateInd}}" bindchange="state">
+  <input class="shop_money_seclect_input" id='{{state[stateInd].id}}' name="state" type='text' value='{{state[stateInd].name}}'disabled='true'></input>
+</picker>
+</view>
+<!-- 交易支付 -->
+<view class="status">
+<text>交易支付</text>
+<view class="transaction">
+  <view class="transaction_one">同城面交</view>
+  <view class="transaction_two">自提</view>
+</view>
+</view>
+
+<!-- 新旧程度 -->
+<view class="status">
+<text>新旧程度</text>
+<view class="transaction" style="width: 460rpx;">
+  <view class="transaction_one">七成</view>
+  <view class="transaction_two">九成</view>
+  <view class="transaction_two">全新</view>
+  <view class="transaction_two">其他</view>
+</view>
+</view>
+
+<!-- 需缴纳保证金 -->
+<view class="status" style="border-radius: 0 0 10rpx 10rpx;">
+<text>需缴纳保证金</text>
+<text class="shop_money_seclect"> 选择 > </text>
+<picker name="state" mode="selector" range="{{state}}" range-key="name" value="{{stateInd}}" bindchange="state">
+  <input class="shop_money_seclect_input" id='{{state[stateInd].id}}' name="state" type='text' value='{{state[stateInd].name}}'disabled='true'></input>
+</picker>
+</view>
+  </view>
+  
+  <view class="btn">
+    <button type="default" plain="true">确定发布</button>
+  </view>
+  
+  
+  </view>
+  
+  
+  </view>

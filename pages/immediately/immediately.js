@@ -14,7 +14,7 @@ Page({
     goods_title:'AGV k1摩特车头盔',
     goods_text:'男女四季全盔街车跑车冬季',
     goods_img:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    goods_xiaoliang:'限量抢购',
+    goods_time:'剩余00:20:10',
     goods_price:'60',     //打折后
     goods_original_price: '100'   //原价
   },
@@ -27,7 +27,8 @@ Page({
     goods_text:'男女四季全盔街车跑车冬季',
 
     goods_img:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    goods_xiaoliang:'限量抢购',
+    goods_time:'剩余00:20:10',
+
     goods_price:'70',
     goods_original_price: '100'   //原价
 
@@ -41,7 +42,8 @@ Page({
     goods_original_price: '100',   //原价
 
     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    goods_xiaoliang: '限量抢购',
+    goods_time:'剩余00:20:10',
+
     goods_price: '80'
   }, {
     goods_name:'全部', 
@@ -53,7 +55,8 @@ Page({
     goods_original_price: '100'   //原价
 ,
     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    goods_xiaoliang: '限量抢购',
+    goods_time:'剩余00:20:10',
+
     goods_price: '90'
   }, {
     goods_name:'全部', 
@@ -65,7 +68,8 @@ Page({
     goods_original_price: '100'   //原价
 ,
     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    goods_xiaoliang: '限量抢购',
+    goods_time:'剩余00:20:10',
+
     goods_price: '110'
   }
 ],
