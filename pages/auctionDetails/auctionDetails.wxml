@@ -101,7 +101,7 @@
         <view class="arrows"></view>
       </view>
     </view>
-    <view class="auction_bid_info" wx:for="{{5}}">
+    <view class="auction_bid_info" wx:for="{{5}}" wx:key="index">
       <view class="auction_bid_info_left">
         <image src="../../images/auctionDetails/icon.png"></image>
         <text>k123</text>
