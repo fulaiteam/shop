@@ -6,5 +6,6 @@
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "",
   "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light"
+  "backgroundTextStyle": "light",
+  "navigationBarTitleText": "我发布的"
 }
