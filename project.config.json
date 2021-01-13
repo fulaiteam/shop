@@ -21,14 +21,14 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -61,14 +61,14 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/auctionDetails/auctionDetails",
-          "pathName": "pages/auctionDetails/auctionDetails",
+          "name": "pages/earnestMoney/earnestMoney",
+          "pathName": "pages/earnestMoney/earnestMoney",
           "query": "",
           "scene": null
         },
         {
           "name": "dev",
-          "pathName": "pages/earnestMoney/earnestMoney",
+          "pathName": "pages/myService/myService",
           "query": "",
           "scene": null
         }

@@ -1,0 +1,31 @@
+<!-- 绑定手机列表 -->
+<view class="earnest_money_list">
+  <!-- 绑定手机信息列表 -->
+  <view class="earnest_money_pay_list">
+    <!-- 绑定手机信息-列 -->
+    <view class="earnest_money_pay_box">
+      <view class="earnest_money_pay_line">
+        <view class="earnest_money_pay_line_font">绑定手机</view>
+      </view>
+      <view class="earnest_money_pay_line">
+        <view class="earnest_money_message_input">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/bindPhone/%E5%9B%BE%E5%B1%82%202.png"></image>
+          <input type="text" placeholder="请输入手机号"/>
+        </view>
+      </view>
+      <view class="earnest_money_pay_line">
+        <view class="earnest_money_message_input">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/bindPhone/%E5%9B%BE%E5%B1%82%203.png"></image>
+          <input type="text" placeholder="请输入验证码"/>
+        </view>
+        <view class="get_captcha">
+          获取验证码
+          <button></button>
+        </view>
+      </view>
+      <view class="earnest_money_two_state">
+        <view class="bid_btn">完成</view>
+      </view>
+    </view>
+  </view>
+</view>

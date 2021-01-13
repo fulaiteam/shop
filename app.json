@@ -15,7 +15,9 @@
     "pages/Sale/Sale",
     "pages/payment/payment",
     "pages/payment_Info/payment_Info",
-    "pages/earnestMoney/earnestMoney"
+    "pages/earnestMoney/earnestMoney",
+    "pages/bindPhone/bindPhone",
+    "pages/myService/myService"
   ],
   "window": {
     "backgroundTextStyle": "light",

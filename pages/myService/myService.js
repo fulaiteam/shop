@@ -1,12 +1,11 @@
-// pages/earnestMoney/earnestMoney.js
+// pages/myService/myService.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    // 是否支付
-    isPay: 2
+
   },
 
   /**
