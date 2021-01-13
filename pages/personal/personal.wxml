@@ -5,7 +5,7 @@
     <!--顶部白色区域开始  -->
     <view   class='top_white_area' >
         <view  class="top_white_function_area" >
-            <view  class="top_white_function_item"   wx:for='{{top_arr}}'  wx:key='index' wx:for-item="item"  >
+            <view  class="top_white_function_item"   wx:for='{{top_arr}}'  wx:key='index'  data-path='{{item.path}}'  bindtap='toPage'   wx:for-item="item"  >
                 <view   class="top_white_function_item_num flex_center" >
                         {{item.num}}
                 </view>
