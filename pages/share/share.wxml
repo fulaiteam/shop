@@ -1,0 +1,39 @@
+<!--pages/share/share.wxml-->
+<view class="box">
+<view class="box_white">
+  <!-- 用户头像信息 -->
+<view class="box_user">
+<view class="name">
+  <image src="https://jgl.oss-cn-beijing.aliyuncs.com/sale/username.png"></image>
+</view>
+<view class="box_user_text">
+<view>{{username}}的二维码</view>
+<view>告诉你的小伙伴你正在使用捡个漏</view>
+</view>
+<view></view>
+</view>
+<view class="border">
+</view>
+<!-- 二维码 -->
+<view class="erweima">
+<image src="https://jgl.oss-cn-beijing.aliyuncs.com/sale/timg.png"></image>
+</view>
+<!-- 产品名称价钱 -->
+<view class="chanpin">
+  <view class="chanpin_text">铃木gsx250sr高配100多公里</view>
+  <view class="one"></view>
+  <view class="chanpin_monery">¥2,222</view>
+</view>
+</view>
+<!-- 描述 -->
+<view class="jianjie">
+  <view>
+    来捡个漏小程序，发布购买闲置不用愁，各种二手闲置仍
+君选择....
+</view>
+</view>
+<!-- 按钮 -->
+<view class="btn">
+分享
+</view>
+</view>

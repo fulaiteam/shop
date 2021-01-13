@@ -2,8 +2,12 @@
  <!-- 首页开始 -->
  <view class='head'>
   <!-- 版心 -->
+  <view class="head_img">
+  首页
+
+  </view>
 <view class="w">
- <view class="h_title">首页</view>
+ <view class="h_title"></view>
  <!-- 搜索 -->
 <view class="seach">
 <!-- 搜索区域开始 -->
@@ -43,7 +47,7 @@
 <!-- 导航 -->
 <view class="tab">
   <!-- 图标 -->
-  <!-- <image src:></image> -->
+  <image src="https://jgl.oss-cn-beijing.aliyuncs.com/sale/c406990d0df7f5f1489bdb456e16eb2.png"></image>
  <view>售卖列表</view>
 </view>
 <!-- 导航 -->
@@ -53,8 +57,48 @@
   <!-- <mp-icon type="field" icon="play" color="black" size="{{25}}"></mp-icon> -->
 
   </view>
-  <view class="tabs_manery">价格排序 ></view>
-  <view class="tabs_manery">产品类型 ></view>
+  <!-- 价格 -->
+  <view class="tabs_manery"> 
+    <view class="list_jiage" bindtap="bindjiage">
+    <text>{{jiage}}</text>
+  </view>
+  <!-- 下拉选择 -->
+  <view class="jiage_box" wx:if="{{jiageselect}}">
+<view style="display: flex;justify-content:space-around;margin-top: 30rpx;">
+<view class="jiage_one" bindtap="jiageselect" data-name="0-100">0-100</view>
+<view class="jiage_one" bindtap="jiageselect" data-name="100-1000">100-1000</view>
+<view class="jiage_one" bindtap="jiageselect" data-name="1000-3000">1000-3000</view>
+<view class="jiage_one" bindtap="jiageselect" data-name="3000-1万">3000-1万</view>
+<view class="jiage_one" bindtap="jiageselect" data-name="1万以上">1万以上</view>
+</view>
+
+<view class='sliderView'>
+
+  <view class="sliderView_text">1万以下</view>
+  <slider class='left' block-color='#d2d2d2'  bindchange="leftSchange" min='{{leftMin}}' max='{{leftMax}}' value='{{leftValue}}' activeColor='rgb(246, 46, 72)' backgroundColor='rgb(218, 218, 218)' block-size='14'/>
+  <slider class='right' block-color='#d2d2d2' bindchange="rightSchange" min='{{rightMin}}' max='{{rightMax}}' value='{{rightValue}}' activeColor='rgb(246, 46, 72)' backgroundColor='rgb(218, 218, 218)' block-size='14'/>
+  <view class="sliderView_btn">确定</view>
+</view>
+  </view>
+  </view>
+  <!-- 类型 -->
+  <view class="tabs_manery">
+    <view class="list_msg" bindtap="bindshow">
+      <text>{{chanpin}}</text>
+    </view>
+    <!-- 下拉选择 -->
+    <view class="list_box" wx:if="{{select}}">
+<view style="display: flex;">
+  <view style="margin-left:31rpx">当前选择：</view>
+  <view class="list_one" bindtap="myselect" data-name="全部">全部</view>
+</view>
+<view class="list_one" bindtap="myselect" data-name="头盔">头盔</view>
+<view class="list_one" bindtap="myselect" data-name="手套">手套</view>
+<view class="list_one" bindtap="myselect" data-name="配件">配件</view>
+<view class="list_one" bindtap="myselect" data-name="改装保养">改装保养</view>
+    </view>
+  </view>
+
 </view>
 <!-- 数据列表 -->
 <view class='list'>
@@ -69,7 +113,7 @@
        <view class='original_price'>{{item.goods_original_price}}</view>
 
        <view class='price'>￥{{item.goods_price}}</view>
-       <view class='btn'></view>
+       <image class='btn' src="{{item.img}}"></image>
      </view>
       </navigator>
      <view class='clear'></view>

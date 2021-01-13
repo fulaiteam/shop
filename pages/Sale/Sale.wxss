@@ -1,22 +1,35 @@
 /* pages/Sale/Sale.wxss */
 .head{
   width: 100%;
-  /* height: 350rpx; */
+  height: 2000rpx;
   background: #eee;
   /* background-image:; */
   text-align: center;
   padding-top: 25rpx;
-  
+  position: relative;
+}
+.head_img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 440rpx;
+  background-image: url(https://jgl.oss-cn-beijing.aliyuncs.com/sale/fengmian.png);
+  font-size: 29rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: black;
+margin-bottom: 34rpx;
 }
 .w {
   margin: 0 28rpx;
 }
 .h_title {
-
+width: 100%;
+height: 35rpx;
   font-size: 29rpx;
   font-family: Source Han Sans CN;
   font-weight: 500;
-  color: #000000;
+  color: black;
 margin-bottom: 34rpx;
 }
 .seach {
@@ -42,10 +55,10 @@ background: #F2F2F2;
 }
 .seach_icon{
   position: absolute;
-  top: 11%;
-  left: 40%;
-  height: 100%;
-  width: 4%;
+  top: 15rpx;
+  left: 279rpx;
+  height: 27rpx;
+  width: 23rpx;
 }
 .swiper {
   width: 100%;
@@ -150,7 +163,7 @@ navigator{
 .list .list_item{
   /* margin-top:10px; */
   padding:10px;
-  height:83px;
+  height:101px;
   line-height: 83rpx;
   border-bottom:1px solid #E8E8E8;
 }
@@ -198,7 +211,7 @@ color: #666666;
 .list .list_item .info .price{
   position: absolute;
   left: -5rpx;
-  bottom: 22rpx;
+  bottom: -14rpx;
 
   font-size: 25rpx;
   font-family: Source Han Sans CN;
@@ -211,7 +224,7 @@ color: #666666;
 color: #999999;
   position: absolute;
   left:0;
-  bottom: 66rpx;
+  bottom: 27rpx;
 
   font-size: 24rpx;
   font-family: Source Han Sans CN;
@@ -234,11 +247,10 @@ color: #999999;
 .list .list_item .info .btn{
   position: absolute;
   right:-20rpx;
-  bottom:40rpx;
+  bottom:23rpx;
   width: 38rpx;
   height: 38rpx;
-  background: #FF9214;
-  border-radius: 50%;
+
 }
 
 .tabs_title{
@@ -262,17 +274,27 @@ color: #999999;
 
   
 .tab {
-  width: 91%;
+  width: 680rpx;
   height: 90rpx;
   text-align: left;
-  padding-left: 63rpx;
+  padding-left: 15rpx;
   line-height: 90rpx;
-font-size: 25rpx;
-font-family: Source Han Sans CN;
-font-weight: 500;
-color: #000000;
+
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #000000;
   background-color: #fff;
-  border-bottom:10rpx solid #eeeeee
+  border-bottom:10rpx solid #eeeeee;
+  display: flex;
+}
+
+.tab image {
+  width: 32rpx;
+  height: 25rpx;
+  margin-top: 32rpx;
+  margin-right: 17rpx;
+
 }
   .tab .btns{ display: flex;color: #333; font-size: 25rpx; 
     font-family: Source Han Sans CN;
@@ -298,9 +320,122 @@ font-weight: 400;
 color: #FF8D03;
 }
 .tabs .tabs_manery {
-  
+  position: relative;
 font-size: 25rpx;
 font-family: Source Han Sans CN;
 font-weight: 400;
 color: #040404;
+}
+
+
+
+
+
+
+
+
+
+
+.list_msg {
+  height: 310rpx;
+width: 140rpx;
+
+}
+.jiage_box {
+  background-color: #fff;
+  width: 688rpx;
+  height: 400rpx;
+  position: absolute;
+  top: 93rpx;
+  left: -250rpx;
+  z-index: 66;
+  animation:myfirst1 0.5s;
+box-shadow:0px 2rpx 5rpx 5rpx #eee;
+}
+.list_box {
+  background-color: #fff;
+  width: 342rpx;
+  height: 500rpx;
+  position: absolute;
+  top: 93rpx;
+  left: -158rpx;
+  z-index: 66;
+  animation:myfirst 0.5s;
+box-shadow:0px 2rpx 5rpx 5rpx #eee;
+}
+@keyframes myfirst {
+  from {
+    height: 0rpx;
+  }
+  to {
+    height: 500rpx;
+  }
+}
+@keyframes myfirst1 {
+  from {
+    height: 0rpx;
+  }
+  to {
+    height: 400rpx;
+  }
+}
+.jiage_one {
+  width: 110rpx;
+  height: 50rpx;
+  background-color: #D2D2D2;
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 14rpx;
+font-size: 21rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #333333;
+}
+/* .list_one {
+
+} */
+
+
+.sliderView{
+  position: relative;
+  width: 447rpx;
+  height: 50rpx;
+  /* margin: 101rpx 112rpx */
+  margin-left: 112rpx;
+  margin-top: 70rpx;
+  text-align: center;
+}
+.left{
+  position: absolute;
+  width: 90%
+}
+.right{
+  position: absolute;
+  width: 90%
+}
+.sliderView_text {
+  width:110rpx;
+  height: 20rpx;
+  line-height: 20rpx;
+  text-align: center;
+  margin-left: 190rpx;
+  
+font-size: 21rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #333333;
+}
+.sliderView_btn {
+  width: 192rpx;
+height: 61rpx;
+background: #F62E48;
+border-radius: 21rpx;
+margin-top: 96rpx;
+text-align: center;
+line-height: 61rpx;
+margin-left: 140rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
 }

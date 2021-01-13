@@ -1,0 +1,57 @@
+<!--pages/All_auction/All_auction.wxml-->
+<view class="box">
+  <!-- 数据框 -->
+<view class="box_white">
+    <!-- 个人信息 -->
+
+<view class="head">
+<view class="user">
+  <image src="https://jgl.oss-cn-beijing.aliyuncs.com/sale/cat.png"></image>
+</view>
+<view class="user_two">
+<view class="user_name">{{name}}</view>
+<view class="user_jiaru">
+ <view> 加入捡个漏{{day}}天</view>
+  <image src="https://jgl.oss-cn-beijing.aliyuncs.com/sale/yrz.png"></image>
+  <view class="renzheng">
+    已实名认证
+  </view>
+</view>
+</view>
+</view>
+<!-- 标题 -->
+<view class="tab">
+  <view class="one" wx:if="{{show}}"></view>
+  <view class="two" wx:if="{{isshow}}"></view>
+  <view class="tab_btn">
+<view class="tab_btn_red" bindtap="show">
+  拍卖宝贝
+</view>
+<view class="tab_btn_gray" bindtap="isshow">
+  售卖宝贝
+</view>
+  </view>
+  </view>
+  <!-- 拍卖宝贝的列表 -->
+  <!-- wx：for绑定数组 -->
+  <view  wx:if="{{show}}"  wx:for="{{array}}" wx:key="key" class="array">
+  <view class="array_list">
+    <image src="{{item.img}}"></image>
+    <view class="array_list_title">{{item.title}}</view>
+    <view style="display:flex;height: 20rpx;line-height: 20rpx; justify-content: space-between;">
+      <view class="array_list_price">{{item.price}}</view>
+    <view class="array_list_time">剩余{{item.time}}</view>
+    </view>
+  </view>
+  </view>
+  <!-- 售卖宝贝的页面 -->
+  <view  wx:if="{{isshow}}" wx:for="{{array}}" wx:key="key" class="array">
+    <view class="array_list">
+      <image src="{{item.img}}"></image>
+      <view class="array_list_title">{{item.title}}</view>
+      <view class="array_list_price">{{item.price}}</view>
+    </view>
+  </view>
+</view>
+
+</view>

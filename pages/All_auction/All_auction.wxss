@@ -1,0 +1,177 @@
+/* pages/All_auction/All_auction.wxss */
+.box {
+  height: 1375rpx;
+  background-color: #eee;
+  border: 1px solid #eee;
+}
+.box_white {
+  width: 669rpx;
+  height: 1292rpx;
+  background-color: #fff;
+border-radius: 14rpx;
+margin: auto;
+margin-top: 50rpx;
+border: 1px solid #eee;
+
+}
+.head {
+  width: 669rpx;
+  height: 102rpx;
+  background-color: #fff;
+  border-radius: 14rpx;
+  margin: auto;
+  margin-top: 35rpx;
+  display: flex;
+  margin-bottom: 26rpx;
+}
+.head .user {
+  width: 102rpx;
+  height: 102rpx;
+  border: 1px dashed #888888;
+margin-left: 33rpx;
+margin-right: 26rpx;
+}
+.head .user image {
+  width: 100%;
+  height: 100%;
+}
+.user_two {
+  height: 102rpx;
+  margin-top: 15rpx;
+}
+.user_name {
+  width: 122rpx;
+height: 30rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #222222;
+}
+.user_jiaru {
+  display: flex;
+  width: 500rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-top: 20rpx;
+}
+.user_jiaru view {
+  width: 150rpx;
+height: 35rpx;
+line-height: 35rpx;
+font-size: 21rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #000000;
+margin-right: 32rpx;
+}
+.user_jiaru image {
+  width: 24rpx;
+  height: 28rpx;
+  margin-right: 20rpx;
+  margin-top: 7rpx;
+}
+.user_jiaru .renzheng {
+  width: 150rpx;
+height: 35rpx;
+line-height: 35rpx;
+font-size: 21rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #000000;
+}
+
+.tab {
+  width: 660rpx;
+  height: 67rpx;
+  background-color: #eee;
+
+  margin: 0 auto;
+
+}
+.tab .one {
+  width: 100%;
+  height: 2rpx;
+  background-color: #FF6F61;
+}
+.tab .two {
+  width: 100%;
+  height: 2rpx;
+  background-color: #DCDCDC;
+}
+.tab_btn {
+  width: 100%;
+  height: 65rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.tab_btn .tab_btn_red {
+  width: 326rpx;
+  height: 100%;
+  background-color: #FF6F61;
+  color: #fff;
+font-size: 22rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+line-height: 65rpx;
+border-radius: 7rpx;
+text-align: center;
+}
+.tab_btn .tab_btn_gray {
+  width: 326rpx;
+  height: 100%;
+  background-color: #DCDCDC;
+  color: #000000;
+font-size: 22rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+line-height: 65rpx;
+border-radius: 7rpx;
+text-align: center;
+}
+
+.array {
+  width: 257rpx;
+  height: 300rpx;
+  float: left;
+margin-bottom: 32rpx;
+/* margin-right: 53rpx; */
+margin-left: 51rpx;
+
+}
+.array:nth-child(2n) {
+margin-left: 63rpx;
+
+}
+.array_list {
+  width: 257rpx;
+  height: 150rpx;
+  /* padding: 0 51rpx; */
+
+}
+.array_list image {
+  width: 257rpx;
+  height: 194rpx;
+  margin-bottom:20rpx;
+  margin-top:34rpx;
+  margin-right: 53rpx;
+}
+.array_list .array_list_title {
+font-size: 22rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #333333;
+margin-bottom:24rpx
+}
+.array_list .array_list_price{
+font-size: 22rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FF6F61;
+}
+.array_list .array_list_time {
+  
+font-size: 21rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #D2312C;
+}
