@@ -76,7 +76,7 @@ background: #F2F2F2;
   height: 65rpx;
   position: relative;
   background-color: #eee;
-  /* display: flex; */
+ margin-top: 50rpx;
   /* justify-content: space-between; */
 }
 .pailist_one {
@@ -211,7 +211,7 @@ color: #666666;
 .list .list_item .info .price{
   position: absolute;
   left: -5rpx;
-  bottom: -14rpx;
+  bottom: -0;
 
   font-size: 25rpx;
   font-family: Source Han Sans CN;
@@ -224,7 +224,7 @@ color: #666666;
 color: #999999;
   position: absolute;
   left:0;
-  bottom: 27rpx;
+  bottom: 42rpx;
 
   font-size: 24rpx;
   font-family: Source Han Sans CN;
@@ -246,7 +246,7 @@ color: #999999;
 }
 .list .list_item .info .btn{
   position: absolute;
-  right:-20rpx;
+  right:-44rpx;
   bottom:23rpx;
   width: 38rpx;
   height: 38rpx;

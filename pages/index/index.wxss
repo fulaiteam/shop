@@ -75,6 +75,7 @@ background: #F2F2F2;
   position: relative;
   background-color: #eee;
   display: flex;
+  margin-top: 50rpx;
   /* justify-content: space-between; */
 }
 .pailist_one {
@@ -205,7 +206,7 @@ color: #666666;
 .list .list_item .info .price{
   position: absolute;
   left:25rpx;
-  bottom: 0;
+  bottom: 10rpx;
 font-size: 33rpx;
 font-family: Source Han Sans CN;
 font-weight: 400;
@@ -239,7 +240,7 @@ color: #999999;
 .list .list_item .info .btn{
   position: absolute;
   right:-44rpx;
-  bottom:5rpx;
+  bottom:10rpx;
   font-size:8px;
   width: 150rpx;
   height: 55rpx;

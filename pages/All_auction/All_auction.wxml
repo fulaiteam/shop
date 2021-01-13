@@ -38,7 +38,7 @@
   <view class="array_list">
     <image src="{{item.img}}"></image>
     <view class="array_list_title">{{item.title}}</view>
-    <view style="display:flex;height: 20rpx;line-height: 20rpx; justify-content: space-between;">
+    <view style="display:flex;height: 30rpx;line-height: 30rpx; justify-content: space-between;">
       <view class="array_list_price">{{item.price}}</view>
     <view class="array_list_time">剩余{{item.time}}</view>
     </view>

@@ -1,7 +1,7 @@
 /* pages/Sign/Sign.wxss */
 .box {
   width: 750rpx;
-  height: 1182rpx;
+  height: 1192rpx;
   background: linear-gradient(107deg, #936DFF 0%, #FFD164 0%, #FF8A0D 100%);
 text-align: center;
 border: 1px solid  #FFD164;

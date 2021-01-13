@@ -19,7 +19,7 @@
 <!-- 轮播图 -->
 <view class="swiper">
  <view class="page-body">
- <swiper style="width: 100%;" indicator-dots="{{indicatorDots}}" style="height: 292rpx !important;">
+ <swiper style="width: 100%;" indicator-dots="{{indicatorDots}}" style="height: 337rpx !important;">
    <swiper-item style="width: 100%;">
      <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
    </swiper-item>
