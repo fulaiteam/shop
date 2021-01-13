@@ -89,7 +89,7 @@
   </view>
   
   <view class="btn">
-    <button type="default" plain="true">确定发布</button>
+  确定发布
   </view>
   
   

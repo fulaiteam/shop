@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/All_auction/All_auction",
+
     "pages/index/index",
     "pages/personal/personal",
     "pages/release/release",
@@ -13,11 +15,15 @@
     "pages/auctionApply/auctionApply",
     "pages/immediately/immediately",
     "pages/Sale/Sale",
-    "pages/payment/payment",
     "pages/payment_Info/payment_Info",
     "pages/earnestMoney/earnestMoney",
     "pages/bindPhone/bindPhone",
-    "pages/myService/myService"
+    "pages/myService/myService",
+    "pages/login/login",
+    "pages/login_phone/login_phone",
+    "pages/pass/pass",
+    "pages/share/share"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

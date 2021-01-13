@@ -5,7 +5,7 @@
     <!--顶部白色区域开始  -->
     <view   class='top_white_area' >
         <view  class="top_white_function_area" >
-            <view  class="top_white_function_item"   wx:for='{{top_arr}}'  wx:key='index' wx:for-item="item"  >
+            <view  class="top_white_function_item"   wx:for='{{top_arr}}'  wx:key='index'  data-path='{{item.path}}'  bindtap='toPage'   wx:for-item="item"  >
                 <view   class="top_white_function_item_num flex_center" >
                         {{item.num}}
                 </view>
@@ -36,7 +36,7 @@
     <!-- 顶部背景区域结束 -->
 <!-- 模块区域开始  -->
 <view  class='bottom_module_area'  >
-    <view  class='bottom_module_item'   wx:for='{{modules_arr}}'  wx:key='index' wx:for-item="item"     >
+    <!-- <view  class='bottom_module_item'   wx:for='{{modules_arr}}'  wx:key='index' wx:for-item="item"     >
         <view  class='bottom_module_item_left' >
             <image  class='bottom_module_item_left_img' src='{{item.img}}'  ></image>
             <view  class='bottom_module_item_left_text' >
@@ -45,7 +45,84 @@
         </view>
         <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
        
+    </view> -->
+    <!-- 实名认证 -->
+    <view  class='bottom_module_item'   bindtap='toConfirmName'    >
+        <view  class='bottom_module_item_left' >
+            <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm.png'  ></image>
+            <view  class='bottom_module_item_left_text' >
+                实名认证
+            </view>
+        </view>
+        <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
     </view>
+    <!-- 实名认证结束 -->
+        <!-- 更改昵称 -->
+        <view  class='bottom_module_item'       >
+            <view  class='bottom_module_item_left' >
+                <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/change_name.png'  ></image>
+                <view  class='bottom_module_item_left_text' >
+                    更改昵称
+                </view>
+            </view>
+            <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+        </view>
+        <!-- 更改昵称结束 -->
+            <!-- 更改性别 -->
+    <view  class='bottom_module_item'       >
+        <view  class='bottom_module_item_left' >
+            <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/gender.png'  ></image>
+            <view  class='bottom_module_item_left_text' >
+                更改性别
+            </view>
+        </view>
+        <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+    </view>
+    <!-- 更改性别结束 -->
+                <!-- 更改生日 -->
+                <view  class='bottom_module_item'       >
+                    <view  class='bottom_module_item_left' >
+                        <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/birth.png'  ></image>
+                        <view  class='bottom_module_item_left_text' >
+                            更改生日
+                        </view>
+                    </view>
+                    <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+                </view>
+                <!-- 更改生日结束 -->
+                <!-- 绑定手机 -->
+    <view  class='bottom_module_item'       >
+        <view  class='bottom_module_item_left' >
+            <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/bindmobile.png'  ></image>
+            <view  class='bottom_module_item_left_text' >
+                绑定手机
+            </view>
+        </view>
+        <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+    </view>
+    <!-- 绑定手机结束 -->
+    <!-- 参与拍卖 -->
+    <view  class='bottom_module_item'  bindtap='toAuction'     >
+        <view  class='bottom_module_item_left' >
+            <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/concert_sale.png'  ></image>
+            <view  class='bottom_module_item_left_text' >
+                参与拍卖
+            </view>
+        </view>
+        <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+    </view>
+    <!-- 参与拍卖结束 -->
+    <!-- 我的客服 -->
+    <view  class='bottom_module_item'       >
+        <view  class='bottom_module_item_left' >
+            <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/kefu.png'  ></image>
+            <view  class='bottom_module_item_left_text' >
+                我的客服
+            </view>
+        </view>
+        <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+    </view>
+    <!-- 我的客服结束 -->
 </view>
 <!-- 模块区域结束 -->
 

@@ -1,9 +1,13 @@
 
  <!-- 首页开始 -->
  <view class='head'>
+  <view class="head_img">
+    首页
+  
+    </view>
   <!-- 版心 -->
 <view class="w">
- <view class="h_title">首页</view>
+ <view class="h_title"></view>
  <!-- 搜索 -->
 <view class="seach">
 <!-- 搜索区域开始 -->
@@ -15,7 +19,7 @@
 <!-- 轮播图 -->
 <view class="swiper">
  <view class="page-body">
- <swiper style="width: 100%;" indicator-dots="{{indicatorDots}}" style="height: 292rpx !important;">
+ <swiper style="width: 100%;" indicator-dots="{{indicatorDots}}" style="height: 337rpx !important;">
    <swiper-item style="width: 100%;">
      <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
    </swiper-item>

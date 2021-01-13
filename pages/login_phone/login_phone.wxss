@@ -1,0 +1,167 @@
+/* pages/login_phone/login_phone.wxss */
+.box {
+  width: 750rpx;
+  height: 1180rpx;
+  position: relative;
+}
+.box image {
+  width: 100%;
+  height: 100%;
+}
+.box_text {
+  position: absolute;
+  top: 106rpx;
+  left: 66rpx;
+  width: 360rpx;
+  height: 59rpx;
+font-size: 63rpx;
+font-family: Source Han Sans CN;
+font-weight: 500;
+color: #FFFFFF;
+line-height: 105rpx;
+}
+.box_login {
+  position: absolute;
+  top: 357rpx;
+  left: 276rpx;
+  display: flex;
+  width: 400rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+font-size: 35rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #000000;
+
+}
+
+.box_phone {
+  position: absolute;
+  left: 70rpx;
+  top: 445rpx;
+  
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #000000;
+}
+.box_input {
+  position: absolute;
+  top: 500rpx;
+  left: 69rpx;
+margin-bottom: 15rpx;
+}
+.box_input_phone {
+  width: 600rpx;
+  height: 45rpx;
+  
+  display: flex;
+}
+.box_input_phone image{
+width: 35rpx;
+height: 35rpx;
+margin-top: 10rpx;
+margin-right: 20rpx;
+}
+.box_input_phone input {
+  width: 551rpx;
+  height: 60rpx;
+font-size: 24rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #696969;
+border-bottom:1px solid #DDDDDD;
+
+}
+.box_input_pass {
+  width: 600rpx;
+  height: 45rpx;
+  margin-top: 40rpx;
+  display: flex;
+}
+.box_input_pass image{
+  width: 35rpx;
+  height: 35rpx;
+  margin-top: 10rpx;
+  margin-right: 20rpx;
+  }
+  .box_input_pass input {
+    width: 551rpx;
+    height: 60rpx;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #696969;
+  border-bottom:1px solid #DDDDDD;
+  
+  }
+  .box_pass_btn {
+    position: absolute;
+    top: 96rpx;
+    left: 423rpx;
+    width: 140rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #F19926;
+  }
+  .login_btn {
+    position: absolute;
+    top: 761rpx;
+    left: 70rpx;
+    width: 594rpx;
+height: 91rpx;
+background: #FFBD22;
+box-shadow: 2rpx 3rpx 7rpx 0rpx rgba(130, 80, 111, 0.17);
+border-radius: 31rpx;
+text-align: center;
+line-height: 91rpx;
+font-size: 29rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
+  }
+  .youke {
+    position: absolute;
+    bottom: 249rpx;
+    left: 322rpx;
+font-size: 24rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FF9086;
+
+  }
+  .qita {
+    position: absolute;
+    bottom: 184rpx;
+    left: 297rpx;
+    font-size: 24rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #000000;
+
+  }
+  .wx {
+    position: absolute;
+    bottom: 96rpx;
+    left: 335rpx;
+    width: 67rpx;
+    height: 67rpx;
+
+  }
+  .wx image{ 
+    width: 100%;
+    height: 100%;
+  }
+  .login_wx {
+    position: absolute;
+    bottom: 52rpx;
+    left: 344rpx;
+font-size: 26rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #000000;
+  }

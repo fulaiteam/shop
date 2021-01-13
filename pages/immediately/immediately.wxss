@@ -5,7 +5,19 @@
   /* background-image:; */
   text-align: center;
   padding-top: 25rpx;
-  
+  position: relative;
+}
+.head_img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 400rpx;
+  background-image: url(https://jgl.oss-cn-beijing.aliyuncs.com/sale/fengmian.png);
+  font-size: 29rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: black;
+margin-bottom: 34rpx;
 }
 .w {
   margin: 0 28rpx;
@@ -62,8 +74,7 @@ background: #F2F2F2;
   height: 65rpx;
   position: relative;
   background-color: #eee;
-  /* display: flex; */
-  /* justify-content: space-between; */
+margin-top: 50rpx;
 }
 .pailist_one {
   position: absolute;
@@ -150,7 +161,7 @@ navigator{
 .list .list_item{
   /* margin-top:10px; */
   padding:10px;
-  height:83px;
+  height:93px;
   border-bottom:6rpx solid #E8E8E8;
 }
 .list .list_item .img{
@@ -182,8 +193,8 @@ navigator{
 .list .list_item .info .time {
   position: absolute;
   right:-50rpx;
-  bottom:96rpx;
-  width: 120rpx;
+  bottom:75rpx;
+  width: 140rpx;
 font-size: 21rpx;
 font-family: Source Han Sans CN;
 font-weight: 400;
@@ -202,7 +213,7 @@ color: #666666;
 .list .list_item .info .price{
   position: absolute;
   left:25rpx;
-  bottom: 38rpx;
+  bottom: 12rpx;
 font-size: 33rpx;
 font-family: Source Han Sans CN;
 font-weight: 400;
@@ -235,13 +246,13 @@ color: #999999;
 }
 .list .list_item .info .btn{
   position: absolute;
-  right:-65rpx;
-  bottom:40rpx;
+  right:-60rpx;
+  bottom:12rpx;
   font-size:8px;
   width: 150rpx;
   height: 55rpx;
   text-align: center;
-  line-height: 20px;
+  line-height: 55rpx;
 font-family: Source Han Sans CN;
 font-weight: 400;
 border-radius: 17px 0 0 17px;

@@ -183,6 +183,10 @@ margin-bottom:2px
 }
 
 .btn {
+  width: 674rpx;
+height: 97rpx;
+text-align: center;
+line-height: 97rpx;
   background: linear-gradient(#ffc955, #ffa022); 
  margin-top: 80rpx;
 font-size: 29rpx;

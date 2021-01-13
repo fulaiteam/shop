@@ -1,0 +1,115 @@
+/* pages/share/share.wxss */
+.box {
+  width: 100%;
+  height: 1183rpx;
+  background-color: #eee;
+  border-top: 1px solid #eee;
+}
+.box_white {
+  width: 669rpx;
+  height: 754rpx;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-top: 50rpx;
+  border-radius: 14rpx;
+  margin-bottom: 36rpx;
+}
+.box_user {
+  width: 601rpx;
+  height: 102rpx;
+  line-height: 102rpx;
+  padding:26rpx 34rpx 40rpx;
+  display:flex;
+}
+.name {
+  width: 102rpx;
+  height: 102rpx;
+  border:1px dashed #eee;
+}
+.name image {
+  width: 102rpx;
+  height: 102rpx;
+}
+.box_user_text {
+  height: 102rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+line-height: 50rpx;
+color: #222222;
+margin-left: 26rpx;
+}
+.border {
+  width: 546rpx;
+  margin: 0 auto;
+  border:2rpx dashed #eee;
+  margin-bottom: 31rpx;
+}
+.erweima {
+  width: 414rpx;
+height: 414rpx;
+border: 1rpx solid #030000;
+border-radius: 21rpx;
+margin: 0 auto;
+padding: 20rpx;
+margin-bottom: 27rpx;
+}
+.erweima image {
+  width: 414rpx;
+  height: 414rpx;
+}
+.chanpin {
+  width: 601rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  padding:0 34rpx;
+  display: flex;
+  /* justify-content: space-between; */
+}
+.chanpin_text {
+  
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #333333;
+}
+.chanpin_monery {
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: bold;
+color: #FF6F61;
+}
+.one {
+  width: 1rpx;
+  height: 30rpx;
+  border-right:1rpx solid #E8E8E8;
+  margin-left: 87rpx;
+  margin-right: 74rpx;
+}
+.jianjie {
+  width: 593rpx;
+  height: 54rpx;
+  background-color: #fff;
+  border:1px dashed #ff0000;
+  margin: 0 auto;
+  padding: 35rpx 38rpx;
+  border-radius: 21rpx;
+  margin-bottom: 103rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #333333;
+}
+.btn {
+  width: 603rpx;
+height: 74rpx;
+background: #FA4F47;
+border-radius: 21rpx;
+margin: 0 auto;
+text-align: center;
+line-height: 74rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
+}
