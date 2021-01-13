@@ -61,14 +61,14 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/auctionBid/auctionBid",
-          "pathName": "pages/auctionBid/auctionBid",
+          "name": "pages/auctionDetails/auctionDetails",
+          "pathName": "pages/auctionDetails/auctionDetails",
           "query": "",
           "scene": null
         },
         {
           "name": "dev",
-          "pathName": "pages/auctionApply/auctionApply",
+          "pathName": "pages/earnestMoney/earnestMoney",
           "query": "",
           "scene": null
         }

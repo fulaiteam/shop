@@ -8,7 +8,7 @@
     <view class="auction_img">
       <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E5%9B%BE%E5%B1%82%20618.png" class="auction_photo"></image>
       <!-- 正在进行 -->
-      <view class="collect_remind">
+      <view class="collect_remind" wx:if="{{auction_case === 1}}">
         <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
         <text class="remind_font">正在进行</text>
         <text class="remind_font">今天晚上12点结束</text> 
@@ -16,7 +16,7 @@
     </view>
 
     <!-- 拍卖商品标题 -->
-    <view class="auction_info">
+    <view class="auction_info {{auction_case === 2? 'auction_info_buttom': ''}}">
       <!-- 标题 -->
       <view class="auction_font">
         <view class="auction_title">{{list.title}}</view>
@@ -26,7 +26,7 @@
         </view>
       </view>
       <!-- 报名、围观 -->
-      <view class="auction_cir">
+      <view class="auction_cir"  wx:if="{{auction_case === 1}}">
         <!-- 报名 -->
         <view class="auction_apply">
           <text>报名</text>
@@ -46,12 +46,29 @@
           <view class="auction_price">{{list.price}}</view>
         </view>
       </view>
+      <!-- 购买记录 -->
+      <view class="auction_buy_record"  wx:if="{{auction_case === 2}}">
+        <!-- 月购 -->
+        <view class="auction_buy_box_buy">
+          <text>月购</text>
+          <text>22人</text>
+        </view>
+        <!-- 收藏 -->
+        <view class="auction_buy_box_collect">
+          <text>收藏</text>
+          <text>1000+人</text>
+        </view>
+        <view class="auction_buy_box_circusee">
+          <text>围观</text>
+          <text>10000+次</text>
+        </view>
+      </view>
     </view>
   </view>
   <!-- 拍卖商品头部结束 -->
 
   <!-- 提示 -->
-  <view class="auction_hint">
+  <view class="auction_hint" wx:if="{{auction_case === 1}}">
     <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/icon.png"></image>
     <view>友情提示：出价需谨慎</view>
   </view>
@@ -101,7 +118,7 @@
         <view class="arrows"></view>
       </view>
     </view>
-    <view class="auction_bid_info" wx:for="{{5}}" wx:key="index">
+    <view class="auction_bid_info" wx:for="{{3}}" wx:key="index">
       <view class="auction_bid_info_left">
         <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/icon.png"></image>
         <text>k123</text>
@@ -142,26 +159,120 @@
       <view class="store_bar"></view>
       <!-- table栏 -->
       <view class="store_table">
-        <view class="store_auction_goods">拍卖宝贝</view>
-        <view class="store_sell_goods">售卖宝贝</view>
+        <view
+          class="store_table_goods {{index === isTable? 'store_pitch_goods' : ''}}"
+          wx:for="{{['拍卖宝贝','售卖宝贝']}}"
+          wx:key="index"
+          bindtap="handleClick"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
       </view>
       <!-- 商品列表 -->
       <view class="store_goods_list">
-        <view class="store_goods_info">
-          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/30ab95497431412999262e474b3696af.png"></image>
-          <view class="store_goods_info_box">
-            <view class="store_goods_info_title">AGV k1摩特车头盔</view>
-            <view class="store_goods_info_price">¥620.80</view>
-          </view>
+        <view class="store_goods_info" wx:for="{{6}}" wx:key="index">
+          <navigator>
+            <view class="store_goods_img">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/30ab95497431412999262e474b3696af.png" mode="center"></image>
+            </view>
+            <view class="store_goods_info_box">
+              <view>AGV k1摩特车头盔</view>
+              <view class="store_goods_info_price">¥620.80</view>
+            </view>
+          </navigator>
         </view>
       </view>
     </view>
   </view>
   <!-- 店铺信息结束 -->
 
+  <!-- 商品自述 -->
+  <view class="auction_box">
+    <view class="auction_box_title">
+      <view class="fillet_rectangle"></view>
+      <text>商品自述</text> 
+      <view class="fillet_rectangle"></view>
+    </view>
+    <view class="auction_readme_message">
+      <text>优质Pu皮加正料ABS，耐冲击，耐穿透，韧性高等有良好的缓冲效果</text> 
+      <text>可拆洗内衬，吸湿，排汗，透气</text>
+      <text>无纺布袋加中性瓦硬纸</text>
+    </view>
+  </view>
+  <!-- 商品自述结束 -->
+  
+  <!-- 商品描述 -->
+  <view class="auction_box">
+    <view class="auction_box_title">
+      <view class="fillet_rectangle"></view>
+      <text>商品描述</text> 
+      <view class="fillet_rectangle"></view>
+    </view>
+    <view class="auction_info_img" wx:for="{{4}}" wx:key="index">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/u%3D1726499354%2C2017203035%26fm%3D26%26gp%3D0.png"></image>
+    </view>
+  </view>
+  <!-- 商品描述结束 -->
+
+  <!-- 竞买公告 -->
+  <view class="auction_box">
+    <view class="auction_box_title">
+      <view class="fillet_rectangle"></view>
+      <text>竞买公告</text> 
+      <view class="fillet_rectangle"></view>
+    </view>
+    <view class="auction_notice">
+      <view class="auction_notice_section">
+        <text>真伪:拍品介绍</text> 
+        <text>(图片、 文字、视频等)及拍品资质文件(来源证明、鉴定证书等)</text> 
+        <text>均由卖家自行发布并上传，所有拍品相关信息由卖家自行</text> 
+        <text>承担相应担保责任;售后:拍品多为孤品性质类商品，</text> 
+        <text> “7天退货” 服务请与卖家协商</text> 
+      </view>
+      <view class="auction_notice_section">
+        <text>竞拍前请充分考虑</text>
+      </view>
+    </view>
+  </view>
+  <!-- 竞买公告结束 -->
+
+  <!-- 为您推荐 -->
+  <view class="auction_box">
+    <view class="auction_box_title">
+      <view class="fillet_rectangle"></view>
+      <text>为您推荐</text> 
+      <view class="fillet_rectangle"></view>
+    </view>
+    <view class="auction_recommend_goods">
+      <navigator>
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/timg%20%E6%8B%B7%E8%B4%9D.png" class="auction_recommend_goods_img"></image>
+        <view class="auction_recommend_goods_box">
+          <view class="auction_recommend_goods_title">
+            铃木gsx250sr高配100多公里 豪爵铃木 GSX 250R-A
+          </view>
+          <view class="auction_recommend_goods_price">￥28,000</view>
+          <view class="auction_recommend_browse_data">
+            <view class="auction_recommend_browse">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%B5%8F%E8%A7%88.png"></image>
+              <text>10000+</text>
+            </view>
+            <view class="auction_recommend_browse_update_font">10分钟前更新</view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <!-- 为您推荐结束 -->
 
 </view>
 <!-- 参与出价 -->
-<view class="bottom_bid">
+<view class="bottom_bid" wx:if="{{auction_case === 1}}">
   <view class="bid_btn">参与出价</view>
 </view>
+<view class="bottom_bid_relation"  wx:if="{{auction_case === 2}}">
+  <view class="bottom_bid_relation_box bottom_bid_relation_shop">联系宝主</view>
+  <view class="bottom_bid_relation_box bottom_bid_relation_collect">收藏</view>
+</view>
+<!-- 报名悬浮球 -->
+<view class="apply_ball"  wx:if="{{auction_case === 1}}">去报名</view>

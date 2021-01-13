@@ -1,0 +1,45 @@
+<!-- 保证金列表 -->
+<view class="earnest_money_list">
+  <!-- 保证金列表缴纳列表 -->
+  <view class="earnest_money_pay_list">
+    <!-- 报名参拍人信息列表 -->
+    <view class="earnest_money_pay_box">
+      <view class="earnest_money_pay_line">
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/earnestMoney/%E9%87%91%E5%B8%81.png" class="gold"></image>
+        <view class="earnest_money_pay_line_font">需缴纳保证金</view>
+      </view>
+      <view class="earnest_money_pay_line" wx:if="{{isPay === 1}}">
+        <view class="earnest_money_message_input">
+          <input type="number" placeholder="请输入金额"/>
+        </view>
+      </view>
+      <view class="earnest_money_one_state"  wx:if="{{isPay === 1}}">
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/earnestMoney/%E6%8F%90%E7%A4%BA%20(2)%20%E6%8B%B7%E8%B4%9D.png" class="hint"></image>
+        <view class="earnest_money_notlower_line_font">最低金额不得低于100元</view>
+      </view>
+      <view class="earnest_money_pay_line" wx:if="{{isPay === 2}}">
+        <view class="earnest_money_alrpay_line_font">已交付保证金100元</view>
+      </view>
+      <view class="earnest_money_two_state" wx:if="{{isPay === 2}}">
+        <view class="bid_btn">提交</view>
+      </view>
+    </view>
+  </view>
+  <!-- 保证金列表缴纳列表结束 -->
+  <!-- 微信支付 -->
+  <view class="weixin_pay_box" wx:if="{{isPay === 1}}">
+    <view class="weixin_pay_box_left">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/earnestMoney/weixin.png"></image>
+      <text>微信支付</text>
+    </view>
+    <icon type="success" size="16" color="#FF8D11"></icon>
+  </view>
+  <!-- 微信支付结束 -->
+</view>
+  <!-- 报名参拍人列表结束 -->
+
+  <!-- 底部确认栏 -->
+<view class="bottom_bid" wx:if="{{isPay === 1}}">
+  <view class="bid_btn">去支付</view>
+</view>
+<!-- 底部确认栏结束 -->

@@ -1,39 +1,19 @@
-// pages/auctionDetails/auctionDetails.js
+// pages/earnestMoney/earnestMoney.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: {
-      title: "铃木gsx250sr高配100多公里",
-      apply_num: 22,
-      circusee_time: 10000,
-      price: "2,222",
-      auction_info: {
-        auction_type: "增加拍",
-        auction_starting_price: 100,
-        auction_earnest_money: 50,
-        auction_amount: 300,
-        auction_start: "2020-12-11 13:17",
-        auction_over: "2020-12-12 13:17",
-        auction_reserve_price: "无",
-        auction_delayed: 5
-      },
-    },
-    // table栏选中
-    isTable: 0,
-    // 情况
-    // 1 拍卖
-    // 2 售卖
-    auction_case: 2
+    // 是否支付
+    isPay: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -83,10 +63,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  handleClick(e) {
-    console.log(e.currentTarget.dataset.index)
-    this.setData({isTable: e.currentTarget.dataset.index})
   }
 })
