@@ -74,6 +74,16 @@ Page({
         wx.navigateTo({
             url: '/pages/auction/auction'
         })
+    },
+    toService:function(){
+        wx.navigateTo({
+            url: '/pages/myService/myService'
+        })
+    },
+    toBindPhone:function(){
+        wx.navigateTo({
+            url: '/pages/bindPhone/bindPhone'
+        })
     }
 
 

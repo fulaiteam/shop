@@ -1,8 +1,7 @@
 {
   "pages": [
+        "pages/index/index",
     "pages/All_auction/All_auction",
-
-    "pages/index/index",
     "pages/personal/personal",
     "pages/release/release",
     "pages/confirmName/confirmName",
