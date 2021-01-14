@@ -1,80 +1,80 @@
-
- <!-- 首页开始 -->
- <view class='head'>
-  <view class="head_img">
-    首页
-  
-    </view>
+<!-- 首页开始 -->
+<view class='head'>
   <!-- 版心 -->
-<view class="w">
- <view class="h_title"></view>
- <!-- 搜索 -->
-<view class="seach">
-<!-- 搜索区域开始 -->
- <input class='search_allarea_input' bindinput='getInputContent'    value="{{searchInput}}"  placeholder="请输出">
- </input>
-<image src='https://jgl.oss-cn-beijing.aliyuncs.com/seach.png' class='seach_icon'></image>
-<!-- 搜索区域结束 -->
-</view>
-<!-- 轮播图 -->
-<view class="swiper">
- <view class="page-body">
- <swiper style="width: 100%;" indicator-dots="{{indicatorDots}}" style="height: 337rpx !important;">
-   <swiper-item style="width: 100%;">
-     <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
-   </swiper-item>
-   <swiper-item style="width: 100%;">
-     <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
-   </swiper-item>
-   <swiper-item style="width: 100%;">
-     <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
-   </swiper-item>
- </swiper>
-</view>
+  <view class="w">
+    <!-- 搜索 -->
+    <view class="seach">
+      <!-- 搜索区域开始 -->
+      <view class="seach_box">
+        <image src='https://jgl.oss-cn-beijing.aliyuncs.com/seach.png' class='seach_icon'></image>
+        <input class='search_allarea_input' bindinput='getInputContent' value="{{searchInput}}" placeholder="大家都在搜" />
+      </view>
+      <!-- 搜索区域结束 -->
+    </view>
+
+    <!-- 轮播图 -->
+    <swiper class="swiper" indicator-dots="true" autoplay="true">
+      <block wx:for="{{3}}" wx:key="index">
+        <swiper-item>
+          <navigator>
+            <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img" mode="aspectFit"></image>
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 拍卖列表 -->
+    <view class="pailist">
+      <view
+        class="pailist_one pailist_show_two {{isAuction === 0? }}"
+        bindtap="handleClickList"
+        data-id="0"
+      >
+        拍卖列表
+      </view>
+      <view class="pailist_two ">售卖列表</view>
+    </view>
+
+    <!-- 即将开拍和立即抢购 -->
+    <view class="gou">
+      <view class="gou_one pailist_show_three">立即抢购</view>
+      <view class="gou_two ">即将开拍</view>
+    </view>
+
+    <!-- 导航 -->
+    <view class="tab">
+      <view wx:for="{{btns}}" wx:key="key" class="tab_box {{index==active?'actives':''}}" data-index="{{index}}"
+        bindtap="toggle">
+        {{item}}</view>
+    </view>
+
+    <!-- 数据列表 -->
+    <view class='list'>
+      <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+        <view class="list_item">
+          <navigator url='details?id={{item.goods_id}}'>
+            <view class='img'>
+              <image src="{{imghref}}{{item.goods_img}}" mode="scaleToFill" />
+            </view>
+            <view class='info'>
+              <view class='title'>{{item.goods_title}}</view>
+              <view class="info_bottom">
+                <view class='price'>￥{{item.goods_price}}</view>
+                <view class='btn_and_residue'>
+                  <text>剩余00:20:10</text>
+                  <view class='btn'>查看详情</view>
+                </view>
+
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </block>
+    </view>
+  </view>
 </view>
 
-
-<!-- 拍卖列表 -->
-<view class="pailist">
- <view class="pailist_one">
-   拍卖列表
- </view>
- <view class="pailist_two">售卖列表</view>
-
-</view>
-
-<!-- 即将开拍和立即抢购 -->
-<view class="gou">
-
- <view class="gou_one">立即抢购</view>
- <view class="gou_two">即将开拍</view>
-</view>
-<!-- 导航 -->
-<view class="tab">
- <view class="btns">
-   <view wx:for="{{btns}}" wx:key="key" class="{{index==active?'cur':''}}" data-index="{{index}}" bindtap="toggle">{{item}}</view>
- </view>
-</view>
-<!-- 数据列表 -->
-<view class='list'>
- <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
- <view class="list_item">
-     <navigator url='details?id={{item.goods_id}}'>
-     <view class='img'>
-       <image src="{{imghref}}{{item.goods_img}}"  mode="scaleToFill"/>
-     </view>
-     <view class='info'>
-       <view class='title'>{{item.goods_title}}</view>
-       <view class='price'>￥{{item.goods_price}}</view>
-       <view class='btn'>查看详情</view>
-     </view>
-      </navigator>
-     <view class='clear'></view>
- </view>
- </block>
-</view>
-
-
-</view>
-</view>
-
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+</image>
+<!-- 背景图结束 -->

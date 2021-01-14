@@ -61,14 +61,14 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/earnestMoney/earnestMoney",
-          "pathName": "pages/earnestMoney/earnestMoney",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "dev",
-          "pathName": "pages/myService/myService",
+          "name": "pages/Sale/Sale",
+          "pathName": "pages/Sale/Sale",
           "query": "",
           "scene": null
         }
