@@ -91,7 +91,7 @@
                 </view>
                 <!-- 更改生日结束 -->
                 <!-- 绑定手机 -->
-    <view  class='bottom_module_item'       >
+    <view  class='bottom_module_item'  bindtap='toBindPhone'     >
         <view  class='bottom_module_item_left' >
             <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/bindmobile.png'  ></image>
             <view  class='bottom_module_item_left_text' >
@@ -113,7 +113,7 @@
     </view>
     <!-- 参与拍卖结束 -->
     <!-- 我的客服 -->
-    <view  class='bottom_module_item'       >
+    <view  class='bottom_module_item'    bindtap='toService'   >
         <view  class='bottom_module_item_left' >
             <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/kefu.png'  ></image>
             <view  class='bottom_module_item_left_text' >
