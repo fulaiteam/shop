@@ -7,10 +7,11 @@ Page({
     rightMax: 6, //价格的进度条
     leftValue: 0, //价格的进度条
     rightValue: 6, //价格的进度条
+    tableHot: false, // 热度是否被点击
     select: false, //类型下拉隐藏
     jiageselect: false, //价格下拉隐藏
-    jiage: '价格排序 >  ',
-    chanpin: '产品类型 >',
+    jiage: '价格排序  ',
+    chanpin: '产品类型  ',
 
     indicatorDots: true, //轮播图的点
     btns: ["全部", "机车", "头盔", "配件", "改装保养"],
@@ -18,6 +19,8 @@ Page({
     active: 0, // 控制商品类别
     isAuction: 1, // 拍卖列表与售卖列表切换，0 - 拍卖列表 ，1 - 售卖列表
     isBuy: 0, // 立即购买与即将开拍切换，0 - 立即购买 ，1 - 即将开拍
+    isTable: 1, // 导航栏第几个被点击 
+    form_num: '', // 商品类型中当前选择的第几个类型
     dataList: [{
         goods_name: '全部',
         isActive: true,
@@ -86,6 +89,59 @@ Page({
     ],
   },
 
+  handleHide() {
+    this.setData({
+      select: false,
+      jiageselect: false
+    })
+  },
+
+  handlePailistType(e) {
+    this.setData({
+      isAuction: e.currentTarget.dataset.index
+    })
+  },
+
+  handleGouType(e) {
+    this.setData({
+      isBuy: e.currentTarget.dataset.index
+    })
+  },
+
+  bindHot() {
+      this.setData({
+        tableHot: !this.data.tableHot
+      })
+  },
+  bindjiage() {
+    this.setData({
+      jiageselect:!this.data.jiageselect,
+      select: false
+    })
+  },
+  jiageselect(e) {
+    console.log(e.currentTarget.dataset.name);
+    var name = e.currentTarget.dataset.name
+    this.setData({
+      jiage:name,
+      jiageselect:false
+    })
+  },
+  bindshow() {
+    this.setData({
+      select:!this.data.select,
+      jiageselect: false
+    })
+  },
+  
+  myselect(e) {
+    const {name, index} = e.currentTarget.dataset
+    this.setData({
+      chanpin:name,
+      form_num:index,
+      select:false,
+    })
+  },
   //获取输入框的内容
   getInputContent: function (e) {
     this.setData({
@@ -105,13 +161,5 @@ Page({
     })
 
   },
-
-  handleClickList(e) {
-    console.log(e.currentTarget.dataset.id)
-    this.setData({
-      isAuction: e.currentTarget.dataset.id,
-
-    })
-  }
 
 })

@@ -372,43 +372,160 @@ page {
 }
 
 .tabs_title_box {
+  position: relative;
   width: 33.3%;
 }
-
-.tabs_title_box:nth-child(2) {
-  text-align: center;
+.tabs_title_box_click {
+  color: #FF8D03;
+}
+.tabs_title {
+  display: flex;
+  align-items: center;
 }
 
-.tabs_title_box:last-child {
-  text-align: right;
+.tabs_title_right {
+  float: right;
 }
+.tabs_title text {
+  margin-right: 17rpx;
+}
+.price_box {
+  width: 150rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.triangle_box {
+  width: 10rpx;
+  height: 6rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.triangle_right {
+  width: 0;
+  height: 0;
+  border-left: 8rpx solid #FF8D03;
+  border-top: 8rpx solid transparent;
+  border-bottom: 8rpx solid transparent;
+}
+.triangle_bottom {
+  width: 0;
+  height: 0;
+  border-top: 8rpx solid #000;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+}
+
 
 
 .jiage_box {
   background-color: #fff;
-  width: 688rpx;
-  height: 400rpx;
+  width: 667rpx;
   position: absolute;
-  top: 93rpx;
+  top: 62rpx;
   left: -250rpx;
   z-index: 66;
   animation: myfirst1 0.5s;
-  box-shadow: 0px 2rpx 5rpx 5rpx #eee;
+  box-shadow: 0 5rpx 5rpx #eee;
+  padding-bottom: 66rpx;
+  box-sizing: border-box;
+}
+.jiage_box_price_btn {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30rpx;
+}
+.jiage_one {
+  width: 110rpx;
+  height: 50rpx;
+  background-color: #D2D2D2;
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 14rpx;
+  font-size: 21rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+}
+.sliderView {
+  position: relative;
+  width: 447rpx;
+  margin-left: 112rpx;
+  margin-top: 70rpx;
+  text-align: center;
+}
+.left {
+  position: absolute;
+  width: 90%;
+  margin-top: 0;
+}
+.right {
+  position: absolute;
+  width: 90%;
+  margin-top: 0;
+}
+.sliderView_text {
+  width: 110rpx;
+  height: 20rpx;
+  line-height: 20rpx;
+  text-align: center;
+  margin-left: 190rpx;
+  font-size: 21rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+}
+
+.sliderView_btn {
+  width: 192rpx;
+  height: 61rpx;
+  background: #F62E48;
+  border-radius: 21rpx;
+  margin-top: 68rpx;
+  text-align: center;
+  line-height: 61rpx;
+  margin-left: 140rpx;
+  font-size: 25rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #FFFFFF;
 }
 
 .list_box {
   background-color: #fff;
   width: 342rpx;
-  height: 500rpx;
+  height: 310rpx;
   position: absolute;
-  top: 93rpx;
-  left: -158rpx;
+  top: 65rpx;
+  right: -36rpx;
+  display: flex;
+  padding: 17rpx 50rpx 50rpx;
+  box-sizing: border-box;
   z-index: 66;
   animation: myfirst 0.5s;
   box-shadow: 0px 2rpx 5rpx 5rpx #eee;
 }
+.list_box_current {
+  font-size: 24rpx;
+}
+.list_box_line {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 30rpx;
+  padding-top: 8rpx;
+  box-sizing: border-box;
+}
+.list_one {
+  font-size: 21rpx;
+  color: #010101;
+}
+.list_one_click {
+  color: #FD6876;
+}
 
-@keyframes myfirst {
+/* @keyframes myfirst {
   from {
     height: 0rpx;
   }
@@ -426,75 +543,7 @@ page {
   to {
     height: 400rpx;
   }
-}
-
-.jiage_one {
-  width: 110rpx;
-  height: 50rpx;
-  background-color: #D2D2D2;
-  text-align: center;
-  line-height: 50rpx;
-  border-radius: 14rpx;
-  font-size: 21rpx;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #333333;
-}
-
-/* .list_one {
-
 } */
-
-
-.sliderView {
-  position: relative;
-  width: 447rpx;
-  height: 50rpx;
-  /* margin: 101rpx 112rpx */
-  margin-left: 112rpx;
-  margin-top: 70rpx;
-  text-align: center;
-}
-
-.left {
-  position: absolute;
-  width: 90%
-}
-
-.right {
-  position: absolute;
-  width: 90%
-}
-
-.sliderView_text {
-  width: 110rpx;
-  height: 20rpx;
-  line-height: 20rpx;
-  text-align: center;
-  margin-left: 190rpx;
-
-  font-size: 21rpx;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #333333;
-}
-
-.sliderView_btn {
-  width: 192rpx;
-  height: 61rpx;
-  background: #F62E48;
-  border-radius: 21rpx;
-  margin-top: 96rpx;
-  text-align: center;
-  line-height: 61rpx;
-  margin-left: 140rpx;
-  font-size: 25rpx;
-  font-family: Source Han Sans CN;
-  font-weight: 400;
-  color: #FFFFFF;
-}
-
-
 
 .list_two_list {
   background-color: #fff;
