@@ -88,6 +88,9 @@ bindGetUserInfo (e) {
           },
           success: res => {
            if(res.data.flag){
+            getApp().globalData.openid = res.data.data.openid;
+            getApp().globalData.code = res.data.data.code;
+            console.log(getApp().globalData.openid,getApp().globalData.code,2222)
             wx.setStorageSync("code", res.data.data.code);
             wx.setStorageSync("openid", res.data.data.openid);
             wx.setStorageSync("session_key", res.data.data.sessionKey);
