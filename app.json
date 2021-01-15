@@ -1,6 +1,6 @@
 {
   "pages": [
-        "pages/index/index",
+    "pages/index/index",
     "pages/All_auction/All_auction",
     "pages/personal/personal",
     "pages/release/release",

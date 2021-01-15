@@ -62,5 +62,45 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  toLoginWx:function(){
+    wx.navigateTo({
+        url: '/pages/login/login'
+    })
+},
+bindGetUserInfo (e) {
+  console.log(e.detail)
+  if(e.detail.errMsg  == 'getUserInfo:ok'){
+    wx.login({
+      success: res => {
+        console.log("code转换", res.code);//用code传给服务器调换session_key
+        wx.request({
+          url:getApp().globalData.baseUrl + '/wxlogin',
+          method: 'post',
+          data: {
+            code: res.code,
+            encryptedData:e.detail.encryptedData,
+            iv:e.detail.iv,
+            openid:'',
+            pcode:'',
+            phone:'',
+            sessionKey:''
+          },
+          success: res => {
+           if(res.data.flag){
+            wx.setStorageSync("code", res.data.data.code);
+            wx.setStorageSync("openid", res.data.data.openid);
+            wx.setStorageSync("session_key", res.data.data.sessionKey);
+            wx.navigateTo({
+              url: '/pages/login/login'
+          })
+           }
+          }
+        });
+      }
+    });
+  }else{
+    console.log('用户拒绝授权')
   }
+}
 })

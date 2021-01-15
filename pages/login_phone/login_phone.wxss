@@ -152,6 +152,17 @@ color: #FF9086;
     height: 67rpx;
 
   }
+  .login_btn_binduseinfo{
+    position: absolute;
+    bottom: 96rpx;
+    left: 335rpx;
+    width: 67rpx;
+    height: 67rpx;
+    z-index: 9699;
+    background:transparent;
+    border: transparent;
+    border-radius: 50rpx;
+  }
   .wx image{ 
     width: 100%;
     height: 100%;

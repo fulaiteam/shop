@@ -20,7 +20,7 @@
     <view  class='top_login_area' >
         <image class='top_login_area_left' ></image>
         <view  class='top_login_area_right' >
-            <view  class='top_login_area_right_top' >
+            <view  class='top_login_area_right_top'   bindtap='toLogin'  >
                 点击登录
             </view>
             <view  class='top_login_area_right_bottom' >

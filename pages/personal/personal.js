@@ -84,6 +84,11 @@ Page({
         wx.navigateTo({
             url: '/pages/bindPhone/bindPhone'
         })
+    },
+    toLogin:function(){
+        wx.navigateTo({
+            url: '/pages/login_phone/login_phone'
+        })
     }
 
 
