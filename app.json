@@ -1,9 +1,6 @@
 {
   "pages": [
-<<<<<<< HEAD
 
-=======
->>>>>>> 7777c8afb283983c27ff2af336e60c9fc1f8a82e
     "pages/index/index",
     "pages/All_auction/All_auction",
     "pages/personal/personal",
@@ -26,12 +23,8 @@
     "pages/login_phone/login_phone",
     "pages/pass/pass",
     "pages/share/share",
-<<<<<<< HEAD
-    "pages/All_auction/All_auction"
-
-=======
     "pages/ceshi/ceshi"
->>>>>>> 7777c8afb283983c27ff2af336e60c9fc1f8a82e
+
 
   ],
   "window": {
