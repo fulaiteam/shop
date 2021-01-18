@@ -67,8 +67,8 @@
           "scene": null
         },
         {
-          "name": "pages/Sale/Sale",
-          "pathName": "pages/Sale/Sale",
+          "name": "pages/myService/myService",
+          "pathName": "pages/myService/myService",
           "query": "",
           "scene": null
         }

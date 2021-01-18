@@ -21,8 +21,7 @@
     "pages/login/login",
     "pages/login_phone/login_phone",
     "pages/pass/pass",
-    "pages/share/share",
-    "pages/ceshi/ceshi"
+    "pages/share/share"
 
   ],
   "window": {
