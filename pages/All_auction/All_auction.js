@@ -59,7 +59,8 @@ array:[  //拍卖宝贝的数组
 show:function() {
   this.setData({
     show : true,
-    isshow:false
+    isshow:false,
+    
   })
 },
 isshow:function() {

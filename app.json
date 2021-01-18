@@ -22,7 +22,6 @@
     "pages/login_phone/login_phone",
     "pages/pass/pass",
     "pages/share/share"
-
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -57,7 +56,7 @@
     ]
   },
   "navigateToMiniProgramAppIdList": [
-    "wx91d27dbf599dff74"
+    "wx9c18bb8af5712482"
   ],
   "sitemapLocation": "sitemap.json"
 }

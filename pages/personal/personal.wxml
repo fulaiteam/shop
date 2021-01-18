@@ -18,8 +18,9 @@
     <!-- 顶部白色区域结束 -->
     <!-- 登录区域开始 -->
     <view  class='top_login_area' >
-        <image class='top_login_area_left' ></image>
-        <view  class='top_login_area_right' >
+        <image class='top_login_area_left'  src='{{BaseInfo.headimgurl}}'  ></image>
+          <!-- 未登录右侧开始 -->
+        <view  class='top_login_area_right'   wx:if='{{!BaseInfo}}'  >
             <view  class='top_login_area_right_top'   bindtap='toLogin'  >
                 点击登录
             </view>
@@ -27,6 +28,36 @@
                 登录捡个漏，体验更多功能
             </view>
         </view>
+        <!-- 未登录右侧结束 -->
+        <!-- 已登录右侧开始 -->
+        <view  class='top_login_area_right_login'   wx:if='{{BaseInfo}}'  >
+            <view  class='top_login_area_right_login_top' >
+                <view  class='top_login_area_right_login_top_name' >
+                    {{BaseInfo.nickname}}
+                </view>
+                <view  class='top_login_area_right_login_top_rank_area' >
+                    <image class='top_login_area_right_login_top_rank'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/motor.png' ></image>
+                </view>
+            </view>
+            <view  class='top_login_area_right_login_middle' >
+                <image class='top_login_area_right_login_top_cup'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/experience_cup.png' ></image>
+                <view  class='top_login_area_right_login_top_congress_area' >
+                    <view  class='top_login_area_right_login_top_congress' >
+                    
+                    </view>
+                </view>
+                <view  class='top_login_area_right_login_top_exporience' >
+                    400/1000
+                </view>
+            </view>
+            <view  class='top_login_area_right_login_bottom' >
+                <image class='top_login_area_right_login_bottom_house'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/house.png'   ></image>
+                <view  class='top_login_area_right_login_bottom_edit' >
+                    编辑头像
+                </view>
+            </view>
+        </view>
+        <!-- 已登录右侧结束 -->
     </view>
     <!-- 登录区域结束 -->
     </view>
