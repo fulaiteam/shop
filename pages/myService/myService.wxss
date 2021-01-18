@@ -1,0 +1,73 @@
+page {
+  background-color: #EEEEEE;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  letter-spacing: 0.5px;
+}
+
+.chat_window {
+  padding: 27rpx 40rpx;
+  box-sizing: border-box;
+}
+.service_box {
+  display: flex;
+  align-items: center;
+}
+.service_head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 72rpx;
+  height: 72rpx;
+  background: #FFC649;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.service_head image {
+  width: 46rpx;
+  height: 46rpx;
+}
+.service_messages {
+  padding: 26rpx 0 26rpx 20rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 20rpx;
+}
+.service_messages_font {
+  font-size: 12px;
+  color: #4A4A4A;
+}
+
+.btm_message_send {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  background: #fff;
+}
+.btm_message_send_input {
+  flex: 1;
+  font-size: 12px;
+}
+.btm_message_send_input input {
+  margin: 32rpx 53rpx;
+  /* box-sizing: border-box; */
+}
+.btm_send_btn_box {
+  display: flex;
+  justify-content: space-between;
+  width: 255rpx;
+}
+.btm_send_btn {
+  width: 126rpx;
+  background: #FFC649;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btm_send_btn image{
+  width: 42rpx;
+  height: 42rpx;
+}

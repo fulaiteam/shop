@@ -1,0 +1,45 @@
+<!-- 聊天窗口 -->
+<view class="chat_window">
+  <!-- 客服聊天盒子 -->
+  <view class="service_box">
+    <view class="service_head">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myService/%E5%AE%A2%E6%9C%8D.png"></image>
+    </view>
+    <view class="service_messages">
+      <view class="service_messages_font">
+        您好，我能为您做点什么呢？
+      </view>
+    </view>
+  </view>
+  <!-- 客服聊天盒子结束 -->
+
+  <!-- 用户聊天盒子 -->
+  <view class="user_box">
+    <view class="user_messages">
+      <view class="user_messages_font">
+        您好，请问...
+      </view>
+    </view>
+    <view class="user_head">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myService/%E5%AE%A2%E6%9C%8D.png"></image>
+    </view>
+  </view>
+  <!-- 用户聊天盒子结束 -->
+</view>
+
+
+<!-- 底部发送消息 -->
+<view class="btm_message_send">
+  <view class="btm_message_send_input">
+    <input type="text" placeholder="请输入您要发送的信息"/>
+  </view>
+  <view class="btm_send_btn_box">
+    <view class="btm_send_btn">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myService/%E7%9F%A2%E9%87%8F%E6%99%BA%E8%83%BD%E5%AF%B9%E8%B1%A1.png"></image>
+    </view>
+    <view class="btm_send_btn">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myService/%E5%AE%A2%E6%9C%8D.png"></image>
+    </view>
+  </view>
+</view>
+<!-- 底部发送消息结束 -->

@@ -26,7 +26,7 @@ Page({
     // 情况
     // 1 拍卖
     // 2 售卖
-    auction_case: 2
+    auction_case: 1
   },
 
   /**

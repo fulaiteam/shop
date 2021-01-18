@@ -57,7 +57,10 @@ Page({
 
     },
     onShow: function () {
-
+        if(wx.getStorageSync('openid')){
+            getApp().globalData.openid = wx.getStorageSync('openid')
+            this.getUserInfoByOpenid();
+        }
     },
     toPage: function (e) {
         var path = e.currentTarget.dataset.path;
@@ -73,6 +76,44 @@ Page({
     toAuction :function(){
         wx.navigateTo({
             url: '/pages/auction/auction'
+        })
+    },
+    toService:function(){
+        wx.navigateTo({
+            url: '/pages/myService/myService'
+        })
+    },
+    toBindPhone:function(){
+        wx.navigateTo({
+            url: '/pages/bindPhone/bindPhone'
+        })
+    },
+    toLogin:function(){
+        wx.navigateTo({
+            url: '/pages/login_phone/login_phone'
+        })
+    },
+    getUserInfoByOpenid:function(){
+            var that = this;
+            wx.request({
+            // 请求用户地址列表
+            url: getApp().globalData.baseUrl + '/selectByOpenid',
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            method: 'post',
+            data: {
+                openid: wx.getStorageSync('openid')
+            },
+            success(res) {
+                if(res.data.flag){
+                    that.setData({
+                        BaseInfo:res.data.data
+                    })
+                }
+                console.log(res.data.data)
+
+            }
         })
     }
 

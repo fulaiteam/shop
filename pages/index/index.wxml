@@ -1,80 +1,219 @@
-
- <!-- 首页开始 -->
- <view class='head'>
-  <view class="head_img">
-    首页
-  
-    </view>
+<!-- 首页开始 -->
+<view class='head' bindtap="handleHide">
   <!-- 版心 -->
-<view class="w">
- <view class="h_title"></view>
- <!-- 搜索 -->
-<view class="seach">
-<!-- 搜索区域开始 -->
- <input class='search_allarea_input' bindinput='getInputContent'    value="{{searchInput}}"  placeholder="请输出">
- </input>
-<image src='https://jgl.oss-cn-beijing.aliyuncs.com/seach.png' class='seach_icon'></image>
-<!-- 搜索区域结束 -->
-</view>
-<!-- 轮播图 -->
-<view class="swiper">
- <view class="page-body">
- <swiper style="width: 100%;" indicator-dots="{{indicatorDots}}" style="height: 337rpx !important;">
-   <swiper-item style="width: 100%;">
-     <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
-   </swiper-item>
-   <swiper-item style="width: 100%;">
-     <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
-   </swiper-item>
-   <swiper-item style="width: 100%;">
-     <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img"></image>
-   </swiper-item>
- </swiper>
-</view>
-</view>
+  <view class="w">
+    <!-- 搜索 -->
+    <view class="seach">
+      <!-- 搜索区域开始 -->
+      <view class="seach_box">
+        <image src='https://jgl.oss-cn-beijing.aliyuncs.com/seach.png' class='seach_icon'></image>
+        <input class='search_allarea_input' bindinput='getInputContent' value="{{searchInput}}" placeholder="大家都在搜" />
+      </view>
+      <!-- 搜索区域结束 -->
+    </view>
+
+    <!-- 轮播图 -->
+    <swiper class="swiper" indicator-dots="true" autoplay="true">
+      <block wx:for="{{3}}" wx:key="index">
+        <swiper-item>
+          <navigator>
+            <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img" mode="aspectFit"></image>
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 拍卖列表 -->
+    <view class="pailist">
+      <view class="pailist_one {{isAuction == 0? 'pailist_auction_two_show': 'pailist_auction_two_sink'}} "
+      bindtap="handlePailistType"
+      data-index="0"
+      >
+        拍卖列表
+      </view>
+      <view class="pailist_two {{isAuction == 1? 'pailist_sell_two_show': 'pailist_sell_two_sink'}}"
+      bindtap="handlePailistType"
+      data-index="1"
+      >
+        售卖列表
+      </view>
+    </view>
 
 
-<!-- 拍卖列表 -->
-<view class="pailist">
- <view class="pailist_one">
-   拍卖列表
- </view>
- <view class="pailist_two">售卖列表</view>
+    <!-- 拍卖列表情况 -->
+    <view wx:if="{{isAuction == 0}}">
+      <!-- 即将开拍和立即抢购 -->
+      <view class="gou" wx:if="{{isAuction == 0}}">
+        <view
+          class="gou_one {{isBuy == 0? 'pailist_show_three': ''}}"
+          bindtap="handleGouType"
+          data-index="0"
+        >
+          立即抢购
+        </view>
+        <view
+          class="gou_two {{isBuy == 1? 'pailist_show_three': ''}}"
+          bindtap="handleGouType"
+          data-index="1"
+        >
+          即将开拍
+        </view>
+      </view>
+      <!-- 分割条 -->
+      <view class="split_box" wx:if="{{isAuction == 1}}">
+        <image
+          src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E7%9F%A9%E5%BD%A2%2018%20%E6%8B%B7%E8%B4%9D.png">
+        </image>
+      </view>
 
+      <!-- 导航 -->
+      <view class="tab {{isBuy == 1? 'tab_border' :''}}">
+        <view wx:for="{{btns}}" wx:key="key" class="tab_box {{index==active?'actives':''}}" data-index="{{index}}"
+          bindtap="toggle">
+          {{item}}
+        </view>
+      </view>
+
+      <!-- 数据列表 -->
+      <view class="list {{isBuy == 1? 'list_border' :''}}">
+        <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+          <view class="list_item">
+            <navigator url='details?id={{item.goods_id}}'>
+              <view class='img'>
+                <image src="{{imghref}}{{item.goods_img}}" mode="scaleToFill" />
+              </view>
+              <view class='info'>
+                <view class='title'>{{item.goods_title}}</view>
+                <view class="info_bottom">
+                  <view class='price'>￥{{item.goods_price}}</view>
+                  <view class='btn_and_residue'>
+                    <text wx:if="{{isBuy == 0}}">剩余00:20:10</text>
+                    <view class="btn {{isBuy == 1? 'btn_future':''}}">查看详情</view>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 拍卖列表情况结束 -->
+
+
+    <!-- 售卖列表情况 -->
+    <view wx:if="{{isAuction == 1}}">
+      <!-- 售卖列表标题 -->
+      <view class="tab_title">
+        <!-- 图标 -->
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/sale/c406990d0df7f5f1489bdb456e16eb2.png"></image>
+        <view>售卖列表</view>
+      </view>
+      <!-- 导航 -->
+      <view class="tabs">
+
+        <view class="tabs_title_box" catchtap="bindHot">
+          <view class="tabs_title {{tableHot? 'tabs_title_box_click': ''}}">
+            <text>热度</text>
+            <view class="triangle_box">
+              <view class="{{tableHot? 'triangle_right': 'triangle_bottom'}}"></view>
+            </view>  
+          </view>
+        </view>
+
+        <!-- 价格 -->
+        <view class="tabs_title_box" catchtap="bindjiage">
+          <view class="tabs_title tabs_title_center {{jiageselect || jiage !== '价格排序  '? 'tabs_title_box_click': ''}}">
+            <view class="price_box">
+              <text>{{jiage}}</text>
+            </view>
+            <view class="triangle_box">
+              <view class="{{jiageselect || jiage !== '价格排序  '? 'triangle_right': 'triangle_bottom'}}"></view>
+            </view>
+          </view>
+
+          <!-- 下拉选择 -->
+          <view class="jiage_box" wx:if="{{jiageselect}}">
+            <view class="jiage_box_price_btn">
+              <view class="jiage_one" catchtap="jiageselect" data-name="0-100">0-100</view>
+              <view class="jiage_one" catchtap="jiageselect" data-name="100-1000">100-1000</view>
+              <view class="jiage_one" catchtap="jiageselect" data-name="1000-3000">1000-3000</view>
+              <view class="jiage_one" catchtap="jiageselect" data-name="3000-1万">3000-1万</view>
+              <view class="jiage_one" catchtap="jiageselect" data-name="1万以上">1万以上</view>
+            </view>
+  
+            <view class='sliderView'>
+  
+              <view class="sliderView_text">1万以下</view>
+              <slider class='left' block-color='#d2d2d2' bindchange="leftSchange" min='{{leftMin}}' max='{{leftMax}}'
+              value='{{leftValue}}' activeColor='rgb(246, 46, 72)' backgroundColor='rgb(218, 218, 218)'
+              block-size='14' />
+              <slider class='right' block-color='#d2d2d2' bindchange="rightSchange" min='{{rightMin}}' max='{{rightMax}}'
+              value='{{rightValue}}' activeColor='rgb(246, 46, 72)' backgroundColor='rgb(218, 218, 218)'
+              block-size='14' />
+              <view class="sliderView_btn">确定</view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 类型 -->
+        <view class="tabs_title_box"  catchtap="bindshow">
+          <view class="tabs_title tabs_title_right {{select || chanpin !== '产品类型  '? 'tabs_title_box_click': ''}}">
+            <text>{{chanpin}}</text>
+            <view class="triangle_box">
+              <view class="{{select || chanpin !== '产品类型  '? 'triangle_right': 'triangle_bottom'}}"></view>
+            </view>
+          </view>
+          
+          <!-- 下拉选择 -->
+          <view class="list_box" wx:if="{{select}}">
+            <view class="list_box_current">当前选择：</view>
+            <view class="list_box_line">
+              <view
+                class="list_one {{form_num === index? 'list_one_click': ''}}"
+                wx:for="{{btns}}"
+                wx:key="index"
+                catchtap="myselect"
+                data-name="{{item}}"
+                data-index="{{index}}"
+                >
+                {{item}}
+              </view>
+            </view>            
+          </view>
+          
+        </view>
+
+      </view>
+
+      <!-- 数据列表 -->
+      <view class='list_two_list'>
+        <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+          <view class="list_item">
+            <navigator url='details?id={{item.goods_id}}'>
+              <image src="{{imghref}}{{item.goods_img}}" mode="scaleToFill" />
+              <view class='info'>
+                <view class='title'>{{item.goods_title}}</view>
+                <view class="info_price">
+                  <view class='original_price'>{{item.goods_original_price}}</view>
+                  <view class="info_bottom">
+                    <view class='price'>￥{{item.goods_price}}</view>
+                    <image class='btn' src="{{item.img}}"></image>  
+                  </view>
+                </view>
+              </view>
+            </navigator>
+            <view class='clear'></view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 售卖列表情况结束 -->
+
+
+  </view>
 </view>
 
-<!-- 即将开拍和立即抢购 -->
-<view class="gou">
-
- <view class="gou_one">立即抢购</view>
- <view class="gou_two">即将开拍</view>
-</view>
-<!-- 导航 -->
-<view class="tab">
- <view class="btns">
-   <view wx:for="{{btns}}" wx:key="key" class="{{index==active?'cur':''}}" data-index="{{index}}" bindtap="toggle">{{item}}</view>
- </view>
-</view>
-<!-- 数据列表 -->
-<view class='list'>
- <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
- <view class="list_item">
-     <navigator url='details?id={{item.goods_id}}'>
-     <view class='img'>
-       <image src="{{imghref}}{{item.goods_img}}"  mode="scaleToFill"/>
-     </view>
-     <view class='info'>
-       <view class='title'>{{item.goods_title}}</view>
-       <view class='price'>￥{{item.goods_price}}</view>
-       <view class='btn'>查看详情</view>
-     </view>
-      </navigator>
-     <view class='clear'></view>
- </view>
- </block>
-</view>
-
-
-</view>
-</view>
-
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+</image>
+<!-- 背景图结束 -->
