@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/All_auction/All_auction",
 
     "pages/index/index",
     "pages/personal/personal",
@@ -20,7 +19,9 @@
     "pages/login/login",
     "pages/login_phone/login_phone",
     "pages/pass/pass",
-    "pages/share/share"
+    "pages/share/share",
+    "pages/All_auction/All_auction"
+
 
   ],
   "window": {
@@ -56,7 +57,7 @@
     ]
   },
   "navigateToMiniProgramAppIdList": [
-    "wx91d27dbf599dff74"
+    "wx9c18bb8af5712482"
   ],
   "sitemapLocation": "sitemap.json"
 }

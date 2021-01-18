@@ -5,39 +5,42 @@
  <view class="header">
     <!-- 上传 -->
   <text class="shop_shangchuan_text">上传主图</text>
-  <view class="shangchuan_img">
-    <view class="shangchuan_img_hand">+</view>
-  </view>
- </view>
+  <view class="shangchuan_img" bindtap='getImg'>
+    <view class="shangchuan_img_hand">+</view> 
+    <image src='{{imgpath}}' class="shangchuan_img_img"></image>
+</view>
+</view>
   <!-- 标题 -->
   <view class="shangchuan_title">
     <text class="shangchuan_title_text">标题</text>
-    <input class="weui-input" placeholder="商品标题、品牌型号可以帮助搜索" selection-start="-1" selection-end="1" cursor="-1"></input>
+    <input class="weui-input" placeholder="商品标题、品牌型号可以帮助搜索" name="title" type='text' value='{{title}}' ></input>
   </view>
   <!-- 商品描述 -->
   <view class="shop_title shangchuan_title">
     <text class="shangchuan_title_text">商品自述</text>
-    <textarea class="areas" placeholder-class="input-placeholder" placeholder='详细描述商品的购买详情、使用情况及出售原因 能够更快的出售商品哟～'> 
+    <textarea class="areas" name="info"  value='{{info}}' 
+    placeholder-class="input-placeholder" placeholder='详细描述商品的购买详情、使用情况及出售原因 能够更快的出售商品哟～'> 
   </textarea>
   </view>
   <!-- 商品照片 -->
   <view class="shop_img">
     <text class="shop_img_text">商品描述</text>
-    <view class="shop_img_img">
-      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
-      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
-      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
-      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
-      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
-      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
-      <view class="shop_img_img_img"><image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image></view>
-      <view class="shop_img_img_img" style="background-color: #E8E8E8;border-radius: 10rpx;text-align: center;line-height: 127rpx;">
-        +
-        <!-- <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image> -->
-
+   
+    <view style="display: flex;flex-wrap: wrap;">
+      <block wx:key="imgbox" wx:for="{{img_arr}}">
+       <view class='img-box'>
+        <image class='img' src='{{item}}'></image>
+        <view class='img-delect' bindtap='imgDelete1' >
+      X
+        </view>
+       </view>
+      </block>
+      <view class='img-box' bindtap='upimg' wx:if="{{img_arr.length<8}}">
+       +
       </view>
-    </view>
-    <text class="shop_img_text_text">+ 最多可放八张图</text>
+     </view>
+    
+    <text class="shop_img_text_text"> 最多可放八张图</text>
   </view>
  
 
@@ -45,30 +48,157 @@
      <!-- 价格 -->
   <view class="shop_money">
     <text>价格</text>
-    <text class="shop_money_seclect"> 选择 > </text>
-    <picker name="state" mode="selector" range="{{state}}" range-key="name" value="{{stateInd}}" bindchange="state">
-      <input class="shop_money_seclect_input" id='{{state[stateInd].id}}' name="state" type='text' value='{{state[stateInd].name}}'disabled='true'></input>
-    </picker>
+    <!--触发action-sheet事件-->
+    <text class="shop_money_seclect" bindtap="listenerButton"> 选择 > </text>
+    <action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet"  wx:if="{{shoumai}}">
+      <action-sheet-item class="action-sheet">
+    <view>相似宝贝大家都以6折卖出</view>
+      <!--自动隐藏action-sheet-->
+    <view bindtap="showInput">发起售卖 ></view>
+      </action-sheet-item>
+      <action-sheet-item class="action-sheet_input">
+        <view class="action-sheet_input_qipai">
+       <view style="width:200rpx;flex: 1;">售卖价</view>
+          <input class="weui-input" type="number" placeholder="￥0.00" value='{{Sale}}' style="width:400rpx;margin-top: 20rpx;flex: 1"/>   
+         <view class="radio">
+          <view class="radio_xuanze">
+            <view class="xuanze_orage"  wx:if="{{!show}}" bindtap="show"></view>
+            <view class="xuanze_white"  wx:else="{{isshow}}" bindtap="isshow"></view>
+            拍卖
+          </view>
+          <view class="radio_no">
+            <view class="no_orage" wx:if="{{shoumai}}" bindtap="shoumai"></view>
+            <view class="no_white" wx:else="{{!isshoumai}}" bindtap="isshoumai"></view>
+            售卖
+          </view>
+         </view>
+        </view>
+      </action-sheet-item>
+      
+      <action-sheet-item class="action-sheet_input">
+        <view class="action-sheet_input_qipai">
+          <view style="width:126rpx;">新品价</view>
+             <input class="weui-input" type="number" placeholder="￥0.00" value='{{xinpin}}' 
+             style="width:100rpx;margin-top: 20rpx;width: 132rpx;"/>   
+            
+           </view> 
+      </action-sheet-item>
+     
+    </action-sheet>
+<!--默认action-sheet为隐藏，由button触发-->
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet" wx:else="{{!isshoumai}}" >
+  <action-sheet-item class="action-sheet">
+<view>相似宝贝大家都以6折卖出</view>
+	<!--自动隐藏action-sheet-->
+<view bindtap="showInput">发起拍卖 ></view>
+	</action-sheet-item>
+	<action-sheet-item class="action-sheet_input">
+		<view class="action-sheet_input_qipai">
+   <view style="width:200rpx;flex: 1;">起拍价</view>
+      <input class="weui-input" type="number" placeholder="￥0.00" value='{{qipai}}' style="width:400rpx;margin-top: 20rpx;flex: 1"/>   
+     <view class="radio">
+      <view class="radio_xuanze">
+        <view class="xuanze_orage"  wx:if="{{!show}}" bindtap="show"></view>
+        <view class="xuanze_white"  wx:else="{{isshow}}" bindtap="isshow"></view>
+        拍卖
+      </view>
+      <view class="radio_no">
+        <view class="no_orage" wx:if="{{shoumai}}" bindtap="shoumai"></view>
+        <view class="no_white" wx:else="{{!isshoumai}}" bindtap="isshoumai"></view>
+        售卖
+      </view>
+     </view>
+    </view>
+  </action-sheet-item>
+  <action-sheet-item class="action-sheet_input">
+    <view class="action-sheet_input_qipai">
+      <view style="width:126rpx;">保留价</view>
+         <input class="weui-input" type="number" placeholder="￥0.00" value='{{baoliu}}' 
+         style="width:100rpx;margin-top: 20rpx;width: 132rpx;"/>   
+        
+       </view> 
+  </action-sheet-item>
+  <action-sheet-item class="action-sheet_input">
+    <view class="action-sheet_input_qipai">
+      <view style="width:126rpx;">保证金</view>
+         <input class="weui-input" type="number" placeholder="￥0.00" value='{{baozhengjin}}' 
+         style="width:100rpx;margin-top: 20rpx;width: 132rpx;"/>          
+       </view> 
+  </action-sheet-item>
+  <action-sheet-item class="action-sheet_input">
+    <view class="action-sheet_input_qipai">
+      <view style="width:126rpx;">加价浮动</view>
+         <input class="weui-input" type="number" placeholder="￥0.00" value='{{fudong}}' 
+         style="width:100rpx;margin-top: 20rpx;width: 132rpx;"/>   
+       </view> 
+  </action-sheet-item>
+  <action-sheet-item class="action-sheet_input">
+    <view class="action-sheet_input_qipai">
+      <view style="width:126rpx;">开始时间</view>
+         <input class="weui-input" type="number" placeholder="00:00:00" value='{{kaishishijian}}' 
+         style="width:100rpx;margin-top: 20rpx;width: 132rpx;"/>   
+       </view> 
+  </action-sheet-item>
+  <action-sheet-item class="action-sheet_input">
+    <view class="action-sheet_input_qipai">
+      <view style="width:126rpx;">结束时间</view>
+         <input class="weui-input" type="number" placeholder="00:00:00" value='{{jieshushijian}}' 
+         style="width:100rpx;margin-top: 20rpx;width: 132rpx;"/>   
+       </view> 
+	</action-sheet-item>
+</action-sheet>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </view>
 <!-- 商品类型 -->
-<view class="status">
+<view class="status" style="border-radius: 0 0 10rpx 10rpx;">
 <text>商品类型</text>
-<text class="shop_money_seclect"> 选择 > </text>
-<picker name="state" mode="selector" range="{{state}}" range-key="name" value="{{stateInd}}" bindchange="state">
-  <input class="shop_money_seclect_input" id='{{state[stateInd].id}}' name="state" type='text' value='{{state[stateInd].name}}'disabled='true'></input>
-</picker>
+<text class="shop_money_seclect" bindtap="typebtn"> 选择 > </text>
+<!--默认action-sheet为隐藏，由button触发-->
+<action-sheet hidden="{{showtype}}" bindchange="type">
+  <action-sheet-item>
+    <view  wx:for="{{typelist}}" wx:key="id" bindtap="handClick" class="typelist">{{item.name}}</view>
+    <view bindtap="cancel"  class="typelist">取 消</view>
+  </action-sheet-item>
+  
+</action-sheet>
+ 
 </view>
-<!-- 交易支付 -->
-<view class="status">
+<!-- 交易支付 --> 
+<!-- <view class="status">
 <text>交易支付</text>
 <view class="transaction">
   <view class="transaction_one">同城面交</view>
   <view class="transaction_two">自提</view>
+  <view class="attr_box" wx:for="{{attrValueList}}" wx:for-item="attrValueObj" wx:for-index="attrIndex">
+    </view>
+
 </view>
-</view>
+</view> -->
 
 <!-- 新旧程度 -->
-<view class="status">
+<!-- <view class="status">
 <text>新旧程度</text>
 <view class="transaction" style="width: 460rpx;">
   <view class="transaction_one">七成</view>
@@ -76,19 +206,17 @@
   <view class="transaction_two">全新</view>
   <view class="transaction_two">其他</view>
 </view>
-</view>
+</view> -->
 
 <!-- 需缴纳保证金 -->
-<view class="status" style="border-radius: 0 0 10rpx 10rpx;">
+<!-- <view class="status" style="border-radius: 0 0 10rpx 10rpx;">
 <text>需缴纳保证金</text>
-<text class="shop_money_seclect"> 选择 > </text>
-<picker name="state" mode="selector" range="{{state}}" range-key="name" value="{{stateInd}}" bindchange="state">
-  <input class="shop_money_seclect_input" id='{{state[stateInd].id}}' name="state" type='text' value='{{state[stateInd].name}}'disabled='true'></input>
-</picker>
-</view>
+<text class="shop_money_seclect" bindtap="Jump"> 选择 > </text>
+
+</view> -->
   </view>
   
-  <view class="btn">
+  <view class="btn" bindtap="Jump">
   确定发布
   </view>
   

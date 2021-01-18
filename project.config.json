@@ -72,6 +72,11 @@
           "pathName": "pages/earnestMoney/earnestMoney",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/release/release",
+          "pathName": "pages/release/release",
+          "scene": null
         }
       ]
     }
