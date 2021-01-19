@@ -10,6 +10,12 @@ page {
   padding: 27rpx 40rpx;
   box-sizing: border-box;
 }
+.service_line {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 36rpx;
+}
 .service_box {
   display: flex;
   align-items: center;
@@ -29,15 +35,83 @@ page {
   height: 46rpx;
 }
 .service_messages {
-  padding: 26rpx 0 26rpx 20rpx;
+  position: relative;
+  max-width: 460rpx;
+  padding: 26rpx 20rpx 26rpx 20rpx;
   box-sizing: border-box;
   background: #fff;
-  border-radius: 20rpx;
+  border-radius: 20rpx 20rpx 20rpx 0;
 }
+/* .service_messages::after {
+  position: absolute;
+  left: -8rpx;
+  bottom: -16rpx;
+  content: '';
+  width: 0;
+  height: 0;
+  border-right: 20rpx solid #fff;
+  border-top: 20rpx solid transparent;
+  border-bottom: 20rpx solid transparent;
+  transform: rotate(315deg);
+} */
 .service_messages_font {
   font-size: 12px;
   color: #4A4A4A;
 }
+
+.time_line {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 36rpx;
+}
+.time_box {
+  width: 146rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  background: #D3DAE4;
+  font-size: 22rpx;
+  color: #fff;
+}
+
+.user_line {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 36rpx;
+}
+.user_box {
+  float: right;
+  display: flex;
+  align-items: center;
+}
+.user_messages {
+  max-width: 460rpx;
+  padding: 26rpx 47rpx 26rpx 49rpx;
+  box-sizing: border-box;
+  background: #FFC649;
+  border-radius: 20rpx 20rpx 0 20rpx;
+}
+.user_messages_font{
+  font-size: 12px;
+  color: #fff;
+}
+.user_head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  margin-left: 20rpx;
+}
+.user_head image {
+  width: 100%;
+  height: 100%;
+}
+
 
 .btm_message_send {
   position: fixed;

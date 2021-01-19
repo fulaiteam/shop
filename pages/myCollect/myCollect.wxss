@@ -55,6 +55,7 @@ page {
 .collect_info_list {
   width: 100%;
   overflow-y: scroll;
+  margin-bottom: 80rpx;
 }
 .collect_info_box {
   position: relative;
@@ -224,7 +225,6 @@ page {
   padding: 0 60rpx 0 30rpx;
   box-sizing: border-box;
   background: #fff;
-  margin-top: 80rpx;
 }
 .check_all {
   display: flex;
