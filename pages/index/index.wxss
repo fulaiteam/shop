@@ -330,6 +330,14 @@ page {
 .list .list_item .info .btn_and_residue .btn_future {
   background: #fda8a6;
 }
+.not_hint {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: rgb(187, 182, 182);
+  font-size: 26rpx;
+}
 
 
 
@@ -395,6 +403,11 @@ page {
   justify-content: center;
   align-items: center;
 }
+.price_box text {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
 .triangle_box {
   width: 10rpx;
   height: 6rpx;
@@ -428,7 +441,6 @@ page {
   z-index: 66;
   animation: myfirst1 0.5s;
   box-shadow: 0 5rpx 5rpx #eee;
-  padding-bottom: 66rpx;
   box-sizing: border-box;
 }
 .jiage_box_price_btn {
@@ -448,33 +460,39 @@ page {
   font-weight: 400;
   color: #333333;
 }
+
 .sliderView {
-  position: relative;
-  width: 447rpx;
-  margin-left: 112rpx;
-  margin-top: 70rpx;
-  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.left {
-  position: absolute;
-  width: 90%;
-  margin-top: 0;
-}
-.right {
-  position: absolute;
-  width: 90%;
-  margin-top: 0;
+.sliderView_box {
+  width: 500rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 69rpx 0;
+  box-sizing: border-box;
 }
 .sliderView_text {
-  width: 110rpx;
   height: 20rpx;
   line-height: 20rpx;
   text-align: center;
-  margin-left: 190rpx;
   font-size: 21rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #333333;
+}
+
+.buyMian-slide-contain {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.slider-left, .slider-right {
+  margin: 0;
 }
 
 .sliderView_btn {
@@ -482,10 +500,9 @@ page {
   height: 61rpx;
   background: #F62E48;
   border-radius: 21rpx;
-  margin-top: 68rpx;
   text-align: center;
   line-height: 61rpx;
-  margin-left: 140rpx;
+  margin-top: 40rpx;
   font-size: 25rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
@@ -504,7 +521,7 @@ page {
   box-sizing: border-box;
   z-index: 66;
   animation: myfirst 0.5s;
-  box-shadow: 0px 2rpx 5rpx 5rpx #eee;
+  box-shadow: 0 5rpx 5rpx #eee;
 }
 .list_box_current {
   font-size: 24rpx;
@@ -593,7 +610,6 @@ page {
   justify-content: space-between;
 }
 .list_two_list .list_item .info .info_price .original_price {
-  color: #999999;
   font-size: 24rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;

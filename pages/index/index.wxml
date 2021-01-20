@@ -14,10 +14,10 @@
 
     <!-- 轮播图 -->
     <swiper class="swiper" indicator-dots="true" autoplay="true" circular="true">
-      <block wx:for="{{3}}" wx:key="index">
+      <block wx:for="{{slideShowList}}" wx:key="index">
         <swiper-item>
           <navigator>
-            <image src='https://jgl.oss-cn-beijing.aliyuncs.com/swiper' class="swiper_img" mode="aspectFit"></image>
+            <image src="{{item.imgUrl}}" class="swiper_img" mode="aspectFit"></image>
           </navigator>
         </swiper-item>
       </block>
@@ -26,15 +26,11 @@
     <!-- 拍卖列表 -->
     <view class="pailist">
       <view class="pailist_one {{isAuction == 0? 'pailist_auction_two_show': 'pailist_auction_two_sink'}} "
-      bindtap="handlePailistType"
-      data-index="0"
-      >
+        bindtap="handlePailistType" data-index="0">
         拍卖列表
       </view>
       <view class="pailist_two {{isAuction == 1? 'pailist_sell_two_show': 'pailist_sell_two_sink'}}"
-      bindtap="handlePailistType"
-      data-index="1"
-      >
+        bindtap="handlePailistType" data-index="1">
         售卖列表
       </view>
     </view>
@@ -44,24 +40,16 @@
     <view wx:if="{{isAuction == 0}}">
       <!-- 即将开拍和立即抢购 -->
       <view class="gou">
-        <view
-          class="gou_one {{isBuy == 0? 'pailist_show_three': ''}}"
-          bindtap="handleGouType"
-          data-index="0"
-        >
+        <view class="gou_one {{isBuy == 1? 'pailist_show_three': ''}}" bindtap="handleGouType" data-index="1">
           立即抢购
         </view>
-        <view
-          class="gou_two {{isBuy == 1? 'pailist_show_three': ''}}"
-          bindtap="handleGouType"
-          data-index="1"
-        >
+        <view class="gou_two {{isBuy == 2? 'pailist_show_three': ''}}" bindtap="handleGouType" data-index="2">
           即将开拍
         </view>
       </view>
 
       <!-- 导航 -->
-      <view class="tab {{isBuy == 1? 'tab_border' :''}}">
+      <view class="tab {{isBuy == 1? '' :'tab_border'}}">
         <view wx:for="{{btns}}" wx:key="key" class="tab_box {{index==active?'actives':''}}" data-index="{{index}}"
           bindtap="toggle">
           {{item}}
@@ -69,26 +57,29 @@
       </view>
 
       <!-- 数据列表 -->
-      <view class="list {{isBuy == 1? 'list_border' :''}}">
-        <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+      <view class="list {{isBuy == 2? 'list_border' :''}}">
+        <block wx:for='{{auctionDataList}}' wx:key='list' wx:for-item="item">
           <view class="list_item">
-            <navigator url='details?id={{item.goods_id}}'>
+            <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale=0&productId={{item.productId}}&openid={{item.openid}}">
               <view class='img'>
-                <image src="{{item.thumbnail}}" mode="scaleToFill" />
+                <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
               </view>
               <view class='info'>
                 <view class='title'>{{item.title}}</view>
                 <view class="info_bottom">
                   <view class='price'>￥{{item.startPrice}}</view>
                   <view class='btn_and_residue'>
-                    <text wx:if="{{isBuy == 0}}">剩余{{item.objTime.hou}}:{{item.objTime.min}}:{{item.objTime.sec}}</text>
-                    <view class="btn {{isBuy == 1? 'btn_future':''}}">查看详情</view>
+                    <text wx:if="{{isBuy == 1}}">剩余{{item.objTime.hou}}:{{item.objTime.min}}:{{item.objTime.sec}}</text>
+                    <view class="btn {{isBuy == 2? 'btn_future':''}}">查看详情</view>
                   </view>
                 </view>
               </view>
             </navigator>
           </view>
         </block>
+        <view class="not_hint" wx:if="{{auctionDataList.length == 0}}">
+          暂无商品
+        </view>
       </view>
     </view>
     <!-- 拍卖列表情况结束 -->
@@ -112,17 +103,17 @@
       <view class="tabs">
 
         <view class="tabs_title_box" catchtap="bindHot">
-          <view class="tabs_title {{tableHot? 'tabs_title_box_click': ''}}">
+          <view class="tabs_title {{tableHeat? 'tabs_title_box_click': ''}}">
             <text>热度</text>
             <view class="triangle_box">
-              <view class="{{tableHot? 'triangle_right': 'triangle_bottom'}}"></view>
-            </view>  
+              <view class="{{tableHeat? 'triangle_right': 'triangle_bottom'}}"></view>
+            </view>
           </view>
         </view>
 
         <!-- 价格 -->
-        <view class="tabs_title_box" catchtap="bindjiage">
-          <view class="tabs_title tabs_title_center {{jiageselect || jiage !== '价格排序  '? 'tabs_title_box_click': ''}}">
+        <view class="tabs_title_box">
+          <view class="tabs_title tabs_title_center {{jiageselect || jiage !== '价格排序  '? 'tabs_title_box_click': ''}}" catchtap="bindjiage">
             <view class="price_box">
               <text>{{jiage}}</text>
             </view>
@@ -134,70 +125,71 @@
           <!-- 下拉选择 -->
           <view class="jiage_box" wx:if="{{jiageselect}}">
             <view class="jiage_box_price_btn">
-              <view class="jiage_one" catchtap="jiageselect" data-name="0-100">0-100</view>
-              <view class="jiage_one" catchtap="jiageselect" data-name="100-1000">100-1000</view>
-              <view class="jiage_one" catchtap="jiageselect" data-name="1000-3000">1000-3000</view>
-              <view class="jiage_one" catchtap="jiageselect" data-name="3000-1万">3000-1万</view>
-              <view class="jiage_one" catchtap="jiageselect" data-name="1万以上">1万以上</view>
+              <view class="jiage_one" catchtap="jiageselect" data-name="0-100" data-price="0-100">0-100</view>
+              <view class="jiage_one" catchtap="jiageselect" data-name="100-1000" data-price="100-1000">100-1000</view>
+              <view class="jiage_one" catchtap="jiageselect" data-name="1000-3000" data-price="1000-3000">1000-3000
+              </view>
+              <view class="jiage_one" catchtap="jiageselect" data-name="3000-1万" data-price="3000-10000">3000-1万</view>
+              <view class="jiage_one" catchtap="jiageselect" data-name="1万以上" data-price="10000">1万以上</view>
             </view>
-  
+
             <view class='sliderView'>
-  
-              <view class="sliderView_text">1万以下</view>
-              <slider class='left' block-color='#d2d2d2' bindchange="leftSchange" min='{{leftMin}}' max='{{leftMax}}'
-              value='{{leftValue}}' activeColor='rgb(246, 46, 72)' backgroundColor='rgb(218, 218, 218)'
-              block-size='14' />
-              <slider class='right' block-color='#d2d2d2' bindchange="rightSchange" min='{{rightMin}}' max='{{rightMax}}'
-              value='{{rightValue}}' activeColor='rgb(246, 46, 72)' backgroundColor='rgb(218, 218, 218)'
-              block-size='14' />
-              <view class="sliderView_btn">确定</view>
+              <view class="sliderView_box">
+                <view class="sliderView_text">{{slider1Value * 2000}}-{{slider2Value * 2000}}</view>
+                <view class='buyMian-slide-contain'>
+                  <slider wx:if='{{!change2}}' block-color="#D2D2D2"
+                    style='width:{{slider1W+"%"}};z-index:{{zIndexFlag==1?1:3}}' class='slider-left' block-size="10"
+                    value="{{slider1Value}}" min='{{min}}' max='{{slider1Max}}' backgroundColor='#F62E48'
+                    activeColor='#D2D2D2' bindchanging='changing' catchtouchstart='changeStart' bindchange='changed'
+                    data-idx='1'></slider>
+                  <slider wx:if='{{!change}}' block-color="#D2D2D2"
+                    style='width:{{slider2W+"%"}};z-index:{{zIndexFlag==2?1:3}}' class='slider-right' block-size="10"
+                    value="{{slider2Value}}" min='{{slider2Min}}' max='{{max}}' backgroundColor='#D2D2D2'
+                    activeColor='#F62E48' bindchanging='changing' catchtouchstart='changeStart' bindchange='changed'
+                    data-idx='2'></slider>
+                </view>
+                <view class="sliderView_btn" catchtap="handlePriceBtn">确定</view>
+              </view>
+
             </view>
           </view>
         </view>
 
         <!-- 类型 -->
-        <view class="tabs_title_box"  catchtap="bindshow">
-          <view class="tabs_title tabs_title_right {{select || chanpin !== '产品类型  '? 'tabs_title_box_click': ''}}">
+        <view class="tabs_title_box">
+          <view class="tabs_title tabs_title_right {{select || chanpin !== '产品类型  '? 'tabs_title_box_click': ''}}" catchtap="bindshow">
             <text>{{chanpin}}</text>
             <view class="triangle_box">
               <view class="{{select || chanpin !== '产品类型  '? 'triangle_right': 'triangle_bottom'}}"></view>
             </view>
           </view>
-          
+
           <!-- 下拉选择 -->
           <view class="list_box" wx:if="{{select}}">
             <view class="list_box_current">当前选择：</view>
             <view class="list_box_line">
-              <view
-                class="list_one {{form_num === index? 'list_one_click': ''}}"
-                wx:for="{{btns}}"
-                wx:key="index"
-                catchtap="myselect"
-                data-name="{{item}}"
-                data-index="{{index}}"
-                >
+              <view class="list_one {{form_num === index? 'list_one_click': ''}}" wx:for="{{btns}}" wx:key="index"
+                catchtap="myselect" data-name="{{item}}" data-index="{{index}}">
                 {{item}}
               </view>
-            </view>            
+            </view>
           </view>
-          
         </view>
-
       </view>
 
       <!-- 数据列表 -->
       <view class='list_two_list'>
-        <block wx:for='{{dataList}}' wx:key='list' wx:for-item="item">
+        <block wx:for='{{sellDataList}}' wx:key='list' wx:for-item="item">
           <view class="list_item">
-            <navigator url='details?id={{item.goods_id}}'>
-              <image src="{{imghref}}{{item.goods_img}}" mode="scaleToFill" />
+            <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale=1&productId={{item.productId}}">
+              <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
               <view class='info'>
-                <view class='title'>{{item.goods_title}}</view>
+                <view class='title'>{{item.title}}</view>
                 <view class="info_price">
-                  <view class='original_price'>{{item.goods_original_price}}</view>
+                  <view class='original_price'>{{item.newPrice}}</view>
                   <view class="info_bottom">
-                    <view class='price'>￥{{item.goods_price}}</view>
-                    <image class='btn' src="{{item.img}}"></image>  
+                    <view class='price'>￥{{item.salePrice}}</view>
+                    <image class='btn' src="{{item.img}}"></image>
                   </view>
                 </view>
               </view>
@@ -205,6 +197,9 @@
             <view class='clear'></view>
           </view>
         </block>
+        <view class="not_hint" wx:if="{{sellDataList.length == 0}}">
+          暂无商品
+        </view>
       </view>
     </view>
     <!-- 售卖列表情况结束 -->

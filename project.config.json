@@ -21,14 +21,14 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -67,14 +67,15 @@
           "scene": null
         },
         {
-          "name": "pages/myService/myService",
-          "pathName": "pages/myService/myService",
+          "name": "pages/auctionDetails/auctionDetails",
+          "pathName": "pages/auctionDetails/auctionDetails",
           "query": "",
           "scene": null
         },
         {
           "name": "pages/release/release",
           "pathName": "pages/release/release",
+          "query": "",
           "scene": null
         }
       ]

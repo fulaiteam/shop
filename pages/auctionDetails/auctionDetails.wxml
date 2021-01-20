@@ -3,20 +3,27 @@
 <!-- 拍卖商品详情 -->
 <view class="auction_details">
   <!-- 拍卖商品头部 -->
-  <view class="auction_head">
+  <view class="auction_head"> 
     <!-- 拍卖商品图片 -->
     <view class="auction_img">
-      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E5%9B%BE%E5%B1%82%20618.png" class="auction_photo"></image>
+      <!-- 轮播图 -->
+      <swiper class="swiper" autoplay="true" circular="true">
+        <block wx:for="{{list.descriptionPictureVOS}}" wx:key="index">
+          <swiper-item>
+            <image src="{{item.url}}" class="swiper_img" mode="aspectFill"></image>
+          </swiper-item>
+        </block>
+      </swiper>
       <!-- 正在进行 -->
-      <view class="collect_remind" wx:if="{{auction_case === 1}}">
+      <view class="collect_remind" wx:if="{{auctionOrSale == 0}}">
         <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
         <text class="remind_font">正在进行</text>
-        <text class="remind_font">今天晚上12点结束</text> 
+        <text class="remind_font">{{timeList[1]}} 结束</text> 
       </view>
     </view>
 
     <!-- 拍卖商品标题 -->
-    <view class="auction_info {{auction_case === 2? 'auction_info_buttom': ''}}">
+    <view class="auction_info {{auctionOrSale == 1? 'auction_info_buttom': ''}}">
       <!-- 标题 -->
       <view class="auction_font">
         <view class="auction_title">{{list.title}}</view>
@@ -26,28 +33,32 @@
         </view>
       </view>
       <!-- 报名、围观 -->
-      <view class="auction_cir"  wx:if="{{auction_case === 1}}">
+      <view class="auction_cir" wx:if="{{auctionOrSale == 0}}">
         <!-- 报名 -->
         <view class="auction_apply">
           <text>报名</text>
-          <text>{{list.apply_num}}人</text>
+          <text>{{list.enrollCount}}人</text>
         </view>
         <!-- 围观 -->
         <view class="auction_circusee">
           <text>围观</text>
-          <text>{{list.circusee_time}}次</text>
+          <text>{{list.pv}}次</text>
         </view>
       </view>
       <!-- 价格 -->
       <view class="auction_price_box">
         <view class="auction_rmb">RMB</view>
-        <view class="auction_price_bottom">
+        <view class="auction_price_bottom" wx:if="{{auctionOrSale == 0}}">
           <view class="auction_pirce_font">当前价</view>
-          <view class="auction_price">{{list.price}}</view>
+          <view class="auction_price">{{list.startPrice}}</view>
+        </view>
+        <view class="auction_price_bottom" wx:if="{{auctionOrSale == 1}}">
+          <view class="auction_pirce_font">售卖价</view>
+          <view class="auction_price">{{list.salePrice}}</view>
         </view>
       </view>
       <!-- 购买记录 -->
-      <view class="auction_buy_record"  wx:if="{{auction_case === 2}}">
+      <view class="auction_buy_record"  wx:if="{{auctionOrSale == 1}}">
         <!-- 月购 -->
         <view class="auction_buy_box_buy">
           <text>月购</text>
@@ -56,11 +67,11 @@
         <!-- 收藏 -->
         <view class="auction_buy_box_collect">
           <text>收藏</text>
-          <text>1000+人</text>
+          <text>{{list.collectCount}}人</text>
         </view>
         <view class="auction_buy_box_circusee">
           <text>围观</text>
-          <text>10000+次</text>
+          <text>{{list.pv}}次</text>
         </view>
       </view>
     </view>
@@ -68,46 +79,58 @@
   <!-- 拍卖商品头部结束 -->
 
   <!-- 提示 -->
-  <view class="auction_hint" wx:if="{{auction_case === 1}}">
+  <view class="auction_hint" wx:if="{{auctionOrSale == 0}}">
     <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/icon.png"></image>
     <view>友情提示：出价需谨慎</view>
   </view>
   <!-- 提示结束 -->
 
   <!-- 拍卖类型列表 -->
-  <view class="auction_type_info">
-    <view class="auction_type_title">
-      <view>拍卖类型</view>
-      <view>保证金</view>
-      <view>开拍时间</view>
-      <view class="auction_type_reserve_price">
-        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%8F%90%E9%97%AE.png"></image>
-        <text>保留价</text>
+  <view class="auction_type_info" wx:if="{{auctionOrSale == 0}}">
+    <view class="auction_type_list">
+      <view class="auction_type_list_line">
+        <view class="auction_type_list_title">拍卖类型</view>
+        <view class="auction_type_list_info">...</view>
+      </view>
+      <view class="auction_type_list_line">
+        <view class="auction_type_list_title">保证金</view>
+        <view class="auction_type_list_info">￥{{list.earnestMoney}}</view>
+      </view>
+      <view class="auction_type_list_line">
+        <view class="auction_type_list_title">开拍时间</view>
+        <view class="auction_type_list_info">{{timeList[0]}}</view>
+      </view>
+      <view class="auction_type_list_line">
+        <view class="auction_type_reserve_price">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%8F%90%E9%97%AE.png"></image>
+          <view class="auction_type_list_title_retain">保留价</view>
+        </view>
+        <view class="auction_type_list_info">{{list.reservePrice}}</view>
       </view>
     </view>
-    <view class="auction_type_title auction_type_value">
-      <view>{{list.auction_info.auction_type}}</view>
-      <view>{{list.auction_info.auction_earnest_money}}</view>
-      <view>{{list.auction_info.auction_start}}</view>
-      <view>{{list.auction_info.auction_reserve_price}}</view>
-    </view>
-    <view class="auction_type_title">
-      <view>起拍价</view>
-      <view>加价涨幅</view>
-      <view>结束时间</view>
-      <view>延时周期</view>
-    </view>
-    <view class="auction_type_title auction_type_value">
-      <view>{{list.auction_info.auction_starting_price}}</view>
-      <view>{{list.auction_info.auction_amount}}</view>
-      <view>{{list.auction_info.auction_over}}</view>
-      <view>{{list.auction_info.auction_delayed}}</view>
+    <view class="auction_type_list">
+      <view class="auction_type_list_line">
+        <view class="auction_type_list_title">起拍价</view>
+        <view class="auction_type_list_info">￥{{list.startPrice}}</view>
+      </view>
+      <view class="auction_type_list_line">
+        <view class="auction_type_list_title">加价涨幅</view>
+        <view class="auction_type_list_info">￥{{list.addPrice}}</view>
+      </view>
+      <view class="auction_type_list_line">
+        <view class="auction_type_list_title">结束时间</view>
+        <view class="auction_type_list_info">{{timeList[1]}}</view>
+      </view>
+      <view class="auction_type_list_line">
+        <view class="auction_type_list_title">延时周期</view>
+        <view class="auction_type_list_info">{{list.taktTime}}分</view>
+      </view>
     </view>
   </view>
   <!-- 拍卖类型列表结束 -->
 
   <!-- 出价记录 -->
-  <view class="auction_bid_record">
+  <view class="auction_bid_record" wx:if="{{auctionOrSale == 0}}">
     <view class="auction_bid_record_title">
       <view class="auction_bid_record_font">
         <view class="auction_bid_font">出价记录</view>
@@ -118,10 +141,10 @@
         <view class="arrows"></view>
       </view>
     </view>
-    <view class="auction_bid_info" wx:for="{{3}}" wx:key="index">
+    <view class="auction_bid_info" wx:for="{{bidRecord}}" wx:key="index">
       <view class="auction_bid_info_left">
         <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/icon.png"></image>
-        <text>k123</text>
+        <text>{{item.nickname}}</text>
         <text>领先</text>
         <text>12:11</text>
         <text>18:45:42</text>
@@ -139,8 +162,7 @@
     <view class="shopkeeper_info">
       <view class="shopkeeper_info_left">
         <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%91%84%E5%9B%BE%E7%BD%91_501358222_wx%20%E6%8B%B7%E8%B4%9D.png"></image>
-        <view>宝主</view>
-        <view>12344444</view>
+        <view>{{userInfo.nickname}}</view>
       </view>
       <view class="shopkeeper_info_right">
         <view>查看全部宝贝</view>
@@ -149,36 +171,55 @@
     </view>
     <!-- 认证 -->
     <view class="store_attestation">
-      <view>加入捡个漏55天</view>
+      <view>加入捡个漏{{userInfo.joinTime}}天</view>
       <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E5%9B%BE%E5%B1%82%201063.png"></image>
       <view>已实名认证</view>
     </view>
     <!-- 推荐 -->
     <view class="store_recommend">
       <!-- 横杠 -->
-      <view class="store_bar"></view>
+      <view class="store_bar {{isTable == 1? 'store_pitch_goods' : ''}}"></view>
       <!-- table栏 -->
       <view class="store_table">
         <view
-          class="store_table_goods {{index === isTable? 'store_pitch_goods' : ''}}"
-          wx:for="{{['拍卖宝贝','售卖宝贝']}}"
-          wx:key="index"
+          class="store_table_goods store_table_goods_one"
           bindtap="handleClick"
-          data-index="{{index}}"
+          data-index="0"
         >
-          {{item}}
+          拍卖宝贝
+        </view>
+        <view
+          class="store_table_goods store_table_goods_two"
+          bindtap="handleClick"
+          data-index="1"
+        >
+          售卖宝贝
         </view>
       </view>
-      <!-- 商品列表 -->
-      <view class="store_goods_list">
-        <view class="store_goods_info" wx:for="{{6}}" wx:key="index">
+      <!-- 拍卖宝贝列表 -->
+      <view class="store_goods_list" wx:if="isTable == 0">
+        <view class="store_goods_info" wx:for="{{userInfo.productUserActionVOS}}" wx:key="index">
           <navigator>
             <view class="store_goods_img">
-              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/30ab95497431412999262e474b3696af.png" mode="center"></image>
+              <image src="{{item.thumbnail}}" mode="aspectFit"></image>
             </view>
             <view class="store_goods_info_box">
-              <view>AGV k1摩特车头盔</view>
-              <view class="store_goods_info_price">¥620.80</view>
+              <view class="store_goods_info_title">{{item.title}}</view>
+              <view class="store_goods_info_price">¥{{item.startPrice}}</view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+      <!-- 售卖宝贝列表 -->
+      <view class="store_goods_list" wx:if="isTable == 1">
+        <view class="store_goods_info" wx:for="{{userInfo.productUserSellVOS}}" wx:key="index">
+          <navigator>
+            <view class="store_goods_img">
+              <image src="{{item.thumbnail}}" mode="aspectFit"></image>
+            </view>
+            <view class="store_goods_info_box">
+              <view class="store_goods_info_title">{{item.title}}</view>
+              <view class="store_goods_info_price">¥{{item.startPrice}}</view>
             </view>
           </navigator>
         </view>
@@ -190,14 +231,14 @@
   <!-- 商品自述 -->
   <view class="auction_box">
     <view class="auction_box_title">
-      <view class="fillet_rectangle"></view>
-      <text>商品自述</text> 
-      <view class="fillet_rectangle"></view>
+      <view class="auction_box_title_box">
+        <view class="fillet_rectangle"></view>
+        <text>商品自述</text> 
+        <view class="fillet_rectangle"></view>
+      </view>
     </view>
     <view class="auction_readme_message">
-      <text>优质Pu皮加正料ABS，耐冲击，耐穿透，韧性高等有良好的缓冲效果</text> 
-      <text>可拆洗内衬，吸湿，排汗，透气</text>
-      <text>无纺布袋加中性瓦硬纸</text>
+      {{list.commodityReadme}}
     </view>
   </view>
   <!-- 商品自述结束 -->
@@ -205,12 +246,14 @@
   <!-- 商品描述 -->
   <view class="auction_box">
     <view class="auction_box_title">
-      <view class="fillet_rectangle"></view>
-      <text>商品描述</text> 
-      <view class="fillet_rectangle"></view>
+      <view class="auction_box_title_box">
+        <view class="fillet_rectangle"></view>
+        <text>商品描述</text> 
+        <view class="fillet_rectangle"></view>
+      </view>
     </view>
-    <view class="auction_info_img" wx:for="{{4}}" wx:key="index">
-      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/u%3D1726499354%2C2017203035%26fm%3D26%26gp%3D0.png"></image>
+    <view class="auction_info_img" wx:for="{{list.detailPictureVOS}}" wx:key="index">
+      <image src="{{item.url}}"></image>
     </view>
   </view>
   <!-- 商品描述结束 -->
@@ -218,9 +261,11 @@
   <!-- 竞买公告 -->
   <view class="auction_box">
     <view class="auction_box_title">
-      <view class="fillet_rectangle"></view>
-      <text>竞买公告</text> 
-      <view class="fillet_rectangle"></view>
+      <view class="auction_box_title_box">
+        <view class="fillet_rectangle"></view>
+        <text>竞买公告</text> 
+        <view class="fillet_rectangle"></view>
+      </view>
     </view>
     <view class="auction_notice">
       <view class="auction_notice_section">
@@ -240,9 +285,11 @@
   <!-- 为您推荐 -->
   <view class="auction_box">
     <view class="auction_box_title">
-      <view class="fillet_rectangle"></view>
-      <text>为您推荐</text> 
-      <view class="fillet_rectangle"></view>
+      <view class="auction_box_title_box">
+        <view class="fillet_rectangle"></view>
+        <text>为您推荐</text> 
+        <view class="fillet_rectangle"></view>
+      </view>
     </view>
     <view class="auction_recommend_goods">
       <navigator>
@@ -267,12 +314,12 @@
 
 </view>
 <!-- 参与出价 -->
-<view class="bottom_bid" wx:if="{{auction_case === 1}}">
+<view class="bottom_bid" wx:if="{{auctionOrSale == 0}}">
   <view class="bid_btn">参与出价</view>
 </view>
-<view class="bottom_bid_relation"  wx:if="{{auction_case === 2}}">
+<view class="bottom_bid_relation"  wx:if="{{auctionOrSale == 1}}">
   <view class="bottom_bid_relation_box bottom_bid_relation_shop">联系宝主</view>
   <view class="bottom_bid_relation_box bottom_bid_relation_collect">收藏</view>
 </view>
 <!-- 报名悬浮球 -->
-<view class="apply_ball"  wx:if="{{auction_case === 1}}">去报名</view>
+<view class="apply_ball"  wx:if="{{auctionOrSale == 0}}">去报名</view>
