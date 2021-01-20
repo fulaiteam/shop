@@ -1,5 +1,7 @@
 
 const app = getApp();
+var time = require('../../utils/util.js');
+// var asd=Date.parse(new Date());
 Page({
  
 
@@ -17,8 +19,8 @@ Page({
   baoliu:'',  //保留价
   baozhengjin:'', //保证金
   fudong:'',  //浮动价格
-  // kaishishijian:new Date(), //开始时间
-  // jieshushijian:new Date(), //结束时间
+  kaishishijian:'', //开始时间
+  jieshushijian:'', //结束时间
 show:true,   //选中拍卖
 isshow:true, //未选中拍卖
 shoumai:true,//选中售卖
@@ -30,6 +32,23 @@ typelist:[1,2,3,4],  //类型数据
 typeName:'',   //商品类型的选中变量   
 typeid:'',//商品类型的选中id   
 taktTime:'00'  //延迟周期
+},
+onLoad: function () {
+ 
+  var that = this;
+  var dateNow = new Date();
+  var year = dateNow.getFullYear();
+  var month = dateNow.getMonth() + 1;
+  var day = dateNow.getDate()
+  var hour = dateNow.getHours()
+  var minute = dateNow.getMinutes()
+  var second = dateNow.getSeconds()
+  var date = year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second
+  that.setData({
+    kaishishijian: date,
+    jieshushijian: date
+  });
+
 },
 onShow: function () {
  this.typeList();
@@ -43,6 +62,10 @@ Jump:function() {
   //     that.data.arr=that.data.img_arr[i]//赋结新值
   //     // console.log(that.data.arr);
   // }
+  var timestamp1 = Date.parse(new Date(that.data.kaishishijian));
+  var timestamp2 = Date.parse(new Date(that.data.jieshushijian));
+  console.log(timestamp1);
+  console.log(timestamp2);
     wx.request({
       url:getApp().globalData.baseUrl+ '/product/jglProduct/releaseProduct', 
      
@@ -51,12 +74,12 @@ Jump:function() {
         auctionOrSale: 1,   //判断拍卖或者售卖 0 拍卖 1售卖
         category:that.data.typeid,   //商品类型
         commodityReadme: that.data.info,  //商品自述
-        descriptionPictureDTOS: [  // 商品描述图
-          {
-            status:that.data.imgindex,
-            url: that.data.imgurl
-          }
-        ],
+        // descriptionPictureDTOS: [  // 商品描述图
+        //   {
+        //     status:that.data.imgindex,
+        //     url: that.data.imgurl
+        //   }
+        // ],
         detailPictureDTOS: [   //大图
           {
             status: that.data.imgstats[0],
@@ -64,14 +87,14 @@ Jump:function() {
           }
         ], 
         earnestMoney: '',   //保证金
-        endTime: that.data.jieshushijian,  //结束时间
+        endTime: timestamp2,  //结束时间
         newPrice: that.data.xinpin,       //新品
         opneid:getApp().globalData.unionId,
         reservePrice: that.data.baoliu,  //保留价格（可以为空）
         salePrice: that.data.Sale,  //* 售卖价
         startPrice: that.data.qipai,//起拍价
-        startTime: that.data.kaishishijian,  //开始时间
-        taktTime: that.data.taktTime,   // 延时周期
+        startTime: timestamp1,  //开始时间
+        taktTime: that.data.taktTime,   // 延时周/
         thumbnail: that.data.imgpath,  //缩略图 1
         title: that.data.title  //标题
       },
@@ -81,7 +104,7 @@ Jump:function() {
           'content-type': 'application/json' // 默认值
       },
       success: function(res) {
-        console.log(res.data.data)
+        // console.log(res.data.data)
        
       }
     })
@@ -116,7 +139,7 @@ typeList:function () {
         'content-type': 'application/json' // 默认值
     },
     success: function(res) {
-      console.log(res.data.data)
+      // console.log(res.data.data)
      that.setData({
        typelist:res.data.data
      })
@@ -342,7 +365,6 @@ xinpininput:function(e) {
   // 上传主图
   upgetImg:function(e) {
     var that = this
-    for (var i = 0; i < that.data.imgpath.length; i++) {//循环遍历图片 
       wx.uploadFile({
          url: getApp().globalData.baseUrl + '/product/upload/uploadImgs', //开发者服务器地址,//自己的接口地址
         filePath: that.data.imgpath[0],
@@ -366,7 +388,6 @@ xinpininput:function(e) {
           })
         }
       })
-      }
     },
   
  // 删除照片 商品描述的图片&&
@@ -394,19 +415,19 @@ xinpininput:function(e) {
 
     })
 
-  
+  console.log(that.data.img_arr);
    },
   
   })
  },
 // 图片 上传阿里云
-upload: function () {
+upload: function (e) {
   var that = this
   for (var i = 0; i < that.data.img_arr.length; i++) {//循环遍历图片 
     wx.uploadFile({
-       url: getApp().globalData.baseUrl + '/product/upload/uploadImgs', //开发者服务器地址,//自己的接口地址
+       url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址
       filePath: that.data.img_arr[i],
-      name: 'imgFiles',
+      name: 'imgFile',
       header: {
         "Content-Type": "multipart/form-data",
       },
@@ -416,16 +437,13 @@ upload: function () {
         console.log(res.data);
         var data = JSON.parse(res.data).data;
         console.log(data);
-        for(i=0;i<data.length;i++) {
-          // var dtos = {
-          //   'status': i,
-          //   'url':data[i].url
-          // }   
-          // console.log(data[i]);
-         that.data.imgurl=data[i].url;
-that.data.imgindex=data[i].status
-        }
+//         for(i=0;i<data.length;i++) {
+        
+//          that.data.imgurl=data[i].url;
+// that.data.imgindex=data[i].status
+//         }
         console.log(that.data.imgurl);
+
 
         that.setData({
          
