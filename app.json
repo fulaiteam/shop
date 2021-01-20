@@ -1,5 +1,9 @@
 {
   "pages": [
+<<<<<<< HEAD
+
+=======
+>>>>>>> bef8400892b226d6b89cf875e5a401d5cfcfc456
     "pages/index/index",
     "pages/All_auction/All_auction",
     "pages/personal/personal",
@@ -21,7 +25,14 @@
     "pages/login/login",
     "pages/login_phone/login_phone",
     "pages/pass/pass",
+<<<<<<< HEAD
+    "pages/share/share",
+    "pages/ceshi/ceshi"
+
+
+=======
     "pages/share/share"
+>>>>>>> bef8400892b226d6b89cf875e5a401d5cfcfc456
   ],
   "window": {
     "backgroundTextStyle": "light",
