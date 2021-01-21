@@ -2,11 +2,8 @@ App({
   
   globalData: {
     // baseUrl:'https://jfsc.wagobbu.cn'
-<<<<<<< HEAD
     // baseUrl:'http://192.168.3.75:10010/jgl/user/jglUser',
     //baseUrl:'https://jfsc.wagobbu.cn'
-=======
->>>>>>> bef8400892b226d6b89cf875e5a401d5cfcfc456
     //baseUrl: 'http://192.168.3.11:8082'
     // baseUrl:'http://192.168.3.70:8080'
      //baseUrl:'http://192.168.3.40:8080'

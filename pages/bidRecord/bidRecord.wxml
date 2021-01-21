@@ -1,0 +1,36 @@
+<scroll-view class="page" scroll-y="true" bindscrolltolower="handleBottom">
+  <!-- 出价信息 -->
+  <view class="bid_box">
+    <view class="bid_list">
+      <view class="bid_info" wx:for="{{bidRecord}}" wx:key="index">
+        <view class="bid_info_left {{index === 0? 'bid_info_first': ''}}">
+          <image src="{{item.headimgurl}}"></image>
+          <text>{{item.nickname}}</text>
+          <text wx:if="{{index === 0}}">领先</text>
+          <text wx:else>出价</text>
+          <text>{{item.objDay}}</text>
+          <text>{{item.objTime}}</text>
+        </view>
+        <view class="bid_info_right {{index === 0? 'bid_info_first': ''}}">
+          <text>￥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 提示信息 -->
+    <!-- 加载 -->
+    <view class="hint_info" wx:if="{{!hasMore}}">
+      <view class="hint_load_info">
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/bidRecord/%E5%8A%A0%E8%BD%BD.png"></image>
+        <view>下拉更多出价</view>
+      </view>
+    </view>
+    <!-- 无商品 -->
+    <view class="hint_info" wx:else >
+      <view>已经到底了</view>
+    </view>
+  </view>
+</scroll-view>
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+</image>
+<!-- 背景图结束 -->

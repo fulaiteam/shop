@@ -73,8 +73,14 @@
           "scene": null
         },
         {
-          "name": "pages/release/release",
-          "pathName": "pages/release/release",
+          "name": "pages/bidRecord/bidRecord",
+          "pathName": "pages/bidRecord/bidRecord",
+          "query": "productId=4",
+          "scene": null
+        },
+        {
+          "name": "pages/All_auction/All_auction",
+          "pathName": "pages/All_auction/All_auction",
           "query": "",
           "scene": null
         }

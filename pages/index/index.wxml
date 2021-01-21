@@ -58,7 +58,7 @@
 
       <!-- 数据列表 -->
       <view class="list {{isBuy == 2? 'list_border' :''}}">
-        <block wx:for='{{auctionDataList}}' wx:key='list' wx:for-item="item">
+        <block wx:for='{{auctionDataList}}' wx:key='index' wx:for-item="item">
           <view class="list_item">
             <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale=0&productId={{item.productId}}&openid={{item.openid}}">
               <view class='img'>
@@ -67,7 +67,7 @@
               <view class='info'>
                 <view class='title'>{{item.title}}</view>
                 <view class="info_bottom">
-                  <view class='price'>￥{{item.startPrice}}</view>
+                  <view class='price'>￥{{auctionPrice[index]}}</view>
                   <view class='btn_and_residue'>
                     <text wx:if="{{isBuy == 1}}">剩余{{item.objTime.hou}}:{{item.objTime.min}}:{{item.objTime.sec}}</text>
                     <view class="btn {{isBuy == 2? 'btn_future':''}}">查看详情</view>
@@ -179,7 +179,7 @@
 
       <!-- 数据列表 -->
       <view class='list_two_list'>
-        <block wx:for='{{sellDataList}}' wx:key='list' wx:for-item="item">
+        <block wx:for='{{sellDataList}}' wx:key='index' wx:for-item="item">
           <view class="list_item">
             <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale=1&productId={{item.productId}}">
               <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
@@ -188,7 +188,7 @@
                 <view class="info_price">
                   <view class='original_price'>{{item.newPrice}}</view>
                   <view class="info_bottom">
-                    <view class='price'>￥{{item.salePrice}}</view>
+                    <view class='price'>￥{{sellPrice[index]}}</view>
                     <image class='btn' src="{{item.img}}"></image>
                   </view>
                 </view>

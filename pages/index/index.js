@@ -5,8 +5,12 @@ Page({
     slideShowList: [],
     // 拍卖商品数据
     auctionDataList: [],
+    // 拍卖价格商品价格 - 千位分割
+    auctionPrice: [],
     // 售卖商品数据
     sellDataList: [],
+    // 售卖价格商品价格 - 千位分割
+    sellPrice: [],
     isAuction: 0, // 拍卖列表与售卖列表切换，0 - 拍卖列表 ，1 - 售卖列表
     isBuy: 1, // 拍卖列表立即购买与即将开拍切换，1 - 立即购买 ，2 - 即将开拍
     active: 0, // 拍卖列表控制导航栏商品类别
@@ -70,24 +74,32 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         const {
           rows,
           total
         } = res.data.data
+
         let endTimeList = [];
+        let priceList = [];
         // 将活动的结束时间参数提成一个单独的数组，方便操作
         rows.forEach(o => {
           endTimeList.push(o.endTime)
+          priceList.push(o.startPrice)
         })
         let endTimeList2 = endTimeList.map(x => {
           // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
           return this.renderTime(x)
         })
+        let priceList2 = priceList.map(x => {
+          return this.miliFormat(x)
+        })
+
         this.setData({
           auctionDataList: rows,
           auctionTotal: total,
-          actEndTimeList: endTimeList2
+          actEndTimeList: endTimeList2,
+          auctionPrice: priceList2
         })
       }
     })
@@ -107,13 +119,24 @@ Page({
       },
       method: 'POST',
       success: (res) => {
+        console.log(res)
         const {
           rows,
           total
         } = res.data.data
+
+        let priceList = [];
+        rows.forEach(o => {
+          priceList.push(o.salePrice)
+        })
+        let priceList2 = priceList.map(x => {
+          return this.miliFormat(x)
+        })
+
         this.setData({
           sellDataList: rows,
-          sellTotal: total
+          sellTotal: total,
+          sellPrice: priceList2
         })
       }
     })
@@ -358,6 +381,11 @@ Page({
     })
     // 请求售卖列表中类别变更数据
     this.getSellList()
+  },
+
+  // 千分位分割 - 整、小数混合
+  miliFormat(num) {  
+    return num && num.toString().replace(/(^|\s)\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
   },
 
   //获取输入框的内容
