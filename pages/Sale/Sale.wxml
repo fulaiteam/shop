@@ -75,7 +75,7 @@
 <view class='sliderView'>
 
   <view class="sliderView_text">1万以下</view>
-  <slider class='left' block-color='#d2d2d2'  bindchange="leftSchange" min='{{leftMin}}' max='{{leftMax}}' value='{{leftValue}}' activeColor='rgb(246, 46, 72)' backgroundColor='rgb(218, 218, 218)' block-size='14'/>
+  
   <slider class='right' block-color='#d2d2d2' bindchange="rightSchange" min='{{rightMin}}' max='{{rightMax}}' value='{{rightValue}}' activeColor='rgb(246, 46, 72)' backgroundColor='rgb(218, 218, 218)' block-size='14'/>
   <view class="sliderView_btn">确定</view>
 </view>

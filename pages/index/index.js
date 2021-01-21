@@ -1,149 +1,148 @@
 const app = getApp();
 Page({
   data: {
+    // 轮播图数据
+    slideShowList: [],
+    // 拍卖商品数据
+    auctionDataList: [],
+    // 售卖商品数据
+    sellDataList: [],
+    isAuction: 0, // 拍卖列表与售卖列表切换，0 - 拍卖列表 ，1 - 售卖列表
+    isBuy: 1, // 拍卖列表立即购买与即将开拍切换，1 - 立即购买 ，2 - 即将开拍
+    active: 0, // 拍卖列表控制导航栏商品类别
+    // 倒计时 - 各商品结束时间
+    actEndTimeList: [],
+    sellActive: 0, // 售卖列表控制导航栏商品类别
+    tableHeat: 0, // 售卖列表热度升降序 ， 1 - 升序 ， 2 - 降序
+    tableHeatOpen: false, // 售卖列表热度开关
     leftMin: 0, //价格的进度条
-    leftMax: 6, //价格的进度条
+    leftMax: 12000, //价格的进度条
     rightMin: 0, //价格的进度条
-    rightMax: 6, //价格的进度条
-    leftValue: 0, //价格的进度条
-    rightValue: 6, //价格的进度条
-    tableHot: false, // 热度是否被点击
+    rightMax: 12000, //价格的进度条
+    leftValue: 0, //左侧价格的进度条默认取值
+    rightValue: 12000, //右侧价格的进度条默认取值
+    priceSection: [], // 售卖列表价格区间
     select: false, //类型下拉隐藏
     jiageselect: false, //价格下拉隐藏
     jiage: '价格排序  ',
     chanpin: '产品类型  ',
-
     indicatorDots: true, //轮播图的点
     btns: ["全部", "机车", "头盔", "配件", "改装保养"],
     cons: ["dataList", "RP", "AE", "C4D"],
-    active: 0, // 控制商品类别
-    isAuction: 0, // 拍卖列表与售卖列表切换，0 - 拍卖列表 ，1 - 售卖列表
-    isBuy: 0, // 立即购买与即将开拍切换，0 - 立即购买 ，1 - 即将开拍
-    isTable: 1, // 导航栏第几个被点击 
-    form_num: '', // 商品类型中当前选择的第几个类型
-    // dataList: [{
-    //     goods_name: '全部',
-    //     isActive: true,
-    //     goods_id: 1,
-    //     goods_title: 'AGV k1摩特车头盔',
-    //     goods_text: '男女四季全盔街车跑车冬季',
-    //     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    //     goods_xiaoliang: '限量抢购',
-    //     goods_price: '60', //打折后
-    //     goods_original_price: '100', //原价
-    //     img:'https://jgl.oss-cn-beijing.aliyuncs.com/sale/ysc.png',
-    //   },
-    //   {
-    //     goods_name: '全部',
-    //     isActive: false,
+    // 拍卖商品条数
+    auctionTotal: 0,
+    // 售卖商品条数
+    sellTotal: 0,
 
-    //     goods_id: 1,
-    //     goods_title: 'AGV k1摩特车头盔',
-    //     goods_text: '男女四季全盔街车跑车冬季',
 
-    //     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    //     goods_xiaoliang: '限量抢购',
-    //     goods_price: '70',
-    //     goods_original_price: '100', //原价
-    //     img:'https://jgl.oss-cn-beijing.aliyuncs.com/sale/ysc.png',
-    //   }, {
-    //     goods_name: '全部',
-    //     isActive: false,
-
-    //     goods_id: 1,
-    //     goods_title: 'AGV k1摩特车头盔',
-    //     goods_text: '男女四季全盔街车跑车冬季',
-    //     goods_original_price: '100', //原价
-
-    //     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    //     goods_xiaoliang: '限量抢购',
-    //     goods_price: '80',
-    //     img:'https://jgl.oss-cn-beijing.aliyuncs.com/sale/ysc.png',
-    //   }, {
-    //     goods_name: '全部',
-    //     isActive: false,
-
-    //     goods_id: 1,
-    //     goods_title: 'AGV k1摩特车头盔',
-    //     goods_text: '男女四季全盔街车跑车冬季',
-    //     goods_original_price: '100' //原价
-    //       ,
-    //     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    //     goods_xiaoliang: '限量抢购',
-    //     goods_price: '90',
-    //     img:'https://jgl.oss-cn-beijing.aliyuncs.com/sale/ysc.png',
-    //   }, {
-    //     goods_name: '全部',
-    //     isActive: false,
-
-    //     goods_id: 1,
-    //     goods_title: 'AGV k1摩特车头盔',
-    //     goods_text: '男女四季全盔街车跑车冬季',
-    //     goods_original_price: '100' //原价
-    //       ,
-    //     goods_img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-    //     goods_xiaoliang: '限量抢购',
-    //     goods_price: '110',
-    //     img:'https://jgl.oss-cn-beijing.aliyuncs.com/sale/ysc.png',
-    //   }
-    // ],
-    // 商品数据
-    dataList: [],
-    // 商品条数
-    total: 0,
-    // 倒计时 - 各商品结束时间
-    actEndTimeList: []
+    change: false, // 当两个slider在最右端重合时，将change设置为true，从而隐藏slider2，才能继续操作slider1
+    change2: false, // 当两个slider在最左端重合时，将change2设置为true，从而隐藏slider1，才能继续操作slider2
+    max: 6, // 两个slider所能达到的最大值
+    min: 0, // 两个slider所能取的最小值
+    rate: 6 / 100, // slider的最大最小值之差和100（或1000）之间的比率 即最大值-最小值/100
+    slider1Max: 6, // slider1的最大取值
+    slider1Value: 0, // slider1的值
+    slider2Value: 6, // slider2的值
+    slider2Min: 0, // slider2的最小取值
+    slider1W: 0, // slider1的宽度
+    slider2W: 100, // slider2的宽度
+    showContent1: 0, //左边滑块离左边的距离
+    showContent2: 100 / 6, //右边滑块离左边的距离
+    zIndexFlag: 1, //控制层叠
   },
 
   onLoad() {
-    this.getList()
-    // this.startTimer()
-    // 执行倒计时函数
+    this.getAuctionList();
+    this.getSellList();
+    this.getSlideShow();
     this.countDown();
   },
 
-  // 请求首页数据
-  getList() {
+  // 请求首页拍卖列表数据
+  getAuctionList() {
     wx.request({
       url: 'http://192.168.3.70:10010/jgl/product/jglAuction/selectHomeAuction',
       data: {
         "query": {
-          "auctionTime": "1"
+          "auctionTime": this.data.isBuy,
+          "category": this.data.active ? this.data.active : '',
         }
       },
       method: 'POST',
-      success: (res) =>{
+      success: (res) => {
         console.log(res)
-        const {rows, total} = res.data.data
-
+        const {
+          rows,
+          total
+        } = res.data.data
         let endTimeList = [];
         // 将活动的结束时间参数提成一个单独的数组，方便操作
-        rows.forEach(o => {endTimeList.push(o.endTime)})
+        rows.forEach(o => {
+          endTimeList.push(o.endTime)
+        })
         let endTimeList2 = endTimeList.map(x => {
           // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
           return this.renderTime(x)
         })
-        // console.log(endTimeList2)
-
         this.setData({
-          dataList: rows,
-          total: total,
-          actEndTimeList: endTimeList2 
+          auctionDataList: rows,
+          auctionTotal: total,
+          actEndTimeList: endTimeList2
         })
-        // console.log(this.data.startTime, this.data.endTime)
       }
     })
   },
 
+  // 请求首页售卖列表数据
+  getSellList() {
+    wx.request({
+      url: 'http://192.168.3.70:10010/jgl/product/jglSell/selectHomeSell',
+      data: {
+        "query": {
+          "category": this.data.sellActive ? this.data.sellActive : '',
+          "heat": this.data.tableHeat ? this.data.tableHeat : '',
+          "startPrice": this.data.priceSection[0],
+          "endPrice": this.data.priceSection[1] === undefined ? '' : this.data.priceSection[1],
+        }
+      },
+      method: 'POST',
+      success: (res) => {
+        const {
+          rows,
+          total
+        } = res.data.data
+        this.setData({
+          sellDataList: rows,
+          sellTotal: total
+        })
+      }
+    })
+  },
+
+  // 请求首页轮播图
+  getSlideShow() {
+    wx.request({
+      url: 'http://192.168.3.70:10010/jgl/order/jglOtationChart/selectOtationChart',
+      method: 'POST',
+      success: (res) => {
+        const {
+          data
+        } = res.data
+        this.setData({
+          slideShowList: data
+        })
+      }
+    })
+  },
 
   // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx
   renderTime(x) {
     var dateee = new Date(x).toJSON();
-    return new Date(+new Date(dateee) + 0 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '') 
+    return new Date(+new Date(dateee) + 0 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
   //小于10的格式化函数
   timeFormat(param) {
-    return param < 10 ? '0' + param : param; 
+    return param < 10 ? '0' + param : param;
   },
   //倒计时函数
   countDown() {
@@ -155,10 +154,9 @@ Page({
     // 对结束时间进行处理渲染到页面
     endTimeList.forEach(o => {
       let endTime = new Date(o).getTime();
-      // console.log(endTime)
       let obj = null;
       // 如果活动未结束，对时间进行处理
-      if (endTime - newTime > 0){
+      if (endTime - newTime > 0) {
         let time = (endTime - newTime) / 1000;
         // 获取时、分、秒
         let hou = Math.floor(time / 60 / 60);
@@ -169,7 +167,7 @@ Page({
           min: this.timeFormat(min),
           sec: this.timeFormat(sec)
         }
-      }else{//活动已结束，全部设置为'00'
+      } else { //活动已结束，全部设置为'00'
         obj = {
           hou: '00',
           min: '00',
@@ -178,19 +176,19 @@ Page({
       }
       countDownArr.push(obj);
     })
-    // 将 countDownArr 中的每个元素（obj）放到对应的 dataList 对象中，做为新的键值对在页面中渲染
-    let arr = this.data.dataList
-    arr.forEach ((item, index) => {
-      let objTime = "dataList[" + index + "].objTime"
+    // 将 countDownArr 中的每个元素（obj）放到对应的 auctionDataList 对象中，做为新的键值对在页面中渲染
+    let arr = this.data.auctionDataList
+    arr.forEach((item, index) => {
+      let objTime = "auctionDataList[" + index + "].objTime"
       this.setData({
         [objTime]: countDownArr[index]
       })
-    }) 
+    })
     // 渲染，然后每隔一秒执行一次倒计时函数
-    setTimeout(this.countDown,1000);
+    setTimeout(this.countDown, 1000);
   },
 
-
+  // 首页点击
   handleHide() {
     this.setData({
       select: false,
@@ -208,51 +206,169 @@ Page({
     this.setData({
       isBuy: e.currentTarget.dataset.index
     })
+    // 请求拍卖列表立即抢购或即将开拍数据
+    this.getAuctionList()
   },
 
+  // 点击热度
   bindHot() {
+    this.setData({
+      tableHeatOpen: !this.data.tableHeatOpen
+    })
+    if (this.data.tableHeatOpen) {
       this.setData({
-        tableHot: !this.data.tableHot
+        tableHeat: 1
       })
+    } else {
+      this.setData({
+        tableHeat: 2
+      })
+    }
+    // 请求售卖列表热度变更数据
+    this.getSellList()
   },
+
+  // 点击价格区间
   bindjiage() {
     this.setData({
-      jiageselect:!this.data.jiageselect,
+      jiageselect: !this.data.jiageselect,
       select: false
     })
   },
+
+  // 点击价格区间按钮
   jiageselect(e) {
-    console.log(e.currentTarget.dataset.name);
-    var name = e.currentTarget.dataset.name
+    const {
+      name,
+      price
+    } = e.currentTarget.dataset
+    let priceArr = price.split("-")
     this.setData({
-      jiage:name,
-      jiageselect:false
+      jiage: name,
+      priceSection: priceArr,
+      jiageselect: false,
     })
+    // 请求售卖列表价格区间按钮变更数据
+    this.getSellList()
   },
+
+  // 开始滑动
+  changeStart: function (e) {
+    var idx = parseInt(e.currentTarget.dataset.idx)
+    // console.log(idx)
+    if (this.data.slider1Value !== this.data.slider2Value) {
+      this.setData({
+        change: false,
+        change2: false
+      })
+    }
+    if (idx === 1) {
+      // dW是当前操作的slider所能占据的最大宽度百分数
+      var dW = (this.data.slider2Value - this.data.min) / this.data.rate;
+      this.setData({
+        slider1W: dW,
+        slider2W: 100 - dW,
+        slider1Max: this.data.slider2Value,
+        slider2Min: this.data.slider2Value,
+        zIndexFlag: 1,
+        change: false
+      })
+    } else if (idx === 2) {
+      var dw = (this.data.max - this.data.slider1Value) / this.data.rate;
+      this.setData({
+        slider2W: dw,
+        slider1W: 100 - dw,
+        slider1Max: this.data.slider1Value,
+        slider2Min: this.data.slider1Value,
+        zIndexFlag: 2,
+        change2: false
+      })
+    }
+  },
+  // 正在滑动
+  changing: function (e) {
+    var idx = parseInt(e.currentTarget.dataset.idx)
+    var value = e.detail.value
+    if (idx === 1) {
+      this.setData({
+        slider1Value: value,
+        showContent1: 100 - ((this.data.max - this.data.slider1Value) / this.data.rate)
+      })
+    } else if (idx === 2) {
+      this.setData({
+        slider2Value: value,
+        showContent2: 100 - ((this.data.max - this.data.slider2Value) / this.data.rate)
+      })
+    }
+  },
+  // 完成拖动
+  changed: function (e) {
+    let idx = parseInt(e.currentTarget.dataset.idx)
+    if (idx === 1) {
+      this.setData({
+        showContent1: 100 - ((this.data.max - this.data.slider1Value) / this.data.rate)
+      })
+    } else if (idx === 2) {
+      this.setData({
+        showContent2: 100 - ((this.data.max - this.data.slider2Value) / this.data.rate)
+      })
+    }
+    if (this.data.slider1Value === this.data.slider2Value && this.data.slider2Value === this.data.max) {
+      this.setData({
+        change: true
+      })
+    }
+    if (this.data.slider1Value === this.data.slider2Value && this.data.slider2Value === this.data.min) {
+      this.setData({
+        change2: true
+      })
+    }
+  },
+
+  // 点击价格滑块确认按钮
+  handlePriceBtn() {
+    let priceArr = [this.data.slider1Value * 2000, this.data.slider2Value * 2000]
+    this.setData({
+      priceSection: priceArr,
+      jiageselect: false,
+      jiage: this.data.slider1Value * 2000 + '-' + this.data.slider2Value * 2000
+    })
+    // 请求售卖列表价格区间确定按钮变更数据
+    this.getSellList()
+  },
+
+  // 产品类型点击
   bindshow() {
     this.setData({
-      select:!this.data.select,
+      select: !this.data.select,
       jiageselect: false
     })
   },
-  
+
+  // 点击产品类型下拉中的类型
   myselect(e) {
-    const {name, index} = e.currentTarget.dataset
+    const {
+      name,
+      index
+    } = e.currentTarget.dataset
     this.setData({
-      chanpin:name,
-      form_num:index,
-      select:false,
+      chanpin: name,
+      sellActive: index,
+      select: false,
     })
+    // 请求售卖列表中类别变更数据
+    this.getSellList()
   },
+
   //获取输入框的内容
   getInputContent: function (e) {
     this.setData({
       searchInput: e.detail.value
     })
   },
+
   toggle: function (e) {
 
-    //console.log(e.currentTarget.dataset.index)
 
     this.setData({
 
@@ -261,6 +377,8 @@ Page({
       active: e.currentTarget.dataset.index,
 
     })
+    // 请求拍卖列表中类别变更数据
+    this.getAuctionList()
 
   },
 
