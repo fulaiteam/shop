@@ -30,7 +30,8 @@ showtype: true,    ///作为开关控制弹窗是否从底部弹出
 typelist:[1,2,3,4],  //类型数据
 typeName:'',   //商品类型的选中变量   
 typeid:'',//商品类型的选中id   
-taktTime:'1'  //延迟周期
+taktTime:'1',  //延迟周期
+openid:'oS5bk5DPJKHDc6UwrR8xcUb3Ri8w'
 },
 onLoad: function () {
  
@@ -67,18 +68,21 @@ Jump:function() {
 // JSON.stringify
 
     url:
-     `/pages/payment/payment?addPrice=`+(that.data.fudong)
-     + "&category=" +(that.data.typeid)
-     + "&commodityReadme=" +(that.data.info)
+     `/pages/payment/payment?addPrice=`+that.data.fudong
+     + "&category=" +that.data.typeid
+     + "&commodityReadme=" +that.data.info
      + "&descriptionPictureDTOS=" +JSON.stringify(adds)
      + "&detailPictureDTOS=" +JSON.stringify(imgadds)
-     + "&earnestMoney=" +(that.data.baozhengjin)
-     + "&endTime=" +(timestamp2)
-     + "&reservePrice=" +(that.data.baoliu)
-     + "&startPrice=" +(that.data.qipai)
-     + "&startTime=" +(timestamp1)
-     + "&taktTime=" +(that.data.taktTime)
-     + "&title=" +(that.data.title)
+     + "&earnestMoney=" +that.data.baozhengjin
+     + "&endTime=" +timestamp2
+     + "&reservePrice=" +that.data.baoliu
+     + "&startPrice=" +that.data.qipai
+     + "&startTime=" +timestamp1
+     + "&taktTime=" +that.data.taktTim
+     + "&title=" +that.data.title
+     + "&auctionOrSale=" +that.data.auctionOrSale
+     + "&openid=" +that.data.openid
+
   })
   }else {
     wx.request({

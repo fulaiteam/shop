@@ -22,7 +22,8 @@
     "pages/login/login",
     "pages/login_phone/login_phone",
     "pages/pass/pass",
-    "pages/share/share"
+    "pages/share/share",
+    "pages/payment/payment"
 
 
   ],
