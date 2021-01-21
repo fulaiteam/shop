@@ -79,8 +79,9 @@
           "scene": null
         },
         {
-          "name": "pages/payment/payment",
-          "pathName": "pages/payment/payment",
+          "name": "pages/myRelease/myRelease",
+          "pathName": "pages/myRelease/myRelease",
+          "query": "",
           "scene": null
         }
       ]

@@ -3,17 +3,23 @@
 <!-- 顶部背景区域开始 -->
 <view  class='top_bg' >
 <!-- 背景图开始 -->
-<image  class='top_bg_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'  ></image>
+<!-- <image  class='top_bg_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'  ></image> -->
 <!-- 背景图结束 -->
 <!-- 加油按钮区域开始 -->
-<image  class='add_oil'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/struggle.png'  ></image>
+<!-- <image  class='add_oil'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/struggle.png'  ></image> -->
 <!-- 加油按钮区域结束 -->
+    <!-- 拍卖按钮区域开始 -->
+    <view  class='auction_top_btn_area' >
+        <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/saling.png'  ></image>
+        <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/saled_cover.png'  ></image>
+    </view>
 </view>
 <!-- 顶部背景区域结束 -->
 <!-- 发布产品区域开始 -->
 <view class='my_release_area' >
+
 <!-- 一项产品开始  -->
-<view  class='my_release_item'  wx:for='{{3}}'  >
+<view  class='my_release_item'  wx:for='{{3}}'  wx:key='list' wx:for-item="item">
         <!-- 项目中间区域开始 -->
         <view class='shelf_item_middle'  >
             <!-- 项目中间区域左半部分开始 -->
