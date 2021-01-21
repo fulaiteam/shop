@@ -8,7 +8,10 @@ Page({
     console.log(e)
     var BackData = this.data.BackData;
     wx.request({
-      url: getApp().globalData.baseUrl + '/authorPhone',
+      // url: getApp().globalData.baseUrl + '/authorPhone',
+      // url:'http://192.168.3.70:1/0010/jgl/user/jglUser/authorPhone',
+      url:getApp().globalData.baseUrl+'/user/jglUser/authorPhone',
+
       data: {
         code:wx.getStorageSync('code'),
         encryptedData:e.detail.encryptedData,
@@ -168,7 +171,9 @@ Page({
         });
         wx.request({
           // 请求用户地址列表
-          url: getApp().globalData.baseUrl + '/wxlogin',
+          // url: getApp().globalData.baseUrl + '/wxlogin',
+          // url:'http://192.168.3.70:10010/jgl/user/jglUser/wxlogin',
+          url:getApp().globalData.baseUrl+'/user/jglUser/wxlogin',
           method: 'post',
           data: {
             encryptedData: that.data.encryptedData,

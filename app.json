@@ -22,7 +22,8 @@
     "pages/login_phone/login_phone",
     "pages/pass/pass",
     "pages/share/share",
-    "pages/bidRecord/bidRecord"
+    "pages/bidRecord/bidRecord",
+    "pages/payment/payment"
   ],
   "window": {
     "backgroundTextStyle": "light",

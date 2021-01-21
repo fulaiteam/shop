@@ -9,6 +9,8 @@ App({
      //baseUrl:'http://192.168.3.40:8080'
     //  http://192.168.3.75:10010/jgl/user/ 
     baseUrl:'http://192.168.3.70:10010/jgl'
+    // baseUrl:'https://jgl.hemajia.net/jgl'
+
   },
   onLaunch: function () {
     // 展示本地存储能力

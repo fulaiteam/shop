@@ -75,7 +75,9 @@ bindGetUserInfo (e) {
       success: res => {
         console.log("code转换", res.code);//用code传给服务器调换session_key
         wx.request({
-          url:getApp().globalData.baseUrl + '/wxlogin',
+          // url:getApp().globalData.baseUrl + '/wxlogin',
+          // url:'http://192.168.3.70:10010/jgl/user/jglUser/wxlogin',
+          url:getApp().globalData.baseUrl+'/user/jglUser/wxlogin',
           method: 'post',
           data: {
             code: res.code,
