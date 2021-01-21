@@ -83,6 +83,18 @@
           "pathName": "pages/myRelease/myRelease",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/confirmName/confirmName",
+          "pathName": "pages/confirmName/confirmName",
+          "query": "",
+          "scene": null
         }
       ]
     }
