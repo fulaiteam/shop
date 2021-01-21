@@ -35,7 +35,7 @@
         </view>
        </view>
       </block>
-      <view class='img-box' bindtap='upimg' wx:if="{{img_arr.length<8}}">
+      <view class='img-box' bindtap='upimg'>
        +
       </view>
      </view>
@@ -130,7 +130,7 @@ style="width:114rpx;margin-top: 18rpx;"
   <action-sheet-item class="action-sheet_input">
     <view class="action-sheet_input_qipai">
       <view style="width:126rpx;">保证金</view>
-         <input class="weui-input" type="number" placeholder="￥0.00" value='{{baozhengjin}}' 
+         <input class="weui-input" type="number"  placeholder="￥0.00" value='{{baozhengjin}}' 
          bindinput="baozhengjininput"
          style="width:100rpx;margin-top: 20rpx;width: 132rpx;"/>          
        </view> 

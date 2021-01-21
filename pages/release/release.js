@@ -1,6 +1,8 @@
 
 const app = getApp();
 var time = require('../../utils/util.js');
+var adds = []
+var imgadds=[]
 // var asd=Date.parse(new Date());
 Page({
  
@@ -8,13 +10,10 @@ Page({
   data: {
     imgpath: [],    //用户上传图片的地址
     img_arr:[],   //用户上传多图
-    imgurl:[],     //图片上传服务器返回的url
-    imgindex:[],   //tupian的索引
-    imgstats:[],
     title:"",   //用户输入的标题
     info:"", //  用户输入的产品自述
     actionSheetHidden: true ,  //作为开关控制弹窗是否从底部弹出
-
+    auctionOrSale:1,    //售卖和拍卖
   qipai:'',   //起拍价
   baoliu:'',  //保留价
   baozhengjin:'', //保证金
@@ -31,7 +30,7 @@ showtype: true,    ///作为开关控制弹窗是否从底部弹出
 typelist:[1,2,3,4],  //类型数据
 typeName:'',   //商品类型的选中变量   
 typeid:'',//商品类型的选中id   
-taktTime:'00'  //延迟周期
+taktTime:'1'  //延迟周期
 },
 onLoad: function () {
  
@@ -52,41 +51,46 @@ onLoad: function () {
 },
 onShow: function () {
  this.typeList();
- this.upload()
+//  this.upload()
 },
 // // 保证金跳转支付页面
 Jump:function() {
   let that =this;
-  // for (var i = 0; i < that.data.img_arr.length; i++) {
-  //     console.log(that.data.img_arr[i]);//遍历输出
-  //     that.data.arr=that.data.img_arr[i]//赋结新值
-  //     // console.log(that.data.arr);
-  // }
   var timestamp1 = Date.parse(new Date(that.data.kaishishijian));
   var timestamp2 = Date.parse(new Date(that.data.jieshushijian));
   console.log(timestamp1);
   console.log(timestamp2);
+  if(this.data.auctionOrSale==0) {
+// 进行判断，如果是售卖则不需要支付备用金不需要跳转
+  wx.navigateTo({
+    // 将保证金传递到支付页面
+// JSON.stringify
+
+    url:
+     `/pages/payment/payment?addPrice=`+(that.data.fudong)
+     + "&category=" +(that.data.typeid)
+     + "&commodityReadme=" +(that.data.info)
+     + "&descriptionPictureDTOS=" +JSON.stringify(adds)
+     + "&detailPictureDTOS=" +JSON.stringify(imgadds)
+     + "&earnestMoney=" +(that.data.baozhengjin)
+     + "&endTime=" +(timestamp2)
+     + "&reservePrice=" +(that.data.baoliu)
+     + "&startPrice=" +(that.data.qipai)
+     + "&startTime=" +(timestamp1)
+     + "&taktTime=" +(that.data.taktTime)
+     + "&title=" +(that.data.title)
+  })
+  }else {
     wx.request({
       url:getApp().globalData.baseUrl+ '/product/jglProduct/releaseProduct', 
-     
       data: {
         addPrice: that.data.fudong,   //加价幅度
-        auctionOrSale: 1,   //判断拍卖或者售卖 0 拍卖 1售卖
+        auctionOrSale: that.data.auctionOrSale,   //判断拍卖或者售卖 0 拍卖 1售卖
         category:that.data.typeid,   //商品类型
         commodityReadme: that.data.info,  //商品自述
-        // descriptionPictureDTOS: [  // 商品描述图
-        //   {
-        //     status:that.data.imgindex,
-        //     url: that.data.imgurl
-        //   }
-        // ],
-        detailPictureDTOS: [   //大图
-          {
-            status: that.data.imgstats[0],
-            url: that.data.imgpath
-          }
-        ], 
-        earnestMoney: '',   //保证金
+        descriptionPictureDTOS: adds,   //详情图
+        detailPictureDTOS: imgadds,     //主图
+        earnestMoney: that.data.baozhengjin,   //保证金
         endTime: timestamp2,  //结束时间
         newPrice: that.data.xinpin,       //新品
         opneid:getApp().globalData.unionId,
@@ -95,7 +99,7 @@ Jump:function() {
         startPrice: that.data.qipai,//起拍价
         startTime: timestamp1,  //开始时间
         taktTime: that.data.taktTime,   // 延时周/
-        thumbnail: that.data.imgpath,  //缩略图 1
+        thumbnail: '',  //缩略图 1
         title: that.data.title  //标题
       },
      
@@ -104,20 +108,11 @@ Jump:function() {
           'content-type': 'application/json' // 默认值
       },
       success: function(res) {
-        // console.log(res.data.data)
+        console.log(res)
        
       }
     })
-    // wx.navigateTo({
-
-    // })
-  // }
-  // 进行判断，如果是售卖则不需要支付备用金不需要跳转
-  // wx.navigateTo({
-  //   // 将保证金传递到支付页面
-  //   url: `/pages/payment/payment? baozhengjin=`+this.data.baozhengjin
-  // })
-  // console.log(this.data.baozhengjin);
+}
 },
 // 关闭弹窗
 cancel: function() {
@@ -173,14 +168,19 @@ type:function() {
 // 拍卖与售卖的切换
 show:function() {
   this.setData({
+    auctionOrSale:0,
     show : true,
     isshow:false,
     shoumai:true,//选中售卖
 isshoumai:false,//选中拍卖
+
   })
+  console.log(auctionOrSale);
 },
 isshow:function() {
   this.setData({
+    auctionOrSale:1,
+
     isshow : true,
     show:false,
     shoumai:false,//选中售卖
@@ -207,9 +207,50 @@ isshoumai:false,//选中拍卖
 paimaiInput: function() {
   let that =this;
  
-   if(that.data.baozhengjin==''&&that.data.Sale==""&&that.data.baoliu==''&&that.data.fudong==""&&that.data.kaishishijian==""&&that.data.jieshushijian=="") {
+   if(that.data.baozhengjin=="") {
     wx.showToast({
-      title: '不能为空或您未更改',
+      title: '不能为空',
+      icon: 'none',
+      duration: 2000 //持续的时间
+    }) 
+  return;
+  } else if(that.data.Sale=="") {
+    // &&that.data.baoliu==""&&that.data.fudong==""&&that.data.kaishishijian==""&&that.data.jieshushijian==""
+    wx.showToast({
+      title: '不能为空',
+      icon: 'none',
+      duration: 2000 //持续的时间
+    }) 
+  return;
+  } else if(that.data.baoliu=="") {
+    // &&&&that.data.fudong==""&&that.data.kaishishijian==""&&that.data.jieshushijian==""
+    wx.showToast({
+      title: '不能为空',
+      icon: 'none',
+      duration: 2000 //持续的时间
+    }) 
+  return;
+  }else if(that.data.fudong=="") {
+    // &&&&&&that.data.kaishishijian==""&&that.data.jieshushijian==""
+    wx.showToast({
+      title: '不能为空',
+      icon: 'none',
+      duration: 2000 //持续的时间
+    }) 
+  return;
+  }
+  else if(that.data.kaishishijian=="") {
+    // &&&&&&&&that.data.jieshushijian==""
+    wx.showToast({
+      title: '不能为空',
+      icon: 'none',
+      duration: 2000 //持续的时间
+    }) 
+  return;
+  }else if(that.data.jieshushijian=="") {
+    // &&&&&&&&
+    wx.showToast({
+      title: '不能为空',
       icon: 'none',
       duration: 2000 //持续的时间
     }) 
@@ -217,7 +258,9 @@ paimaiInput: function() {
   }
   this.setData({
     actionSheetHidden: !this.data.actionSheetHidden,
+    auctionOrSale:0
    })
+   console.log();
  },
  
 // 拍卖价格的change事件
@@ -312,7 +355,6 @@ Salebtn: function() {
 // 点击去售卖，页面显示用户输入的信息
  showInput: function() {
   let that =this;
- 
    if(that.data.Sale=='') {
     wx.showToast({
       title: '不能为空或您未更改',
@@ -323,6 +365,8 @@ Salebtn: function() {
   }
   this.setData({
     actionSheetHidden: !this.data.actionSheetHidden,
+  auctionOrSale:1
+
    })
  },
 //  获取售卖价
@@ -349,46 +393,33 @@ xinpininput:function(e) {
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        console.log(res.tempFilePaths);
-        var imgpath =[]
-        //预览显示
-        _this.setData({
-          imgpath:res.tempFilePaths,
-                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-               
-        });
-        console.log(imgpath);        
-        _this.upgetImg()
+        console.log(res);
+     //   // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+       var imgpath=res.tempFilePaths  
+       _this.setData({  
+        imgpath: _this.data.imgpath.concat(res.tempFilePaths)  
+       }) 
+     for (var i = 0; i < imgpath.length;i++){
+       wx.uploadFile({
+         url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
+         name: 'imgFile',
+         filePath: imgpath[0],//第几张图片
+         header: {
+           "Content-Type": "multipart/form-data"
+         },
+         success(res) {
+         console.log(res);
+     var data = JSON.parse(res.data).data;
+           console.log(data);
+           imgadds.push(data)
+           console.log(imgadds);
+         },
+       })
+     }
       },
     })
   },
-  // 上传主图
-  upgetImg:function(e) {
-    var that = this
-      wx.uploadFile({
-         url: getApp().globalData.baseUrl + '/product/upload/uploadImgs', //开发者服务器地址,//自己的接口地址
-        filePath: that.data.imgpath[0],
-        name: 'imgFiles',
-        header: {
-          "Content-Type": "multipart/form-data",
-        },
-    
-        success: function (res) {
-          console.log(res)
-          console.log(res.data);
-          var data = JSON.parse(res.data).data;
-          console.log(data);
-          for(i=0;i<data.length;i++) {
-           that.data.imgpath=data[i].url;
-           that.data.imgstats=data[i].status;
-          }
-          
-          console.log(that.data.imgpath);
-          that.setData({
-          })
-        }
-      })
-    },
+
   
  // 删除照片 商品描述的图片&&
  imgDelete1: function (e) {
@@ -409,51 +440,31 @@ xinpininput:function(e) {
    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
    success: function (res) {
      console.log(res);
-    // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-    that.setData({
-        img_arr: that.data.img_arr.concat(res.tempFilePaths)
-
+  //   // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+    var img_arr=res.tempFilePaths  
+    that.setData({  
+      img_arr: that.data.img_arr.concat(res.tempFilePaths)  
+    }) 
+  for (var i = 0; i < img_arr.length;i++){
+    wx.uploadFile({
+      url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
+      name: 'imgFile',
+      filePath: img_arr[i],//第几张图片
+      header: {
+        "Content-Type": "multipart/form-data"
+      },
+      success(res) {
+      console.log(res);
+  var data = JSON.parse(res.data).data;
+        console.log(data);
+        adds.push(data)
+        console.log(adds);
+      },
     })
-
-  console.log(that.data.img_arr);
+  }
    },
-  
   })
  },
-// 图片 上传阿里云
-upload: function (e) {
-  var that = this
-  for (var i = 0; i < that.data.img_arr.length; i++) {//循环遍历图片 
-    wx.uploadFile({
-       url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址
-      filePath: that.data.img_arr[i],
-      name: 'imgFile',
-      header: {
-        "Content-Type": "multipart/form-data",
-      },
-  
-      success: function (res) {
-        console.log(res)
-        console.log(res.data);
-        var data = JSON.parse(res.data).data;
-        console.log(data);
-//         for(i=0;i<data.length;i++) {
-        
-//          that.data.imgurl=data[i].url;
-// that.data.imgindex=data[i].status
-//         }
-        console.log(that.data.imgurl);
-
-
-        that.setData({
-         
-        })
-      }
-     
-    })
-    }
-
-},
 
 
 })
