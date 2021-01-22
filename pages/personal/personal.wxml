@@ -85,11 +85,18 @@
                 实名认证
             </view>
         </view>
-        <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+        <view style="display:flex" >
+            <view class="sex">
+               {{authentication == 1? '已验证':'未验证'}}
+            </view>
+            <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+
+         </view>
+
     </view>
     <!-- 实名认证结束 -->
         <!-- 更改昵称 -->
-        <view  class='bottom_module_item'       >
+        <!-- <view  class='bottom_module_item'       >
             <view  class='bottom_module_item_left' >
                 <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/change_name.png'  ></image>
                 <view  class='bottom_module_item_left_text' >
@@ -97,7 +104,7 @@
                 </view>
             </view>
             <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
-        </view>
+        </view> -->
         <!-- 更改昵称结束 -->
             <!-- 更改性别 -->
     <view  class='bottom_module_item'       >
@@ -106,8 +113,14 @@
             <view  class='bottom_module_item_left_text' >
                 更改性别
             </view>
+          
         </view>
+         <view style="display:flex">
+            <view class="sex">
+                {{BaseInfo.sex==1? '男':'女'}}
+             </view>
         <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+         </view>
     </view>
     <!-- 更改性别结束 -->
                 <!-- 更改生日 -->
@@ -118,18 +131,36 @@
                             更改生日
                         </view>
                     </view>
+                    <view style="display:flex">
+                        <view class="sex" style="width:180rpx" >
+                            <!-- {{BaseInfo.birthday}} -->
+                           <picker  name="birthday"   disabled='{{haveShu}}' bindchange="bindDateChange" mode="date" value="{{date}}" >
+                                <view class="select-title">
+                                    <!-- end="2018-12-31" -->
+                                     <!-- {{BaseInfo.birthday==null? '请选择':'BaseInfo.birthday'}} -->
+                                     {{date}}
+                                    </view>
+                                    </picker>
+                         </view>
+                         
                     <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+                     </view>
                 </view>
                 <!-- 更改生日结束 -->
                 <!-- 绑定手机 -->
-    <view  class='bottom_module_item'  bindtap='toBindPhone'     >
+    <view  class='bottom_module_item'    disabled='{{havephone}}'   >
         <view  class='bottom_module_item_left' >
             <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/bindmobile.png'  ></image>
             <view  class='bottom_module_item_left_text' >
                 绑定手机
             </view>
         </view>
+        <view style="display:flex">
+            <view class="sex" style="width:180rpx">
+                {{BaseInfo.phone}}
+             </view>
         <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+         </view>
     </view>
     <!-- 绑定手机结束 -->
     <!-- 参与拍卖 -->

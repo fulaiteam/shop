@@ -2,6 +2,13 @@
 const app = getApp();
 Page({
     data: {
+        authentication:'已认证',
+        haveShu: true,   //生日是否有值
+        birthday: '',
+        date: "请选择",
+        havephone:false,
+        
+       
         top_arr: [
             {
                 text: '我发布的',
@@ -26,10 +33,7 @@ Page({
                 title: '实名认证',
                 path: '/pages/confirmName/confirmName'
             },
-            {
-                img: 'https://jgl.oss-cn-beijing.aliyuncs.com/person/change_name.png',
-                title: '更改昵称'
-            },
+          
             {
                 img: ' https://jgl.oss-cn-beijing.aliyuncs.com/person/gender.png',
                 title: '更改性别'
@@ -53,15 +57,40 @@ Page({
             },
         ]
     },
+  
     onLoad: function () {
 
     },
     onShow: function () {
         if(wx.getStorageSync('openid')){
             getApp().globalData.openid = wx.getStorageSync('openid')
-            this.getUserInfoByOpenid();
+            this.getUserInfoByOpenid()
         }
     },
+    bindDateChange: function (event) {
+        let that =this;
+        this.setData({
+          date: event.detail.value,
+          birthday:event.detail.value
+        })
+        wx.request({
+            // 请求用户地址列表
+            url: getApp().globalData.baseUrl + '/user/jglUser/updateUser',
+            header: {
+                'content-type': 'application/json' // 默认值
+              },
+            method: 'post',
+            data: {
+                openid: wx.getStorageSync('openid'),
+                birthday:that.data.birthday
+            },
+            success(res) {
+                console.log(res);
+            }
+        })
+        console.log(event.detail.value);
+    
+      },
     toPage: function (e) {
         var path = e.currentTarget.dataset.path;
         wx.navigateTo({
@@ -69,9 +98,17 @@ Page({
         })
     },
     toConfirmName :function(){
+       if(this.data.authentication==0) {
         wx.navigateTo({
             url: '/pages/confirmName/confirmName'
         })
+       } else {
+        wx.showToast({
+            title: '已认证',
+            icon: 'success',
+            duration: 2000
+           })
+       }
     },
     toAuction :function(){
         wx.navigateTo({
@@ -84,15 +121,25 @@ Page({
         })
     },
     toBindPhone:function(){
-        wx.navigateTo({
-            url: '/pages/bindPhone/bindPhone'
-        })
+        if(this.data.authentication==0) {
+            wx.navigateTo({
+                url: '/pages/bindPhone/bindPhone'
+            })
+           } else {
+            wx.showToast({
+                title: '已认证',
+                icon: 'success',
+                duration: 2000
+               })
+           }
+      
     },
     toLogin:function(){
         wx.navigateTo({
             url: '/pages/login_phone/login_phone'
         })
     },
+    // 请求后台返回接口
     getUserInfoByOpenid:function(){
             var that = this;
             wx.request({
@@ -106,16 +153,22 @@ Page({
                 openid: wx.getStorageSync('openid')
             },
             success(res) {
+                console.log(res);
                 if(res.data.flag){
                     that.setData({
-                        BaseInfo:res.data.data
+                        BaseInfo:res.data.data,
+                        authentication:res.data.data.isRealname,
+                        haveShu: res.data.data.isBirthday ? true : false,
+                        birthday: res.data.data.birthday || '请选择',
+                        date: res.data.data.birthday || '请选择',
+
                     })
                 }
                 console.log(res.data.data)
-
+                
             }
         })
-    }
-
+    },
+  
 
 })

@@ -73,8 +73,26 @@
           "scene": null
         },
         {
-          "name": "pages/earnestMoney/earnestMoney",
-          "pathName": "pages/earnestMoney/earnestMoney",
+          "name": "pages/bidRecord/bidRecord",
+          "pathName": "pages/bidRecord/bidRecord",
+          "query": "productId=4",
+          "scene": null
+        },
+        {
+          "name": "pages/All_auction/All_auction",
+          "pathName": "pages/All_auction/All_auction",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
           "query": "",
           "scene": null
         },

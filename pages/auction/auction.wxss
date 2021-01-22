@@ -17,14 +17,14 @@ page {
     width:750rpx;
     top:0;
     left:0;
-    height:485rpx;
+    height:431rpx;
     position: absolute;
 }
 .shelf_allarea{
     z-index: 3;
     width:671rpx;
     left:40rpx;
-    top:224rpx;
+    top:173rpx;
     overflow: hidden;
     position: absolute;
 }
@@ -144,7 +144,7 @@ page {
     height:53rpx;
     position: absolute;
     left:180rpx;
-    top:131rpx;
+    top:53rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
