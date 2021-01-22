@@ -28,7 +28,23 @@ Page({
             },
             success: function(res) {
               console.log(res)
-             
+             console.log(res.data.flag);
+             if(res.data.flag==true) {
+              wx.switchTab({
+                url:"/pages/personal/personal"
+            })
+              wx.showToast({
+                title: '认证成功',
+                icon: 'success',
+                duration: 2000
+               })
+             } else {
+              wx.showToast({
+                title: '认证失败',
+                icon: 'none',
+                duration: 2000
+               })
+             }
             }
           })
       
