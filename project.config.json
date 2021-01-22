@@ -85,8 +85,8 @@
           "scene": null
         },
         {
-          "name": "pages/myRelease/myRelease",
-          "pathName": "pages/myRelease/myRelease",
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
           "query": "",
           "scene": null
         },

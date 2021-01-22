@@ -2,6 +2,8 @@
 const app = getApp();
 Page({
     data: {
+        columns: ["请选择", "男", "女"],
+        gender: 0 || wx.getStorageSync("gender") * 1,
         top_arr: [
             {
                 text: '我发布的',
@@ -26,10 +28,7 @@ Page({
                 title: '实名认证',
                 path: '/pages/confirmName/confirmName'
             },
-            {
-                img: 'https://jgl.oss-cn-beijing.aliyuncs.com/person/change_name.png',
-                title: '更改昵称'
-            },
+          
             {
                 img: ' https://jgl.oss-cn-beijing.aliyuncs.com/person/gender.png',
                 title: '更改性别'
@@ -61,6 +60,12 @@ Page({
             getApp().globalData.openid = wx.getStorageSync('openid')
             this.getUserInfoByOpenid();
         }
+    },
+    pickSex: function(e) {
+        this.setData({
+            gender: e.detail.value
+        });
+        console.log("当前选择性别-sex", e.detail.value);
     },
     toPage: function (e) {
         var path = e.currentTarget.dataset.path;

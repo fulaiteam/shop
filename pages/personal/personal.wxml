@@ -89,7 +89,7 @@
     </view>
     <!-- 实名认证结束 -->
         <!-- 更改昵称 -->
-        <view  class='bottom_module_item'       >
+        <!-- <view  class='bottom_module_item'       >
             <view  class='bottom_module_item_left' >
                 <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/change_name.png'  ></image>
                 <view  class='bottom_module_item_left_text' >
@@ -97,7 +97,7 @@
                 </view>
             </view>
             <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
-        </view>
+        </view> -->
         <!-- 更改昵称结束 -->
             <!-- 更改性别 -->
     <view  class='bottom_module_item'       >
@@ -106,8 +106,16 @@
             <view  class='bottom_module_item_left_text' >
                 更改性别
             </view>
+          
         </view>
+         <view style="display:flex">
+            <picker bindchange="pickSex" value="{{ gender }}" class="sex" range="{{ columns }}">
+                <view>
+                    {{ columns[gender] == "" ? "请输入性别" : "" }}{{ columns[gender] }}
+                </view>
+            </picker>
         <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+         </view>
     </view>
     <!-- 更改性别结束 -->
                 <!-- 更改生日 -->
