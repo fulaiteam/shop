@@ -57,7 +57,6 @@ Page({
 
   onLoad() {
     this.getAuctionList();
-    this.getSellList();
     this.getSlideShow();
     this.countDown();
   },
@@ -74,7 +73,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        // console.log(res)
+        console.log(res)
         const {
           rows,
           total
@@ -119,7 +118,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         const {
           rows,
           total
@@ -223,6 +222,9 @@ Page({
     this.setData({
       isAuction: e.currentTarget.dataset.index
     })
+    if (e.currentTarget.dataset.index == 1 && this.data.sellDataList.length <= 0) {
+      this.getSellList()
+    }
   },
 
   handleGouType(e) {
@@ -396,18 +398,11 @@ Page({
   },
 
   toggle: function (e) {
-
-
     this.setData({
-
       //设置active的值为用户点击按钮的索引值
-
       active: e.currentTarget.dataset.index,
-
     })
     // 请求拍卖列表中类别变更数据
     this.getAuctionList()
-
   },
-
 })

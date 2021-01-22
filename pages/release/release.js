@@ -31,7 +31,7 @@ typelist:[1,2,3,4],  //类型数据
 typeName:'',   //商品类型的选中变量   
 typeid:'',//商品类型的选中id   
 taktTime:'1',  //延迟周期
-openid:'oS5bk5DPJKHDc6UwrR8xcUb3Ri8w'
+openid:''
 },
 onLoad: function () {
  

@@ -73,32 +73,14 @@
           "scene": null
         },
         {
-          "name": "pages/bidRecord/bidRecord",
-          "pathName": "pages/bidRecord/bidRecord",
-          "query": "productId=4",
-          "scene": null
-        },
-        {
-          "name": "pages/All_auction/All_auction",
-          "pathName": "pages/All_auction/All_auction",
+          "name": "pages/earnestMoney/earnestMoney",
+          "pathName": "pages/earnestMoney/earnestMoney",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/myRelease/myRelease",
-          "pathName": "pages/myRelease/myRelease",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/personal/personal",
-          "pathName": "pages/personal/personal",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/confirmName/confirmName",
-          "pathName": "pages/confirmName/confirmName",
+          "name": "pages/payment/payment",
+          "pathName": "pages/payment/payment",
           "query": "",
           "scene": null
         }
