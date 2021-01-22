@@ -15,7 +15,7 @@ Page({
             url:getApp().globalData.baseUrl+ '/user/jglUser/authentication', 
             data: {
                 name:that.data.username,
-                openid:'oS5bk5DPJKHDc6UwrR8xcUb3Ri8w',//oS5bk5DPJKHDc6UwrR8xcUb3Ri8w
+                openid:getApp().globalData.openid,//oS5bk5DPJKHDc6UwrR8xcUb3Ri8w
                 idNumber:that.data.usernameId,
                 backimg:upimgadds[0].url,
                 fontimg:imgadds[0].url

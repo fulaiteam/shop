@@ -136,6 +136,7 @@
                             <!-- {{BaseInfo.birthday}} -->
                            <picker  name="birthday"   disabled='{{haveShu}}' bindchange="bindDateChange" mode="date" value="{{date}}" >
                                 <view class="select-title">
+                                    <!-- end="2018-12-31" -->
                                      <!-- {{BaseInfo.birthday==null? '请选择':'BaseInfo.birthday'}} -->
                                      {{date}}
                                     </view>

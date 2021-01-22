@@ -20,7 +20,7 @@ Page({
       startTime:'', //开始时间
       taktTime:'',  //演示周期
       auctionOrSale:'0',   //拍卖
-      openid:'oS5bk5DPJKHDc6UwrR8xcUb3Ri8w',
+      openid:'',
       commodityid:'',   //商品id
       // 调起官方微信支付接口需要的返回数据接收
       appId:'',
@@ -78,7 +78,7 @@ zhifu:function(){
     url:'https://jgl.hemajia.net/jgl/pay/jglPay/pay',
     data: {
       // kedagai
-      openId:'oS5bk5DPJKHDc6UwrR8xcUb3Ri8w',
+      openId:getApp().globalData.openid,
       money:that.data.earnestMoney,
       productId:that.data.commodityid,
       idno:''
