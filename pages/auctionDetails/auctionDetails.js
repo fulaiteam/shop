@@ -11,22 +11,33 @@ Page({
     bidRecord: [],
     // 店主信息
     userInfo: {},
+    // 推荐商品数据
+    rectangleGood: {},
     // table栏选中
     isTable: 0,
     // 商品类型： 0 拍卖商品 ， 1 售卖商品
     auctionOrSale: '',
     // 商品id
     productId: '',
+    // 商品分类id - 推荐商品用
+    category: '',
     openid: '',
-    // 普通时间格式
-    timeList: []
+    // 轮播图数据
+    swiperImg: [],
+    // 商品当前价格
+    money: 0,
+    // 商品开始、结束普通时间格式
+    timeList: [],
+    // 出价记录普通时间格式
+    byTimeList: [],
+    // 出价记录总条数
+    byTotal: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // console.log(options)
     const {auctionOrSale, productId, openid} = options
     // 动态修改页面导航栏标题
     wx.setNavigationBarTitle({ title: auctionOrSale == 0? '拍卖详情': '售卖详情' })      // options.name表示上个页面传过来的文字
@@ -39,7 +50,10 @@ Page({
     this.getData()
     // 发送出价记录请求
     this.getListId()
+    // 发送店主数据请求
     this.getUser()
+    // 推荐商品请求
+    this.getRectangleGood()
   },
 
   // 请求商品数据
@@ -55,6 +69,12 @@ Page({
         // console.log(res)
         const {data} = res.data
 
+        // 另存商品轮播图数据 - 做全屏预览
+        let arr = data.descriptionPictureVOS
+        let swiperImg = arr.map(v => {
+          return v.url
+        })
+        // 修改及保存商品开拍时间和结束时间
         let TimeList = [data.startTime, data.endTime];
         let TimeList2 = TimeList.map(x => {
           // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
@@ -63,7 +83,10 @@ Page({
 
         this.setData({
           list: data,
-          timeList: TimeList2
+          category: data.category,
+          timeList: TimeList2,
+          swiperImg: swiperImg,
+          money: this.miliFormat(data.startPrice) || this.miliFormat(data.salePrice)
         })
       }
     })
@@ -74,13 +97,44 @@ Page({
     wx.request({
       url: 'http://192.168.3.70:10010/jgl/bep/jglBid/selectListById',
       data: {
-        "query": "4"
+        "currentPage": 1,
+        "pageSize": 5,
+        "query": this.data.productId
       },
       method: 'POST',
       success: (res)=> {
         // console.log(res)
-        const {records} = res.data.data
-        this.setData({bidRecord: records})
+        const {rows, total} = res.data.data
+        this.setData({
+          bidRecord: rows,
+          byTotal: total,
+        })
+
+        // 执行修改和添加出价时间的事件
+        // 创建新数组，获得所有出价记录的时间
+        let TimeList = [];
+        rows.forEach(o => {
+          TimeList.push(o.createTime)
+        })
+        // 修改日期数据
+        let TimeList2 = TimeList.map(x => {
+          // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
+          return this.renderTime(x).slice(5,10)
+        })
+        // 修改时间数据
+        let TimeList3 = TimeList.map(x => {
+          return this.renderTime(x).slice(11,19)
+        })
+        // 将每组修改的日期及时间数据放到对应的 bidRecord 记录数据中，做渲染用
+        let arr = this.data.bidRecord
+        arr.forEach((item, index) => {
+          let objDay = "bidRecord[" + index + "].objDay"
+          let objTime = "bidRecord[" + index + "].objTime"
+          this.setData({
+            [objDay]: TimeList2[index].replace(/-/, "."),
+            [objTime]: TimeList3[index]
+          })
+        })
       }
     })
   },
@@ -101,6 +155,40 @@ Page({
         this.setData({userInfo: data})
       }
     })
+  },
+
+  // 推荐商品数据
+  getRectangleGood() {
+    wx.request({
+      url: 'http://192.168.3.70:10010/jgl/product/jglProduct/selectDetailRecommendProduct',
+      data: {
+        category: this.data.category
+      },
+      method: "get",
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      success: (res)=>{
+        // console.log(res)
+        const {data} = res.data
+        this.setData({rectangleGood: data})
+      }
+    })
+  },
+
+  // 商品轮播图全屏显示
+  handleFullScreen(e) {
+    // console.log(e)
+    // 在新页面中全屏预览图片
+    wx.previewImage({
+      current: e.currentTarget.dataset.image, // 当前显示图片的http链接
+      urls: this.data.swiperImg // 需要预览的图片http链接列表
+    })
+  },
+
+  // 千分位分割 - 整、小数混合
+  miliFormat(num) {  
+    return num && num.toString().replace(/(^|\s)\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
   },
 
   // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx

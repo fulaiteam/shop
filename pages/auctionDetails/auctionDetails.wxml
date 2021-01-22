@@ -8,9 +8,9 @@
     <view class="auction_img">
       <!-- 轮播图 -->
       <swiper class="swiper" autoplay="true" circular="true">
-        <block wx:for="{{list.descriptionPictureVOS}}" wx:key="index">
+        <block wx:for="{{swiperImg}}" wx:key="index">
           <swiper-item>
-            <image src="{{item.url}}" class="swiper_img" mode="aspectFill"></image>
+            <image src="{{item}}" class="swiper_img" mode="aspectFill" bindtap="handleFullScreen" data-image="{{item}}"></image>
           </swiper-item>
         </block>
       </swiper>
@@ -50,11 +50,11 @@
         <view class="auction_rmb">RMB</view>
         <view class="auction_price_bottom" wx:if="{{auctionOrSale == 0}}">
           <view class="auction_pirce_font">当前价</view>
-          <view class="auction_price">{{list.startPrice}}</view>
+          <view class="auction_price">{{money}}</view>
         </view>
         <view class="auction_price_bottom" wx:if="{{auctionOrSale == 1}}">
           <view class="auction_pirce_font">售卖价</view>
-          <view class="auction_price">{{list.salePrice}}</view>
+          <view class="auction_price">{{money}}</view>
         </view>
       </view>
       <!-- 购买记录 -->
@@ -123,7 +123,7 @@
       </view>
       <view class="auction_type_list_line">
         <view class="auction_type_list_title">延时周期</view>
-        <view class="auction_type_list_info">{{list.taktTime}}分</view>
+        <view class="auction_type_list_info">{{list.taktTime}}分/次</view>
       </view>
     </view>
   </view>
@@ -134,24 +134,38 @@
     <view class="auction_bid_record_title">
       <view class="auction_bid_record_font">
         <view class="auction_bid_font">出价记录</view>
-        <view>(22)</view>
+        <view>({{byTotal}})</view>
       </view>
-      <view class="auction_bid_all_btn">
-        <view class="auction_bid_all_font">全部</view>
-        <view class="arrows"></view>
+      <view class="auction_bid_all_btn" wx:if="{{byTotal >= 5}}">
+        <navigator url="/pages/bidRecord/bidRecord?productId={{productId}}">
+          <view class="auction_bid_all_font">全部</view>
+          <view class="arrows"></view>
+        </navigator>
       </view>
     </view>
-    <view class="auction_bid_info" wx:for="{{bidRecord}}" wx:key="index">
-      <view class="auction_bid_info_left">
-        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/icon.png"></image>
-        <text>{{item.nickname}}</text>
-        <text>领先</text>
-        <text>12:11</text>
-        <text>18:45:42</text>
-      </view>
-      <view class="auction_bid_info_right">
-        ￥2222
-      </view>
+    <swiper class="tab_right" vertical="true" autoplay="true" circular="true" interval="2000" display-multiple-items='3' wx:if="{{bidRecord.length !== 0}}">
+      <block wx:key="index" wx:for="{{bidRecord}}">
+        <swiper-item>
+          <view class="auction_bid_info">
+            <view class="auction_bid_info_left {{index === 0? 'auction_bid_info_first': ''}}">
+              <image src="{{item.headimgurl}}"></image>
+              <text>{{item.nickname}}</text>
+              <text wx:if="{{index === 0}}">领先</text>
+              <text wx:else>出价</text>
+              <text>{{item.objDay}}</text>
+              <text>{{item.objTime}}</text>
+            </view>
+            <view class="auction_bid_info_right {{index === 0? 'auction_bid_info_first': ''}}">
+              <text>￥{{item.price}}</text>
+            </view>
+          </view>
+        </swiper-item>
+      </block> 
+    </swiper>
+    
+    <!-- 无出价数据判断 -->
+    <view class="auction_bid_info_not" wx:if="{{bidRecord.length == 0}}">
+      暂无出价记录
     </view>
   </view>
   <!-- 出价记录结束 -->
@@ -293,18 +307,18 @@
     </view>
     <view class="auction_recommend_goods">
       <navigator>
-        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/timg%20%E6%8B%B7%E8%B4%9D.png" class="auction_recommend_goods_img"></image>
+        <image src="{{rectangleGood.thumbnail}}" class="auction_recommend_goods_img"></image>
         <view class="auction_recommend_goods_box">
           <view class="auction_recommend_goods_title">
-            铃木gsx250sr高配100多公里 豪爵铃木 GSX 250R-A
+            {{rectangleGood.title}}
           </view>
-          <view class="auction_recommend_goods_price">￥28,000</view>
+          <view class="auction_recommend_goods_price">￥{{rectangleGood.price}}</view>
           <view class="auction_recommend_browse_data">
             <view class="auction_recommend_browse">
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%B5%8F%E8%A7%88.png"></image>
-              <text>10000+</text>
+              <text>{{rectangleGood.pv}}</text>
             </view>
-            <view class="auction_recommend_browse_update_font">10分钟前更新</view>
+            <view class="auction_recommend_browse_update_font">{{rectangleGood.collectCount}} 收藏</view>
           </view>
         </view>
       </navigator>

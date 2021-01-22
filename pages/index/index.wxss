@@ -280,10 +280,16 @@ page {
 }
 
 .list .list_item .info .title {
+  width: 301rpx;
   font-size: 26rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #333333;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }
 
 .list .list_item .info .info_bottom {
