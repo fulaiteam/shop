@@ -2,8 +2,13 @@
 const app = getApp();
 Page({
     data: {
-        columns: ["请选择", "男", "女"],
-        gender: 0 || wx.getStorageSync("gender") * 1,
+        authentication:'已认证',
+        haveShu: true,   //生日是否有值
+        birthday: '',
+        date: "请选择",
+        havephone:false,
+        
+       
         top_arr: [
             {
                 text: '我发布的',
@@ -52,21 +57,40 @@ Page({
             },
         ]
     },
+  
     onLoad: function () {
 
     },
     onShow: function () {
         if(wx.getStorageSync('openid')){
             getApp().globalData.openid = wx.getStorageSync('openid')
-            this.getUserInfoByOpenid();
+            this.getUserInfoByOpenid()
         }
     },
-    pickSex: function(e) {
+    bindDateChange: function (event) {
+        let that =this;
         this.setData({
-            gender: e.detail.value
-        });
-        console.log("当前选择性别-sex", e.detail.value);
-    },
+          date: event.detail.value,
+          birthday:event.detail.value
+        })
+        wx.request({
+            // 请求用户地址列表
+            url: getApp().globalData.baseUrl + '/user/jglUser/updateUser',
+            header: {
+                'content-type': 'application/json' // 默认值
+              },
+            method: 'post',
+            data: {
+                openid: wx.getStorageSync('openid'),
+                birthday:that.data.birthday
+            },
+            success(res) {
+                console.log(res);
+            }
+        })
+        console.log(event.detail.value);
+    
+      },
     toPage: function (e) {
         var path = e.currentTarget.dataset.path;
         wx.navigateTo({
@@ -74,9 +98,17 @@ Page({
         })
     },
     toConfirmName :function(){
+       if(this.data.authentication==0) {
         wx.navigateTo({
             url: '/pages/confirmName/confirmName'
         })
+       } else {
+        wx.showToast({
+            title: '已认证',
+            icon: 'success',
+            duration: 2000
+           })
+       }
     },
     toAuction :function(){
         wx.navigateTo({
@@ -89,15 +121,25 @@ Page({
         })
     },
     toBindPhone:function(){
-        wx.navigateTo({
-            url: '/pages/bindPhone/bindPhone'
-        })
+        if(this.data.authentication==0) {
+            wx.navigateTo({
+                url: '/pages/bindPhone/bindPhone'
+            })
+           } else {
+            wx.showToast({
+                title: '已认证',
+                icon: 'success',
+                duration: 2000
+               })
+           }
+      
     },
     toLogin:function(){
         wx.navigateTo({
             url: '/pages/login_phone/login_phone'
         })
     },
+    // 请求后台返回接口
     getUserInfoByOpenid:function(){
             var that = this;
             wx.request({
@@ -111,16 +153,22 @@ Page({
                 openid: wx.getStorageSync('openid')
             },
             success(res) {
+                console.log(res);
                 if(res.data.flag){
                     that.setData({
-                        BaseInfo:res.data.data
+                        BaseInfo:res.data.data,
+                        authentication:res.data.data.isRealname,
+                        haveShu: res.data.data.isBirthday ? true : false,
+                        birthday: res.data.data.birthday || '请选择',
+                        date: res.data.data.birthday || '请选择',
+
                     })
                 }
                 console.log(res.data.data)
-
+                
             }
         })
-    }
-
+    },
+  
 
 })
