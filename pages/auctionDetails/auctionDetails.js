@@ -11,6 +11,8 @@ Page({
     bidRecord: [],
     // 店主信息
     userInfo: {},
+    // 店铺是否认证： 0 - 未认证 ， 1 - 认证
+    status: '',
     // 推荐商品数据
     rectangleGood: {},
     // table栏选中
@@ -31,7 +33,9 @@ Page({
     // 出价记录普通时间格式
     byTimeList: [],
     // 出价记录总条数
-    byTotal: 0
+    byTotal: 0,
+    // 是否报名数据
+    applyState: []
   },
 
   /**
@@ -152,7 +156,10 @@ Page({
       success: (res)=>{
         console.log(res)
         const {data} = res.data
-        this.setData({userInfo: data})
+        this.setData({
+          userInfo: data,
+          status: data.status
+        })
       }
     })
   },
@@ -201,5 +208,47 @@ Page({
   handleClick(e) {
     this.setData({isTable: e.currentTarget.dataset.index})
     this.getUser()
+  },
+
+  // 参与出价
+  handleBid() {
+    if (this.data.apply) {
+      wx.navigateTo({
+        url: '/pages/auctionBid/auctionBid',
+      })
+    } else {
+      wx.showToast({
+        title: '暂未报名',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+
+  // 报名
+  handleApply() {
+    wx.request({
+      url: 'http://192.168.3.70:10010/jgl/bep/jglEnroll/addEnroll',
+      data: {
+        "openid": this.data.openid,
+        "productId": this.data.productId,
+      },
+      method: 'POST',
+      success: (res)=>{
+        console.log(res)
+        this.setData({applyState: res.data})
+      }
+    })
+    if (this.data.applyState.flag) {
+      wx.navigateTo({
+        url: '/pages/earnestMoney/earnestMoney'
+      }) 
+    } else {
+      wx.showToast({
+        title: this.data.applyState.message,
+        icon: 'none',
+        duration: 2000
+      })
+    }
   }
 })

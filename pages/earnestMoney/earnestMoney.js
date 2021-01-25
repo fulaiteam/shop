@@ -6,7 +6,7 @@ Page({
    */
   data: {
     // 是否支付
-    isPay: 2
+    isPay: 1
   },
 
   /**

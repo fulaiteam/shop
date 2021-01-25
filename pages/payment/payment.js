@@ -13,7 +13,7 @@ Page({
       commodityReadme:'',  //商品描述
       descriptionPictureDTOS:[], // 商品描述图
       detailPictureDTOS:[],   //主图
-      earnestMoney:'',   //保证金
+      earnestMoney:50,   //保证金
       endTime:'',   //结束时间
       reservePrice:'',   //保留价格
       startPrice:'', //起拍价
@@ -44,7 +44,7 @@ Page({
         detailPictureDTOS: that.data.detailPictureDTOS,     //主图
         earnestMoney: that.data.earnestMoney,   //保证金
         endTime: that.data.endTime,  //结束时间
-        opneid:that.data.openid,
+        opneid:getApp().globalData.openid,
         reservePrice: that.data.reservePrice,  //保留价格（可以为空）
         startPrice: that.data.startPrice,//起拍价
         startTime: that.data.startTime,  //开始时间
@@ -89,7 +89,7 @@ zhifu:function(){
         'content-type': 'application/x-www-form-urlencoded' // 默认值
     },
     success: function(res) {
-     console.log(res.data.data);
+     console.log(res.data);
      that.setData({
       // appId:res.data.data.appId,
       nonceStr:res.data.data.nonceStr,

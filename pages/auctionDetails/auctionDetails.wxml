@@ -30,6 +30,7 @@
         <view class="icon_share">
           <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/2.png"></image>
           <text>分享</text>
+          <button open-type="share"></button>
         </view>
       </view>
       <!-- 报名、围观 -->
@@ -175,19 +176,26 @@
     <!-- 店主信息 -->
     <view class="shopkeeper_info">
       <view class="shopkeeper_info_left">
-        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%91%84%E5%9B%BE%E7%BD%91_501358222_wx%20%E6%8B%B7%E8%B4%9D.png"></image>
+        <image src="{{userInfo.headimgurl}}"></image>
         <view>{{userInfo.nickname}}</view>
       </view>
       <view class="shopkeeper_info_right">
-        <view>查看全部宝贝</view>
-        <view class="arrows"></view>
+        <navigator url="/pages/All_auction/All_auction?openid={{userInfo.openid}}">
+          <view>查看全部宝贝</view>
+          <view class="arrows"></view>
+        </navigator>
       </view>
     </view>
     <!-- 认证 -->
-    <view class="store_attestation">
+    <view class="store_attestation" wx:if="{{status == 1}}">
       <view>加入捡个漏{{userInfo.joinTime}}天</view>
       <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E5%9B%BE%E5%B1%82%201063.png"></image>
       <view>已实名认证</view>
+    </view>
+    <view class="store_attestation" wx:if="{{status == 0}}">
+      <view>加入捡个漏{{userInfo.joinTime}}天</view>
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E5%9B%BE%E5%B1%82%201063%402x-gray.png"></image>
+      <view>未实名认证</view>
     </view>
     <!-- 推荐 -->
     <view class="store_recommend">
@@ -213,7 +221,7 @@
       <!-- 拍卖宝贝列表 -->
       <view class="store_goods_list" wx:if="isTable == 0">
         <view class="store_goods_info" wx:for="{{userInfo.productUserActionVOS}}" wx:key="index">
-          <navigator>
+          <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{item.auctionOrSale}}&productId={{item.productId}}&openid={{item.openid}}">
             <view class="store_goods_img">
               <image src="{{item.thumbnail}}" mode="aspectFit"></image>
             </view>
@@ -227,13 +235,13 @@
       <!-- 售卖宝贝列表 -->
       <view class="store_goods_list" wx:if="isTable == 1">
         <view class="store_goods_info" wx:for="{{userInfo.productUserSellVOS}}" wx:key="index">
-          <navigator>
+          <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{item.auctionOrSale}}&productId={{item.productId}}&openid={{item.openid}}">
             <view class="store_goods_img">
               <image src="{{item.thumbnail}}" mode="aspectFit"></image>
             </view>
             <view class="store_goods_info_box">
               <view class="store_goods_info_title">{{item.title}}</view>
-              <view class="store_goods_info_price">¥{{item.startPrice}}</view>
+              <view class="store_goods_info_price">¥{{item.salePrice}}</view>
             </view>
           </navigator>
         </view>
@@ -306,7 +314,7 @@
       </view>
     </view>
     <view class="auction_recommend_goods">
-      <navigator>
+      <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{rectangleGood.auctionOrSale}}&productId={{rectangleGood.productId}}&openid={{rectangleGood.openid}}">
         <image src="{{rectangleGood.thumbnail}}" class="auction_recommend_goods_img"></image>
         <view class="auction_recommend_goods_box">
           <view class="auction_recommend_goods_title">
@@ -329,11 +337,11 @@
 </view>
 <!-- 参与出价 -->
 <view class="bottom_bid" wx:if="{{auctionOrSale == 0}}">
-  <view class="bid_btn">参与出价</view>
+  <view class="bid_btn" bindtap="handleBid">参与出价</view>
 </view>
 <view class="bottom_bid_relation"  wx:if="{{auctionOrSale == 1}}">
   <view class="bottom_bid_relation_box bottom_bid_relation_shop">联系宝主</view>
   <view class="bottom_bid_relation_box bottom_bid_relation_collect">收藏</view>
 </view>
 <!-- 报名悬浮球 -->
-<view class="apply_ball"  wx:if="{{auctionOrSale == 0}}">去报名</view>
+<view class="apply_ball"  wx:if="{{auctionOrSale == 0}}" bindtap="handleApply">去报名</view>

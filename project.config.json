@@ -97,8 +97,8 @@
           "scene": null
         },
         {
-          "name": "pages/confirmName/confirmName",
-          "pathName": "pages/confirmName/confirmName",
+          "name": "pages/payment/payment",
+          "pathName": "pages/payment/payment",
           "query": "",
           "scene": null
         },

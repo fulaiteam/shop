@@ -10,7 +10,7 @@ page {
   position: absolute;
   z-index: 2;
   width: 100%;
-  padding: 40rpx;
+  padding: 29rpx 40rpx;
   box-sizing: border-box;
 }
 .earnest_money_pay_list {
@@ -54,7 +54,7 @@ page {
   margin-right: 17rpx;
 }
 .earnest_money_pay_line_font {
-  font-size: 12px;
+  font-size: 25rpx;
 }
 .earnest_money_one_state .hint {
   width: 22rpx;
@@ -66,10 +66,10 @@ page {
   color: #FF2A00;
 }
 .earnest_money_message_input {
-  font-size: 12px;
+  font-size: 25rpx;
 }
 .earnest_money_alrpay_line_font {
-  font-size: 11px;
+  font-size: 24rpx;
   color: #FF2A00;
 }
 
@@ -97,7 +97,7 @@ page {
   margin-right: 14rpx;
 }
 .weixin_pay_box_left text {
-  font-size: 11px;
+  font-size: 25rpx;
   color: #010101;
 }
 
@@ -120,7 +120,7 @@ page {
   height: 67rpx;
   line-height: 67rpx;
   text-align: center;
-  font-size: 13px;
+  font-size: 26rpx;
   border-radius: 20rpx;
   color: #fff;
   background: #FFBA1E;
