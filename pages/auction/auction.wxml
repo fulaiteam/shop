@@ -6,14 +6,28 @@
 <!-- 顶部背景图结束 -->
 <!-- 拍卖按钮区域开始 -->
 <view  class='auction_top_btn_area' >
-    <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/saling.png'  ></image>
-    <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/saled_cover.png'  ></image>
+    <view class="auction_top_btn {{show==1?'auction_top_btn_img_one':'auction_top_btn_img_two'}}" bindtap="handlePailistType"  data-index="0">
+
+    </view>
+    <view class="auction_top_btn {{show==0?'auction_top_btn_img_three':'auction_top_btn_img_fore'}}" bindtap="handlePailistType"  data-index="1">
+
+    </view>
+                                                                <!-- 拍卖中选中的状态 -->
+    <!-- <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/585c4fb9817362b25ec9a97d10ad4eb.png'></image> -->
+                                                                <!-- 已拍下未选中的状态 -->
+    <!-- <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/f3da8322b8c2ec2b3eeafc26027a831.png'></image> -->
+                                                                <!-- 拍卖中未选中的状态 -->
+    <!-- <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/a579b2f75312092ab1dabddbc01807e.png'></image> -->
+                                                                <!-- 已拍下选中的状态 -->
+    <!-- <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/778c1cd2fc939a64a055605f5f55f11.png'></image> -->
+  
+  
 </view>
 <!-- 拍卖按钮区域结束 -->
 <!-- 下架项目白色区域开始 -->
 <view   class='shelf_allarea'  >
 <!-- 一项下架项目开始 -->
-<view class='shelf_item' wx:for='{{2}}' >
+<view class='shelf_item' wx:for='{{2}}' wx:key="index" wx:for-item="item" >
     <!-- 项目顶部区域开始 -->
     <view class='shelf_item_top'  >
         <image class='shelf_item_top_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/avatar.png' ></image>

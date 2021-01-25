@@ -125,18 +125,18 @@ page {
   color: #FFFFFF;
   line-height: 65rpx;
 }
-
+/* url(https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E6%A4%AD%E5%9C%86%204%20%E6%8B%B7%E8%B4%9D%203%402x.png) no-repeat */
 .pailist_auction_two_show {
   z-index: 2;
   background: url(https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E6%A4%AD%E5%9C%86%204%20%E6%8B%B7%E8%B4%9D%203%402x.png) no-repeat;
   background-size: 100% 100%;
 }
-
+/* url(https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E6%A4%AD%E5%9C%86%204%20%E6%8B%B7%E8%B4%9D%205.png) no-repeat */
 .pailist_auction_two_sink {
   background: url(https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E6%A4%AD%E5%9C%86%203%20%E6%8B%B7%E8%B4%9D%205.png) no-repeat;
   background-size: 100% 100%;
 }
-
+/* url(https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E6%A4%AD%E5%9C%86%203%20%E6%8B%B7%E8%B4%9D%205.png) no-repeat */
 .pailist_sell_two_show {
   z-index: 2;
   background: url(https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E6%A4%AD%E5%9C%86%203%20%E6%8B%B7%E8%B4%9D%203.png) no-repeat;

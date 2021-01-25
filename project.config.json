@@ -101,6 +101,12 @@
           "pathName": "pages/confirmName/confirmName",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/auction/auction",
+          "pathName": "pages/auction/auction",
+          "query": "",
+          "scene": null
         }
       ]
     }
