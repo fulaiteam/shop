@@ -39,7 +39,7 @@ Page({
     this.data.isLoading = true;
 
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/bep/jglBid/selectListById',
+      url: getApp().globalData.baseUrl + 'bep/jglBid/selectListById',
       data: {
         "currentPage": this.data.pagenum,
         "pageSize": 10,

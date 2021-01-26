@@ -67,44 +67,20 @@
           "scene": null
         },
         {
-          "name": "pages/auctionDetails/auctionDetails",
-          "pathName": "pages/auctionDetails/auctionDetails",
+          "name": "pages/myCollect/myCollect",
+          "pathName": "pages/myCollect/myCollect",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/bidRecord/bidRecord",
-          "pathName": "pages/bidRecord/bidRecord",
-          "query": "productId=4",
-          "scene": null
-        },
-        {
-          "name": "pages/All_auction/All_auction",
-          "pathName": "pages/All_auction/All_auction",
-          "query": "",
+          "name": "pages/auctionBid/auctionBid",
+          "pathName": "pages/auctionBid/auctionBid",
+          "query": "productId=4&money=15,000,000&image=http://jgl.oss-cn-beijing.aliyuncs.com/aZhUDThw5FVq11f1af48b5e80180a5f7da129a575668.png,http://jgl.oss-cn-beijing.aliyuncs.com/aWI0soupnhid5a9ae959256c1841ea53e327ed92f71b.png,http://jgl.oss-cn-beijing.aliyuncs.com/YpkQmCppMPS6d6244c51edc64c7ec1452d3cf43e8c4b.png,http://wenzhang11.oss-cn-beijing.aliyuncs.com/08kufb43jFkLbfdd7f3a9ce78668617c8f80fcff5bce.gif&list=测试1",
           "scene": null
         },
         {
           "name": "pages/personal/personal",
           "pathName": "pages/personal/personal",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/personal/personal",
-          "pathName": "pages/personal/personal",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/payment/payment",
-          "pathName": "pages/payment/payment",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/auction/auction",
-          "pathName": "pages/auction/auction",
           "query": "",
           "scene": null
         }

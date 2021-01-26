@@ -37,6 +37,9 @@ Page({
     auctionTotal: 0,
     // 售卖商品条数
     sellTotal: 0,
+    // 收藏开关
+    collectOff: false,
+
 
 
     change: false, // 当两个slider在最右端重合时，将change设置为true，从而隐藏slider2，才能继续操作slider1
@@ -63,8 +66,8 @@ Page({
   onShow: function () {
     if(wx.getStorageSync('openid')){
         getApp().globalData.openid = wx.getStorageSync('openid')
-    }
-},
+      }
+  },
 
   // 请求首页拍卖列表数据
   getAuctionList() {
@@ -89,7 +92,7 @@ Page({
         // 将活动的结束时间参数提成一个单独的数组，方便操作
         rows.forEach(o => {
           endTimeList.push(o.endTime)
-          priceList.push(o.startPrice)
+          priceList.push(o.maxPrice)
         })
         let endTimeList2 = endTimeList.map(x => {
           // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
@@ -393,6 +396,14 @@ Page({
   // 千分位分割 - 整、小数混合
   miliFormat(num) {  
     return num && num.toString().replace(/(^|\s)\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
+  },
+
+  // 收藏按钮
+  handleCollect(e) {
+    // console.log(e.currentTarget.dataset.index)
+    this.setData({
+      collectOff: !this.data.collectOff
+    })
   },
 
   //获取输入框的内容

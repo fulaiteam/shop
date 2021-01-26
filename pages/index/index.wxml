@@ -150,7 +150,6 @@
                 </view>
                 <view class="sliderView_btn" catchtap="handlePriceBtn">确定</view>
               </view>
-
             </view>
           </view>
         </view>
@@ -189,7 +188,9 @@
                   <view class='original_price'>{{item.newPrice}}</view>
                   <view class="info_bottom">
                     <view class='price'>￥{{sellPrice[index]}}</view>
-                    <image class='btn' src="{{item.img}}"></image>
+                    <view class="btn_box {{collectOff? 'btn_box_bright': ''}}" catchtap="handleCollect" data-index="{{index}}">
+                      <image class='btn' src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E5%9B%BE%E5%B1%82%20627.png"></image>
+                    </view>
                   </view>
                 </view>
               </view>

@@ -31,7 +31,7 @@ Page({
   // 发送请求
   getData() {
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/product/jglProduct/selectReleaseProduct',
+      url: getApp().globalData.baseUrl + 'product/jglProduct/selectReleaseProduct',
       data: {
         openid: this.data.openid,
         auctionOrSale: this.data.isAuction

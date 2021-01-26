@@ -53,6 +53,9 @@ onLoad: function () {
 
 },
 onShow: function () {
+  if(wx.getStorageSync('openid')){
+    getApp().globalData.openid = wx.getStorageSync('openid')
+}
  this.typeList();
 
  if(wx.getStorageSync('openid')){
