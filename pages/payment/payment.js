@@ -29,7 +29,8 @@ Page({
       paySign:'',
       signType:'',
       timeStamp:'',
-      prepay_id:''
+      prepay_id:'',
+      openid:''
 
   },
   Jump:function() {
@@ -44,14 +45,15 @@ Page({
         detailPictureDTOS: that.data.detailPictureDTOS,     //主图
         earnestMoney: that.data.earnestMoney,   //保证金
         endTime: that.data.endTime,  //结束时间
-        opneid:getApp().globalData.openid,
+        openid:that.data.openid,
         reservePrice: that.data.reservePrice,  //保留价格（可以为空）
         startPrice: that.data.startPrice,//起拍价
         startTime: that.data.startTime,  //开始时间
         taktTime: that.data.taktTime,   // 延时周/
         thumbnail: '',  //缩略图 1
         title: that.data.title,  //标题
-        auctionOrSale:that.data.auctionOrSale
+        auctionOrSale:that.data.auctionOrSale,
+
       },
      
       method:'post',
@@ -155,6 +157,7 @@ zhifu:function(){
       startTime :options.startTime,
       taktTime :options.taktTime,
       auctionOrSale :options.auctionOrSale,
+      openid:options.openid
     })
     console.log(this.data.earnestMoney,2222)
     console.log(this.data.endTime,2222)

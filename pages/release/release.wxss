@@ -22,7 +22,7 @@ font-weight: 400;
 color: #1E1E1E;
 }
 .header {
-  height: 337rpx;
+  height: 250rpx;
   background-color: #fff;
   border-radius: 10rpx 10rpx 0 0;
   border-bottom:2px solid #eee
