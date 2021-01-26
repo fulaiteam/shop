@@ -65,8 +65,8 @@ Page({
   },
   onShow: function () {
     if(wx.getStorageSync('openid')){
-        getApp().globalData.openid = wx.getStorageSync('openid')
-      }
+      getApp().globalData.openid = wx.getStorageSync('openid')
+    }
   },
 
   // 请求首页拍卖列表数据

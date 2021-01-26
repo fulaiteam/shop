@@ -23,6 +23,7 @@ Page({
     productId: '',
     // 商品分类id - 推荐商品用
     category: '',
+    // 商品发布人的openid
     openid: '',
     // 轮播图数据
     swiperImg: [],
@@ -72,7 +73,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         const {data} = res.data
 
         // 另存商品轮播图数据 - 做全屏预览
@@ -104,7 +105,7 @@ Page({
               productId: this.data.productId
             },
             success: (o) => {
-              console.log(o)
+              // console.log(o)
               if (o.data.flag) {
                 const {price} = o.data.data
                 this.setData({
@@ -244,7 +245,7 @@ Page({
   // 参与出价
   handleBid() {
     wx.navigateTo({
-      url: '/pages/auctionBid/auctionBid?productId=' + this.data.productId + '&openid=' + this.data.openid + '&money=' + this.data.commonMoney + '&addPrice=' + this.data.list.addPrice + '&image=' + this.data.swiperImg + '&list=' + this.data.list.title,
+      url: '/pages/auctionBid/auctionBid?productId=' + this.data.productId + '&money=' + this.data.commonMoney + '&addPrice=' + this.data.list.addPrice + '&image=' + this.data.swiperImg + '&list=' + this.data.list.title,
     })
   },
 
@@ -253,7 +254,7 @@ Page({
     wx.request({
       url: getApp().globalData.baseUrl + 'bep/jglEnroll/addEnroll',
       data: {
-        "openid": this.data.openid,
+        "openid": wx.getStorageSync('openid'),
         "productId": this.data.productId,
       },
       method: 'POST',
@@ -262,7 +263,7 @@ Page({
 
         if (res.data.flag) {
           wx.navigateTo({
-            url: '/pages/earnestMoney/earnestMoney?openid=oS5bk5MYWJQtMTpMI9Atkyy0xlos&money=' + this.data.list.earnestMoney + '&productId=' + this.data.productId + '&idno=' + res.data.data.id + '&flag=' + res.data.flag
+            url: '/pages/earnestMoney/earnestMoney?money=' + this.data.list.earnestMoney + '&productId=' + this.data.productId + '&idno=' + res.data.data.id + '&flag=' + res.data.flag
           })
         } else {
           wx.navigateTo({
