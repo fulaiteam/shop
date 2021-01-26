@@ -260,12 +260,6 @@ Page({
       method: 'POST',
       success: (res)=>{
         console.log(res)
-<<<<<<< HEAD
-        this.setData({applyState: res.data})
-    console.log(res.data);
-
-=======
-
         if (res.data.flag) {
           wx.navigateTo({
             url: '/pages/earnestMoney/earnestMoney?money=' + this.data.list.earnestMoney + '&productId=' + this.data.productId + '&idno=' + res.data.data.id + '&flag=' + res.data.flag
@@ -277,7 +271,6 @@ Page({
         }
 
         // this.setData({flag: res.data.flag})
->>>>>>> 0e593c363226d9bcfec6c64166ad2a3976b6d84e
       }
 
     })
