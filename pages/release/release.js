@@ -8,6 +8,8 @@ Page({
  
 
   data: {
+ 
+    thumbnail:[],
     imgpath: [],    //用户上传图片的地址
     img_arr:[],   //用户上传多图
     title:"",   //用户输入的标题
@@ -68,7 +70,7 @@ Jump:function() {
   if(this.data.auctionOrSale==1) {
 
   wx.request({
-    url:getApp().globalData.baseUrl+ '/product/jglProduct/releaseProduct', 
+    url:getApp().globalData.baseUrl+ 'product/jglProduct/releaseProduct', 
     data: {
       addPrice: that.data.fudong,   //加价幅度
       auctionOrSale: that.data.auctionOrSale,   //判断拍卖或者售卖 0 拍卖 1售卖
@@ -85,7 +87,7 @@ Jump:function() {
       startPrice: that.data.qipai,//起拍价
       startTime: timestamp1,  //开始时间
       taktTime: that.data.taktTime,   // 延时周/
-      thumbnail: '',  //缩略图 1
+      thumbnail: imgadds[0].url,  //缩略图 1
       title: that.data.title  //标题
     },
    
@@ -398,7 +400,7 @@ xinpininput:function(e) {
     var _this = this;
     //选择图片
     wx.chooseImage({
-      count: 1, // 默认9，设置图片张数
+      count: 4, // 默认9，设置图片张数
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
@@ -412,7 +414,7 @@ xinpininput:function(e) {
        wx.uploadFile({
          url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
          name: 'imgFile',
-         filePath: imgpath[0],//第几张图片
+         filePath: imgpath[i],//第几张图片
          header: {
            "Content-Type": "multipart/form-data"
          },
@@ -429,7 +431,15 @@ xinpininput:function(e) {
     })
   },
 
-  
+  imgDeletezhu:function(e) {
+    let that = this;
+    let index = e.currentTarget.dataset.deindex;
+    let imgpath = this.data.imgpath;
+    imgpath.splice(index, 1)
+    that.setData({
+      imgpath: imgpath
+    });
+   },
  // 删除照片 商品描述的图片&&
  imgDelete1: function (e) {
   let that = this;

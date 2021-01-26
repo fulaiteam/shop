@@ -63,7 +63,7 @@ Page({
   // 请求商品数据
   getData() {
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/product/jglProduct/selectProductDetail',
+      url: getApp().globalData.baseUrl + 'product/jglProduct/selectProductDetail',
       data: {
         "auctionOrSale": this.data.auctionOrSale,
         "productId": this.data.productId
@@ -99,7 +99,7 @@ Page({
   // 出价记录数据请求
   getListId() {
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/bep/jglBid/selectListById',
+      url: getApp().globalData.baseUrl + 'bep/jglBid/selectListById',
       data: {
         "currentPage": 1,
         "pageSize": 5,
@@ -146,7 +146,7 @@ Page({
   // 店主信息数据请求
   getUser() {
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/product/jglProduct/selectProductUser',
+      url: getApp().globalData.baseUrl + 'product/jglProduct/selectProductUser',
       data: {
         "auctionOrSale": this.data.isTable,
         "openid": this.data.openid,
@@ -167,7 +167,7 @@ Page({
   // 推荐商品数据
   getRectangleGood() {
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/product/jglProduct/selectDetailRecommendProduct',
+      url: getApp().globalData.baseUrl + 'product/jglProduct/selectDetailRecommendProduct',
       data: {
         category: this.data.category
       },
@@ -228,7 +228,7 @@ Page({
   // 报名
   handleApply() {
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/bep/jglEnroll/addEnroll',
+      url: getApp().globalData.baseUrl + 'bep/jglEnroll/addEnroll',
       data: {
         "openid": this.data.openid,
         "productId": this.data.productId,
@@ -237,7 +237,10 @@ Page({
       success: (res)=>{
         console.log(res)
         this.setData({applyState: res.data})
+    console.log(res.data);
+
       }
+
     })
     if (this.data.applyState.flag) {
       wx.navigateTo({
