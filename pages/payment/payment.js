@@ -45,7 +45,7 @@ Page({
         detailPictureDTOS: that.data.detailPictureDTOS,     //主图
         earnestMoney: that.data.earnestMoney,   //保证金
         endTime: that.data.endTime,  //结束时间
-        openid:that.data.openid,
+        openid:getApp().globalData.openid,
         reservePrice: that.data.reservePrice,  //保留价格（可以为空）
         startPrice: that.data.startPrice,//起拍价
         startTime: that.data.startTime,  //开始时间

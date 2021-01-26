@@ -272,6 +272,10 @@ Page({
       method: 'POST',
       success: (res)=>{
         console.log(res)
+        this.setData({applyState: res.data})
+    console.log(res.data);
+
+
         if (res.data.flag) {
           wx.navigateTo({
             url: '/pages/earnestMoney/earnestMoney?money=' + this.data.list.earnestMoney + '&productId=' + this.data.productId + '&idno=' + res.data.data.id + '&flag=' + res.data.flag
