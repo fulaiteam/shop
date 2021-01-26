@@ -65,7 +65,7 @@
                         想买
                     </view>
                     <view class='shelf_item_middle_right_param_item'  >
-                        浏览 {{item.pv}}
+                        浏览 {{item.enrollProductVO.pv}}
 
                     </view>
                 </view>
@@ -128,7 +128,7 @@
                     想买 11
                 </view>
                 <view class='shelf_item_middle_right_param_item'  >
-                    浏览 {{item.pv}}
+                    {{item.enrollProductVO.pv}}
                 </view>
             </view>
             <!-- 项目中间区域右半部分参数结束 -->

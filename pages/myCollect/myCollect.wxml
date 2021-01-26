@@ -29,48 +29,48 @@
     >
       <view class="collect_info_smallbox">
         <!-- 收藏商品图片 -->
-        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/30ab95497431412999262e474b3696af.png" class="collect_info_img"></image>
+        <image src="{{item.thumbnail}}" class="collect_info_img" data-gid="{{item.productId}}"  bindtap="selectBy"></image>
         <!-- 收藏商品详情 -->
         <view class="collect_info">
           <view class="collect_info_font">
-            <view class="collect_info_title">{{item.title}}</view>
-            <view class="collect_info_start_time">开拍时间：{{item.start_time}}</view>
-            <view class="collect_info_stop_time">结束时间：{{item.stop_time}}</view>
+            <view class="collect_info_title" data-gid="{{item.productId}}"  bindtap="selectBy">{{item.title}}</view>
+            <!-- <view class="collect_info_start_time">开拍时间：{{item.start_time}}</view>
+            <view class="collect_info_stop_time">结束时间：{{item.stop_time}}</view> -->
             <view class="collect_info_browse_data">
               <view class="collect_info_browse">
                 <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%B5%8F%E8%A7%88%20%E6%8B%B7%E8%B4%9D.png"></image>
-                <text>{{item.browse_data}}</text>
+                <text>{{item.pv}}</text>
               </view>
               <view class="collect_info_like">
                 <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E7%9F%A2%E9%87%8F%E6%99%BA%E8%83%BD%E5%AF%B9%E8%B1%A1.png"></image>
-                <text>{{item.like_data}}</text>
+                <text>{{item.collectCount}}</text>
               </view>
             </view>
           </view> 
           <view class="collect_info_price">
-            ￥{{item.price}}
+            ￥{{item.salePrice}}
           </view>
         </view>
       </view>
       <!-- 拍卖提醒 -->
       <!-- 即将进行 -->
-      <view class="collect_remind" wx:if="{{item.collect_state == 0}}">
+      <!-- <view class="collect_remind" wx:if="{{item.collect_state == 0}}">
         <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
         <text class="remind_font">即将进行</text>
         <text class="remind_font">明天上午12点开始</text> 
-      </view>
+      </view> -->
       <!-- 正在进行 -->
-      <view class="collect_remind" wx:elif="{{item.collect_state == 1}}">
+      <!-- <view class="collect_remind" wx:elif="{{item.collect_state == 1}}">
         <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
         <text class="remind_font">正在进行</text>
         <text class="remind_font">今天晚上12点结束</text> 
-      </view>
+      </view> -->
       <!-- 已结束 -->
-      <view class="collect_remind remind_gray" wx:else>
+      <!-- <view class="collect_remind remind_gray" wx:else>
         <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
         <text class="remind_font">拍卖已结束</text>
         <text class="remind_font">昨天晚上12点结束</text> 
-      </view>
+      </view> -->
       <!-- 限时提醒 -->
       <view class="limit">
         <view class="flag">

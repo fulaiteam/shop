@@ -7,34 +7,11 @@ Page({
         status:2,   //拍卖中
         statuss:3,   //已经拍卖结束
         money:'',    //价格
-        productId:'',  //商品id
-        page:'',   //页数
-        size:10,    //条数
+        jiage:[]
+
+
     },
-    // 获取拍卖中的价格
-    auctionmoney:function() {
-      var that=this;
-    wx.request({
-      url:getApp().globalData.baseUrl+'/jglBid/selectMaxById', 
-      data: {
-        // openid:getApp().globalData.openid,
-        // // openid:'oS5bk5DPJKHDc6UwrR8xcUb3Ri8w',
-        // status:that.data.status,   //拍卖中
-        productId:that.data.productId
-      },
-      method:'post',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' //query
-      },
-      success: function(res) {
-      //   console.log(res.data.data)
-      //  that.setData({
-      //   auctionList:res.data.data
-      //  })
-       
-      }
-    })
-  },
+   
     // 获取拍卖中的数据列表
     auctionList:function () {
     var that=this;
@@ -50,18 +27,40 @@ Page({
         'content-type': 'application/x-www-form-urlencoded' //query
       },
       success: function(res) {
-        console.log(res.data.data)
-       that.setData({
-        auctionList:res.data.data,
-        // productId:res.data.data.enrollProductVO.productId
-     
-       })
-      //  for (var i = 0; i < auctionList.length; i++) {
-      //   console.log(that.data.auctionList);
-      // }
-      //  console.log(that.data.productId);
+        console.log(res,11111);
+        
+        that.setData({
+          auctionList:res.data.data,
+         })
+         console.log(that.data.auctionList);
+           for (let i = 0; i < that.data.auctionList.length; i++) {
+        console.log(that.data.auctionList[i].enrollProductVO.productId);
+        that.data.jiage.push(that.data.auctionList[i].enrollProductVO.productId)
+
+          }
+          console.log( that.data.jiage);
+         wx.request({
+          url:getApp().globalData.baseUrl+'bep/jglBid/selectMaxById', 
+          data: {
+            productId:that.data.jiage,
+            
+          },
+          method:'post',
+          header: {
+            'content-type': 'application/json' //query
+          },
+          success: function(res) {
+            console.log(res)
+          //  that.setData({
+          //   auctionList:res.data.data
+          //  })
+           
+          }
+        })
+    
       }
     })
+
   },
   //  获取拍下的数据列表
    picture:function () {
@@ -72,8 +71,7 @@ Page({
         openid:getApp().globalData.openid,
         // openid:'oS5bk5DPJKHDc6UwrR8xcUb3Ri8w',
         status:that.data.statuss,   //拍卖中
-        page:that.data.page,
-        size:that.data.size
+    
       },
       method:'post',
       header: {
@@ -88,17 +86,26 @@ Page({
       }
     })
   },
+   // 获取拍卖中的价格
+    auctionmoney:function() {
+      // var that=this;
+
+  
+
+  },
     handlePailistType(e) {
         this.setData({
             show: e.currentTarget.dataset.index
         })
       },
     onLoad: function (){
-
+      
+      
     },
     onShow: function (){
 this.auctionList()
 this.picture()
+this.auctionmoney()
     }
 
 
