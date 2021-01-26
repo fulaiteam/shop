@@ -65,8 +65,41 @@ Jump:function() {
   var timestamp2 = Date.parse(new Date(that.data.jieshushijian));
   console.log(timestamp1);
   console.log(timestamp2);
-  if(this.data.auctionOrSale==0) {
-// 进行判断，如果是售卖则不需要支付备用金不需要跳转
+  if(this.data.auctionOrSale==1) {
+
+  wx.request({
+    url:getApp().globalData.baseUrl+ '/product/jglProduct/releaseProduct', 
+    data: {
+      addPrice: that.data.fudong,   //加价幅度
+      auctionOrSale: that.data.auctionOrSale,   //判断拍卖或者售卖 0 拍卖 1售卖
+      category:that.data.typeid,   //商品类型
+      commodityReadme: that.data.info,  //商品自述
+      descriptionPictureDTOS: adds,   //详情图
+      detailPictureDTOS: imgadds,     //主图
+      earnestMoney: that.data.baozhengjin,   //保证金
+      endTime: timestamp2,  //结束时间
+      newPrice: that.data.xinpin,       //新品
+      opneid:getApp().globalData.openid,
+      reservePrice: that.data.baoliu,  //保留价格（可以为空）
+      salePrice: that.data.Sale,  //* 售卖价
+      startPrice: that.data.qipai,//起拍价
+      startTime: timestamp1,  //开始时间
+      taktTime: that.data.taktTime,   // 延时周/
+      thumbnail: '',  //缩略图 1
+      title: that.data.title  //标题
+    },
+   
+    method:'post',
+    header: {
+        'content-type': 'application/json' // 默认值
+    },
+    success: function(res) {
+      console.log(res)
+     
+    }
+  })
+  }else {
+    // 进行判断，如果是售卖则不需要支付备用金不需要跳转
   wx.navigateTo({
     // 将保证金传递到支付页面
 // JSON.stringify
@@ -85,41 +118,9 @@ Jump:function() {
      + "&taktTime=" +that.data.taktTim
      + "&title=" +that.data.title
      + "&auctionOrSale=" +that.data.auctionOrSale
-     + "&openid=" +that.data.openid
+     + "&openid=" +getApp().globalData.openid
 
   })
-  }else {
-    wx.request({
-      url:getApp().globalData.baseUrl+ '/product/jglProduct/releaseProduct', 
-      data: {
-        addPrice: that.data.fudong,   //加价幅度
-        auctionOrSale: that.data.auctionOrSale,   //判断拍卖或者售卖 0 拍卖 1售卖
-        category:that.data.typeid,   //商品类型
-        commodityReadme: that.data.info,  //商品自述
-        descriptionPictureDTOS: adds,   //详情图
-        detailPictureDTOS: imgadds,     //主图
-        earnestMoney: that.data.baozhengjin,   //保证金
-        endTime: timestamp2,  //结束时间
-        newPrice: that.data.xinpin,       //新品
-        opneid:getApp().globalData.unionId,
-        reservePrice: that.data.baoliu,  //保留价格（可以为空）
-        salePrice: that.data.Sale,  //* 售卖价
-        startPrice: that.data.qipai,//起拍价
-        startTime: timestamp1,  //开始时间
-        taktTime: that.data.taktTime,   // 延时周/
-        thumbnail: '',  //缩略图 1
-        title: that.data.title  //标题
-      },
-     
-      method:'post',
-      header: {
-          'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log(res)
-       
-      }
-    })
 }
 },
 // 关闭弹窗
