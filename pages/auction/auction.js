@@ -6,8 +6,8 @@ Page({
         auctionList:[],    //拍卖中的数据列表
         status:2,   //拍卖中
         statuss:3,   //已经拍卖结束
-        money:'',    //价格
-        jiage:[]
+        money:[],    //价格
+        // jiage:[]
 
 
     },
@@ -35,14 +35,11 @@ Page({
          console.log(that.data.auctionList);
            for (let i = 0; i < that.data.auctionList.length; i++) {
         console.log(that.data.auctionList[i].enrollProductVO.productId);
-        that.data.jiage.push(that.data.auctionList[i].enrollProductVO.productId)
-
-          }
-          console.log( that.data.jiage);
-         wx.request({
+        // that.data.jiage.push(that.data.auctionList[i].enrollProductVO.productId)
+        wx.request({
           url:getApp().globalData.baseUrl+'bep/jglBid/selectMaxById', 
           data: {
-            productId:that.data.jiage,
+            productId:that.data.auctionList[i].enrollProductVO.productId,
             
           },
           method:'post',
@@ -51,12 +48,13 @@ Page({
           },
           success: function(res) {
             console.log(res)
-          //  that.setData({
-          //   auctionList:res.data.data
-          //  })
-           
+           that.setData({
+            // money:res.data.data
+           })
           }
         })
+          }
+    
     
       }
     })
@@ -92,6 +90,17 @@ Page({
 
   
 
+  },
+  jump:function(e) {
+    console.log(e);
+    wx.navigateTo({
+      // 将保证金传递到支付页面
+  // JSON.stringify
+  
+      url:
+      "/pages/auctionDetails/auctionDetails"
+ 
+    })
   },
     handlePailistType(e) {
         this.setData({

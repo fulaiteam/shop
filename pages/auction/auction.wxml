@@ -71,11 +71,14 @@
                 </view>
                 <!-- 项目中间区域右半部分参数结束 -->
                 <!-- 项目中间区域右半部分价格开始 -->
-                <view class='shelf_item_middle_right_param_price'  id="{{key}}">
-                    <!-- ￥{{item.num}} -->
+                <view class='shelf_item_middle_right_param_price'  wx:for='{{money}}' wx:key="index" wx:for-item="item" >
+                    <view>
+                    ￥{{item.price}}
+
+                    </view>
                 </view>
                 <!-- 项目中间区域右半部分价格结束 -->
-                <view  class="shelf_item_bottom_btn" >
+                <view  class="shelf_item_bottom_btn" data-gid="{{item.enrollProductVO.productId}}" bindtap="jump">
                     查看详情
                 </view>
             </view >
@@ -133,8 +136,11 @@
             </view>
             <!-- 项目中间区域右半部分参数结束 -->
             <!-- 项目中间区域右半部分价格开始 -->
-            <view class='shelf_item_middle_right_param_price'  >
-                ￥620.80
+            <view class='shelf_item_middle_right_param_price'  wx:for='{{money}}' wx:key="index" wx:for-item="item" >
+                <view>
+                ￥{{item.price}}
+
+                </view>
             </view>
             <!-- 项目中间区域右半部分价格结束 -->
             <view  class="shelf_item_bottom_btn" >
