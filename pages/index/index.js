@@ -81,7 +81,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         const {
           rows,
           total
@@ -126,7 +126,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        // console.log(res)
+        console.log(res)
         const {
           rows,
           total
@@ -168,7 +168,7 @@ Page({
   // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx
   renderTime(x) {
     var dateee = new Date(x).toJSON();
-    return new Date(+new Date(dateee) + 0 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
   //小于10的格式化函数
   timeFormat(param) {

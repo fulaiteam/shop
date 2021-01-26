@@ -39,12 +39,19 @@ Page({
     byTimeList: [],
     // 出价记录总条数
     byTotal: 0,
+    // 保留价提示切换
+    hint: false,
+    // 正在拍卖或即将开始
+    buy: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    if (options.buy) {
+      this.setData({buy: options.buy})
+    }
     const {auctionOrSale, productId, openid} = options
     // 动态修改页面导航栏标题
     wx.setNavigationBarTitle({ title: auctionOrSale == 0? '拍卖详情': '售卖详情' })      // options.name表示上个页面传过来的文字
@@ -73,7 +80,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        // console.log(res)
+        console.log(res)
         const {data} = res.data
 
         // 另存商品轮播图数据 - 做全屏预览
@@ -225,6 +232,11 @@ Page({
     })
   },
 
+  // 保留价提示切换
+  handleHint() {
+    this.setData({hint: !this.data.hint})
+  },
+
   // 千分位分割 - 整、小数混合
   miliFormat(num) {  
     return num && num.toString().replace(/(^|\s)\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
@@ -233,7 +245,7 @@ Page({
   // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx
   renderTime(x) {
     var dateee = new Date(x).toJSON();
-    return new Date(+new Date(dateee) + 0 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
 
   // 切换拍卖宝贝和售卖宝贝栏
@@ -245,7 +257,7 @@ Page({
   // 参与出价
   handleBid() {
     wx.navigateTo({
-      url: '/pages/auctionBid/auctionBid?productId=' + this.data.productId + '&money=' + this.data.commonMoney + '&addPrice=' + this.data.list.addPrice + '&image=' + this.data.swiperImg + '&list=' + this.data.list.title,
+      url: '/pages/auctionBid/auctionBid?productId=' + this.data.productId + '&money=' + this.data.commonMoney + '&addPrice=' + this.data.list.addPrice + '&image=' + this.data.swiperImg + '&list=' + this.data.list.title + '&auctionOrSale=' + this.data.auctionOrSale + '&openid=' + this.data.openid,
     })
   },
 

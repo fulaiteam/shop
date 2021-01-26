@@ -21,6 +21,10 @@ Page({
     cacheMoney: '',
     // 加价涨幅
     addPrice: '',
+    // 商品拍卖售卖类型
+    auctionOrSale: '',
+    // 商品发布人openid
+    openid: '',
     // 竞拍公告按钮
     afficheBtn: false,
     // 自定义弹窗
@@ -42,7 +46,9 @@ Page({
       money: this.miliFormat(options.money),
       cacheMoney: options.money,
       alterMoney: options.money,
-      addPrice: options.addPrice
+      addPrice: options.addPrice,
+      auctionOrSale: options.auctionOrSale,
+      openid: options.openid
     })
   },
 
@@ -83,10 +89,18 @@ Page({
           },
           success: (res) => {
             console.log(res)
+            if (res.data.flag) {
+              this.setData({
+                showDialog: true
+              })
+            } else {
+              wx.showToast({
+                title: res.data.message,
+                icon: 'none',
+                duration: 2000
+              })
+            }
           }
-        })
-        this.setData({
-          showDialog: true
         })
       } else {
         wx.showToast({
@@ -106,8 +120,11 @@ Page({
 
   toggleDialog() {
     this.setData({
-      showDialog: false
+      showDialog: false 
     });
+    wx.navigateTo({
+      url: '/pages/auctionDetails/auctionDetails?auctionOrSale=' + this.data.auctionOrSale + '&productId=' + this.data.productId + '&openid=' + this.data.openid,
+    })
   },
 
   // 千分位分割 - 整、小数混合

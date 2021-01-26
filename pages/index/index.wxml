@@ -60,7 +60,7 @@
       <view class="list {{isBuy == 2? 'list_border' :''}}">
         <block wx:for='{{auctionDataList}}' wx:key='index' wx:for-item="item">
           <view class="list_item">
-            <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale=0&productId={{item.productId}}&openid={{item.openid}}">
+            <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale=0&productId={{item.productId}}&openid={{item.openid}}&buy={{isBuy}}">
               <view class='img'>
                 <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
               </view>
