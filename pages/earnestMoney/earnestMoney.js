@@ -7,7 +7,6 @@ Page({
   data: {
     // 是否支付
     isPay: 1,
-    openid: '',
     // 保证金金额
     earnestMoney: '',
     // 商品id
@@ -24,7 +23,6 @@ Page({
   onLoad(options) {
     if (options.flag == 'true') {
       this.setData({
-        openid: options.openid,
         earnestMoney: options.money,
         productId: options.productId,
         idno: options.idno
@@ -42,7 +40,7 @@ Page({
     wx.request({
       url: 'https://jgl.hemajia.net/jgl/pay/jglPay/pay',
       data: {
-        openId: this.data.openid,
+        openId: wx.getStorageSync('openid'),
         money: this.data.earnestMoney,
         productId: this.data.productId,
         idno: this.data.idno,

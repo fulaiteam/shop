@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 发布商品人的openid
     openid: '',
     isAuction: 0,  // 0 - 拍卖 ， 1 - 售卖
     dataList: {productVOS: []},     // 页面数据

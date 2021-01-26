@@ -9,7 +9,6 @@ Page({
     isBid: 1,
     // 商品id
     productId: '',
-    openid: '',
     // 商品标题
     title: '',
     // 商品图片
@@ -38,7 +37,6 @@ Page({
     // console.log(swiperImg)
     this.setData({
       productId: options.productId,
-      openid: options.openid,
       title: options.list,
       swiperImg: swiperImg,
       money: this.miliFormat(options.money),
@@ -79,7 +77,7 @@ Page({
           url: getApp().globalData.baseUrl + 'bep/jglBid/addbid',
           method: 'POST',
           data: {
-            "openid": this.data.openid,
+            "openid": wx.getStorageSync('openid'),
             "price": this.data.alterMoney,
             "productId": this.data.productId
           },
@@ -88,8 +86,7 @@ Page({
           }
         })
         this.setData({
-          showDialog: true,
-          money: this.miliFormat(this.data.alterMoney),
+          showDialog: true
         })
       } else {
         wx.showToast({

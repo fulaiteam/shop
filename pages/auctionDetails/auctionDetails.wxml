@@ -180,7 +180,7 @@
         <view>{{userInfo.nickname}}</view>
       </view>
       <view class="shopkeeper_info_right">
-        <navigator url="/pages/All_auction/All_auction?openid={{userInfo.openid}}">
+        <navigator url="/pages/All_auction/All_auction?openid={{openid}}">
           <view>查看全部宝贝</view>
           <view class="arrows"></view>
         </navigator>
