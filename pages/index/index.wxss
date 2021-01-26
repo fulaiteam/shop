@@ -633,7 +633,19 @@ page {
   font-weight: 400;
   color: #FF9214;
 }
-.list_two_list .list_item .info .info_price .info_bottom .btn {
+.list_two_list .list_item .info .info_price .info_bottom .btn_box {
   width: 38rpx;
   height: 38rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #A0A0A0;
+}
+.list_two_list .list_item .info .info_price .info_bottom .btn_box_bright {
+  background: #FF9214;
+}
+.list_two_list .list_item .info .info_price .info_bottom .btn {
+  width: 25rpx;
+  height: 25rpx;
 }

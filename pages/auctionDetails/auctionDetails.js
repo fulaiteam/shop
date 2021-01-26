@@ -26,16 +26,18 @@ Page({
     openid: '',
     // 轮播图数据
     swiperImg: [],
-    // 商品当前价格
+    // 拍卖商品当前价格
     money: 0,
+    // 拍卖商品当前价格 - 普通格式 (用于传参)
+    commonMoney: 0,
+    // 售卖商品价格
+    price: 0,
     // 商品开始、结束普通时间格式
     timeList: [],
     // 出价记录普通时间格式
     byTimeList: [],
     // 出价记录总条数
     byTotal: 0,
-    // 是否报名数据
-    applyState: []
   },
 
   /**
@@ -64,13 +66,14 @@ Page({
   getData() {
     wx.request({
       url: 'http://192.168.3.70:10010/jgl/product/jglProduct/selectProductDetail',
+      // url: getApp().globalData.baseUrl + 'product/jglProduct/selectProductDetail',
       data: {
         "auctionOrSale": this.data.auctionOrSale,
         "productId": this.data.productId
       },
       method: 'POST',
       success: (res) => {
-        // console.log(res)
+        console.log(res)
         const {data} = res.data
 
         // 另存商品轮播图数据 - 做全屏预览
@@ -90,8 +93,37 @@ Page({
           category: data.category,
           timeList: TimeList2,
           swiperImg: swiperImg,
-          money: this.miliFormat(data.startPrice) || this.miliFormat(data.salePrice)
         })
+
+        // 判断拍卖页当前价是否为最高价，有就是最高价，没有就是起拍价
+        if (this.data.auctionOrSale == 0) {
+          // 请求最高价
+          wx.request({
+            url: 'http://192.168.3.70:10010/jgl/bep/jglBid/selectMaxById',
+            method: 'POST',
+            data: {
+              productId: this.data.productId
+            },
+            success: (o) => {
+              console.log(o)
+              if (o.data.flag) {
+                const {price} = o.data.data
+                this.setData({
+                  money: this.miliFormat(price),
+                  commonMoney: price
+                })
+              } else {
+                this.setData({
+                  money: this.miliFormat(data.startPrice),
+                  commonMoney: data.startPrice
+                })
+              }
+            }
+          })
+          // 否则为售卖价
+        } else {   
+          this.setData({money: this.miliFormat(data.salePrice)})
+        }
       }
     })
   },
@@ -154,7 +186,7 @@ Page({
       },
       method: 'POST',
       success: (res)=>{
-        console.log(res)
+        // console.log(res)
         const {data} = res.data
         this.setData({
           userInfo: data,
@@ -212,17 +244,9 @@ Page({
 
   // 参与出价
   handleBid() {
-    if (this.data.apply) {
-      wx.navigateTo({
-        url: '/pages/auctionBid/auctionBid',
-      })
-    } else {
-      wx.showToast({
-        title: '暂未报名',
-        icon: 'none',
-        duration: 2000
-      })
-    }
+    wx.navigateTo({
+      url: '/pages/auctionBid/auctionBid?productId=' + this.data.productId + '&openid=' + this.data.openid + '&money=' + this.data.commonMoney + '&addPrice=' + this.data.list.addPrice + '&image=' + this.data.swiperImg + '&list=' + this.data.list.title,
+    })
   },
 
   // 报名
@@ -230,25 +254,25 @@ Page({
     wx.request({
       url: 'http://192.168.3.70:10010/jgl/bep/jglEnroll/addEnroll',
       data: {
-        "openid": this.data.openid,
+        "openid": "oS5bk5MYWJQtMTpMI9Atkyy0xlos",
         "productId": this.data.productId,
       },
       method: 'POST',
       success: (res)=>{
         console.log(res)
-        this.setData({applyState: res.data})
+
+        if (res.data.flag) {
+          wx.navigateTo({
+            url: '/pages/earnestMoney/earnestMoney?openid=oS5bk5MYWJQtMTpMI9Atkyy0xlos&money=' + this.data.list.earnestMoney + '&productId=' + this.data.productId + '&idno=' + res.data.data.id + '&flag=' + res.data.flag
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/earnestMoney/earnestMoney?flag=' + res.data.flag + '&money=' + this.data.list.earnestMoney
+          })
+        }
+
+        // this.setData({flag: res.data.flag})
       }
     })
-    if (this.data.applyState.flag) {
-      wx.navigateTo({
-        url: '/pages/earnestMoney/earnestMoney'
-      }) 
-    } else {
-      wx.showToast({
-        title: this.data.applyState.message,
-        icon: 'none',
-        duration: 2000
-      })
-    }
   }
 })

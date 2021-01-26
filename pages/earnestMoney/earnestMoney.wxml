@@ -10,7 +10,7 @@
       </view>
       <view class="earnest_money_pay_line" wx:if="{{isPay === 1}}">
         <view class="earnest_money_message_input">
-          <input type="number" placeholder="请输入金额"/>
+          ￥ {{earnestMoney}}
         </view>
       </view>
       <view class="earnest_money_one_state"  wx:if="{{isPay === 1}}">
@@ -18,7 +18,7 @@
         <view class="earnest_money_notlower_line_font">最低金额不得低于100元</view>
       </view>
       <view class="earnest_money_pay_line" wx:if="{{isPay === 2}}">
-        <view class="earnest_money_alrpay_line_font">已交付保证金100元</view>
+        <view class="earnest_money_alrpay_line_font">已交付保证金{{earnestMoney}}元</view>
       </view>
       <view class="earnest_money_two_state" wx:if="{{isPay === 2}}">
         <view class="bid_btn">提交</view>
@@ -40,6 +40,6 @@
 
   <!-- 底部确认栏 -->
 <view class="bottom_bid" wx:if="{{isPay === 1}}">
-  <view class="bid_btn">去支付</view>
+  <view class="bid_btn" bindtap="handlePay">去支付</view>
 </view>
 <!-- 底部确认栏结束 -->
