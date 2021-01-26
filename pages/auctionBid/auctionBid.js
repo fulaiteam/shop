@@ -76,7 +76,7 @@ Page({
     if (this.data.afficheBtn) {
       if (this.data.alterMoney > this.data.cacheMoney) {
         wx.request({
-          url: 'http://192.168.3.70:10010/jgl/bep/jglBid/addbid',
+          url: getApp().globalData.baseUrl + 'bep/jglBid/addbid',
           method: 'POST',
           data: {
             "openid": this.data.openid,

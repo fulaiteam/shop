@@ -173,7 +173,7 @@ Page({
           // 请求用户地址列表
           // url: getApp().globalData.baseUrl + '/wxlogin',
           // url:'http://192.168.3.70:10010/jgl/user/jglUser/wxlogin',
-          url:getApp().globalData.baseUrl+'/user/jglUser/wxlogin',
+          url:getApp().globalData.baseUrl+'user/jglUser/wxlogin',
           method: 'post',
           data: {
             encryptedData: that.data.encryptedData,

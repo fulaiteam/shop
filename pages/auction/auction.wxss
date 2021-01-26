@@ -117,9 +117,9 @@ page {
     width: 138rpx;
     box-sizing: border-box;
     height: 35rpx;
-    border: 1px solid #8F8D8D;
+    border: 1px solid #FF6F61;
     border-radius: 14rpx;
-    font-size: 22rpx;
+    font-size: 21rpx;
     font-family: Source Han Sans CN;
     font-weight: 400;
     float: left;
@@ -128,13 +128,13 @@ page {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #8F8D8D;
+    color: #FF6F61;
 }
 .shelf_item_top_condition{
     font-size: 22rpx;
     font-family: Source Han Sans CN;
     font-weight: 400;
-    color: #8F8D8D;
+    color: #FF6F61;
     line-height: 27rpx;
     margin-left:330rpx;
 }
@@ -154,3 +154,30 @@ page {
     height:53rpx;
 }
 
+
+.auction_top_btn_img_one {
+    /* 拍卖中选中 */
+    background: url(https://jgl.oss-cn-beijing.aliyuncs.com/sale/a579b2f75312092ab1dabddbc01807e.png) no-repeat;
+
+    background-size: 100% 100%;
+}
+/* 已拍下未选中 */
+.auction_top_btn_img_two {
+
+    background: url(https://jgl.oss-cn-beijing.aliyuncs.com/sale/585c4fb9817362b25ec9a97d10ad4eb.png) no-repeat;
+
+
+    background-size: 100% 100%;
+}
+.auction_top_btn_img_three {
+    background: url(https://jgl.oss-cn-beijing.aliyuncs.com/sale/f3da8322b8c2ec2b3eeafc26027a831.png) no-repeat;
+  
+    background-size: 100% 100%;
+}
+
+.auction_top_btn_img_fore {
+    background: url(https://jgl.oss-cn-beijing.aliyuncs.com/sale/778c1cd2fc939a64a055605f5f55f11.png) no-repeat;
+
+
+    background-size: 100% 100%;
+}

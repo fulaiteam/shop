@@ -63,12 +63,16 @@ Page({
     this.getSlideShow();
     this.countDown();
   },
+  onShow: function () {
+    if(wx.getStorageSync('openid')){
+        getApp().globalData.openid = wx.getStorageSync('openid')
+      }
+  },
 
   // 请求首页拍卖列表数据
   getAuctionList() {
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/product/jglAuction/selectHomeAuction',
-      // url: getApp().globalData.baseUrl + 'product/jglAuction/selectHomeAuction',
+      url: getApp().globalData.baseUrl + 'product/jglAuction/selectHomeAuction',
       data: {
         "query": {
           "auctionTime": this.data.isBuy,
@@ -111,7 +115,7 @@ Page({
   // 请求首页售卖列表数据
   getSellList() {
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/product/jglSell/selectHomeSell',
+      url: getApp().globalData.baseUrl + 'product/jglSell/selectHomeSell',
       data: {
         "query": {
           "category": this.data.sellActive ? this.data.sellActive : '',
@@ -148,7 +152,7 @@ Page({
   // 请求首页轮播图
   getSlideShow() {
     wx.request({
-      url: 'http://192.168.3.70:10010/jgl/order/jglOtationChart/selectOtationChart',
+      url: getApp().globalData.baseUrl + 'order/jglOtationChart/selectOtationChart',
       method: 'POST',
       success: (res) => {
         const {
