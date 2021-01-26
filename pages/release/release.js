@@ -52,6 +52,10 @@ onLoad: function () {
 },
 onShow: function () {
  this.typeList();
+
+ if(wx.getStorageSync('openid')){
+  getApp().globalData.openid = wx.getStorageSync('openid')
+}
 //  this.upload()
 },
 // // 保证金跳转支付页面
