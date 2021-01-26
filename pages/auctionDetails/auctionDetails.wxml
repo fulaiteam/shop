@@ -16,9 +16,16 @@
       </swiper>
       <!-- 正在进行 -->
       <view class="collect_remind" wx:if="{{auctionOrSale == 0}}">
-        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
-        <text class="remind_font">正在进行</text>
-        <text class="remind_font">{{timeList[1]}} 结束</text> 
+        <view class="collect_box" wx:if="{{buy == 2}}">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
+          <text class="remind_font">即将进行</text>
+          <text class="remind_font">{{timeList[0]}} 开始</text> 
+        </view>
+        <view class="collect_box" wx:else>
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
+          <text class="remind_font">正在进行</text>
+          <text class="remind_font">{{timeList[1]}} 结束</text> 
+        </view>
       </view>
     </view>
 
@@ -38,12 +45,14 @@
         <!-- 报名 -->
         <view class="auction_apply">
           <text>报名</text>
-          <text>{{list.enrollCount}}人</text>
+          <text wx:if="{{list.enrollCount <= 10000}}">{{list.enrollCount}} 人</text>
+          <text wx:elif="{{list.enrollCount > 10000}}">10000+ 人</text>
         </view>
         <!-- 围观 -->
         <view class="auction_circusee">
           <text>围观</text>
-          <text>{{list.pv}}次</text>
+          <text wx:if="{{list.pv <= 10000}}">{{list.pv}} 次</text>
+          <text wx:elif="{{list.pv > 10000}}">10000+ 次</text>
         </view>
       </view>
       <!-- 价格 -->
@@ -103,8 +112,9 @@
       </view>
       <view class="auction_type_list_line">
         <view class="auction_type_reserve_price">
-          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%8F%90%E9%97%AE.png"></image>
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%8F%90%E9%97%AE.png" bindtap="handleHint"></image>
           <view class="auction_type_list_title_retain">保留价</view>
+          <view class="auction_type_list_title_hint" wx:if="{{hint}}">低于保留价 流拍</view>
         </view>
         <view class="auction_type_list_info">{{list.reservePrice}}</view>
       </view>
@@ -144,7 +154,7 @@
         </navigator>
       </view>
     </view>
-    <swiper class="tab_right" vertical="true" autoplay="true" circular="true" interval="2000" display-multiple-items='3' wx:if="{{bidRecord.length !== 0}}">
+    <swiper class="tab_right" vertical="true" autoplay="true" circular="true" interval="2000" display-multiple-items='3' wx:if="{{byTotal > 3}}">
       <block wx:key="index" wx:for="{{bidRecord}}">
         <swiper-item>
           <view class="auction_bid_info">
@@ -163,9 +173,25 @@
         </swiper-item>
       </block> 
     </swiper>
+
+    <view class="auction_bid_info_three" wx:if="{{byTotal > 0 && byTotal <= 3}}">
+      <view class="auction_bid_info" wx:key="index" wx:for="{{bidRecord}}">
+        <view class="auction_bid_info_left  {{index === 0? 'auction_bid_info_first': ''}}">
+          <image src="{{item.headimgurl}}"></image>
+          <text>{{item.nickname}}</text>
+          <text wx:if="{{index === 0}}">领先</text>
+          <text wx:else>出价</text>
+          <text>{{item.objDay}}</text>
+          <text>{{item.objTime}}</text>
+        </view>
+        <view class="auction_bid_info_right {{index === 0? 'auction_bid_info_first': ''}}">
+          <text>￥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
     
     <!-- 无出价数据判断 -->
-    <view class="auction_bid_info_not" wx:if="{{bidRecord.length == 0}}">
+    <view class="auction_bid_info_not" wx:if="{{byTotal == 0}}">
       暂无出价记录
     </view>
   </view>
@@ -324,9 +350,11 @@
           <view class="auction_recommend_browse_data">
             <view class="auction_recommend_browse">
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%B5%8F%E8%A7%88.png"></image>
-              <text>{{rectangleGood.pv}}</text>
+              <text wx:if="{{rectangleGood.pv <= 10000}}">{{rectangleGood.pv}}</text>
+              <text wx:elif="{{rectangleGood.pv > 10000}}">10000+</text>
             </view>
-            <view class="auction_recommend_browse_update_font">{{rectangleGood.collectCount}} 收藏</view>
+            <view class="auction_recommend_browse_update_font" wx:if="{{rectangleGood.collectCount <= 10000}}">{{rectangleGood.collectCount}} 收藏</view>
+            <view class="auction_recommend_browse_update_font" wx:elif="{{rectangleGood.collectCount > 10000}}">10000+ 收藏</view>
           </view>
         </view>
       </navigator>
@@ -337,7 +365,9 @@
 </view>
 <!-- 参与出价 -->
 <view class="bottom_bid" wx:if="{{auctionOrSale == 0}}">
-  <view class="bid_btn" bindtap="handleBid">参与出价</view>
+  <view class="bid_btn bid_btn_gray" wx:if="{{buy == 2}}">参与出价</view>
+  <view class="bid_btn" bindtap="handleBid" wx:else>参与出价</view>
+  
 </view>
 <view class="bottom_bid_relation"  wx:if="{{auctionOrSale == 1}}">
   <view class="bottom_bid_relation_box bottom_bid_relation_shop">联系宝主</view>
