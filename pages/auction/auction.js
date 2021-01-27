@@ -9,6 +9,7 @@ Page({
         statuss:3,   //已经拍卖结束
         money:"",    //价格
         // jiage:[]
+        gid:'',
 
 
     },
@@ -80,12 +81,16 @@ Page({
   },
   jump:function(e) {
     console.log(e);
+    this.setData({
+      gid:e.currentTarget.dataset.gid
+    })
+    console.log(gid);
     wx.navigateTo({
       // 将保证金传递到支付页面
   // JSON.stringify
   // navgator
       url:
-      "/pages/auctionDetails/auctionDetails"
+      `/pages/auctionDetails/auctionDetails?productId=`+that.data.gid
  
     })
   },

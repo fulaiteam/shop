@@ -137,7 +137,7 @@
                 ￥{{item.enrollProductVO.price}}
             </view>
             <!-- 项目中间区域右半部分价格结束 -->
-            <view  class="shelf_item_bottom_btn" >
+            <view  class="shelf_item_bottom_btn" data-gid="{{item.enrollProductVO.productId}}" bindtap="jump">
                 查看详情
             </view>
         </view >

@@ -47,7 +47,8 @@
     <input type="text" placeholder="请输入您要发送的信息"/>
   </view>
   <view class="btm_send_btn_box">
-    <view class="btm_send_btn">
+    <view class="btm_send_btn" >
+      <button open-type="contact" bindcontact="handleContact">1</button>
       <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myService/%E7%9F%A2%E9%87%8F%E6%99%BA%E8%83%BD%E5%AF%B9%E8%B1%A1.png"></image>
     </view>
     <view class="btm_send_btn">
