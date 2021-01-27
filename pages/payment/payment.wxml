@@ -24,5 +24,5 @@
       <view>微信支付</view>
       <image class="icon" src="https://jgl.oss-cn-beijing.aliyuncs.com/sale/xz.png"></image>
     </view>
- <view class="btn" bindtap="Jump">完成</view>
+ <view class="btn" bindtap="zhifu">完成</view>
 </view>

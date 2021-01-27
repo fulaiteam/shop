@@ -3,12 +3,52 @@ const app = getApp();
 var time = require('../../utils/util.js');
 var adds = []
 var imgadds=[]
-// var asd=Date.parse(new Date());
+const date = new Date();
+const years = [];
+const months = [];
+const days = [];
+const hours = [];
+const minutes = [];
+//获取年
+for (let i = 2018; i <= date.getFullYear() + 5; i++) {
+years.push("" + i);
+}
+//获取月份
+for (let i = 1; i <= 12; i++) {
+if (i < 10) {
+  i = "0" + i;
+}
+months.push("" + i);
+}
+//获取日期
+for (let i = 1; i <= 31; i++) {
+if (i < 10) {
+  i = "0" + i;
+}
+days.push("" + i);
+}
+//获取小时
+for (let i = 0; i < 24; i++) {
+if (i < 10) {
+  i = "0" + i;
+}
+hours.push("" + i);
+}
+//获取分钟
+for (let i = 0; i < 60; i++) {
+if (i < 10) {
+  i = "0" + i;
+}
+minutes.push("" + i);
+}
+
 Page({
  
 
   data: {
- 
+    multiArray: [years, months, days, hours, minutes],
+    multiIndex: [0, 9, 16, 10, 17],
+    choose_year: '',
     thumbnail:[],
     imgpath: [],    //用户上传图片的地址
     img_arr:[],   //用户上传多图
@@ -32,25 +72,219 @@ showtype: true,    ///作为开关控制弹窗是否从底部弹出
 typelist:[1,2,3,4],  //类型数据
 typeName:'',   //商品类型的选中变量   
 typeid:'',//商品类型的选中id   
-taktTime:'1',  //延迟周期
-openid:''
+takeTime:'1',  //延迟周期
+
 },
 onLoad: function () {
- 
-  var that = this;
-  var dateNow = new Date();
-  var year = dateNow.getFullYear();
-  var month = dateNow.getMonth() + 1;
-  var day = dateNow.getDate()
-  var hour = dateNow.getHours()
-  var minute = dateNow.getMinutes()
-  var second = dateNow.getSeconds()
-  var date = year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second
-  that.setData({
-    kaishishijian: date,
-    jieshushijian: date
-  });
+ //设置默认的年份
+this.setData({
+  choose_year: this.data.multiArray[0][0]
+})
+var that =this
+// 判断用户是否授权登录
+wx.getSetting({
+  success: function (res) {
+    console.log(res);
+    // 判断是否授权
+    if (res.authSetting['scope.userInfo']) {
+       //获取用户信息
+      wx.getUserInfo({
+        success: function (res) {
+          //用户已经授权过，添加用户信息
+          // var that = this
+          //wx.setStorageSync('nickName', res.userInfo.nickName)
+          //wx.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
+        }
+      });
+    }else{
+      wx.showToast({
+         title: '请授权登录！',
+         icon: 'none',
+         duration: 1500,
+         success: function () {
+      //定时器，未授权1.5秒后跳转授权页面
+         setTimeout(function () {
+         wx.reLaunch({
+          url:"/pages/login_phone/login_phone"
+            })
+          }, 1500);
+         }
+        })
+    }
+  }
+})
+},
+bindMultijieshuPickerChange: function(e) {
+  // console.log('picker发送选择改变，携带值为', e.detail.value)
+  this.setData({
+    multiIndex: e.detail.value
+  })
+  const index = this.data.multiIndex;
+  const year = this.data.multiArray[0][index[0]];
+  const month = this.data.multiArray[1][index[1]];
+  const day = this.data.multiArray[2][index[2]];
+  const hour = this.data.multiArray[3][index[3]];
+  const minute = this.data.multiArray[4][index[4]];
+  // console.log(`${year}-${month}-${day}-${hour}-${minute}`);
+  this.setData({
+    jieshushijian:year + '-' + month + '-' + day + ' ' + hour + ':' + minute
 
+  })
+  // console.log(this.data.time);
+},
+//获取时间日期
+bindMultiPickerChange: function(e) {
+  // console.log('picker发送选择改变，携带值为', e.detail.value)
+  this.setData({
+    multiIndex: e.detail.value
+  })
+  const index = this.data.multiIndex;
+  const year = this.data.multiArray[0][index[0]];
+  const month = this.data.multiArray[1][index[1]];
+  const day = this.data.multiArray[2][index[2]];
+  const hour = this.data.multiArray[3][index[3]];
+  const minute = this.data.multiArray[4][index[4]];
+  // console.log(`${year}-${month}-${day}-${hour}-${minute}`);
+  this.setData({
+    kaishishijian: year + '-' + month + '-' + day + ' ' + hour + ':' + minute,
+  })
+  // console.log(this.data.time);
+},
+//监听picker的滚动事件
+bindMultiPickerjieshuColumnChange: function(e) {
+  //获取年份
+  if (e.detail.column == 0) {
+    let choose_year = this.data.multiArray[e.detail.column][e.detail.value];
+    console.log(choose_year);
+    this.setData({
+      choose_year
+    })
+  }
+  //console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+  if (e.detail.column == 1) {
+    let num = parseInt(this.data.multiArray[e.detail.column][e.detail.value]);
+    let temp = [];
+    if (num == 1 || num == 3 || num == 5 || num == 7 || num == 8 || num == 10 || num == 12) { //判断31天的月份
+      for (let i = 1; i <= 31; i++) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        temp.push("" + i);
+      }
+      this.setData({
+        ['multiArray[2]']: temp
+      });
+    } else if (num == 4 || num == 6 || num == 9 || num == 11) { //判断30天的月份
+      for (let i = 1; i <= 30; i++) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        temp.push("" + i);
+      }
+      this.setData({
+        ['multiArray[2]']: temp
+      });
+    } else if (num == 2) { //判断2月份天数
+      let year = parseInt(this.data.choose_year);
+      console.log(year);
+      if (((year % 400 == 0) || (year % 100 != 0)) && (year % 4 == 0)) {
+        for (let i = 1; i <= 29; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      } else {
+        for (let i = 1; i <= 28; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      }
+    }
+    console.log(this.data.multiArray[2]);
+  }
+  var data = {
+    multiArray: this.data.multiArray,
+    multiIndex: this.data.multiIndex
+  };
+  data.multiIndex[e.detail.column] = e.detail.value;
+  this.setData(data);
+},
+//监听picker的滚动事件
+bindMultiPickerColumnChange: function(e) {
+  //获取年份
+  if (e.detail.column == 0) {
+    let choose_year = this.data.multiArray[e.detail.column][e.detail.value];
+    console.log(choose_year);
+    this.setData({
+      choose_year
+    })
+  }
+  //console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+  if (e.detail.column == 1) {
+    let num = parseInt(this.data.multiArray[e.detail.column][e.detail.value]);
+    let temp = [];
+    if (num == 1 || num == 3 || num == 5 || num == 7 || num == 8 || num == 10 || num == 12) { //判断31天的月份
+      for (let i = 1; i <= 31; i++) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        temp.push("" + i);
+      }
+      this.setData({
+        ['multiArray[2]']: temp
+      });
+    } else if (num == 4 || num == 6 || num == 9 || num == 11) { //判断30天的月份
+      for (let i = 1; i <= 30; i++) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        temp.push("" + i);
+      }
+      this.setData({
+        ['multiArray[2]']: temp
+      });
+    } else if (num == 2) { //判断2月份天数
+      let year = parseInt(this.data.choose_year);
+      console.log(year);
+      if (((year % 400 == 0) || (year % 100 != 0)) && (year % 4 == 0)) {
+        for (let i = 1; i <= 29; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      } else {
+        for (let i = 1; i <= 28; i++) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          temp.push("" + i);
+        }
+        this.setData({
+          ['multiArray[2]']: temp
+        });
+      }
+    }
+    console.log(this.data.multiArray[2]);
+  }
+  var data = {
+    multiArray: this.data.multiArray,
+    multiIndex: this.data.multiIndex
+  };
+  data.multiIndex[e.detail.column] = e.detail.value;
+  this.setData(data);
 },
 onShow: function () {
   if(wx.getStorageSync('openid')){
@@ -63,6 +297,22 @@ onShow: function () {
 }
 //  this.upload()
 },
+ //  点击开始日期组件确定事件
+ bindDateStartChange: function (e) {
+  var that = this;
+  that.setData({
+    date1: e.detail.value
+  })
+},
+
+//  点击结束日期组件确定事件
+bindDateEndChange: function (e) {
+  var that = this;
+  that.setData({
+    date2: e.detail.value
+  })
+},
+
 // // 保证金跳转支付页面
 Jump:function() {
   let that =this;
@@ -70,64 +320,68 @@ Jump:function() {
   var timestamp2 = Date.parse(new Date(that.data.jieshushijian));
   console.log(timestamp1);
   console.log(timestamp2);
-  if(this.data.auctionOrSale==1) {
-
-  wx.request({
-    url:getApp().globalData.baseUrl+ 'product/jglProduct/releaseProduct', 
-    data: {
-      addPrice: that.data.fudong,   //加价幅度
-      auctionOrSale: that.data.auctionOrSale,   //判断拍卖或者售卖 0 拍卖 1售卖
-      category:that.data.typeid,   //商品类型
-      commodityReadme: that.data.info,  //商品自述
-      descriptionPictureDTOS: adds,   //详情图
-      detailPictureDTOS: imgadds,     //主图
-      earnestMoney: that.data.baozhengjin,   //保证金
-      endTime: timestamp2,  //结束时间
-      newPrice: that.data.xinpin,       //新品
-      opneid:getApp().globalData.openid,
-      reservePrice: that.data.baoliu,  //保留价格（可以为空）
-      salePrice: that.data.Sale,  //* 售卖价
-      startPrice: that.data.qipai,//起拍价
-      startTime: timestamp1,  //开始时间
-      taktTime: that.data.taktTime,   // 延时周/
-      thumbnail: imgadds[0].url,  //缩略图 1
-      title: that.data.title  //标题
-    },
-   
-    method:'post',
-    header: {
-        'content-type': 'application/json' // 默认值
-    },
-    success: function(res) {
-      console.log(res)
-     
-    }
-  })
-  }else {
-    // 进行判断，如果是售卖则不需要支付备用金不需要跳转
-  wx.navigateTo({
-    // 将保证金传递到支付页面
-// JSON.stringify
-
-    url:
-     `/pages/payment/payment?addPrice=`+that.data.fudong
-     + "&category=" +that.data.typeid
-     + "&commodityReadme=" +that.data.info
-     + "&descriptionPictureDTOS=" +JSON.stringify(adds)
-     + "&detailPictureDTOS=" +JSON.stringify(imgadds)
-     + "&earnestMoney=" +that.data.baozhengjin
-     + "&endTime=" +timestamp2
-     + "&reservePrice=" +that.data.baoliu
-     + "&startPrice=" +that.data.qipai
-     + "&startTime=" +timestamp1
-     + "&taktTime=" +that.data.taktTim
-     + "&title=" +that.data.title
-     + "&auctionOrSale=" +that.data.auctionOrSale
-     + "&openid=" +getApp().globalData.openid
-
-  })
-}
-},
+        
+            if(this.data.auctionOrSale==1) {
+              wx.request({
+                url:getApp().globalData.baseUrl+ 'product/jglProduct/releaseProduct', 
+                data: {
+                  addPrice: that.data.fudong,   //加价幅度
+                  auctionOrSale: that.data.auctionOrSale,   //判断拍卖或者售卖 0 拍卖 1售卖
+                  category:that.data.typeid,   //商品类型
+                  commodityReadme: that.data.info,  //商品自述
+                  descriptionPictureDTOS: adds,   //详情图
+                  detailPictureDTOS: imgadds,     //主图
+                  earnestMoney: that.data.baozhengjin,   //保证金
+                  endTime: timestamp2,  //结束时间
+                  newPrice: that.data.xinpin,       //新品
+                  opneid:getApp().globalData.openid,
+                  reservePrice: that.data.baoliu,  //保留价格（可以为空）
+                  salePrice: that.data.Sale,  //* 售卖价
+                  startPrice: that.data.qipai,//起拍价
+                  startTime: timestamp1,  //开始时间
+                  takeTime: that.data.takeTime,   // 延时周/
+                  thumbnail: imgadds[0].url,  //缩略图 1
+                  title: that.data.title  //标题
+                },
+               
+                method:'post',
+                header: {
+                    'content-type': 'application/json' // 默认值
+                },
+                success: function(res) {
+                  console.log(res)
+                  
+                }
+              })
+              }else {
+                // 进行判断，如果是售卖则不需要支付备用金不需要跳转
+              wx.navigateTo({
+                // 将保证金传递到支付页面
+            // JSON.stringify
+            
+                url:
+                 `/pages/payment/payment?addPrice=`+that.data.fudong
+                 + "&category=" +that.data.typeid
+                 + "&commodityReadme=" +that.data.info
+                 + "&descriptionPictureDTOS=" +JSON.stringify(adds)
+                 + "&detailPictureDTOS=" +JSON.stringify(imgadds)
+                 + "&earnestMoney=" +that.data.baozhengjin
+                 + "&endTime=" +timestamp2
+                 + "&reservePrice=" +that.data.baoliu
+                 + "&startPrice=" +that.data.qipai
+                 + "&startTime=" +timestamp1
+                 + "&takeTime=" +that.data.takeTime
+                 + "&title=" +that.data.title
+                 + "&auctionOrSale=" +that.data.auctionOrSale
+                 + "&openid=" +getApp().globalData.openid
+                 +"&thumbnail=" + JSON.stringify(imgadds),  //缩略图 1
+            
+              })
+            }
+             
+          
+          
+      },
 // 关闭弹窗
 cancel: function() {
   this.setData({
@@ -306,9 +560,9 @@ qipaiinput:function(e) {
   })
 },
 // 延时周期
-taktTimeinput:function(e) {
+takeTimeinput:function(e) {
   this.setData({
-    taktTime:e.detail.value,
+    takeTime:e.detail.value,
   
   })
   console.log(e.detail.value);

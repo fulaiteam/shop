@@ -18,10 +18,11 @@ Page({
       reservePrice:'',   //保留价格
       startPrice:'', //起拍价
       startTime:'', //开始时间
-      taktTime:'',  //演示周期
+      takeTime:'',  //演示周期
       auctionOrSale:'0',   //拍卖
       openid:'',
       commodityid:'',   //商品id
+      thumbnail:[],
       // 调起官方微信支付接口需要的返回数据接收
       appId:'',
       nonceStr:'',
@@ -49,8 +50,8 @@ Page({
         reservePrice: that.data.reservePrice,  //保留价格（可以为空）
         startPrice: that.data.startPrice,//起拍价
         startTime: that.data.startTime,  //开始时间
-        taktTime: that.data.taktTime,   // 延时周/
-        thumbnail: '',  //缩略图 1
+        takeTime: that.data.takeTime,   // 延时周/
+        thumbnail: that.data.thumbnail[0].url,  //缩略图 1
         title: that.data.title,  //标题
         auctionOrSale:that.data.auctionOrSale,
 
@@ -63,16 +64,34 @@ Page({
       success: function(res) {
         console.log(res)
         console.log(res.data.data);
+        if(res.data.flag==true) {
+          wx.showModal({
+            title: '发布成功',
+            content: '已成功发布',
+            success: function (res) {
+                if (res.confirm) {
+                    console.log('用户点击确定')
+                    wx.navigateTo({
+                      url:"/pages/index/index"
+                    })
+                }else{
+                   console.log('用户点击取消')
+                }
+
+            }
+        })
+        }
         that.setData({
           commodityid:res.data.data,
         })
-        that.zhifu()
+    
 
         console.log(that.data.commodityid);
 
       }
     })
 },
+
 zhifu:function(){
   let that =this;
   wx.request({
@@ -92,6 +111,22 @@ zhifu:function(){
     },
     success: function(res) {
      console.log(res.data);
+     if(res.data.flag==false) {
+      wx.showModal({
+        title: '发布失败',
+        content: '请先登录',
+        success: function (res) {
+            if (res.confirm) {
+                console.log('用户点击确定')
+                wx.navigateTo({
+                  url:"/pages/login_phone/login_phone"
+                })
+            }else{
+               console.log('用户点击取消')
+            }
+        }
+    })
+     }
      that.setData({
       // appId:res.data.data.appId,
       nonceStr:res.data.data.nonceStr,
@@ -111,6 +146,10 @@ zhifu:function(){
       paySign: that.data.paySign,
       success:function(res){
         console.log(res);
+        // errMsg: "requestPayment:ok"
+        if(res.errMsg=='requestPayment:ok') {
+          that.Jump()
+        } 
       },
       fail:function(res){},
       complete:function(res){}
@@ -120,22 +159,7 @@ zhifu:function(){
   })
 },
 
-// 成功后返回的数据调微信支付接口
-// wxZhifu:function() {
-//   let that =this;
-//   wx.requestPayment({
-// 		timeStamp: that.data.timeStamp,
-// 		nonceStr: that.data.nonceStr,
-// 		package: that.data.package,
-// 		signType:  that.data.signType,
-// 		paySign: that.data.paySign,
-// 		success:function(res){
-//       console.log(res);
-//     },
-// 		fail:function(res){},
-// 		complete:function(res){}
-// 	})
-// },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -155,12 +179,15 @@ zhifu:function(){
       reservePrice :options.reservePrice,
       startPrice :options.startPrice,
       startTime :options.startTime,
-      taktTime :options.taktTime,
+      takeTime :options.takeTime,
       auctionOrSale :options.auctionOrSale,
-      openid:options.openid
+      openid:options.openid,
+      thumbnail:JSON.parse(options.thumbnail),
     })
     console.log(this.data.earnestMoney,2222)
     console.log(this.data.endTime,2222)
+   
+    console.log(options);
     // console.log(earnestMoney);
     // console.log(this.data.descriptionPictureDTOS,2222)
   },
