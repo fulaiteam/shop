@@ -186,7 +186,7 @@
         </view>
         <!-- <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image> -->
         <button class="mini-btn" type="primary" size="mini" open-type="contact" bindcontact="handleContact"
-        style="font-size: 20rpx;margin-left: 330rpx;">进入客服</button>
+        style="font-size: 20rpx;margin-left: 330rpx;background:#ffbd22">进入客服</button>
     </view>
     <!-- 我的客服结束 -->
 </view>

@@ -57,9 +57,9 @@
                 <!-- 项目中间区域右半部分标题结束 -->
                 <!-- 项目中间区域右半部分参数开始 -->
                 <view class='shelf_item_middle_right_param'  >
-                    <view class='shelf_item_middle_right_param_item'  >
+                    <!-- <view class='shelf_item_middle_right_param_item'  >
                         曝光
-                    </view>
+                    </view> -->
                     <view class='shelf_item_middle_right_param_item'  >
                         <!-- {{item.want}} -->
                         想买
@@ -121,9 +121,9 @@
             <!-- 项目中间区域右半部分标题结束 -->
             <!-- 项目中间区域右半部分参数开始 -->
             <view class='shelf_item_middle_right_param'  >
-                <view class='shelf_item_middle_right_param_item'  >
+                <!-- <view class='shelf_item_middle_right_param_item'  >
                     曝光 111
-                </view>
+                </view> -->
                 <view class='shelf_item_middle_right_param_item'  >
                     想买 11
                 </view>

@@ -134,7 +134,7 @@ bindMultijieshuPickerChange: function(e) {
 },
 //获取时间日期
 bindMultiPickerChange: function(e) {
-  // console.log('picker发送选择改变，携带值为', e.detail.value)
+  console.log('picker发送选择改变，携带值为', e.detail.value)
   this.setData({
     multiIndex: e.detail.value
   })
@@ -221,6 +221,7 @@ bindMultiPickerjieshuColumnChange: function(e) {
 //监听picker的滚动事件
 bindMultiPickerColumnChange: function(e) {
   //获取年份
+  console.log(e);
   if (e.detail.column == 0) {
     let choose_year = this.data.multiArray[e.detail.column][e.detail.value];
     console.log(choose_year);
@@ -297,21 +298,21 @@ onShow: function () {
 }
 //  this.upload()
 },
- //  点击开始日期组件确定事件
- bindDateStartChange: function (e) {
-  var that = this;
-  that.setData({
-    date1: e.detail.value
-  })
-},
+//  //  点击开始日期组件确定事件
+//  bindDateStartChange: function (e) {
+//   var that = this;
+//   that.setData({
+//     date1: e.detail.value
+//   })
+// },
 
-//  点击结束日期组件确定事件
-bindDateEndChange: function (e) {
-  var that = this;
-  that.setData({
-    date2: e.detail.value
-  })
-},
+// //  点击结束日期组件确定事件
+// bindDateEndChange: function (e) {
+//   var that = this;
+//   that.setData({
+//     date2: e.detail.value
+//   })
+// },
 
 // // 保证金跳转支付页面
 Jump:function() {
@@ -354,7 +355,7 @@ Jump:function() {
                 }
               })
               }else {
-                // 进行判断，如果是售卖则不需要支付备用金不需要跳转
+               
               wx.navigateTo({
                 // 将保证金传递到支付页面
             // JSON.stringify
