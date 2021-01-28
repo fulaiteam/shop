@@ -78,7 +78,7 @@ Page({
   //小于10的格式化函数
   timeFormat(param) {
     return param < 10 ? '0' + param : param;
-  },
+  }, 
   //倒计时函数
   countDown() {
     // 获取当前时间，同时得到活动结束时间数组

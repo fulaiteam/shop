@@ -5,17 +5,10 @@
 <view class="collect_box">
   <!-- 切换栏 -->
   <view class="collect_table">
-    <view
-      class="collect_table_word {{highlight === index? 'active_table': ''}}"
-      wx:for="{{table}}" 
-      wx:key="index"
-      bindtap="changeLight"
-      data-index="{{index}}"
-    >
-    {{item}}
-    </view>
-    <view class="collect_table_img">
-      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E7%AE%A1%E7%90%86.png"></image>
+    <view class="collect_table_word">售卖</view>
+    <view class="collect_table_img" bindtap="handleCheckAll">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E5%90%8D%E7%A7%B0-%E5%AE%8C%E6%88%90%E6%83%85%E5%86%B5.png" wx:if="{{ifCheckAll}}"></image>
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E7%AE%A1%E7%90%86.png" wx:else></image>
     </view>
   </view>
   <!-- 切换栏结束 -->
@@ -34,16 +27,16 @@
         <view class="collect_info">
           <view class="collect_info_font">
             <view class="collect_info_title" data-gid="{{item.productId}}"  bindtap="selectBy">{{item.title}}</view>
-            <!-- <view class="collect_info_start_time">开拍时间：{{item.start_time}}</view>
-            <view class="collect_info_stop_time">结束时间：{{item.stop_time}}</view> -->
             <view class="collect_info_browse_data">
               <view class="collect_info_browse">
                 <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%B5%8F%E8%A7%88%20%E6%8B%B7%E8%B4%9D.png"></image>
-                <text>{{item.pv}}</text>
+                <text wx:if="{{item.pv <= 10000}}">{{item.pv}}</text>
+                <text wx:elif="{{item.pv > 10000}}">10000+</text>
               </view>
               <view class="collect_info_like">
                 <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E7%9F%A2%E9%87%8F%E6%99%BA%E8%83%BD%E5%AF%B9%E8%B1%A1.png"></image>
-                <text>{{item.collectCount}}</text>
+                <text wx:if="{{item.collectCount <= 10000}}">{{item.collectCount}}</text>
+                <text wx:elif="{{item.collectCount > 10000}}">10000+</text>
               </view>
             </view>
           </view> 
@@ -51,52 +44,34 @@
             ￥{{item.salePrice}}
           </view>
         </view>
-      </view>
-      <!-- 拍卖提醒 -->
-      <!-- 即将进行 -->
-      <!-- <view class="collect_remind" wx:if="{{item.collect_state == 0}}">
-        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
-        <text class="remind_font">即将进行</text>
-        <text class="remind_font">明天上午12点开始</text> 
-      </view> -->
-      <!-- 正在进行 -->
-      <!-- <view class="collect_remind" wx:elif="{{item.collect_state == 1}}">
-        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
-        <text class="remind_font">正在进行</text>
-        <text class="remind_font">今天晚上12点结束</text> 
-      </view> -->
-      <!-- 已结束 -->
-      <!-- <view class="collect_remind remind_gray" wx:else>
-        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png" class="remind_img"></image>
-        <text class="remind_font">拍卖已结束</text>
-        <text class="remind_font">昨天晚上12点结束</text> 
-      </view> -->
-      <!-- 限时提醒 -->
-      <view class="limit">
-        <view class="flag">
-          限时
-          <view class="triangle"></view>
-        </view>
-        <view class="icon">
-          <icon
+        <!-- 多选框 -->
+        <view class="checkbox" style="border: {{item.selectedBorder}};" wx:if="{{ifCheckAll}}"></view>
+        <icon
+            class="icon"
             type="success"
-            color="#FF8D02"
-            size="12"
+            color="{{item.selected? '#FF8D02':'white'}}"
+            size="16"
+            bindtap="changeStatus"
+            data-index="{{index}}"
+            style="opacity: {{item.selectedOpacity}};"
+            wx:if="{{ifCheckAll}}"
           >
           </icon>
-        </view>
       </view>
     </view>
   </view>
 </view>
 <!-- 底部全选栏 -->
-<view class="bottom_check">
+<view class="bottom_check" wx:if="{{ifCheckAll}}">
   <view class="check_all">
     <icon
     type="success"
-    color="#fff"
+    color="{{allSelect? '#FF8D02':'white'}}"
     size="12"
+    bindtap="changeAll"
+    wx:if="{{allSelect}}"
     ></icon>
+    <view class="checkbox_all" bindtap="changeAll" wx:else></view>
     <text>全选</text>
   </view>
   <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E5%88%A0%E9%99%A4.png"></image>

@@ -1,7 +1,18 @@
 <!-- 首页开始 -->
 <view class='head' bindtap="handleHide">
+  <!-- 背景图 -->
+  <image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+  </image>
+   <!-- 背景图结束 -->
+
   <!-- 版心 -->
   <view class="w">
+    <!-- 导航栏 -->
+    <view class="navigation_bar">
+      首页
+    </view>
+    <!-- 导航栏结束 -->
+
     <!-- 搜索 -->
     <view class="seach">
       <!-- 搜索区域开始 -->
@@ -59,22 +70,25 @@
       <!-- 数据列表 -->
       <view class="list {{isBuy == 2? 'list_border' :''}}">
         <block wx:for='{{auctionDataList}}' wx:key='index' wx:for-item="item">
-          <view class="list_item">
-            <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale=0&productId={{item.productId}}&openid={{item.openid}}&buy={{isBuy}}">
-              <view class='img'>
-                <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
-              </view>
-              <view class='info'>
-                <view class='title'>{{item.title}}</view>
-                <view class="info_bottom">
-                  <view class='price'>￥{{auctionPrice[index]}}</view>
-                  <view class='btn_and_residue'>
-                    <text wx:if="{{isBuy == 1}}">剩余{{item.objTime.hou}}:{{item.objTime.min}}:{{item.objTime.sec}}</text>
-                    <view class="btn {{isBuy == 2? 'btn_future':''}}">查看详情</view>
-                  </view>
+          <view
+            class="list_item"
+            bindtap="handleToAuctionDetails"
+            data-productId="{{item.productId}}"
+            data-openid="{{item.openid}}"
+          >
+            <view class='img'>
+              <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
+            </view>
+            <view class='info'>
+              <view class='title'>{{item.title}}</view>
+              <view class="info_bottom">
+                <view class='price'>￥{{auctionPrice[index]}}</view>
+                <view class='btn_and_residue'>
+                  <text wx:if="{{isBuy == 1}}">剩余{{item.objTime.hou}}:{{item.objTime.min}}:{{item.objTime.sec}}</text>
+                  <view class="btn {{isBuy == 2? 'btn_future':''}}">查看详情</view>
                 </view>
               </view>
-            </navigator>
+            </view>
           </view>
         </block>
         <view class="not_hint" wx:if="{{auctionDataList.length == 0}}">
@@ -179,22 +193,25 @@
       <!-- 数据列表 -->
       <view class='list_two_list'>
         <block wx:for='{{sellDataList}}' wx:key='index' wx:for-item="item">
-          <view class="list_item">
-            <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale=1&productId={{item.productId}}">
-              <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
-              <view class='info'>
-                <view class='title'>{{item.title}}</view>
-                <view class="info_price">
-                  <view class='original_price'>{{item.newPrice}}</view>
-                  <view class="info_bottom">
-                    <view class='price'>￥{{sellPrice[index]}}</view>
-                    <view class="btn_box {{collectOff? 'btn_box_bright': ''}}" catchtap="handleCollect" data-index="{{index}}">
-                      <image class='btn' src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E5%9B%BE%E5%B1%82%20627.png"></image>
-                    </view>
+          <view
+            class="list_item"
+            bindtap="handleToSellDetails"
+            data-productId="{{item.productId}}"
+            data-openid="{{item.openid}}"
+          >
+            <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
+            <view class='info'>
+              <view class='title'>{{item.title}}</view>
+              <view class="info_price">
+                <view class='original_price'>{{item.newPrice}}</view>
+                <view class="info_bottom">
+                  <view class='price'>￥{{sellPrice[index]}}</view>
+                  <view class="btn_box {{item.isCollect == 1? 'btn_box_bright': ''}}" catchtap="handleCollect" data-productid="{{item.productId}}" data-index="{{index}}">
+                    <image class='btn' src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/index/%E5%9B%BE%E5%B1%82%20627.png"></image>
                   </view>
                 </view>
               </view>
-            </navigator>
+            </view>
             <view class='clear'></view>
           </view>
         </block>
@@ -209,7 +226,3 @@
   </view>
 </view>
 
-<!-- 背景图 -->
-<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
-</image>
-<!-- 背景图结束 -->

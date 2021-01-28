@@ -37,10 +37,8 @@ Page({
     auctionTotal: 0,
     // 售卖商品条数
     sellTotal: 0,
-    // 收藏开关
-    collectOff: false,
-
-
+    // 收藏状态
+    collectState: [],
 
     change: false, // 当两个slider在最右端重合时，将change设置为true，从而隐藏slider2，才能继续操作slider1
     change2: false, // 当两个slider在最左端重合时，将change2设置为true，从而隐藏slider1，才能继续操作slider2
@@ -81,7 +79,7 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        // console.log(res)
+        console.log(res)
         const {
           rows,
           total
@@ -122,6 +120,7 @@ Page({
           "heat": this.data.tableHeat ? this.data.tableHeat : '',
           "startPrice": this.data.priceSection[0],
           "endPrice": this.data.priceSection[1] === undefined ? '' : this.data.priceSection[1],
+          "openid": wx.getStorageSync('openid')
         }
       },
       method: 'POST',
@@ -400,10 +399,42 @@ Page({
 
   // 收藏按钮
   handleCollect(e) {
-    // console.log(e.currentTarget.dataset.index)
-    this.setData({
-      collectOff: !this.data.collectOff
-    })
+    const {index, productid} = e.currentTarget.dataset
+    // 判断是否登录
+    if (getApp().globalData.openid) {
+      wx.request({
+        url: getApp().globalData.baseUrl + 'product/jglCollection/clickCollect',
+        data: {
+          "openid": wx.getStorageSync('openid'),
+          "productId": productid
+        },
+        method: 'POST',
+        success: (res)=>{
+          console.log(res)
+          if (res.data.message == '收藏成功') {
+            wx.showToast({
+              title: res.data.message,
+              icon: 'none',
+              duration: 2000
+            })
+            let collectState = "sellDataList[" + index + "].isCollect"
+            this.setData({[collectState]: 1})
+          } else {
+            wx.showToast({
+              title: res.data.message,
+              icon: 'none',
+              duration: 2000
+            })
+            let collectState = "sellDataList[" + index + "].isCollect"
+            this.setData({[collectState]: 2})
+          }
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login_phone/login_phone'
+      })
+    }
   },
 
   //获取输入框的内容
@@ -421,4 +452,33 @@ Page({
     // 请求拍卖列表中类别变更数据
     this.getAuctionList()
   },
-})
+
+  // 拍卖商品跳转
+  handleToAuctionDetails(e) {
+    const {openid, productid} = e.currentTarget.dataset
+    if (getApp().globalData.openid) {
+      wx.navigateTo({
+        url: '/pages/auctionDetails/auctionDetails?auctionOrSale=0&productId=' + productid + '&openid=' + openid + '&buy=' + this.data.isBuy
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login_phone/login_phone'
+      })
+    }
+  },
+
+  // 售卖商品跳转
+  handleToSellDetails(e) {
+    const {openid, productid} = e.currentTarget.dataset
+    if (getApp().globalData.openid) {
+      wx.navigateTo({
+        url: '/pages/auctionDetails/auctionDetails?auctionOrSale=1&productId=' + productid + '&openid=' + openid
+      })
+    } else {
+
+      wx.navigateTo({
+        url: '/pages/login_phone/login_phone'
+      })
+    }
+  }
+ })

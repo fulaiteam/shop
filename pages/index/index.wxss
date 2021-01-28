@@ -18,10 +18,21 @@ page {
 .top_img {
   z-index: 1;
   width: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   height: 417rpx;
+}
+
+.navigation_bar {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+  margin: 80rpx 0 22rpx;
+  font-size: 29rpx;
+  font-family: Aktiv Grotesk CNSG;
+  font-weight: 600;
 }
 
 .seach {
@@ -247,6 +258,7 @@ page {
 }
 
 .list .list_item {
+  display: flex;
   padding: 28rpx 0 30rpx 28rpx;
   box-sizing: border-box;
   border-bottom: 6rpx solid #E8E8E8;
@@ -254,10 +266,6 @@ page {
 
 .list .list_item:last-child {
   border-bottom: none;
-}
-
-.list .list_item navigator {
-  display: flex;
 }
 
 .list .list_item .img {
@@ -578,13 +586,11 @@ page {
 }
 
 .list_two_list  .list_item {
+  display: flex;
+  justify-content: space-between;
   padding: 30rpx 30rpx 30rpx 51rpx;
   box-sizing: border-box;
   border-bottom: 1rpx solid #E8E8E8;
-}
-.list_two_list .list_item navigator {
-  display: flex;
-  justify-content: space-between;
 }
 
 .list_two_list .list_item image {

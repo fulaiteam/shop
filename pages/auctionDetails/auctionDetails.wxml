@@ -300,7 +300,7 @@
         <view class="fillet_rectangle"></view>
       </view>
     </view>
-    <view class="auction_info_img" wx:for="{{list.detailPictureVOS}}" wx:key="index">
+    <view class="auction_info_img" wx:for="{{list.descriptionPictureVOS}}" wx:key="index">
       <image src="{{item.url}}"></image>
     </view>
   </view>

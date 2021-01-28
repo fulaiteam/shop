@@ -84,7 +84,7 @@ Page({
         const {data} = res.data
 
         // 另存商品轮播图数据 - 做全屏预览
-        let arr = data.descriptionPictureVOS
+        let arr = data.detailPictureVOS
         let swiperImg = arr.map(v => {
           return v.url
         })
@@ -273,9 +273,7 @@ Page({
       success: (res)=>{
         console.log(res)
         this.setData({applyState: res.data})
-    console.log(res.data);
-
-
+        console.log(res.data);
         if (res.data.flag) {
           wx.navigateTo({
             url: '/pages/earnestMoney/earnestMoney?money=' + this.data.list.earnestMoney + '&productId=' + this.data.productId + '&idno=' + res.data.data.id + '&flag=' + res.data.flag
@@ -285,10 +283,7 @@ Page({
             url: '/pages/earnestMoney/earnestMoney?flag=' + res.data.flag + '&money=' + this.data.list.earnestMoney
           })
         }
-
-        // this.setData({flag: res.data.flag})
       }
-
     })
   }
 })
