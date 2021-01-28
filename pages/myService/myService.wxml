@@ -28,7 +28,9 @@
     <view class="user_box">
       <view class="user_messages">
         <view class="user_messages_font">
-          您好，请问...
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <input value='{{time}}' placeholder='选择时间'/>
+          </picker>
         </view>
       </view>
       <view class="user_head">
@@ -47,12 +49,14 @@
     <input type="text" placeholder="请输入您要发送的信息"/>
   </view>
   <view class="btm_send_btn_box">
-    <view class="btm_send_btn">
+    <view class="btm_send_btn" >
+      <button open-type="contact" bindcontact="handleContact">1</button>
       <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myService/%E7%9F%A2%E9%87%8F%E6%99%BA%E8%83%BD%E5%AF%B9%E8%B1%A1.png"></image>
     </view>
     <view class="btm_send_btn">
       <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myService/%E5%AE%A2%E6%9C%8D.png"></image>
     </view>
+  
   </view>
 </view>
 <!-- 底部发送消息结束 -->

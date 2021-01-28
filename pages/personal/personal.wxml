@@ -175,14 +175,18 @@
     </view>
     <!-- 参与拍卖结束 -->
     <!-- 我的客服 -->
-    <view  class='bottom_module_item'    bindtap='toService'   >
+    <view  class='bottom_module_item'>
         <view  class='bottom_module_item_left' >
             <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/kefu.png'  ></image>
+            <!-- open-type="contact" bindcontact="handleContact" -->
+            
             <view  class='bottom_module_item_left_text' >
                 我的客服
             </view>
         </view>
-        <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+        <!-- <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image> -->
+        <button class="mini-btn" type="primary" size="mini" open-type="contact" bindcontact="handleContact"
+        style="font-size: 20rpx;margin-left: 330rpx;">进入客服</button>
     </view>
     <!-- 我的客服结束 -->
 </view>

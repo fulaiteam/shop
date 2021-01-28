@@ -160,25 +160,52 @@ style="width:114rpx;margin-top: 18rpx;"
   <action-sheet-item class="action-sheet_input">
     <view class="action-sheet_input_qipai">
       <view style="width:126rpx;">延时周期</view>
-         <input class="weui-input" type="number" placeholder="00:00:00" value='{{taktTime}}' 
-         bindinput="taktTimeinput"
+         <input class="weui-input" type="number" placeholder="00:00:00" value='{{takeTime}}' 
+         bindinput="takeTimeinput"
          style="width:100rpx;margin-top: 20rpx;width: 132rpx;"/>   
        </view> 
   </action-sheet-item>
   <action-sheet-item class="action-sheet_input">
     <view class="action-sheet_input_qipai">
       <view style="width:126rpx;">开始时间</view>
-         <input class="weui-input" type="number" placeholder="00:00:00" value='{{kaishishijian}}' 
+         <!-- <input class="weui-input" type="number" placeholder="00:00:00" value='{{kaishishijian}}' 
          bindinput="kaishishijianinput"
-         style="width:200rpx;margin-top: 20rpx;width: 230rpx;"/>   
+         style="width:200rpx;margin-top: 20rpx;width: 230rpx;"/>    -->
+         <!-- <picker mode="date" value="{{date1}}"  bindchange="bindDateStartChange">
+          <view class="picker">
+             {{kaishishijian}}
+          </view> -->
+          <view class="picker">
+          <picker style="margin-top: 19rpx;"
+          :start="end_day" end="2999-12-12"
+          mode="multiSelector" 
+          bindchange="bindMultiPickerChange" 
+          bindcolumnchange="bindMultiPickerColumnChange"
+           value="{{multiIndex}}" 
+           range="{{multiArray}}">
+            <input value='{{kaishishijian}}' placeholder='选择时间'/>
+          </picker>
+        </view> 
+
        </view> 
   </action-sheet-item>
   <action-sheet-item class="action-sheet_input">
     <view class="action-sheet_input_qipai">
       <view style="width:126rpx;">结束时间</view>
-         <input class="weui-input" type="number" placeholder="00:00:00" value='{{jieshushijian}}' 
+         <!-- <input class="weui-input" type="number" placeholder="00:00:00" value='{{jieshushijian}}' 
          bindinput="jieshushijianinput"
-         style="width:200rpx;margin-top: 20rpx;width: 230rpx;"/>   
+         style="width:200rpx;margin-top: 20rpx;width: 230rpx;"/>    -->
+         <!-- <picker mode="date" value="{{date2}}"  bindchange="bindDateEndChange">
+          <view class="picker">
+            {{jieshushijian}}
+          </view>
+        </picker> -->
+        <view class="picker">
+          <picker style="margin-top: 19rpx;"
+          mode="multiSelector" bindchange="bindMultijieshuPickerChange" bindcolumnchange="bindMultiPickerjieshuColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <input value='{{jieshushijian}}' placeholder='选择时间'/>
+          </picker>
+        </view> 
        </view> 
 	</action-sheet-item>
 </action-sheet>
