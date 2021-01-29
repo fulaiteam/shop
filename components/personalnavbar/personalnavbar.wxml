@@ -1,0 +1,10 @@
+<view class="navbar custom-class" style='height:{{navHeight}}px;background-color:{{bgColor}}'>
+  <view wx:if="{{showNav}}" class="navbar-action-wrap navbar-action-group row item-center" style='top:30px;'>
+      <view class="navbar-action_item" bindtap="_navBack">
+        <view class="arrows"></view>
+      </view>
+  </view>
+  <view class='navbar-title' style='top:{{navTop}}px'>
+    {{pageName}}
+  </view>
+</view>

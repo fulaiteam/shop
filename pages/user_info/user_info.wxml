@@ -1,0 +1,15 @@
+<!-- 登录 -->
+<view class="box">
+  <view class="login">
+    欢迎来到捡个漏
+  </view>
+  <view   class="login_area" >
+    <button class="login_area_btn"   open-type='getUserInfo' bindgetuserinfo='getUserInfo'   ></button>
+  <view class="login_wx">
+    <image src="https://jgl.oss-cn-beijing.aliyuncs.com/sale/wx_login.png" class="login_img"></image>
+    <view>微信号一键登录11</view>
+  </view>
+</view>
+</view>
+
+<!-- <button open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>6666666</button> -->

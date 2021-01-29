@@ -1,0 +1,66 @@
+/* pages/Sign/Sign.wxss */
+page{
+  height:100%;
+}
+.box {
+  width: 750rpx;
+  height:100%;
+  background: linear-gradient(107deg, #936DFF 0%, #FFD164 0%, #FF8A0D 100%);
+text-align: center;
+border: 1px solid  #FFD164;
+
+}
+.login {
+  margin-top: 280rpx;
+  margin-bottom: 333rpx;
+font-size: 63rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
+line-height: 70rpx;
+}
+.login_area{
+  width: 611rpx;
+  height: 99rpx;
+  margin-left:66rpx;
+  position: relative;
+}
+.login_area_btn{
+  z-index: 888;
+  position: absolute;
+  left: 0;
+  top:0;
+  width: 611rpx;
+height: 99rpx;
+border: 1px solid #FFFFFF;
+margin: auto;
+line-height: 99rpx;
+border-radius: 68rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
+background:transparent;
+}
+.login_wx {
+  position: absolute;
+  left: 0;
+  top:0;
+  display: flex;
+  width: 611rpx;
+height: 99rpx;
+margin: auto;
+line-height: 99rpx;
+border-radius: 68rpx;
+font-size: 25rpx;
+font-family: Source Han Sans CN;
+font-weight: 400;
+color: #FFFFFF;
+}
+.login_img {
+  width: 37rpx;
+  height: 37rpx;
+  margin-top: 33rpx;
+  margin-right: 11rpx;
+  margin-left: 203rpx;
+}
