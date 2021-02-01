@@ -1,10 +1,15 @@
-page {
-  background: #eee;
-}
 .head {
   width: 100%;
   height: 100%;
   position: relative;
+}
+
+.top_img {
+  z-index: -1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 417rpx;
 }
 
 .w {
@@ -13,26 +18,6 @@ page {
   box-sizing: border-box;
   position: absolute;
   z-index: 2;
-}
-
-.top_img {
-  z-index: 1;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 417rpx;
-}
-
-.navigation_bar {
-  position: fixed;
-  z-index: 10;
-  width: 100%;
-  text-align: center;
-  margin: 80rpx 0 22rpx;
-  font-size: 29rpx;
-  font-family: Aktiv Grotesk CNSG;
-  font-weight: 600;
 }
 
 .seach {

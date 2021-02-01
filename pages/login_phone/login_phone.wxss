@@ -85,14 +85,19 @@ border-bottom:1px solid #DDDDDD;
   margin-top: 10rpx;
   margin-right: 20rpx;
   }
-  .box_input_pass input {
+  .box_input_box {
+    border-bottom:1px solid #DDDDDD;
     width: 551rpx;
+    height: 60rpx;
+  }
+  .box_input_pass input {
+    width: 360rpx;
     height: 60rpx;
   font-size: 24rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #696969;
-  border-bottom:1px solid #DDDDDD;
+  
   
   }
   .box_pass_btn {
@@ -100,13 +105,15 @@ border-bottom:1px solid #DDDDDD;
     top: 96rpx;
     left: 423rpx;
     width: 140rpx;
-    height: 30rpx;
-    line-height: 30rpx;
-    
-font-size: 25rpx;
-font-family: Source Han Sans CN;
-font-weight: 400;
-color: #F19926;
+    height: 44rpx;
+    line-height: 44rpx;
+    font-size: 25rpx;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #F19926;
+    border-left: 1px solid #F19926;
+    padding-left: 15rpx;
+    box-sizing: border-box;
   }
   .login_btn {
     position: absolute;

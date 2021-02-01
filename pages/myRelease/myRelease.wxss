@@ -26,21 +26,61 @@ page {
     left:0;
     top:0;
 }
-.add_oil{
-    z-index: 3;
-    width:253rpx;
-    height:253rpx;
-}
 .my_release_area{
     position: absolute;
     left:39rpx;
-    top:218rpx;
+    top:58rpx;
     padding-bottom:129rpx;
     z-index: 5;
     width:671rpx;
     overflow: hidden;
 }
+.my_release_table {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 40rpx;
+    box-sizing: border-box;
+  }
+  .my_release_table_box {
+    display: flex;
+  }
+  
+  .my_release_table_word_auction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rpx 30rpx;
+    width: 210rpx;
+    height: 52rpx;
+    box-sizing: border-box;
+    font-size: 26rpx;
+    color: #fff;
+    background: #FF7F7F;
+    border: 2rpx solid #FF7F7F;
+    border-radius: 20rpx 0 0 20rpx;
+    margin-right: 4rpx;
+  }
+  .my_release_table_word_sell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rpx 30rpx;
+    width: 210rpx;
+    height: 52rpx;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    color: #fff;
+    background: #FF7F7F;
+    border-radius: 0 20rpx 20rpx 0;
+  }
+  .my_release_table_word_pitch {
+    color: #FF7F7F;
+    background: #fff;
+    border: 2rpx solid #FF7F7F;
+  }
 .my_release_item{
+    position: relative;
     z-index: 888;
     width: 671rpx;
     height: 247rpx;
@@ -50,7 +90,17 @@ page {
     align-items: center;
     background: #FFFFFF;
     border-radius: 21rpx;
-
+}
+.my_release_none {
+    z-index: 888;
+    width: 671rpx;
+    height: 247rpx;
+    line-height: 247rpx;
+    text-align: center;
+    font-size: 30rpx;
+    background: #FFFFFF;
+    border-radius: 21rpx;
+    color: rgb(187, 182, 182);
 }
 .shelf_item_middle{
     width:611rpx;
@@ -71,12 +121,18 @@ page {
     height:185rpx;
 }
 .shelf_item_middle_right_title{
-    width: 100%;
+    width: 314rpx;
+    height: 64rpx;
+    margin-bottom: 28rpx;
     font-size: 25rpx;
     font-family: Source Han Sans CN;
     font-weight: 400;
     color: #333333;
-    line-height: 31px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
 }
 .shelf_item_middle_right_param{
     width:100%;
@@ -87,6 +143,7 @@ page {
     margin-top:5rpx;
 }
 .shelf_item_middle_right_param_item{
+    width: 100rpx;
     line-height: 16rpx;
     font-size: 17rpx;
     margin-right:35rpx;
@@ -95,7 +152,7 @@ page {
     color: #999999;
 }
 .shelf_item_middle_right_param_price{
-    margin-top:70rpx;
+    margin-top:56rpx;
     float: left;
     font-size: 33rpx;
     font-family: Source Han Sans CN;
@@ -105,7 +162,7 @@ page {
 }
 .shelf_item_middle_right_param_btn{
     text-align: center;
-    margin-top:65rpx;
+    margin-top:50rpx;
     float: right;
     margin-right: 15rpx;
     width: 89rpx;
@@ -121,20 +178,32 @@ page {
 .shelf_item_middle_right_param_btn:nth-child(1){
     margin-right: 30rpx;
 }
-.auction_top_btn_area{
-    z-index: 80;
-    width:388rpx;
-    height:53rpx;
+
+.collect_remind {
     position: absolute;
-    left:180rpx;
-    top:85rpx;
+    bottom: 30rpx;
+    left: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-.auction_top_btn{
-    width:194rpx;
-    height:53rpx;
-}
+    width: 100%;
+    height: 50rpx;
+    line-height: 50rpx;
+    background: #ff7f7f;
+    font-size: 8px;
+    color: #fff;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+  }
+  .remind_gray {
+    background: #999999;
+  }
+  .remind_img {
+    width: 22rpx;
+    height: 22rpx;
+    margin-right: 30rpx;
+  }
+  .remind_font {
+    margin-right: 30rpx;
+  }
 
 

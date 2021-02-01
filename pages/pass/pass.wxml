@@ -4,17 +4,19 @@
 <view class="box_pass">
   <view class="box_pass_title">获取验证码</view>
   <view class="box_phone">
-<view>已发送4位验证码至</view>
+<view>已发送6位验证码至</view>
 <view>+86 {{phone}}</view>
   </view>
   <view class="verificationCode">
-    <input type="number" maxlength="4" bindinput="inputValue" focus />
+    <input type="number" maxlength="6" bindinput="inputValue" value="{{userpass}}" focus />
     <view class="{{veCode[0] ? 'activeView' : 0}}">{{veCode[0]}}</view>
     <view class="{{veCode[1] ? 'activeView' : 0}}">{{veCode[1]}}</view>
     <view class="{{veCode[2] ? 'activeView' : 0}}">{{veCode[2]}}</view>
     <view class="{{veCode[3] ? 'activeView' : 0}}">{{veCode[3]}}</view>
+    <view class="{{veCode[4] ? 'activeView' : 0}}">{{veCode[4]}}</view>
+    <view class="{{veCode[5] ? 'activeView' : 0}}">{{veCode[5]}}</view>
   </view>
-  <view class="lodingBtn {{veCode.length == 4 ? 'trueLoding' : ''}}">立即登录</view>
+  <view class="lodingBtn {{veCode.length == 6 ? 'trueLoding' : ''}}" bindtap="handleLogin">立即登录</view>
   <view class="againTime" wx:if="{{time > 0 }}">重新获取({{time}})</view>
   <view class="againTimeBtn" wx:else bindtap="againTimeBtn">重新获取</view>
 </view>

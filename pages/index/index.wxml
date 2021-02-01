@@ -1,18 +1,11 @@
+<navbar page-name="首页" show-nav="{{false}}"></navbar>
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+</image>
 <!-- 首页开始 -->
 <view class='head' bindtap="handleHide">
-  <!-- 背景图 -->
-  <image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
-  </image>
-   <!-- 背景图结束 -->
-
   <!-- 版心 -->
   <view class="w">
-    <!-- 导航栏 -->
-    <view class="navigation_bar">
-      首页
-    </view>
-    <!-- 导航栏结束 -->
-
     <!-- 搜索 -->
     <view class="seach">
       <!-- 搜索区域开始 -->

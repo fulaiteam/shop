@@ -85,8 +85,9 @@
           "scene": null
         },
         {
-          "name": "pages/myService/myService",
-          "pathName": "pages/myService/myService",
+          "name": "pages/user_info/user_info",
+          "pathName": "pages/user_info/user_info",
+          "query": "",
           "scene": null
         }
       ]

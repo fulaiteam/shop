@@ -1,4 +1,4 @@
-<!--pages/All_auction/All_auction.wxml-->
+<navbar page-name="全部宝贝"></navbar>
 <view class="box">
   <!-- 数据框 -->
   <view class="box_white">

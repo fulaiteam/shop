@@ -172,31 +172,5 @@ Page({
             }
         })
     },
-  
-    //获去收藏列表信息
-    collectList() {
-        wx.request({
-            url: getApp().globalData.baseUrl + 'product/jglCollection/selectCollectionPage',
-          data: {
-            "currentPage": '',
-            "pageSize": '',
-            "query": wx.getStorageSync('openid')
-          },
-          method: 'POST',
-          header: {
-            'content-type': 'application/json' //query
-          },
-          success: (res) => {
-            console.log(res);
-
-            let total = "top_arr[2].num"
-            if (res.data.data.total < 999) {
-                this.setData({[total]: res.data.data.total})
-            } else {
-                this.setData({[total]: '999+'})
-            }
-          }
-        })
-    },
 
 })

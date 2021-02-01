@@ -85,7 +85,6 @@ Page({
     // 保存当前的allSelect状态 取反 否则 因为你改变了this.goods[id].selected的状态 会触发计算属性重新计算
     // allSelect状态  就会变成动态值了
     const selected = !this.data.allSelect;
-    console.log(selected)
     
     // 循环商品列表
     this.data.list.forEach((item, index) => {
@@ -134,6 +133,39 @@ Page({
       this.selectedInit()
       this.setData({allSelect: false})
     }
+  },
+
+  // 删除
+  handleremove() {
+    let arr = []
+    this.data.list.forEach((item, index)=>{
+      if (item.selected) {
+        arr.push(item.collectionId)
+      }
+    })
+    wx.showModal({
+      title: '确认取消收藏商品',
+      showCancel: true,
+      success: (res) => {
+        if (res.confirm) {
+          wx.request({
+            url: getApp().globalData.baseUrl + 'product/jglCollection/deleteCollectByIds',
+            data: {
+              ids: arr
+            },
+            header: {
+              "content-type": "application/x-www-form-urlencoded"
+            },
+            method: 'POST',
+            success: (res)=> {
+              console.log(res)
+              this.collectList()
+            }
+          })
+        }
+      }
+    })
+    
   }
   
 })

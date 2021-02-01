@@ -1,75 +1,104 @@
-
-<view  class='all_grey' >
-<!-- 顶部背景区域开始 -->
-<view  class='top_bg' >
-<!-- 背景图开始 -->
-<!-- <image  class='top_bg_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'  ></image> -->
-<!-- 背景图结束 -->
-<!-- 加油按钮区域开始 -->
-<!-- <image  class='add_oil'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/struggle.png'  ></image> -->
-<!-- 加油按钮区域结束 -->
-    <!-- 拍卖按钮区域开始 -->
-    <view  class='auction_top_btn_area' >
-        <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/saling.png'  ></image>
-        <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/saled_cover.png'  ></image>
-    </view>
-</view>
-<!-- 顶部背景区域结束 -->
-<!-- 发布产品区域开始 -->
-<view class='my_release_area' >
-
-<!-- 一项产品开始  -->
-<view  class='my_release_item'  wx:for='{{3}}'  wx:key='list' wx:for-item="item">
-        <!-- 项目中间区域开始 -->
-        <view class='shelf_item_middle'  >
-            <!-- 项目中间区域左半部分开始 -->
-            <image class='shelf_item_middle_left'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/helmet.png' >
-    
-            </image >
-            <!-- 项目中间区域左半部分结束 -->
-            <!-- 项目中间区域右半部分开始 -->
-            <view class='shelf_item_middle_right' >
-                <!-- 项目中间区域右半部分标题开始 -->
-                <view class='shelf_item_middle_right_title'  >
-                    AGV k1摩特车头盔
-                </view>
-                <!-- 项目中间区域右半部分标题结束 -->
-                <!-- 项目中间区域右半部分参数开始 -->
-                <view class='shelf_item_middle_right_param'  >
-                    <view class='shelf_item_middle_right_param_item'  >
-                        曝光 111
-                    </view>
-                    <view class='shelf_item_middle_right_param_item'  >
-                        想买 11
-                    </view>
-                    <view class='shelf_item_middle_right_param_item'  >
-                        浏览 233
-                    </view>
-                </view>
-                <!-- 项目中间区域右半部分参数结束 -->
-                <!-- 项目中间区域右半部分价格开始 -->
-                <view class='shelf_item_middle_right_param_price'  >
-                    ￥620.80
-                </view>
-                <!-- 项目中间区域右半部分价格结束 -->
-
-                <view class='shelf_item_middle_right_param_btn'  >
-                    编辑
-                </view>
-                <view class='shelf_item_middle_right_param_btn'  >
-                    下架
-                </view>
-
-
-            </view >
-            <!-- 项目中间区域右半部分结束 -->
+<view class='all_grey'>
+    <!-- 顶部背景区域结束 -->
+    <!-- 发布产品区域开始 -->
+    <view class='my_release_area'>
+        <!-- 切换栏 -->
+        <view class="my_release_table">
+            <view class="my_release_table_box">
+                <view class="my_release_table_word_auction {{tabar == 0? 'my_release_table_word_pitch': ''}}"
+                    bindtap="handleTabar" data-index="0"><text>拍卖</text> </view>
+                <view class="my_release_table_word_sell {{tabar == 1? 'my_release_table_word_pitch': ''}}"
+                    bindtap="handleTabar" data-index="1"><text>售卖</text></view>
+            </view>
         </view>
-        <!-- 项目中间区域结束 -->
+        <!-- 切换栏结束 -->
 
-</view>
-<!-- 一项产品结束 -->
-</view>
-<!-- 发布产品区域结束 -->
+        <view class="my_release_box" wx:if="{{releaseList.length > 0}}">
+            <!-- 一项产品开始  -->
+            <view class='my_release_item' wx:for='{{releaseList}}' wx:key='index'
+                style="padding-bottom: {{paddingValue}};">
+                <!-- 项目中间区域开始 -->
+                <view class='shelf_item_middle'>
+                    <!-- 项目中间区域左半部分开始 -->
+                    <image class='shelf_item_middle_left' src='{{item.thumbnail}}'>
+
+                    </image>
+                    <!-- 项目中间区域左半部分结束 -->
+                    <!-- 项目中间区域右半部分开始 -->
+                    <view class='shelf_item_middle_right'>
+                        <!-- 项目中间区域右半部分标题开始 -->
+                        <view class='shelf_item_middle_right_title'>
+                            {{item.title}}
+                        </view>
+                        <!-- 项目中间区域右半部分标题结束 -->
+                        <!-- 项目中间区域右半部分参数开始 -->
+                        <view class='shelf_item_middle_right_param'>
+                            <view class='shelf_item_middle_right_param_item'>
+                                想买
+                                <text wx:if="{{item.collectCount <= 10000}}">{{item.collectCount}}</text>
+                                <text wx:elif="{{item.collectCount > 10000}}">10000+</text>
+                            </view>
+                            <view class='shelf_item_middle_right_param_item'>
+                                浏览
+                                <text wx:if="{{item.pv <= 10000}}">{{item.pv}}</text>
+                                <text wx:elif="{{item.pv > 10000}}">10000+</text>
+                            </view>
+                        </view>
+                        <!-- 项目中间区域右半部分参数结束 -->
+                        <!-- 项目中间区域右半部分价格开始 -->
+                        <view class='shelf_item_middle_right_param_price'>
+                            ￥{{item.price}}
+                        </view>
+                        <!-- 项目中间区域右半部分价格结束 -->
+
+                        <view class='shelf_item_middle_right_param_btn'>
+                            编辑
+                        </view>
+                        <view class='shelf_item_middle_right_param_btn' bindtap="handleSoldOut"
+                            data-productid="{{item.productId}}">
+                            下架
+                        </view>
+
+
+                    </view>
+                    <!-- 项目中间区域右半部分结束 -->
+                </view>
+                <!-- 项目中间区域结束 -->
+
+                <!-- 提示信息 -->
+                <view wx:if="{{tabar == 0}}">
+                    <!-- 即将进行 -->
+                    <view class="collect_remind" wx:if="{{item.selected == 2}}">
+                        <image
+                            src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png"
+                            class="remind_img"></image>
+                        <text class="remind_font">即将进行</text>
+                        <text class="remind_font">{{normStartTimeList[index]}} 开始</text>
+                    </view>
+                    <!-- 正在进行 -->
+                    <view class="collect_remind" wx:elif="{{item.selected == 1}}">
+                        <image
+                            src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png"
+                            class="remind_img"></image>
+                        <text class="remind_font">正在进行</text>
+                        <text class="remind_font">{{normEndTimeList[index]}} 结束</text>
+                    </view>
+                    <!-- 已结束 -->
+                    <view class="collect_remind remind_gray" wx:elif="{{item.selected == 3}}">
+                        <image
+                            src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png"
+                            class="remind_img"></image>
+                        <text class="remind_font">拍卖已结束</text>
+                        <text class="remind_font">{{normEndTimeList[index]}} 结束</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 一项产品结束 -->
+        <view class="my_release_none" wx:elif="{{releaseList.length == 0}}">暂无商品</view>
+    </view>
+    <!-- 发布产品区域结束 -->
 
 
 </view>

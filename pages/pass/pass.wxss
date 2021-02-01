@@ -14,10 +14,10 @@ background: linear-gradient(107deg, #936DFF 0%, #FFD164 0%, #FF8A0D 100%);
 }
 .box_pass {
   position: absolute;
-  top: 120rpx;
+  top: 46rpx;
   left: 40rpx;
   width: 671rpx;
-height: 1126rpx;
+height: 1080rpx;
 background: #FFFFFF;
 border-radius: 14rpx;
 }
@@ -49,11 +49,11 @@ margin-bottom: 50rpx;
 .verificationCode {
   overflow: hidden;
   position: relative;
-  width: 473rpx;
+  width: 600rpx;
   display: flex;
   justify-content: space-around;
   padding-top: 60rpx;
-  margin-left: 104rpx;
+  margin-left: 40rpx;
   margin-bottom: 62rpx;
 }
 .verificationCode > input {

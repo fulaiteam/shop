@@ -1,4 +1,5 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "全部宝贝"
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar"
+  }
 }

@@ -1,4 +1,5 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "拍卖详情"
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar"
+  }
 }

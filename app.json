@@ -23,13 +23,15 @@
     "pages/pass/pass",
     "pages/share/share",
     "pages/bidRecord/bidRecord",
-    "pages/payment/payment"
+    "pages/payment/payment",
+    "pages/user_info/user_info"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "color": "#868686",

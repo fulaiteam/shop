@@ -1,73 +1,79 @@
 <view class='all_grey'>
-<!-- 顶部区域开始 -->
-<view  class='top_area' >
-<!-- 顶部背景图开始 -->
-<image  class='top_yellow_bg'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'  ></image>
-<!-- 顶部背景图结束 -->
-<!-- 下架项目白色区域开始 -->
-<view   class='shelf_allarea'  >
-<!-- 一项下架项目开始 -->
-<view class='shelf_item' wx:for='{{2}}' >
-    <!-- 项目顶部区域开始 -->
-    <view class='shelf_item_top'  >
-        <image class='shelf_item_top_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/avatar.png' ></image>
-        <view  class='shelf_item_top_nickname' >
-            菠萝
+    <!-- 顶部区域开始 -->
+    <view class='top_area'>
+        <!-- 切换栏 -->
+        <view class="my_release_table">
+            <view class="my_release_table_box">
+                <view class="my_release_table_word_auction {{tabar == 0? 'my_release_table_word_pitch': ''}}"
+                    bindtap="handleTabar" data-index="0"><text>拍卖</text> </view>
+                <view class="my_release_table_word_sell {{tabar == 1? 'my_release_table_word_pitch': ''}}"
+                    bindtap="handleTabar" data-index="1"><text>售卖</text></view>
+            </view>
         </view>
-    </view>
-    <!-- 项目顶部区域结束 -->
-    <!-- 项目中间区域开始 -->
-    <view class='shelf_item_middle'  >
-        <!-- 项目中间区域左半部分开始 -->
-        <image class='shelf_item_middle_left'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/helmet.png' >
-
-        </image >
-        <!-- 项目中间区域左半部分结束 -->
-        <!-- 项目中间区域右半部分开始 -->
-        <view class='shelf_item_middle_right' >
-            <!-- 项目中间区域右半部分标题开始 -->
-            <view class='shelf_item_middle_right_title'  >
-                AGV k1摩特车头盔
-            </view>
-            <!-- 项目中间区域右半部分标题结束 -->
-            <!-- 项目中间区域右半部分参数开始 -->
-            <view class='shelf_item_middle_right_param'  >
-                <view class='shelf_item_middle_right_param_item'  >
-                    曝光 111
+        <!-- 下架项目白色区域开始 -->
+        <view class='shelf_allarea'>
+            <!-- 一项下架项目开始 -->
+            <view class='shelf_item' wx:for="{{list}}" wx:key="index">
+                <!-- 项目顶部区域开始 -->
+                <view class='shelf_item_top'>
+                    <image class='shelf_item_top_img' src=' {{userinfo.headimgurl}}'></image>
+                    <view class='shelf_item_top_nickname'>
+                        {{userinfo.nickname}}
+                    </view>
                 </view>
-                <view class='shelf_item_middle_right_param_item'  >
-                    想买 11
+
+                <!-- 项目顶部区域结束 -->
+                <!-- 项目中间区域开始 -->
+                <view class='shelf_item_middle'>
+                    <!-- 项目中间区域左半部分开始 -->
+                    <image class='shelf_item_middle_left' src='{{item.thumbnail}}'>
+
+                    </image>
+                    <!-- 项目中间区域左半部分结束 -->
+                    <!-- 项目中间区域右半部分开始 -->
+                    <view class='shelf_item_middle_right'>
+                        <!-- 项目中间区域右半部分标题开始 -->
+                        <view class='shelf_item_middle_right_title'>
+                            {{item.title}}
+                        </view>
+                        <!-- 项目中间区域右半部分标题结束 -->
+                        <!-- 项目中间区域右半部分参数开始 -->
+                        <view class='shelf_item_middle_right_param'>
+                            <!-- <view class='shelf_item_middle_right_param_item'  >
+                        曝光 111
+                    </view> -->
+                            <view class='shelf_item_middle_right_param_item'>
+                                收藏人数 {{item.collectCount}}
+                            </view>
+                            <view class='shelf_item_middle_right_param_item'>
+                                浏览 {{item.pv}}
+                            </view>
+                        </view>
+                        <!-- 项目中间区域右半部分参数结束 -->
+                        <!-- 项目中间区域右半部分价格开始 -->
+                        <view class='shelf_item_middle_right_param_price'>
+                            ￥{{item.price}}
+                        </view>
+                        <!-- 项目中间区域右半部分价格结束 -->
+                    </view>
+                    <!-- 项目中间区域右半部分结束 -->
                 </view>
-                <view class='shelf_item_middle_right_param_item'  >
-                    浏览 23
+                <!-- 项目中间区域结束 -->
+                <!-- 项目底部区域开始 -->
+                <view class='shelf_item_bottom'>
+                    <view class='shelf_item_bottom_btn' data-gid="{{item.productId}}" bindtap="chongxinrelease">重新上架
+                    </view>
+                    <view class='shelf_item_bottom_btn' data-gid="{{item.productId}}" bindtap="delete">删除</view>
                 </view>
+                <!-- 项目底部区域结束 -->
             </view>
-            <!-- 项目中间区域右半部分参数结束 -->
-            <!-- 项目中间区域右半部分价格开始 -->
-            <view class='shelf_item_middle_right_param_price'  >
-                ￥620.80
-            </view>
-            <!-- 项目中间区域右半部分价格结束 -->
-        </view >
-        <!-- 项目中间区域右半部分结束 -->
+            <!-- 一项下架项目结束 -->
+        </view>
+        <!-- 下架项目白色区域结束 -->
     </view>
-    <!-- 项目中间区域结束 -->
-    <!-- 项目底部区域开始 -->
-    <view class='shelf_item_bottom'  >
-        <view  class='shelf_item_bottom_btn' >重新发布</view>
-        <view  class='shelf_item_bottom_btn' >删除</view>
-    </view>
-    <!-- 项目底部区域结束 -->
-</view>
-<!-- 一项下架项目结束 -->
-</view>
-<!-- 下架项目白色区域结束 -->
-</view>
-<!-- 顶部区域结束 -->
+    <!-- 顶部区域结束 -->
 
 
 
 
 </view>
-
-

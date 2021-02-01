@@ -1,3 +1,7 @@
+<personalnavbar page-name="个人中心" show-nav="{{false}}"></personalnavbar>
+<!--背景图开始  -->
+<image src='https://jgl.oss-cn-beijing.aliyuncs.com/person/top_yellow_bg.png' class='top_img'></image>
+<!-- 背景图结束 -->
 <view class='all_grey'>
     <!-- 顶部背景区域开始 -->
     <view class='top_bg'>
@@ -6,9 +10,16 @@
     <view   class='top_white_area' >
         <view  class="top_white_function_area" >
             <view  class="top_white_function_item"   wx:for='{{top_arr}}'  wx:key='index'  data-path='{{item.path}}'  bindtap='toPage'   wx:for-item="item"  >
-                <view   class="top_white_function_item_num flex_center" >
-                        {{item.num}}
+                <view class="top_white_function_item_num flex_center" wx:if="{{item.text=='我发布的' }}" >
+                        {{BaseInfo.releaseCount}}
                 </view>
+                <view class="top_white_function_item_num flex_center" wx:elif="{{item.text=='已下架的' }}" >
+                    {{BaseInfo.offTheShelfCount}}
+                </view>
+                <view class="top_white_function_item_num flex_center" wx:elif="{{item.text=='收藏'}}" >
+                    {{BaseInfo.collectCount}}
+                </view>
+
                 <view   class="top_white_function_item_text flex_center" >
                     {{item.text}}
                 </view>
@@ -61,9 +72,7 @@
     </view>
     <!-- 登录区域结束 -->
     </view>
-    <!--背景图开始  -->
-    <image src='https://jgl.oss-cn-beijing.aliyuncs.com/person/top_yellow_bg.png' class='top_img'></image>
-    <!-- 背景图结束 -->
+    
     <!-- 顶部背景区域结束 -->
 <!-- 模块区域开始  -->
 <view  class='bottom_module_area'  >

@@ -42,7 +42,9 @@ Page({
     // 保留价提示切换
     hint: false,
     // 正在拍卖或即将开始
-    buy: ''
+    buy: '',
+    // 导航栏标题
+    title: ''
   },
 
   /**
@@ -55,7 +57,13 @@ Page({
     }
     const {auctionOrSale, productId, openid} = options
     // 动态修改页面导航栏标题
-    wx.setNavigationBarTitle({ title: auctionOrSale == 0? '拍卖详情': '售卖详情' })      // options.name表示上个页面传过来的文字
+    if (auctionOrSale == 0) {
+      this.setData({title: '拍卖详情'})
+    } else {
+      this.setData({title: '售卖详情'})
+    }
+    // wx.setNavigationBarTitle({ title: auctionOrSale == 0? '拍卖详情': '售卖详情' })
+    // options.name表示上个页面传过来的文字
     this.setData({
       auctionOrSale: auctionOrSale,
       productId: productId,

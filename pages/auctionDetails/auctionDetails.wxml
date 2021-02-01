@@ -1,5 +1,4 @@
-<!-- 背景图 -->
-<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%A4%AD%E5%9C%86%202.png"></image>
+<navbar page-name="{{title}}"></navbar>
 <!-- 拍卖商品详情 -->
 <view class="auction_details">
   <!-- 拍卖商品头部 -->
