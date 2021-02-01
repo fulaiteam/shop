@@ -61,10 +61,8 @@ Page({
         console.log(e.detail.path)
         console.log(e.detail.query)
     },
-    onLoad: function () {
-        this.collectList()
-    },
     onShow: function () {
+        console.log(getApp().globalData.openid,3333)
         if(wx.getStorageSync('openid')){
             getApp().globalData.openid = wx.getStorageSync('openid')
             this.getUserInfoByOpenid()

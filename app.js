@@ -14,14 +14,20 @@ App({
   },
   onLaunch: function () {
 
+    // 胶囊的信息
     let menuButtonObject = wx.getMenuButtonBoundingClientRect();
+    console.log(menuButtonObject)
     wx.getSystemInfo({
+      
       success: res => {
-        
+        console.log(res)
         //导航高度
-        let statusBarHeight = res.statusBarHeight,
-          navTop = menuButtonObject.top,
-          navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight)*2;
+        // 状态栏的高度
+        let statusBarHeight = res.statusBarHeight
+        console.log(statusBarHeight)
+        let navTop = menuButtonObject.top
+        let navHeight = (statusBarHeight + menuButtonObject.height+ (navTop - statusBarHeight)*2);
+        console.log(navHeight)
         this.globalData.navHeight = navHeight;
         this.globalData.navTop = navTop;
         this.globalData.windowHeight = res.windowHeight;

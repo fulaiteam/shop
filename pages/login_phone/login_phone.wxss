@@ -1,4 +1,7 @@
 /* pages/login_phone/login_phone.wxss */
+page {
+  margin: 0;
+}
 .box {
   width: 750rpx;
   height: 1180rpx;

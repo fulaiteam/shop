@@ -1,5 +1,7 @@
 /* pages/pass/pass.wxss */
-
+page {
+  margin: 0;
+}
 .box {
   width: 750rpx;
   height: 1333rpx;
@@ -14,7 +16,7 @@ background: linear-gradient(107deg, #936DFF 0%, #FFD164 0%, #FF8A0D 100%);
 }
 .box_pass {
   position: absolute;
-  top: 46rpx;
+  top: 170rpx;
   left: 40rpx;
   width: 671rpx;
 height: 1080rpx;

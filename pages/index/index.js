@@ -90,7 +90,11 @@ Page({
         // 将活动的结束时间参数提成一个单独的数组，方便操作
         rows.forEach(o => {
           endTimeList.push(o.endTime)
-          priceList.push(o.maxPrice)
+          if (o.maxPrice) {
+            priceList.push(o.maxPrice)
+          } else {
+            priceList.push(o.startPrice)
+          }
         })
         let endTimeList2 = endTimeList.map(x => {
           // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
@@ -184,6 +188,7 @@ Page({
     endTimeList.forEach(o => {
       let endTime = new Date(o).getTime();
       let obj = null;
+
       // 如果活动未结束，对时间进行处理
       if (endTime - newTime > 0) {
         let time = (endTime - newTime) / 1000;
@@ -455,11 +460,20 @@ Page({
 
   // 拍卖商品跳转
   handleToAuctionDetails(e) {
-    const {openid, productid} = e.currentTarget.dataset
+    const {openid, productid ,index} = e.currentTarget.dataset
+    let objTime = this.data.auctionDataList[index].objTime
     if (getApp().globalData.openid) {
-      wx.navigateTo({
-        url: '/pages/auctionDetails/auctionDetails?auctionOrSale=0&productId=' + productid + '&openid=' + openid + '&buy=' + this.data.isBuy
-      })
+      if (objTime.hou == "00" && objTime.min == "00" && objTime.sec == "00") {
+        wx.showToast({
+          title: '拍卖已结束',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/auctionDetails/auctionDetails?auctionOrSale=0&productId=' + productid + '&openid=' + openid + '&buy=' + this.data.isBuy
+        })
+      }
     } else {
       wx.navigateTo({
         url: '/pages/login_phone/login_phone'

@@ -1,3 +1,4 @@
+<navbar page-name="保证金"></navbar>
 <!-- 保证金列表 -->
 <view class="earnest_money_list">
   <!-- 保证金列表缴纳列表 -->
@@ -21,7 +22,7 @@
         <view class="earnest_money_alrpay_line_font">已交付保证金{{earnestMoney}}元</view>
       </view>
       <view class="earnest_money_two_state" wx:if="{{isPay === 2}}">
-        <view class="bid_btn">提交</view>
+        <view class="bid_btn" bindtap="handleBack">返回</view>
       </view>
     </view>
   </view>
@@ -43,3 +44,15 @@
   <view class="bid_btn" bindtap="handlePay">去支付</view>
 </view>
 <!-- 底部确认栏结束 -->
+
+<view class="windowsBox" wx:if="{{showDialog}}">
+  <!-- 如果想点击弹窗外不隐藏，取消bindtap点击事件即可 -->
+  <view class="windowsBox_mask" bindtap="toggleDialog" />
+  <view class="windowsBox_container">
+    <view class="windowsBox_info">
+      <icon class="icon-box-img" type="success" size="50" color="#FA4F47"></icon>
+      <view class="windowsBox_info_success">报名成功</view>
+      <view>捡个漏,感谢您的支持！</view>
+    </view>
+  </view>
+</view>

@@ -25,7 +25,8 @@ Page({
       this.setData({
         earnestMoney: options.money,
         productId: options.productId,
-        idno: options.idno
+        idno: options.idno,
+        openid: options.openid
       })
     } else {
       this.setData({
@@ -65,14 +66,27 @@ Page({
                 wx.showToast({
                   title: '报名成功',
                   icon: 'none',
-                  duration: 2000
+                  duration: 2000,
+                  success: (res) => {
+                    setTimeout((
+                      wx.reLaunch({
+                        url: '/pages/auctionDetails/auctionDetails?auctionOrSale=0＆productId＝' + this.data.productId + '&openid=' + this.data.openid
+                      })
+                    ), 2000);
+                  }
                 })
-                this.setData({isPay: 2})
               }
             }
           })
         }
       }
+    })
+  },
+
+  // 支付成功后的返回
+  handleBack() {
+    wx.navigateBack({
+      delta: 1
     })
   }
 })

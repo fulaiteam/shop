@@ -55,8 +55,8 @@ page {
     height: 52rpx;
     box-sizing: border-box;
     font-size: 26rpx;
-    color: #fff;
-    background: #FF7F7F;
+    color: #FF7F7F;
+    background: #fff;
     border: 2rpx solid #FF7F7F;
     border-radius: 20rpx 0 0 20rpx;
     margin-right: 4rpx;
@@ -70,13 +70,14 @@ page {
     height: 52rpx;
     box-sizing: border-box;
     font-size: 28rpx;
-    color: #fff;
-    background: #FF7F7F;
+    color: #FF7F7F;
+    background: #fff;
+    border: 2rpx solid #FF7F7F;
     border-radius: 0 20rpx 20rpx 0;
   }
   .my_release_table_word_pitch {
-    color: #FF7F7F;
-    background: #fff;
+    color: #fff;
+    background: #FF7F7F;
     border: 2rpx solid #FF7F7F;
   }
 .my_release_item{

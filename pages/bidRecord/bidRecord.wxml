@@ -1,3 +1,4 @@
+<navbar page-name="出价记录"></navbar>
 <scroll-view class="page" scroll-y="true" bindscrolltolower="handleBottom">
   <!-- 出价信息 -->
   <view class="bid_box">

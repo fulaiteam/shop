@@ -85,8 +85,8 @@
           "scene": null
         },
         {
-          "name": "pages/user_info/user_info",
-          "pathName": "pages/user_info/user_info",
+          "name": "pages/pass/pass",
+          "pathName": "pages/pass/pass",
           "query": "",
           "scene": null
         }

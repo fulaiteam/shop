@@ -44,14 +44,21 @@ Page({
     // 正在拍卖或即将开始
     buy: '',
     // 导航栏标题
-    title: ''
+    title: '',
+    // 倒计时提示结束的弹窗
+    showDialog: false,
+    // 报名是否结束
+    auctionEnd: false,
+    // 中标人昵称
+    nickname: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options);
+    // 结束提醒
+    // console.log(options);
     if (options.buy) {
       this.setData({buy: options.buy})
     }
@@ -59,6 +66,7 @@ Page({
     // 动态修改页面导航栏标题
     if (auctionOrSale == 0) {
       this.setData({title: '拍卖详情'})
+      this.countDown()
     } else {
       this.setData({title: '售卖详情'})
     }
@@ -85,7 +93,8 @@ Page({
       url: getApp().globalData.baseUrl + 'product/jglProduct/selectProductDetail',
       data: {
         "auctionOrSale": this.data.auctionOrSale,
-        "productId": this.data.productId
+        "productId": this.data.productId,
+        "openid":getApp().globalData.openid
       },
       method: 'POST',
       success: (res) => {
@@ -272,27 +281,87 @@ Page({
 
   // 报名
   handleApply() {
-    wx.request({
-      url: getApp().globalData.baseUrl + 'bep/jglEnroll/addEnroll',
-      data: {
-        "openid": wx.getStorageSync('openid'),
-        "productId": this.data.productId,
-      },
-      method: 'POST',
-      success: (res)=>{
-        console.log(res)
-        this.setData({applyState: res.data})
-        console.log(res.data);
-        if (res.data.flag) {
-          wx.navigateTo({
-            url: '/pages/earnestMoney/earnestMoney?money=' + this.data.list.earnestMoney + '&productId=' + this.data.productId + '&idno=' + res.data.data.id + '&flag=' + res.data.flag
-          })
-        } else {
-          wx.navigateTo({
-            url: '/pages/earnestMoney/earnestMoney?flag=' + res.data.flag + '&money=' + this.data.list.earnestMoney
-          })
+    if (this.data.openid == getApp().globalData.openid) {
+      wx.showToast({
+        title: '发布人不能报名',
+        icon: 'none',
+        duration: 2000
+      })
+    } else if (this.data.auctionEnd == true) {
+      wx.showToast({
+        title: '竞拍已结束',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      wx.request({
+        url: getApp().globalData.baseUrl + 'bep/jglEnroll/addEnroll',
+        data: {
+          "openid": wx.getStorageSync('openid'),
+          "productId": this.data.productId,
+        },
+        method: 'POST',
+        success: (res)=>{
+          console.log(res)
+          this.setData({applyState: res.data})
+          console.log(res.data);
+          if (res.data.flag) {
+            wx.navigateTo({
+              url: '/pages/earnestMoney/earnestMoney?money=' + this.data.list.earnestMoney + '&productId=' + this.data.productId + '&idno=' + res.data.data.id + '&flag=' + res.data.flag + '&openid=' + this.data.openid
+            })
+          } else {
+            wx.navigateTo({
+              url: '/pages/earnestMoney/earnestMoney?flag=' + res.data.flag + '&money=' + this.data.list.earnestMoney
+            })
+          }
         }
-      }
-    })
+      })
+    }
+    
+  },
+
+  // 计算剩余拍卖时间，做倒计时提示
+  countDown() {
+    // 获取当前时间，同时得到活动结束时间数组
+    let newTime = new Date().getTime();
+    let endTimeList = new Date(this.data.timeList[1]).getTime()
+
+    if (endTimeList - newTime <= 0) {
+      wx.request({
+        url: 'https://jgl.hemajia.net/jgl/bep/jglBid/updateByStatus',
+        method: 'POST',
+        data: {
+          productId: this.data.productId
+        },
+        success: (res)=>{
+          if(res.data.flag) {
+            wx.request({
+              url: 'https://jgl.hemajia.net/jgl/bep/jglBid/selectByProductId',
+              method: 'POST',
+              data: {
+                productId: this.data.productId
+              },
+              success: (res)=> {
+                console.log(res)
+                const {nickname} = res.data.data
+                this.setData({nickname: nickname})
+              }
+            })
+          }
+        }
+      })
+      this.setData({
+        showDialog: true,
+        auctionEnd: true
+      })
+      return
+    }
+    setTimeout(this.countDown, 1000);
+  },
+  // 点击弹窗栏外部
+  toggleDialog() {
+    this.setData({
+      showDialog: false 
+    });
   }
 })

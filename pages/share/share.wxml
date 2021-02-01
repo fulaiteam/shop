@@ -1,4 +1,4 @@
-<!--pages/share/share.wxml-->
+<navbar page-name="分享二维码"></navbar>
 <view class="box">
 <view class="box_white">
   <!-- 用户头像信息 -->

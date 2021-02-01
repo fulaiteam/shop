@@ -335,14 +335,15 @@ Jump:function() {
                   earnestMoney: that.data.baozhengjin,   //保证金
                   endTime: timestamp2,  //结束时间
                   newPrice: that.data.xinpin,       //新品
-                  opneid:getApp().globalData.openid,
+                  openid:getApp().globalData.openid,
                   reservePrice: that.data.baoliu,  //保留价格（可以为空）
                   salePrice: that.data.Sale,  //* 售卖价
                   startPrice: that.data.qipai,//起拍价
                   startTime: timestamp1,  //开始时间
                   takeTime: that.data.takeTime,   // 延时周/
                   thumbnail: imgadds[0].url,  //缩略图 1
-                  title: that.data.title  //标题
+                  title: that.data.title,  //标题
+                  productId: this.random()
                 },
                
                 method:'post',
@@ -351,7 +352,20 @@ Jump:function() {
                 },
                 success: function(res) {
                   console.log(res)
-                  
+                  if (res.data.flag) {
+                    wx.showToast({
+                      title: '发布成功',
+                      icon: 'none',
+                      duration: 2000,
+                      success:(res)=>{
+                        console.log(res)
+                        wx.reLaunch({
+                          url: '/pages/index/index'
+                        })
+                      }
+                    })
+                    
+                  }
                 }
               })
               }else {
@@ -383,6 +397,20 @@ Jump:function() {
           
           
       },
+
+// 生成32位随机数
+random() {
+  /*生成32位随机流水号*/
+  /*默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1*/
+  var $chars = 'abcdefghijklmnopqrstuvwxyz123456789';
+  var maxPos = $chars.length;
+  var pwd = '';
+  for (let i = 0; i < 32; i++) {
+       pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+  }
+  return pwd
+},
+
 // 关闭弹窗
 cancel: function() {
   this.setData({
@@ -668,7 +696,9 @@ xinpininput:function(e) {
        _this.setData({  
         imgpath: _this.data.imgpath.concat(res.tempFilePaths)  
        }) 
+       console.log(imgpath)
      for (var i = 0; i < imgpath.length;i++){
+       console.log(1)
        wx.uploadFile({
          url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
          name: 'imgFile',
@@ -676,7 +706,7 @@ xinpininput:function(e) {
          header: {
            "Content-Type": "multipart/form-data"
          },
-         success(res) {
+         success: (res) =>{
          console.log(res);
      var data = JSON.parse(res.data).data;
            console.log(data);

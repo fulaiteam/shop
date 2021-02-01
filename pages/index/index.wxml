@@ -68,6 +68,7 @@
             bindtap="handleToAuctionDetails"
             data-productId="{{item.productId}}"
             data-openid="{{item.openid}}"
+            data-index="{{index}}"
           >
             <view class='img'>
               <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />

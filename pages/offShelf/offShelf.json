@@ -1,3 +1,5 @@
 {
-    "navigationBarTitleText": "已下架的"
+    "usingComponents": {
+        "navbar": "/components/navbar/navbar"
+      }
 }

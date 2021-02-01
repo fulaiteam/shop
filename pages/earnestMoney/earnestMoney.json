@@ -1,4 +1,5 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "保证金"
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar"
+  }
 }

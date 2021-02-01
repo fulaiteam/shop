@@ -1,7 +1,7 @@
 /**app.wxss**/
 page {
   background: #eee;
-  margin-top: 140rpx;
+  margin-top: 192rpx;
 }
 
 .container {

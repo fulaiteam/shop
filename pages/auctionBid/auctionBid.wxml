@@ -1,3 +1,4 @@
+<navbar page-name="出价参拍"></navbar>
 <!-- 出价商品信息列表 -->
 <view class="bid_goods_list">
   <!-- 商品信息 -->

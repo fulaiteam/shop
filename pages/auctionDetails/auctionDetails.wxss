@@ -414,13 +414,15 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 .store_goods_info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
+}
+.store_goods_info:nth-child(3n-1) {
+  margin: 0 33rpx;
 }
 .store_goods_img {
   width: 200rpx;
@@ -630,4 +632,41 @@
   border-radius: 50%;
   background: #fa4f47;
   color: #fff;
+}
+
+.windowsBox_mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0);   /*设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4);*/
+}
+.windowsBox_container {
+  position: fixed;
+  bottom: 400rpx;
+  width: 467rpx;
+  height: 301rpx;
+  margin-left: 150rpx;
+  background: #fff;
+  z-index: 12;
+  border-radius: 20rpx;
+  box-shadow: 0px 3px 3px 2px gainsboro;  /*弹框的悬浮阴影效果，如不需要可注释该行*/
+}
+.windowsBox_info {
+  padding: 50rpx 0 70rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 21rpx;
+}
+.windowsBox_info_success {
+  font-size: 30rpx;
+  color: #FA4F47;
+  margin: 42rpx 0 13rpx;
+}
+.windowsBox_info text {
+  color: #FF0000;
 }

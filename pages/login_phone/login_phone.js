@@ -6,7 +6,7 @@ Page({
    */
   data: {
     // 用户手机号
-    userphone: '18222689893',
+    userphone: '',
     
   },
 

@@ -99,8 +99,8 @@ Page({
           success: (res)=> {
             console.log(res)
             if (res.data.data) {
-              getApp().globalData.openid = res.data.data.openid;
-              wx.setStorageSync("openid", res.data.data.openid);
+              getApp().globalData.openid = res.data.data;
+              wx.setStorageSync("openid", res.data.data);
               wx.switchTab({
                 url:'/pages/personal/personal'
               })

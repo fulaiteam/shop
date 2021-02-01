@@ -1,6 +1,7 @@
 /* pages/Sign/Sign.wxss */
 page{
   height:100%;
+  margin: 0;
 }
 .box {
   width: 750rpx;

@@ -1,4 +1,5 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "出价记录"
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar"
+  }
 }

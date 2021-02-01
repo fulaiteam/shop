@@ -1,11 +1,5 @@
 {
   "usingComponents": {
-    "van-popup": "@vant/weapp/popup/index"
-  },
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "",
-  "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light",
-  "navigationBarTitleText": "我发布的"
+    "navbar": "/components/navbar/navbar"
+  }
 }

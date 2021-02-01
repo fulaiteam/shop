@@ -1,3 +1,4 @@
+<navbar page-name="商品发布" show-nav="{{false}}"></navbar>
 <view class="content">
   <!-- 发布信息 -->
   
@@ -66,7 +67,7 @@
     <!-- <text class="shop_money_seclect" bindtap="listenerButton"> 选择 > </text> -->
     <input type="text" name="type" value="{{Sale}}"
 style="width:114rpx;margin-top: 18rpx;"
-   placeholder=" 选择 >" class="shop_money_seclect" bindtap="Salebtn"/>
+   placeholder=" 选择 >" class="shop_money_seclect" bindtap="Salebtn" disabled="true"/>
    <!-- 售卖价格 -->
     <action-sheet hidden="{{actionSheetHidden}}" bindchange="shoumaijiage"  wx:if="{{shoumai}}">
       <action-sheet-item class="action-sheet">
@@ -216,7 +217,7 @@ style="width:114rpx;margin-top: 18rpx;"
 <!-- <text class="shop_money_seclect" bindtap="typebtn"> 选择 > </text> -->
 <input type="text" name="type" value="{{typeName.name}}" 
 style="width:114rpx; margin-top: 15rpx;"
-   placeholder=" 选择 >" class="shop_money_seclect" bindtap="typebtn"/>
+   placeholder=" 选择 >" class="shop_money_seclect" bindtap="typebtn" disabled="true"/>
 <!--默认action-sheet为隐藏，由button触发-->
 <action-sheet hidden="{{showtype}}" bindchange="type">
   <action-sheet-item>

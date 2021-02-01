@@ -374,3 +374,16 @@
 </view>
 <!-- 报名悬浮球 -->
 <view class="apply_ball"  wx:if="{{auctionOrSale == 0}}" bindtap="handleApply">去报名</view>
+
+
+<view class="windowsBox" wx:if="{{showDialog}}">
+  <!-- 如果想点击弹窗外不隐藏，取消bindtap点击事件即可 -->
+  <view class="windowsBox_mask" bindtap="toggleDialog" />
+  <view class="windowsBox_container">
+    <view class="windowsBox_info">
+      <icon class="icon-box-img" type="success" size="50" color="#FA4F47"></icon>
+      <view class="windowsBox_info_success">竞拍已结束</view>
+      <view>恭喜：<text>{{nickname}}</text> 竞拍成功！</view>
+    </view>
+  </view>
+</view>

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar"
+  },
   "navigationBarTitleText": "出价参拍"
 }
