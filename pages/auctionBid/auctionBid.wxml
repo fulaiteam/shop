@@ -3,7 +3,7 @@
 <view class="bid_goods_list">
   <!-- 商品信息 -->
   <view class="bid_goods_info">
-    <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionBid/u%3D2755485285%2C1155050305%26fm%3D26%26gp%3D0.png"></image>
+    <image src="{{swiperImg[0]}}"></image>
     <!-- 标题 -->
     <view class="bid_goods_font">
       <view class="bid_goods_title">{{title}}</view>
@@ -33,7 +33,7 @@
     </view>
     <!-- 报名 -->
     <view class="bid_goods_apply" wx:if="{{isBid === 2}}">
-      <button>去报名</button>
+      <button bindtap="handleApply">去报名</button>
     </view>
     <!-- 修改价格 -->
     <view class="bid_goods_price_revise" wx:if="{{isBid === 1}}">
@@ -48,7 +48,7 @@
   </view>
   <!-- 商品出价信息结束 -->
   <!-- 拍卖公告 -->
-  <view class="bid_goods_notive" bindtap="handleaffiche">
+  <view class="bid_goods_notive" bindtap="handleaffiche" wx:if="{{isBid == 1}}">
     <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionBid/%E2%88%9A.png" class="{{afficheBtn? 'bid_goods_notive_red': 'bid_goods_notive_gray'}}"></image>
     <view>竞买人知晓并同意竞拍公告</view>
   </view>

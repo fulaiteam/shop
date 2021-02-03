@@ -50,25 +50,35 @@ Page({
     // 报名是否结束
     auctionEnd: false,
     // 中标人昵称
-    nickname: ''
+    nickname: '',
+    // 是否报名
+    isApply: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // 结束提醒
-    // console.log(options);
     if (options.buy) {
-      this.setData({buy: options.buy})
+      this.setData({
+        buy: options.buy
+      })
     }
-    const {auctionOrSale, productId, openid} = options
+    const {
+      auctionOrSale,
+      productId,
+      openid
+    } = options
     // 动态修改页面导航栏标题
     if (auctionOrSale == 0) {
-      this.setData({title: '拍卖详情'})
+      this.setData({
+        title: '拍卖详情'
+      })
       this.countDown()
     } else {
-      this.setData({title: '售卖详情'})
+      this.setData({
+        title: '售卖详情'
+      })
     }
     // wx.setNavigationBarTitle({ title: auctionOrSale == 0? '拍卖详情': '售卖详情' })
     // options.name表示上个页面传过来的文字
@@ -77,14 +87,25 @@ Page({
       productId: productId,
       openid: openid
     })
-    // 发送数据请求
-    this.getData()
-    // 发送出价记录请求
-    this.getListId()
-    // 发送店主数据请求
-    this.getUser()
-    // 推荐商品请求
-    this.getRectangleGood()
+  },
+
+  onShow() {
+    wx.showLoading({
+      title: '加载中',
+      success: (res) => {
+        // 发送数据请求
+        this.getData()
+        // 发送出价记录请求
+        this.getListId()
+        // 发送店主数据请求
+        this.getUser()
+        // 推荐商品请求
+        this.getRectangleGood()
+        // 是否报名
+        this.isApply()
+        wx.hideLoading()
+      }
+    })
   },
 
   // 请求商品数据
@@ -94,12 +115,14 @@ Page({
       data: {
         "auctionOrSale": this.data.auctionOrSale,
         "productId": this.data.productId,
-        "openid":getApp().globalData.openid
+        "openid": getApp().globalData.openid
       },
       method: 'POST',
       success: (res) => {
         console.log(res)
-        const {data} = res.data
+        const {
+          data
+        } = res.data
 
         // 另存商品轮播图数据 - 做全屏预览
         let arr = data.detailPictureVOS
@@ -110,7 +133,7 @@ Page({
         let TimeList = [data.startTime, data.endTime];
         let TimeList2 = TimeList.map(x => {
           // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
-          return this.renderTime(x).slice(0,16)
+          return this.renderTime(x).slice(0, 16)
         })
 
         this.setData({
@@ -132,7 +155,9 @@ Page({
             success: (o) => {
               // console.log(o)
               if (o.data.flag) {
-                const {price} = o.data.data
+                const {
+                  price
+                } = o.data.data
                 this.setData({
                   money: this.miliFormat(price),
                   commonMoney: price
@@ -146,8 +171,10 @@ Page({
             }
           })
           // 否则为售卖价
-        } else {   
-          this.setData({money: this.miliFormat(data.salePrice)})
+        } else {
+          this.setData({
+            money: this.miliFormat(data.salePrice)
+          })
         }
       }
     })
@@ -163,9 +190,12 @@ Page({
         "query": this.data.productId
       },
       method: 'POST',
-      success: (res)=> {
+      success: (res) => {
         // console.log(res)
-        const {rows, total} = res.data.data
+        const {
+          rows,
+          total
+        } = res.data.data
         this.setData({
           bidRecord: rows,
           byTotal: total,
@@ -180,11 +210,11 @@ Page({
         // 修改日期数据
         let TimeList2 = TimeList.map(x => {
           // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
-          return this.renderTime(x).slice(5,10)
+          return this.renderTime(x).slice(5, 10)
         })
         // 修改时间数据
         let TimeList3 = TimeList.map(x => {
-          return this.renderTime(x).slice(11,19)
+          return this.renderTime(x).slice(11, 19)
         })
         // 将每组修改的日期及时间数据放到对应的 bidRecord 记录数据中，做渲染用
         let arr = this.data.bidRecord
@@ -210,9 +240,11 @@ Page({
         "productId": this.data.productId
       },
       method: 'POST',
-      success: (res)=>{
+      success: (res) => {
         // console.log(res)
-        const {data} = res.data
+        const {
+          data
+        } = res.data
         this.setData({
           userInfo: data,
           status: data.status
@@ -232,10 +264,14 @@ Page({
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
-      success: (res)=>{
+      success: (res) => {
         // console.log(res)
-        const {data} = res.data
-        this.setData({rectangleGood: data})
+        const {
+          data
+        } = res.data
+        this.setData({
+          rectangleGood: data
+        })
       }
     })
   },
@@ -252,11 +288,13 @@ Page({
 
   // 保留价提示切换
   handleHint() {
-    this.setData({hint: !this.data.hint})
+    this.setData({
+      hint: !this.data.hint
+    })
   },
 
   // 千分位分割 - 整、小数混合
-  miliFormat(num) {  
+  miliFormat(num) {
     return num && num.toString().replace(/(^|\s)\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
   },
 
@@ -268,14 +306,47 @@ Page({
 
   // 切换拍卖宝贝和售卖宝贝栏
   handleClick(e) {
-    this.setData({isTable: e.currentTarget.dataset.index})
+    this.setData({
+      isTable: e.currentTarget.dataset.index
+    })
     this.getUser()
   },
 
   // 参与出价
   handleBid() {
-    wx.navigateTo({
-      url: '/pages/auctionBid/auctionBid?productId=' + this.data.productId + '&money=' + this.data.commonMoney + '&addPrice=' + this.data.list.addPrice + '&image=' + this.data.swiperImg + '&list=' + this.data.list.title + '&auctionOrSale=' + this.data.auctionOrSale + '&openid=' + this.data.openid,
+    if (this.data.isApply) {
+      wx.navigateTo({
+        url: '/pages/auctionBid/auctionBid?productId=' + this.data.productId + '&money=' + this.data.commonMoney + '&addPrice=' + this.data.list.addPrice + '&image=' + this.data.swiperImg + '&list=' + this.data.list.title + '&auctionOrSale=' + this.data.auctionOrSale + '&openid=' + this.data.openid,
+      })
+    } else {
+      wx.showToast({
+        title: '您还没有报名',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+
+  // 是否报名
+  isApply() {
+    wx.request({
+      url: getApp().globalData.baseUrl + 'bep/jglEnroll/selectByOpenidAndProductId',
+      data: {
+        "openid": wx.getStorageSync('openid'),
+        "productid": this.data.productId
+      },
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      method: 'GET',
+      success: (res) => {
+        console.log(res)
+        if (res.data.flag) {
+          this.setData({
+            isApply: true
+          })
+        }
+      }
     })
   },
 
@@ -301,9 +372,11 @@ Page({
           "productId": this.data.productId,
         },
         method: 'POST',
-        success: (res)=>{
+        success: (res) => {
           console.log(res)
-          this.setData({applyState: res.data})
+          this.setData({
+            applyState: res.data
+          })
           console.log(res.data);
           if (res.data.flag) {
             wx.navigateTo({
@@ -317,7 +390,7 @@ Page({
         }
       })
     }
-    
+
   },
 
   // 计算剩余拍卖时间，做倒计时提示
@@ -328,23 +401,27 @@ Page({
 
     if (endTimeList - newTime <= 0) {
       wx.request({
-        url: 'https://jgl.hemajia.net/jgl/bep/jglBid/updateByStatus',
+        url: getApp().globalData.baseUrl + 'bep/jglBid/updateByStatus',
         method: 'POST',
         data: {
           productId: this.data.productId
         },
-        success: (res)=>{
-          if(res.data.flag) {
+        success: (res) => {
+          if (res.data.flag) {
             wx.request({
               url: 'https://jgl.hemajia.net/jgl/bep/jglBid/selectByProductId',
               method: 'POST',
               data: {
                 productId: this.data.productId
               },
-              success: (res)=> {
+              success: (res) => {
                 console.log(res)
-                const {nickname} = res.data.data
-                this.setData({nickname: nickname})
+                const {
+                  nickname
+                } = res.data.data
+                this.setData({
+                  nickname: nickname
+                })
               }
             })
           }
@@ -361,7 +438,7 @@ Page({
   // 点击弹窗栏外部
   toggleDialog() {
     this.setData({
-      showDialog: false 
+      showDialog: false
     });
   }
 })

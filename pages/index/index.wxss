@@ -15,7 +15,7 @@
 
 .w {
   width: 100%;
-  padding: 0 42rpx;
+  padding: 24rpx 42rpx;
   box-sizing: border-box;
   position: absolute;
   z-index: 2;
@@ -203,7 +203,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 22rpx;
+  padding: 0 60rpx;
   box-sizing: border-box;
   border-bottom: 1px solid #eee;
   background: #fff;

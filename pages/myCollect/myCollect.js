@@ -158,14 +158,43 @@ Page({
             },
             method: 'POST',
             success: (res)=> {
-              console.log(res)
+              // console.log(res)
+              this.setData({ifCheckAll: false})
               this.collectList()
             }
           })
         }
       }
     })
-    
+  },
+
+  // 点击商品
+  handleNavigateTo(e) {
+    const {productid, openid} = e.currentTarget.dataset
+    wx.request({
+      url: getApp().globalData.baseUrl + 'product/jglProduct/selectstatusByProductId',
+      data: {
+        productId: productid
+      },
+      method: 'GET',
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      success: (res)=> {
+        console.log(res)
+        if (res.data.message == "商品已经下架") {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.data.message == "还在上架"){
+          wx.navigateTo({
+            url: '/pages/auctionDetails/auctionDetails?auctionOrSale=1&productId=' + productid + '&openid=' + openid
+          })
+        }
+      }
+    })
   }
   
 })

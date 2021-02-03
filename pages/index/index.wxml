@@ -54,9 +54,9 @@
 
       <!-- 导航 -->
       <view class="tab {{isBuy == 1? '' :'tab_border'}}">
-        <view wx:for="{{btns}}" wx:key="key" class="tab_box {{index==active?'actives':''}}" data-index="{{index}}"
+        <view wx:for="{{btns}}" wx:key="index" class="tab_box {{index == active?'actives':''}}" data-index="{{index}}" data-id="{{item.id}}"
           bindtap="toggle">
-          {{item}}
+          {{item.name}}
         </view>
       </view>
 

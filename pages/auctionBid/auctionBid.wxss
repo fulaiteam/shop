@@ -74,10 +74,11 @@ page {
 }
 .bid_title {
   display: flex;
+  align-items: flex-end;
 }
 .bid_font {
   font-size: 25rpx;
-  line-height: 20rpx;
+  line-height: 25rpx;
   margin-right: 42rpx;
 }
 .bid_hint {
@@ -191,7 +192,7 @@ page {
 }
 .windowsBox_container {
   position: fixed;
-  bottom: 400rpx;
+  bottom: 660rpx;
   width: 467rpx;
   height: 301rpx;
   margin-left: 150rpx;

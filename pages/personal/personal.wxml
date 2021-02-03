@@ -94,7 +94,7 @@
                 实名认证
             </view>
         </view>
-        <view style="display:flex" >
+        <view class="bottom_module_right_font">
             <view class="sex">
                {{authentication == 1? '已验证':'未验证'}}
             </view>
@@ -124,7 +124,7 @@
             </view>
           
         </view>
-         <view style="display:flex">
+         <view class="bottom_module_right_font">
             <view class="sex">
                 {{BaseInfo.sex==1? '男':'女'}}
              </view>
@@ -140,8 +140,8 @@
                             更改生日
                         </view>
                     </view>
-                    <view style="display:flex">
-                        <view class="sex" style="width:180rpx" >
+                    <view class="bottom_module_right_font">
+                        <view class="sex">
                             <!-- {{BaseInfo.birthday}} -->
                            <picker  name="birthday"   disabled='{{haveShu}}' bindchange="bindDateChange" mode="date" value="{{date}}" >
                                 <view class="select-title">
@@ -164,8 +164,8 @@
                 绑定手机
             </view>
         </view>
-        <view style="display:flex">
-            <view class="sex" style="width:180rpx">
+        <view  class="bottom_module_right_font">
+            <view class="sex">
                 {{BaseInfo.phone}}
              </view>
         <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>

@@ -20,6 +20,9 @@
       class="collect_info_box {{index == list.length - 1? '.collect_info_last_box': ''}}"
       wx:for="{{list}}"
       wx:key="index"
+      bindtap="handleNavigateTo"
+      data-productid="{{item.productId}}"
+      data-openid="{{item.openid}}"
     >
       <view class="collect_info_smallbox">
         <!-- 收藏商品图片 -->
@@ -41,8 +44,11 @@
               </view>
             </view>
           </view> 
-          <view class="collect_info_price">
+          <view class="collect_info_price" wx:if="{{item.isUpAndDown == 1}}">
             ￥{{item.salePrice}}
+          </view>
+          <view class="collect_info_sold" wx:elif="{{item.isUpAndDown == 2}}">
+            已下架
           </view>
         </view>
         <!-- 多选框 -->
@@ -51,7 +57,7 @@
             class="icon"
             type="success"
             color="{{item.selected? '#FF8D02':'white'}}"
-            size="16"
+            size="38rpx"
             bindtap="changeStatus"
             data-index="{{index}}"
             style="opacity: {{item.selectedOpacity}};"
@@ -72,7 +78,7 @@
     <icon
     type="success"
     color="{{allSelect? '#FF8D02':'white'}}"
-    size="12"
+    size="28rpx"
     bindtap="changeAll"
     wx:if="{{allSelect}}"
     ></icon>

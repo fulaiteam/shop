@@ -46,6 +46,7 @@ Page({
  
 
   data: {
+    lock:false,
     multiArray: [years, months, days, hours, minutes],
     multiIndex: [0, 9, 16, 10, 17],
     choose_year: '',
@@ -114,6 +115,37 @@ wx.getSetting({
   }
 })
 },
+onShow : function() {
+  if(wx.getStorageSync('openid')){
+    getApp().globalData.openid = wx.getStorageSync('openid')
+  }
+  this.typeList()
+  if(!this.data.lock){
+    console.log(this.data.lock, 'onshow判断')
+    wx.showLoading({
+      title: '加载中',
+      success: (res)=> {
+        this.setData({
+          fudong:'',
+          auctionOrSale:1,
+          typeid:'',
+          info:"",
+          baozhengjin:'',
+          xinpin:'',
+          qipai:'', 
+          baoliu:'',
+          Sale:'', 
+          takeTime:'1',
+          title:"",
+          imgpath: [], 
+          img_arr:[], 
+        })
+        wx.hideLoading()
+      }
+    })
+  }
+},
+
 bindMultijieshuPickerChange: function(e) {
   // console.log('picker发送选择改变，携带值为', e.detail.value)
   this.setData({
@@ -287,17 +319,6 @@ bindMultiPickerColumnChange: function(e) {
   data.multiIndex[e.detail.column] = e.detail.value;
   this.setData(data);
 },
-onShow: function () {
-  if(wx.getStorageSync('openid')){
-    getApp().globalData.openid = wx.getStorageSync('openid')
-}
- this.typeList();
-
- if(wx.getStorageSync('openid')){
-  getApp().globalData.openid = wx.getStorageSync('openid')
-}
-//  this.upload()
-},
 //  //  点击开始日期组件确定事件
 //  bindDateStartChange: function (e) {
 //   var that = this;
@@ -389,7 +410,8 @@ Jump:function() {
                  + "&title=" +that.data.title
                  + "&auctionOrSale=" +that.data.auctionOrSale
                  + "&openid=" +getApp().globalData.openid
-                 +"&thumbnail=" + JSON.stringify(imgadds),  //缩略图 1
+                 +"&thumbnail=" + JSON.stringify(imgadds)
+                 + "&productid=" + this.random(),
             
               })
             }
@@ -684,12 +706,19 @@ xinpininput:function(e) {
 //  主图
   getImg: function (e) {
     var _this = this;
+    _this.setData({lock: true})
+    console.log(_this.data.lock, '点击添加图片按钮')
     //选择图片
     wx.chooseImage({
       count: 4, // 默认9，设置图片张数
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
+        _this.setData({
+          lock:true
+        })
+        console.log(_this.data.lock, '选择完图片')
+    
         console.log(res);
      //   // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
        var imgpath=res.tempFilePaths  
@@ -698,7 +727,6 @@ xinpininput:function(e) {
        }) 
        console.log(imgpath)
      for (var i = 0; i < imgpath.length;i++){
-       console.log(1)
        wx.uploadFile({
          url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
          name: 'imgFile',
@@ -712,6 +740,8 @@ xinpininput:function(e) {
            console.log(data);
            imgadds.push(data)
            console.log(imgadds);
+           _this.setData({lock: false})
+           console.log(_this.data.lock, '整个添加图片结束')
          },
        })
      }
@@ -741,6 +771,7 @@ xinpininput:function(e) {
  // 选择商品描述的图片 &&&
  upimg: function (e) {
   var that = this;
+  that.setData({lock: true})
   wx.chooseImage({
    count: 8, // 默认9，设置图片张数
    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -766,13 +797,13 @@ xinpininput:function(e) {
         console.log(data);
         adds.push(data)
         console.log(adds);
+        that.setData({lock: false})
       },
     })
   }
    },
   })
  },
-
 
 })
 

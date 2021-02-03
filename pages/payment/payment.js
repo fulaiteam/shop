@@ -31,7 +31,8 @@ Page({
       signType:'',
       timeStamp:'',
       prepay_id:'',
-      openid:''
+      openid:'',
+      productId: ''
 
   },
   Jump:function() {
@@ -54,7 +55,7 @@ Page({
         thumbnail: that.data.thumbnail[0].url,  //缩略图 1
         title: that.data.title,  //标题
         auctionOrSale:that.data.auctionOrSale,
-
+        productId: that.data.productId
       },
      
       method:'post',
@@ -68,16 +69,13 @@ Page({
           wx.showModal({
             title: '发布成功',
             content: '已成功发布',
+            showCancel: false,
             success: function (res) {
-                if (res.confirm) {
-                    console.log('用户点击确定')
-                    wx.switchTab({
-                      url:"/pages/index/index"
-                    })
-                }else{
-                   console.log('用户点击取消')
-                }
-
+              if (res.confirm) {
+                  wx.switchTab({
+                    url:"/pages/index/index"
+                  })
+              }
             }
         })
         }
@@ -96,7 +94,7 @@ zhifu:function(){
   let that =this;
   wx.request({
     // url:getApp().globalData.baseUrl+ '/jglPay/pay',                                                                                                                                                                                                                                                                           ', 
-    url:'https://jgl.hemajia.net/jgl/pay/jglPay/pay',
+    url:getApp().globalData.baseUrl + 'pay/jglPay/pay',
     data: {
       // kedagai
       openId:getApp().globalData.openid,
@@ -183,6 +181,7 @@ zhifu:function(){
       auctionOrSale :options.auctionOrSale,
       openid:options.openid,
       thumbnail:JSON.parse(options.thumbnail),
+      productId: options.productid
     })
     console.log(this.data.earnestMoney,2222)
     console.log(this.data.endTime,2222)

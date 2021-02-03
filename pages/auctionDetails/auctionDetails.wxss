@@ -291,8 +291,8 @@
   align-items: center;
 }
 .arrows {
-  width: 16rpx;
-  height: 16rpx;
+  width: 8rpx;
+  height: 8rpx;
   border-right: 1px solid #000;
   border-top: 1px solid #000;
   transform: rotate(45deg);

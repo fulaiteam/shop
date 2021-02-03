@@ -125,4 +125,12 @@ Page({
         })
     },
 
+    // 跳转商品详情页
+  handleNavigateTo(e) {
+    const {openid, productid, auctionorsale} = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '/pages/auctionDetails/auctionDetails?auctionOrSale=' + auctionorsale + '&productId=' + productid + '&openid=' + openid,
+    })
+  }
+
 })

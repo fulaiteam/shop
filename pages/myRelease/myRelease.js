@@ -27,6 +27,7 @@ Page({
         'content-type': 'application/json' //query
       },
       success: (res) => {
+        console.log(res)
         const {
           productVOS
         } = res.data.data
@@ -124,6 +125,7 @@ Page({
               'content-type': 'application/json' //query
             },
             success: (res)=> {
+              console.log(res)
               if (res.data.flag) {
                 this.getreleaseList()
               }
@@ -139,4 +141,12 @@ Page({
     var dateee = new Date(x).toJSON();
     return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
+
+  // 跳转商品详情页
+  handleNavigateTo(e) {
+    const {openid, productid, auctionorsale} = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '/pages/auctionDetails/auctionDetails?auctionOrSale=' + auctionorsale + '&productId=' + productid + '&openid=' + openid,
+    })
+  }
 })

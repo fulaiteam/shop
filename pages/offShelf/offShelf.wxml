@@ -1,4 +1,6 @@
 <navbar page-name="已下架的"></navbar>
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+</image>
 <view class='all_grey'>
     <!-- 顶部区域开始 -->
     <view class='top_area'>
@@ -25,7 +27,7 @@
 
                 <!-- 项目顶部区域结束 -->
                 <!-- 项目中间区域开始 -->
-                <view class='shelf_item_middle'>
+                <view class='shelf_item_middle' bindtap="handleNavigateTo" data-openid="{{item.openid}}" data-productid="{{item.productId}}" data-auctionorsale="{{item.auctionOrSale}}">
                     <!-- 项目中间区域左半部分开始 -->
                     <image class='shelf_item_middle_left' src='{{item.thumbnail}}'>
 
@@ -69,6 +71,9 @@
                 <!-- 项目底部区域结束 -->
             </view>
             <!-- 一项下架项目结束 -->
+            <!-- 无商品 -->
+            <view class="shelf_none" wx:if="{{list.length == 0}}">暂无商品</view>
+            <!-- 无商品结束 -->
         </view>
         <!-- 下架项目白色区域结束 -->
     </view>

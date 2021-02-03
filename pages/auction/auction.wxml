@@ -1,160 +1,177 @@
 <navbar page-name="参与拍卖"></navbar>
 <view class='all_grey'>
-<!-- 顶部区域开始 -->
-<view  class='top_area' >
-<!-- 顶部背景图开始 -->
-<image  class='top_yellow_bg'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'  ></image>
-<!-- 顶部背景图结束 -->
-<!-- 拍卖按钮区域开始 -->
-<view  class='auction_top_btn_area' >
-                                                                  <!-- 拍卖中选中的状态 -->
-    <!-- <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/585c4fb9817362b25ec9a97d10ad4eb.png'></image> -->
-                                                                <!-- 已拍下未选中的状态 -->
-    <!-- <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/f3da8322b8c2ec2b3eeafc26027a831.png'></image> -->
-                                                                <!-- 拍卖中未选中的状态 -->
-    <!-- <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/a579b2f75312092ab1dabddbc01807e.png'></image> -->
-                                                                <!-- 已拍下选中的状态 -->
-    <!-- <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/778c1cd2fc939a64a055605f5f55f11.png'></image> -->
-  
-    <view class="auction_top_btn {{show==1?'auction_top_btn_img_one':'auction_top_btn_img_two'}}" bindtap="handlePailistType"  data-index="0">
+    <!-- 顶部区域开始 -->
+    <view class='top_area'>
+        <!-- 顶部背景图开始 -->
+        <image class='top_yellow_bg' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'></image>
+        <!-- 顶部背景图结束 -->
+        <!-- 拍卖按钮区域开始 -->
+        <view class='auction_top_btn_area'>
+            <!-- 拍卖中选中的状态 -->
+            <!-- <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/585c4fb9817362b25ec9a97d10ad4eb.png'></image> -->
+            <!-- 已拍下未选中的状态 -->
+            <!-- <image  class='auction_top_btn'  src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/f3da8322b8c2ec2b3eeafc26027a831.png'></image> -->
+            <!-- 拍卖中未选中的状态 -->
+            <!-- <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/a579b2f75312092ab1dabddbc01807e.png'></image> -->
+            <!-- 已拍下选中的状态 -->
+            <!-- <image  class='auction_top_btn'   src='https://jgl.oss-cn-beijing.aliyuncs.com/sale/778c1cd2fc939a64a055605f5f55f11.png'></image> -->
 
-    </view>
-    <view class="auction_top_btn {{show==0?'auction_top_btn_img_three':'auction_top_btn_img_fore'}}" bindtap="handlePailistType"  data-index="1">
+            <view class="auction_top_btn {{show==1?'auction_top_btn_img_one':'auction_top_btn_img_two'}}"
+                bindtap="handlePailistType" data-index="0">
 
-    </view>
-  
-  
-</view>
-<!-- 拍卖中列表 -->
-<view   class='shelf_allarea' wx:if="{{ show==0}}">
-    <!-- 一项下架项目开始 -->
-    <view class='shelf_item' wx:for='{{auctionList}}' wx:key="index" wx:for-item="item" >
-        <!-- 项目顶部区域开始 -->
-        <view class='shelf_item_top'  >
-            <!-- <image class='shelf_item_top_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/avatar.png' ></image> -->
-            <image class='shelf_item_top_img'   src="{{item.jglUser.headimgurl}}" ></image>
-            <view  class='shelf_item_top_nickname' >
-                {{item.jglUser.nickname}}
             </view>
-            <view  class='shelf_item_top_condition' >
-                拍卖中
+            <view class="auction_top_btn {{show==0?'auction_top_btn_img_three':'auction_top_btn_img_fore'}}"
+                bindtap="handlePailistType" data-index="1">
+
             </view>
+
+
         </view>
-        <!-- 项目顶部区域结束 -->
-        <!-- 项目中间区域开始 -->
-        <view class='shelf_item_middle'  >
-            <!-- 项目中间区域左半部分开始 -->
-            <image class='shelf_item_middle_left'   src="{{item.enrollProductVO.thumbnail}}" >
-                
-    
-            </image >
-            <!-- 项目中间区域左半部分结束 -->
-            <!-- 项目中间区域右半部分开始 -->
-            <view class='shelf_item_middle_right' >
-                <!-- 项目中间区域右半部分标题开始 -->
-                <view class='shelf_item_middle_right_title'  >
-                    {{item.enrollProductVO.title}}
+        <!-- 拍卖中列表 -->
+        <view class='shelf_allarea' wx:if="{{ show==0}}">
+            <!-- 一项下架项目开始 -->
+            <view wx:if="{{auctionList.length > 0}}">
+                <view class='shelf_item' wx:for='{{auctionList}}' wx:key="index" wx:for-item="item">
+                    <!-- 项目顶部区域开始 -->
+                    <view class='shelf_item_top'>
+                        <!-- <image class='shelf_item_top_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/avatar.png' ></image> -->
+                        <image class='shelf_item_top_img' src="{{item.jglUser.headimgurl}}"></image>
+                        <view class='shelf_item_top_nickname'>
+                            {{item.jglUser.nickname}}
+                        </view>
+                        <view class='shelf_item_top_condition'>
+                            拍卖中
+                        </view>
+                    </view>
+                    <!-- 项目顶部区域结束 -->
+                    <!-- 项目中间区域开始 -->
+                    <view class='shelf_item_middle' bindtap="handleAuctionNavigateTo"
+                        data-openid="{{item.enrollProductVO.openid}}"
+                        data-productid="{{item.enrollProductVO.productId}}">
+                        <!-- 项目中间区域左半部分开始 -->
+                        <image class='shelf_item_middle_left' src="{{item.enrollProductVO.thumbnail}}">
+
+
+                        </image>
+                        <!-- 项目中间区域左半部分结束 -->
+                        <!-- 项目中间区域右半部分开始 -->
+                        <view class='shelf_item_middle_right'>
+                            <!-- 项目中间区域右半部分标题开始 -->
+                            <view class='shelf_item_middle_right_title'>
+                                {{item.enrollProductVO.title}}
+                            </view>
+                            <!-- 项目中间区域右半部分标题结束 -->
+                            <!-- 项目中间区域右半部分参数开始 -->
+                            <view class='shelf_item_middle_right_param'>
+                                <!-- <view class='shelf_item_middle_right_param_item'  >
+                            曝光
+                        </view> -->
+                                <view class='shelf_item_middle_right_param_item'>
+                                    <!-- {{item.want}} -->
+                                    想买
+                                </view>
+                                <view class='shelf_item_middle_right_param_item'>
+                                    浏览 {{item.enrollProductVO.pv}}
+
+                                </view>
+                            </view>
+                            <!-- 项目中间区域右半部分参数结束 -->
+                            <!-- 项目中间区域右半部分价格开始 -->
+                            <view class='shelf_item_middle_right_param_price'>
+                                ￥{{item.enrollProductVO.price}}
+                            </view>
+                            <!-- 项目中间区域右半部分价格结束 -->
+                            <view class="shelf_item_bottom_btn" data-gid="{{item.enrollProductVO.productId}}"
+                                bindtap="jump">
+                                查看详情
+                            </view>
+                        </view>
+                        <!-- 项目中间区域右半部分结束 -->
+                    </view>
+                    <!-- 项目中间区域结束 -->
                 </view>
-                <!-- 项目中间区域右半部分标题结束 -->
-                <!-- 项目中间区域右半部分参数开始 -->
-                <view class='shelf_item_middle_right_param'  >
-                    <!-- <view class='shelf_item_middle_right_param_item'  >
-                        曝光
+            </view>
+            <!-- 无商品 -->
+            <view class="shelf_none" wx:else>暂无商品</view>
+            <!-- 无商品结束 -->
+            <!-- 一项下架项目结束 -->
+        </view>
+        <!-- 拍卖按钮区域结束 -->
+        <!-- 下架项目白色区域开始 -->
+        <!-- 以拍下列表 -->
+        <view class='shelf_allarea' wx:if="{{ show==1}}">
+            <!-- 一项下架项目开始 -->
+            <view wx:if="{{picture.length > 0}}">
+                <view class='shelf_item' wx:for='{{picture}}' wx:key="index" wx:for-item="item">
+                    <!-- 项目顶部区域开始 -->
+                    <view class='shelf_item_top'>
+                        <!-- <image class='shelf_item_top_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/avatar.png' ></image> -->
+                        <image class='shelf_item_top_img' src="{{item.jglUser.headimgurl}}"></image>
+
+                        <view class='shelf_item_top_nickname'>
+                            {{item.jglUser.nickname}}
+                        </view>
+                        <view class='shelf_item_top_condition'>
+                            已拍下
+                        </view>
+                    </view>
+                    <!-- 项目顶部区域结束 -->
+                    <!-- 项目中间区域开始 -->
+                    <view class='shelf_item_middle' bindtap="handleGetNavigateTo"
+                        data-openid="{{item.enrollProductVO.openid}}"
+                        data-productid="{{item.enrollProductVO.productId}}">
+                        <!-- 项目中间区域左半部分开始 -->
+                        <!-- <image class='shelf_item_middle_left'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/helmet.png' > -->
+                        <image class='shelf_item_middle_left' src="{{item.enrollProductVO.thumbnail}}">
+
+                        </image>
+                        <!-- 项目中间区域左半部分结束 -->
+                        <!-- 项目中间区域右半部分开始 -->
+                        <view class='shelf_item_middle_right'>
+                            <!-- 项目中间区域右半部分标题开始 -->
+                            <view class='shelf_item_middle_right_title'>
+                                {{item.enrollProductVO.title}}
+                            </view>
+                            <!-- 项目中间区域右半部分标题结束 -->
+                            <!-- 项目中间区域右半部分参数开始 -->
+                            <view class='shelf_item_middle_right_param'>
+                                <!-- <view class='shelf_item_middle_right_param_item'  >
+                        曝光 111
                     </view> -->
-                    <view class='shelf_item_middle_right_param_item'  >
-                        <!-- {{item.want}} -->
-                        想买
+                                <view class='shelf_item_middle_right_param_item'>
+                                    想买 11
+                                </view>
+                                <view class='shelf_item_middle_right_param_item'>
+                                    {{item.enrollProductVO.pv}}
+                                </view>
+                            </view>
+                            <!-- 项目中间区域右半部分参数结束 -->
+                            <!-- 项目中间区域右半部分价格开始 -->
+                            <view class='shelf_item_middle_right_param_price'>
+                                ￥{{item.enrollProductVO.price}}
+                            </view>
+                            <!-- 项目中间区域右半部分价格结束 -->
+                            <view class="shelf_item_bottom_btn" data-gid="{{item.enrollProductVO.productId}}"
+                                bindtap="jump">
+                                查看详情
+                            </view>
+                        </view>
+                        <!-- 项目中间区域右半部分结束 -->
                     </view>
-                    <view class='shelf_item_middle_right_param_item'  >
-                        浏览 {{item.enrollProductVO.pv}}
-
-                    </view>
+                    <!-- 项目中间区域结束 -->
                 </view>
-                <!-- 项目中间区域右半部分参数结束 -->
-                <!-- 项目中间区域右半部分价格开始 -->
-                <view class='shelf_item_middle_right_param_price'  >
-                    ￥{{item.enrollProductVO.price}}
-                </view>
-                <!-- 项目中间区域右半部分价格结束 -->
-                <view  class="shelf_item_bottom_btn" data-gid="{{item.enrollProductVO.productId}}" bindtap="jump">
-                    查看详情
-                </view>
-            </view >
-            <!-- 项目中间区域右半部分结束 -->
+            </view>
+            <!-- 无商品 -->
+            <view class="shelf_none" wx:else>暂无商品</view>
+            <!-- 无商品结束 -->
+            <!-- 一项下架项目结束 -->
         </view>
-        <!-- 项目中间区域结束 -->
-    </view>
-    <!-- 一项下架项目结束 -->
-    </view>
-<!-- 拍卖按钮区域结束 -->
-<!-- 下架项目白色区域开始 -->
-<!-- 以拍下列表 -->
-<view   class='shelf_allarea' wx:if="{{ show==1}}">
-<!-- 一项下架项目开始 -->
-<view class='shelf_item' wx:for='{{picture}}' wx:key="index" wx:for-item="item" >
-    <!-- 项目顶部区域开始 -->
-    <view class='shelf_item_top'  >
-        <!-- <image class='shelf_item_top_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/avatar.png' ></image> -->
-        <image class='shelf_item_top_img'   src="{{item.jglUser.headimgurl}}" ></image>
 
-        <view  class='shelf_item_top_nickname' >
-            {{item.jglUser.nickname}}
-        </view>
-        <view  class='shelf_item_top_condition' >
-            已拍下
-        </view>
+        <!-- 下架项目白色区域结束 -->
     </view>
-    <!-- 项目顶部区域结束 -->
-    <!-- 项目中间区域开始 -->
-    <view class='shelf_item_middle'  >
-        <!-- 项目中间区域左半部分开始 -->
-        <!-- <image class='shelf_item_middle_left'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/helmet.png' > -->
-            <image class='shelf_item_middle_left'   src="{{item.enrollProductVO.thumbnail}}" >
-
-        </image >
-        <!-- 项目中间区域左半部分结束 -->
-        <!-- 项目中间区域右半部分开始 -->
-        <view class='shelf_item_middle_right' >
-            <!-- 项目中间区域右半部分标题开始 -->
-            <view class='shelf_item_middle_right_title'  >
-                {{item.enrollProductVO.title}}
-            </view>
-            <!-- 项目中间区域右半部分标题结束 -->
-            <!-- 项目中间区域右半部分参数开始 -->
-            <view class='shelf_item_middle_right_param'  >
-                <!-- <view class='shelf_item_middle_right_param_item'  >
-                    曝光 111
-                </view> -->
-                <view class='shelf_item_middle_right_param_item'  >
-                    想买 11
-                </view>
-                <view class='shelf_item_middle_right_param_item'  >
-                    {{item.enrollProductVO.pv}}
-                </view>
-            </view>
-            <!-- 项目中间区域右半部分参数结束 -->
-            <!-- 项目中间区域右半部分价格开始 -->
-            <view class='shelf_item_middle_right_param_price'  >
-                ￥{{item.enrollProductVO.price}}
-            </view>
-            <!-- 项目中间区域右半部分价格结束 -->
-            <view  class="shelf_item_bottom_btn" data-gid="{{item.enrollProductVO.productId}}" bindtap="jump">
-                查看详情
-            </view>
-        </view >
-        <!-- 项目中间区域右半部分结束 -->
-    </view>
-    <!-- 项目中间区域结束 -->
-</view>
-<!-- 一项下架项目结束 -->
-</view>
-<!-- 下架项目白色区域结束 -->
-</view>
-<!-- 顶部区域结束 -->
+    <!-- 顶部区域结束 -->
 
 
 
 
 </view>
-
-

@@ -14,6 +14,7 @@ Page({
     isAuction: 0, // 拍卖列表与售卖列表切换，0 - 拍卖列表 ，1 - 售卖列表
     isBuy: 1, // 拍卖列表立即购买与即将开拍切换，1 - 立即购买 ，2 - 即将开拍
     active: 0, // 拍卖列表控制导航栏商品类别
+    activeId: '', // 渲染的商品类别 4为全部分类
     // 倒计时 - 各商品结束时间
     actEndTimeList: [],
     sellActive: 0, // 售卖列表控制导航栏商品类别
@@ -31,7 +32,7 @@ Page({
     jiage: '价格排序  ',
     chanpin: '产品类型  ',
     indicatorDots: true, //轮播图的点
-    btns: ["全部", "机车", "头盔", "配件", "改装保养"],
+    btns: [], // 商品分类
     cons: ["dataList", "RP", "AE", "C4D"],
     // 拍卖商品条数
     auctionTotal: 0,
@@ -56,59 +57,70 @@ Page({
     zIndexFlag: 1, //控制层叠
   },
 
-  onLoad() {
-    this.getAuctionList();
-    this.getSlideShow();
-    this.countDown();
-  },
   onShow: function () {
     if(wx.getStorageSync('openid')){
       getApp().globalData.openid = wx.getStorageSync('openid')
     }
+    wx.showLoading({
+      title: '加载中',
+      success: (res)=> {
+        this.getSlideShow();
+        this.getAuctionCategory();
+        this.getAuctionList();
+        this.countDown();
+        wx.hideLoading()
+      }
+    })
   },
 
   // 请求首页拍卖列表数据
   getAuctionList() {
-    wx.request({
-      url: getApp().globalData.baseUrl + 'product/jglAuction/selectHomeAuction',
-      data: {
-        "query": {
-          "auctionTime": this.data.isBuy,
-          "category": this.data.active ? this.data.active : '',
-        }
-      },
-      method: 'POST',
-      success: (res) => {
-        console.log(res)
-        const {
-          rows,
-          total
-        } = res.data.data
-
-        let endTimeList = [];
-        let priceList = [];
-        // 将活动的结束时间参数提成一个单独的数组，方便操作
-        rows.forEach(o => {
-          endTimeList.push(o.endTime)
-          if (o.maxPrice) {
-            priceList.push(o.maxPrice)
-          } else {
-            priceList.push(o.startPrice)
+    wx.showLoading({
+      title: '加载中',
+      success: (res)=> {
+        wx.request({
+          url: getApp().globalData.baseUrl + 'product/jglAuction/selectHomeAuction',
+          data: {
+            "query": {
+              "auctionTime": this.data.isBuy,
+              "category": this.data.activeId == '4'? '': this.data.activeId,
+            }
+          },
+          method: 'POST',
+          success: (res) => {
+            console.log(res)
+            const {
+              rows,
+              total
+            } = res.data.data
+    
+            let endTimeList = [];
+            let priceList = [];
+            // 将活动的结束时间参数提成一个单独的数组，方便操作
+            rows.forEach(o => {
+              endTimeList.push(o.endTime)
+              if (o.maxPrice) {
+                priceList.push(o.maxPrice)
+              } else {
+                priceList.push(o.startPrice)
+              }
+            })
+            let endTimeList2 = endTimeList.map(x => {
+              // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
+              return this.renderTime(x)
+            })
+            let priceList2 = priceList.map(x => {
+              return this.miliFormat(x)
+            })
+    
+            this.setData({
+              auctionDataList: rows,
+              auctionTotal: total,
+              actEndTimeList: endTimeList2,
+              auctionPrice: priceList2
+            })
+            wx.hideLoading()
           }
-        })
-        let endTimeList2 = endTimeList.map(x => {
-          // 将数据中的结束时间格式转化为 普通时间格式 - 便于后续倒计时把时间格式直接转化为 毫秒 
-          return this.renderTime(x)
-        })
-        let priceList2 = priceList.map(x => {
-          return this.miliFormat(x)
-        })
-
-        this.setData({
-          auctionDataList: rows,
-          auctionTotal: total,
-          actEndTimeList: endTimeList2,
-          auctionPrice: priceList2
         })
       }
     })
@@ -116,37 +128,43 @@ Page({
 
   // 请求首页售卖列表数据
   getSellList() {
-    wx.request({
-      url: getApp().globalData.baseUrl + 'product/jglSell/selectHomeSell',
-      data: {
-        "query": {
-          "category": this.data.sellActive ? this.data.sellActive : '',
-          "heat": this.data.tableHeat ? this.data.tableHeat : '',
-          "startPrice": this.data.priceSection[0],
-          "endPrice": this.data.priceSection[1] === undefined ? '' : this.data.priceSection[1],
-          "openid": wx.getStorageSync('openid')
-        }
-      },
-      method: 'POST',
-      success: (res) => {
-        console.log(res)
-        const {
-          rows,
-          total
-        } = res.data.data
-
-        let priceList = [];
-        rows.forEach(o => {
-          priceList.push(o.salePrice)
-        })
-        let priceList2 = priceList.map(x => {
-          return this.miliFormat(x)
-        })
-
-        this.setData({
-          sellDataList: rows,
-          sellTotal: total,
-          sellPrice: priceList2
+    wx.showLoading({
+      title: '加载中',
+      success: (res)=> {
+        wx.request({
+          url: getApp().globalData.baseUrl + 'product/jglSell/selectHomeSell',
+          data: {
+            "query": {
+              "category": this.data.sellActive ? this.data.sellActive : '',
+              "heat": this.data.tableHeat ? this.data.tableHeat : '',
+              "startPrice": this.data.priceSection[0],
+              "endPrice": this.data.priceSection[1] === undefined ? '' : this.data.priceSection[1],
+              "openid": wx.getStorageSync('openid')
+            }
+          },
+          method: 'POST',
+          success: (res) => {
+            console.log(res)
+            const {
+              rows,
+              total
+            } = res.data.data
+    
+            let priceList = [];
+            rows.forEach(o => {
+              priceList.push(o.salePrice)
+            })
+            let priceList2 = priceList.map(x => {
+              return this.miliFormat(x)
+            })
+    
+            this.setData({
+              sellDataList: rows,
+              sellTotal: total,
+              sellPrice: priceList2
+            })
+            wx.hideLoading()
+          }
         })
       }
     })
@@ -154,16 +172,37 @@ Page({
 
   // 请求首页轮播图
   getSlideShow() {
-    wx.request({
-      url: getApp().globalData.baseUrl + 'order/jglOtationChart/selectOtationChart',
-      method: 'POST',
-      success: (res) => {
-        const {
-          data
-        } = res.data
-        this.setData({
-          slideShowList: data
+    wx.showLoading({
+      title: '加载中',
+      success: (res)=> {
+        wx.request({
+          url: getApp().globalData.baseUrl + 'order/jglOtationChart/selectOtationChart',
+          method: 'POST',
+          success: (res) => {
+            const {
+              data
+            } = res.data
+            this.setData({
+              slideShowList: data
+            })
+            wx.hideLoading()
+          }
         })
+      }
+    })
+  },
+
+  // 请求拍卖商品的分类
+  getAuctionCategory() {
+    wx.request({
+      url: getApp().globalData.baseUrl + 'product/jglClassify/selectClassify',
+      method: 'GET',
+      success: (res)=> {
+        console.log(res)
+        const {data, flag} = res.data
+        if (flag) {
+          this.setData({btns: data})
+        }
       }
     })
   },
@@ -453,6 +492,7 @@ Page({
     this.setData({
       //设置active的值为用户点击按钮的索引值
       active: e.currentTarget.dataset.index,
+      activeId: e.currentTarget.dataset.id
     })
     // 请求拍卖列表中类别变更数据
     this.getAuctionList()

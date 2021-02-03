@@ -1,4 +1,6 @@
 <navbar page-name="我发布的"></navbar>
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+</image>
 <view class='all_grey'>
     <!-- 顶部背景区域结束 -->
     <!-- 发布产品区域开始 -->
@@ -19,7 +21,7 @@
             <view class='my_release_item' wx:for='{{releaseList}}' wx:key='index'
                 style="padding-bottom: {{paddingValue}};">
                 <!-- 项目中间区域开始 -->
-                <view class='shelf_item_middle'>
+                <view class='shelf_item_middle' bindtap="handleNavigateTo" data-openid="{{item.openid}}" data-productid="{{item.productId}}" data-auctionorsale="{{item.auctionOrSale}}">
                     <!-- 项目中间区域左半部分开始 -->
                     <image class='shelf_item_middle_left' src='{{item.thumbnail}}'>
 
@@ -52,10 +54,8 @@
                         </view>
                         <!-- 项目中间区域右半部分价格结束 -->
 
-                        <view class='shelf_item_middle_right_param_btn'>
-                            编辑
-                        </view>
-                        <view class='shelf_item_middle_right_param_btn' bindtap="handleSoldOut"
+                        
+                        <view class='shelf_item_middle_right_param_btn' catchtap="handleSoldOut"
                             data-productid="{{item.productId}}">
                             下架
                         </view>

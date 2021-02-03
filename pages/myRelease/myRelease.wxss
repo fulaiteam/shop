@@ -2,6 +2,14 @@ page {
     height: 100% ;
     background: #EEEEEE;
 }
+.top_img {
+  z-index: -1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 417rpx;
+}
 .all_grey{
     width:100%;
     overflow: hidden;
@@ -29,7 +37,7 @@ page {
 .my_release_area{
     position: absolute;
     left:39rpx;
-    top:58rpx;
+    top:222rpx;
     padding-bottom:129rpx;
     z-index: 5;
     width:671rpx;
@@ -39,7 +47,7 @@ page {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding-bottom: 40rpx;
+    padding-bottom: 52rpx;
     box-sizing: border-box;
   }
   .my_release_table_box {
@@ -57,9 +65,9 @@ page {
     font-size: 26rpx;
     color: #FF7F7F;
     background: #fff;
-    border: 2rpx solid #FF7F7F;
     border-radius: 20rpx 0 0 20rpx;
     margin-right: 4rpx;
+    border: 2rpx solid #FF7F7F;
   }
   .my_release_table_word_sell{
     display: flex;
@@ -72,13 +80,13 @@ page {
     font-size: 28rpx;
     color: #FF7F7F;
     background: #fff;
-    border: 2rpx solid #FF7F7F;
     border-radius: 0 20rpx 20rpx 0;
+    border: 2rpx solid #FF7F7F;
   }
   .my_release_table_word_pitch {
     color: #fff;
     background: #FF7F7F;
-    border: 2rpx solid #FF7F7F;
+    
   }
 .my_release_item{
     position: relative;

@@ -145,7 +145,7 @@ Page({
             var that = this;
             wx.request({
             // 请求用户地址列表
-            url: getApp().globalData.baseUrl + '/user/jglUser/selectByOpenid',
+            url: getApp().globalData.baseUrl + 'user/jglUser/selectByOpenid',
             header: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },

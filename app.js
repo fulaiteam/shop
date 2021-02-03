@@ -9,25 +9,21 @@ App({
      //baseUrl:'http://192.168.3.40:8080'
     //  baseUrl:'http://192.168.3.75:10010/jgl/'
     // baseUrl:'http://192.168.3.70:10010/jgl/'
-    baseUrl:'https://jgl.hemajia.net/jgl/'
-
+    // baseUrl:'https://jgl.hemajia.net/jgl/'
+    baseUrl:'http://jgltest.hemajia.net/jgl/'
   },
   onLaunch: function () {
 
     // 胶囊的信息
     let menuButtonObject = wx.getMenuButtonBoundingClientRect();
-    console.log(menuButtonObject)
     wx.getSystemInfo({
       
       success: res => {
-        console.log(res)
         //导航高度
         // 状态栏的高度
         let statusBarHeight = res.statusBarHeight
-        console.log(statusBarHeight)
         let navTop = menuButtonObject.top
-        let navHeight = (statusBarHeight + menuButtonObject.height+ (navTop - statusBarHeight)*2);
-        console.log(navHeight)
+        let navHeight = statusBarHeight + menuButtonObject.height+ (navTop - statusBarHeight)*2;
         this.globalData.navHeight = navHeight;
         this.globalData.navTop = navTop;
         this.globalData.windowHeight = res.windowHeight;

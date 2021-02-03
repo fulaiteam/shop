@@ -11,9 +11,9 @@
     height:485rpx;
 }
 .top_yellow_bg{
-    z-index: 2;
+    z-index: -1;
     width:100%;
-    position: absolute;
+    position: fixed;
     left:0;
     top:0;
     height:485rpx;
@@ -23,18 +23,20 @@
     width:100%;
     position: absolute;
     left:40rpx;
-    top:109rpx;
+    top:36rpx;
     width:674rpx;
     height:462rpx;
     background:#FFFFFF;
+    border-radius: 20rpx;
 }
 .bottom_white_area{
-    margin:153rpx auto 0rpx;
+    margin:56rpx auto 0rpx;
     box-sizing: border-box;
     padding-top:34rpx;
     width:671rpx;
     height:802rpx;
     background:#FFFFFF;
+    border-radius: 20rpx;
 }
 .top_white_area_img{
     display: block;

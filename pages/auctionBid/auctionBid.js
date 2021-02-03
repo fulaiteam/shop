@@ -122,13 +122,17 @@ Page({
     this.setData({
       showDialog: false 
     });
-    wx.navigateTo({
-      url: '/pages/auctionDetails/auctionDetails?auctionOrSale=' + this.data.auctionOrSale + '&productId=' + this.data.productId + '&openid=' + this.data.openid,
+    wx.navigateBack({
+      delta: 1,
     })
+    // ({
+    //   url: '/pages/auctionDetails/auctionDetails?auctionOrSale=' + this.data.auctionOrSale + '&productId=' + this.data.productId + '&openid=' + this.data.openid,
+    // })
   },
 
   // 千分位分割 - 整、小数混合
   miliFormat(num) {  
     return num && num.toString().replace(/(^|\s)\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
   },
+
 })

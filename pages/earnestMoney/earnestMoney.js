@@ -39,7 +39,7 @@ Page({
 
   handlePay() {
     wx.request({
-      url: 'https://jgl.hemajia.net/jgl/pay/jglPay/pay',
+      url: getApp().globalData.baseUrl + 'pay/jglPay/pay',
       data: {
         openId: wx.getStorageSync('openid'),
         money: this.data.earnestMoney,
@@ -63,17 +63,11 @@ Page({
             success: (o)=>{
               // console.log(res)
               if (o.errMsg == 'requestPayment:ok') {
+                this.setData({isPay: 2})
                 wx.showToast({
                   title: '报名成功',
                   icon: 'none',
                   duration: 2000,
-                  success: (res) => {
-                    setTimeout((
-                      wx.reLaunch({
-                        url: '/pages/auctionDetails/auctionDetails?auctionOrSale=0＆productId＝' + this.data.productId + '&openid=' + this.data.openid
-                      })
-                    ), 2000);
-                  }
                 })
               }
             }
@@ -86,7 +80,10 @@ Page({
   // 支付成功后的返回
   handleBack() {
     wx.navigateBack({
-      delta: 1
+      delta: 1,
     })
+    // ({
+    //   url: "/pages/auctionDetails/auctionDetails?auctionOrSale=0&openid=" + this.data.openid + "&productId=" + this.data.productId
+    // })
   }
 })
