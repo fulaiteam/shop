@@ -27,29 +27,34 @@
     </view>
     <!-- 标题 -->
     <view class="tab">
-      <view class="one" wx:if="{{isAuction == 0}}"></view>
-      <view class="two" wx:elif="{{isAuction == 1}}"></view>
+      <view class="one" wx:if="{{isAuction == 1}}"></view>
+      <view class="two" wx:elif="{{isAuction == 0}}"></view>
       <view class="tab_btn">
-        <view class="tab_btn_red" bindtap="show" data-index="0">
-          拍卖宝贝
-        </view>
-        <view class="tab_btn_gray" bindtap="show" data-index="1">
+        <view class="tab_btn_red" bindtap="show" data-index="1">
           售卖宝贝
+        </view>
+        <view class="tab_btn_gray" bindtap="show" data-index="0">
+          拍卖宝贝
         </view>
       </view>
     </view>
     <!-- 宝贝列表 -->
     <view class="list_box">
-      <!-- wx：for绑定数组 -->
-      <view wx:for="{{dataList.productVOS}}" wx:key="index" class="array">
-        <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{item.auctionOrSale}}&productId={{item.productId}}&openid={{item.openid}}">
-          <image src="{{item.thumbnail}}"></image>
-          <view class="array_list_title">{{item.title}}</view>
-          <view class="array_list_price_box">
-            <view class="array_list_price">￥{{item.price}}</view>
-            <view class="array_list_time" wx:if="{{isAuction == 0}}">剩余{{objTime[index].hou}}:{{objTime[index].min}}:{{objTime[index].sec}}</view>
-          </view>
-        </navigator>
+      <view class="list_box_exist" wx:if="{{dataList.productVOS.length > 0}}">
+        <!-- wx：for绑定数组 -->
+        <view wx:for="{{dataList.productVOS}}" wx:key="index" class="array">
+          <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{item.auctionOrSale}}&productId={{item.productId}}&openid={{item.openid}}">
+            <image src="{{item.thumbnail}}" mode="aspectFill"></image>
+            <view class="array_list_title">{{item.title}}</view>
+            <view class="array_list_price_box">
+              <view class="array_list_price">￥{{item.price}}</view>
+              <view class="array_list_time" wx:if="{{isAuction == 0}}">剩余{{objTime[index].hou}}:{{objTime[index].min}}:{{objTime[index].sec}}</view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+      <view class="list_box_font" wx:if="{{dataList.productVOS.length <= 0}}">
+        暂无商品
       </view>
     </view>
   </view>

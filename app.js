@@ -10,7 +10,7 @@ App({
     //  baseUrl:'http://192.168.3.75:10010/jgl/'
     // baseUrl:'http://192.168.3.70:10010/jgl/'
     // baseUrl:'https://jgl.hemajia.net/jgl/'
-    baseUrl:'http://jgltest.hemajia.net/jgl/'
+    baseUrl:'https://jgltest.hemajia.net/jgl/'
   },
   onLaunch: function () {
 

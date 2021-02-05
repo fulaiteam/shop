@@ -1,4 +1,6 @@
 <navbar page-name="{{title}}"></navbar>
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png"></image>
 <!-- 拍卖商品详情 -->
 <view class="auction_details">
   <!-- 拍卖商品头部 -->
@@ -50,8 +52,9 @@
         <!-- 围观 -->
         <view class="auction_circusee">
           <text>围观</text>
-          <text wx:if="{{list.pv <= 10000}}">{{list.pv}} 次</text>
+          <text wx:if="{{list.pv <= 10000 && list.pv != null}}">{{list.pv}} 次</text>
           <text wx:elif="{{list.pv > 10000}}">10000+ 次</text>
+          <text wx:elif="{{!list.pv}}">0 次</text>
         </view>
       </view>
       <!-- 价格 -->
@@ -67,20 +70,20 @@
         </view>
       </view>
       <!-- 购买记录 -->
-      <view class="auction_buy_record"  wx:if="{{auctionOrSale == 1}}">
-        <!-- 月购 -->
-        <view class="auction_buy_box_buy">
-          <text>月购</text>
-          <text>22人</text>
-        </view>
+      <view class="auction_cir"  wx:if="{{auctionOrSale == 1}}">
+
         <!-- 收藏 -->
-        <view class="auction_buy_box_collect">
+        <view class="auction_apply">
           <text>收藏</text>
-          <text>{{list.collectCount}}人</text>
+          <text wx:if="{{list.collectCount <= 10000}}">{{list.collectCount}} 人</text>
+          <text wx:elif="{{list.collectCount > 10000}}">10000+ 人</text>
         </view>
-        <view class="auction_buy_box_circusee">
+        <!-- 围观 -->
+        <view class="auction_circusee">
           <text>围观</text>
-          <text>{{list.pv}}次</text>
+          <text wx:if="{{list.pv <= 10000 && list.pv != null}}">{{list.pv}} 次</text>
+          <text wx:elif="{{list.pv > 10000}}">10000+ 次</text>
+          <text wx:elif="{{!list.pv}}">0 次</text>
         </view>
       </view>
     </view>
@@ -225,16 +228,9 @@
     <!-- 推荐 -->
     <view class="store_recommend">
       <!-- 横杠 -->
-      <view class="store_bar {{isTable == 1? 'store_pitch_goods' : ''}}"></view>
+      <view class="store_bar {{isTable == 0? 'store_pitch_goods' : ''}}"></view>
       <!-- table栏 -->
       <view class="store_table">
-        <view
-          class="store_table_goods store_table_goods_one"
-          bindtap="handleClick"
-          data-index="0"
-        >
-          拍卖宝贝
-        </view>
         <view
           class="store_table_goods store_table_goods_two"
           bindtap="handleClick"
@@ -242,33 +238,50 @@
         >
           售卖宝贝
         </view>
+        <view
+          class="store_table_goods store_table_goods_one"
+          bindtap="handleClick"
+          data-index="0"
+        >
+          拍卖宝贝
+        </view>
       </view>
       <!-- 拍卖宝贝列表 -->
       <view class="store_goods_list" wx:if="isTable == 0">
-        <view class="store_goods_info" wx:for="{{userInfo.productUserActionVOS}}" wx:key="index">
-          <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{item.auctionOrSale}}&productId={{item.productId}}&openid={{item.openid}}">
-            <view class="store_goods_img">
-              <image src="{{item.thumbnail}}" mode="aspectFit"></image>
-            </view>
-            <view class="store_goods_info_box">
-              <view class="store_goods_info_title">{{item.title}}</view>
-              <view class="store_goods_info_price">¥{{item.startPrice}}</view>
-            </view>
-          </navigator>
+        <view class="store_goods_list_box" wx:if="{{userInfo.productUserActionVOS.length > 0}}">
+          <view class="store_goods_info" wx:for="{{userInfo.productUserActionVOS}}" wx:key="index">
+            <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{item.auctionOrSale}}&productId={{item.productId}}&openid={{item.openid}}">
+              <view class="store_goods_img">
+                <image src="{{item.thumbnail}}" mode="aspectFill"></image>
+              </view>
+              <view class="store_goods_info_box">
+                <view class="store_goods_info_title">{{item.title}}</view>
+                <view class="store_goods_info_price">¥{{item.startPrice}}</view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+        <view class="store_goods_list_font" wx:if="{{userInfo.productUserActionVOS.length <= 0}}">
+          暂无商品
         </view>
       </view>
       <!-- 售卖宝贝列表 -->
       <view class="store_goods_list" wx:if="isTable == 1">
-        <view class="store_goods_info" wx:for="{{userInfo.productUserSellVOS}}" wx:key="index">
-          <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{item.auctionOrSale}}&productId={{item.productId}}&openid={{item.openid}}">
-            <view class="store_goods_img">
-              <image src="{{item.thumbnail}}" mode="aspectFit"></image>
-            </view>
-            <view class="store_goods_info_box">
-              <view class="store_goods_info_title">{{item.title}}</view>
-              <view class="store_goods_info_price">¥{{item.salePrice}}</view>
-            </view>
-          </navigator>
+        <view class="store_goods_list_box" wx:if="{{userInfo.productUserSellVOS.length > 0}}">
+          <view class="store_goods_info" wx:for="{{userInfo.productUserSellVOS}}" wx:key="index">
+            <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{item.auctionOrSale}}&productId={{item.productId}}&openid={{item.openid}}">
+              <view class="store_goods_img">
+                <image src="{{item.thumbnail}}" mode="aspectFill"></image>
+              </view>
+              <view class="store_goods_info_box">
+                <view class="store_goods_info_title">{{item.title}}</view>
+                <view class="store_goods_info_price">¥{{item.salePrice}}</view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+        <view class="store_goods_list_font" wx:if="{{userInfo.productUserSellVOS.length <= 0}}">
+          暂无商品
         </view>
       </view>
     </view>
@@ -300,7 +313,7 @@
       </view>
     </view>
     <view class="auction_info_img" wx:for="{{list.descriptionPictureVOS}}" wx:key="index">
-      <image src="{{item.url}}"></image>
+      <image src="{{item.url}}" mode="widthFix"></image>
     </view>
   </view>
   <!-- 商品描述结束 -->
@@ -340,7 +353,7 @@
     </view>
     <view class="auction_recommend_goods">
       <navigator url="/pages/auctionDetails/auctionDetails?auctionOrSale={{rectangleGood.auctionOrSale}}&productId={{rectangleGood.productId}}&openid={{rectangleGood.openid}}">
-        <image src="{{rectangleGood.thumbnail}}" class="auction_recommend_goods_img"></image>
+        <image src="{{rectangleGood.thumbnail}}" class="auction_recommend_goods_img" mode="aspectFill"></image>
         <view class="auction_recommend_goods_box">
           <view class="auction_recommend_goods_title">
             {{rectangleGood.title}}
@@ -349,8 +362,9 @@
           <view class="auction_recommend_browse_data">
             <view class="auction_recommend_browse">
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/auctionDetails/%E6%B5%8F%E8%A7%88.png"></image>
-              <text wx:if="{{rectangleGood.pv <= 10000}}">{{rectangleGood.pv}}</text>
+              <text wx:if="{{rectangleGood.pv <= 10000 && rectangleGood.pv != null}}">{{rectangleGood.pv}}</text>
               <text wx:elif="{{rectangleGood.pv > 10000}}">10000+</text>
+              <text wx:elif="{{!rectangleGood.pv}}">0 次</text>
             </view>
             <view class="auction_recommend_browse_update_font" wx:if="{{rectangleGood.collectCount <= 10000}}">{{rectangleGood.collectCount}} 收藏</view>
             <view class="auction_recommend_browse_update_font" wx:elif="{{rectangleGood.collectCount > 10000}}">10000+ 收藏</view>
@@ -364,13 +378,16 @@
 </view>
 <!-- 参与出价 -->
 <view class="bottom_bid" wx:if="{{auctionOrSale == 0}}">
-  <view class="bid_btn bid_btn_gray" wx:if="{{buy == 2}}">参与出价</view>
-  <view class="bid_btn" bindtap="handleBid" wx:else>参与出价</view>
+  <view class="bid_btn bid_btn_gray" wx:if="{{buy == 2 && !auctionEnd}}">参与出价</view>
+  <view class="bid_btn" bindtap="handleBid" wx:elif="{{buy == 1 && !auctionEnd}}">参与出价</view>
+  <view class="bid_btn" wx:elif="{{auctionEnd}}" bindtap="headlePhone">宝主电话</view>
   
 </view>
 <view class="bottom_bid_relation"  wx:if="{{auctionOrSale == 1}}">
-  <view class="bottom_bid_relation_box bottom_bid_relation_shop">联系宝主</view>
-  <view class="bottom_bid_relation_box bottom_bid_relation_collect">收藏</view>
+  <view class="bottom_bid_relation_box bottom_bid_relation_shop" bindtap="headlePhone" >联系宝主</view>
+  <view class="bottom_bid_relation_box bottom_bid_relation_collect" bindtap="headleCollect" data-index="2" wx:if="{{collect == '2'}}">收藏</view>
+  <view class="bottom_bid_relation_box bottom_bid_relation_offollect" bindtap="headleCollect" data-index="1" wx:elif="{{collect == '1'}}">取消收藏</view>
+  
 </view>
 <!-- 报名悬浮球 -->
 <view class="apply_ball"  wx:if="{{auctionOrSale == 0}}" bindtap="handleApply">去报名</view>

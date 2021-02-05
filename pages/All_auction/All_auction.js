@@ -7,7 +7,7 @@ Page({
   data: {
     // 发布商品人的openid
     openid: '',
-    isAuction: 0,  // 0 - 拍卖 ， 1 - 售卖
+    isAuction: 1,  // 0 - 拍卖 ， 1 - 售卖
     dataList: {productVOS: []},     // 页面数据
     actEndTimeList: [],  // 倒计时 - 各商品结束时间
     auctionPrice: [],  // 拍卖价格商品价格 - 千位分割
@@ -25,7 +25,7 @@ Page({
     
   },
 
-  onShow() {
+  onShow(e) {
     this.countDown();
   },
 
@@ -73,7 +73,7 @@ Page({
   // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx
   renderTime(x) {
     var dateee = new Date(x).toJSON();
-    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/-/g, '/').replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
   //小于10的格式化函数
   timeFormat(param) {
@@ -122,9 +122,19 @@ Page({
   },
 
   show: function (e) {
-    this.setData({
-      isAuction: e.currentTarget.dataset.index
-    })
-    this.getData()
+    if (e.currentTarget.dataset.index == 1) {
+      this.setData({
+        isAuction: e.currentTarget.dataset.index
+      })
+      this.getData()
+    } else {
+      wx.showToast({
+        title: '该功能暂未开放',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    
+    
   },
 })

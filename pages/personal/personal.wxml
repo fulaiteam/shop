@@ -11,13 +11,13 @@
         <view  class="top_white_function_area" >
             <view  class="top_white_function_item"   wx:for='{{top_arr}}'  wx:key='index'  data-path='{{item.path}}'  bindtap='toPage'   wx:for-item="item"  >
                 <view class="top_white_function_item_num flex_center" wx:if="{{item.text=='我发布的' }}" >
-                        {{BaseInfo.releaseCount}}
+                        {{BaseInfo.releaseCount? BaseInfo.releaseCount: 0}}
                 </view>
                 <view class="top_white_function_item_num flex_center" wx:elif="{{item.text=='已下架的' }}" >
-                    {{BaseInfo.offTheShelfCount}}
+                    {{BaseInfo.offTheShelfCount? BaseInfo.offTheShelfCount: 0}}
                 </view>
                 <view class="top_white_function_item_num flex_center" wx:elif="{{item.text=='收藏'}}" >
-                    {{BaseInfo.collectCount}}
+                    {{BaseInfo.collectCount? BaseInfo.collectCount: 0}}
                 </view>
 
                 <view   class="top_white_function_item_text flex_center" >
@@ -104,17 +104,17 @@
 
     </view>
     <!-- 实名认证结束 -->
-        <!-- 更改昵称 -->
-        <!-- <view  class='bottom_module_item'       >
-            <view  class='bottom_module_item_left' >
-                <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/change_name.png'  ></image>
-                <view  class='bottom_module_item_left_text' >
-                    更改昵称
-                </view>
+    <!-- 更改昵称 -->
+    <!-- <view  class='bottom_module_item'       >
+        <view  class='bottom_module_item_left' >
+            <image  class='bottom_module_item_left_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/change_name.png'  ></image>
+            <view  class='bottom_module_item_left_text' >
+                更改昵称
             </view>
-            <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
-        </view> -->
-        <!-- 更改昵称结束 -->
+        </view>
+        <image  class='bottom_module_item_right' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/click_more.png'  ></image>
+    </view> -->
+    <!-- 更改昵称结束 -->
             <!-- 更改性别 -->
     <view  class='bottom_module_item'       >
         <view  class='bottom_module_item_left' >
@@ -143,7 +143,7 @@
                     <view class="bottom_module_right_font">
                         <view class="sex">
                             <!-- {{BaseInfo.birthday}} -->
-                           <picker  name="birthday"   disabled='{{haveShu}}' bindchange="bindDateChange" mode="date" value="{{date}}" >
+                           <picker  name="birthday" bindchange="bindDateChange" mode="date" value="{{date}}" wx:if="{{isOpenid}}">
                                 <view class="select-title">
                                     <!-- end="2018-12-31" -->
                                      <!-- {{BaseInfo.birthday==null? '请选择':'BaseInfo.birthday'}} -->

@@ -11,7 +11,7 @@ Page({
     sellDataList: [],
     // 售卖价格商品价格 - 千位分割
     sellPrice: [],
-    isAuction: 0, // 拍卖列表与售卖列表切换，0 - 拍卖列表 ，1 - 售卖列表
+    isAuction: 1, // 拍卖列表与售卖列表切换，0 - 拍卖列表 ，1 - 售卖列表
     isBuy: 1, // 拍卖列表立即购买与即将开拍切换，1 - 立即购买 ，2 - 即将开拍
     active: 0, // 拍卖列表控制导航栏商品类别
     activeId: '', // 渲染的商品类别 4为全部分类
@@ -67,6 +67,7 @@ Page({
         this.getSlideShow();
         this.getAuctionCategory();
         this.getAuctionList();
+        this.getSellList();
         this.countDown();
         wx.hideLoading()
       }
@@ -144,7 +145,6 @@ Page({
           },
           method: 'POST',
           success: (res) => {
-            console.log(res)
             const {
               rows,
               total
@@ -210,7 +210,8 @@ Page({
   // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx
   renderTime(x) {
     var dateee = new Date(x).toJSON();
-    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+    console.log(dateee)
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/-/g, '/').replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
   //小于10的格式化函数
   timeFormat(param) {
@@ -269,12 +270,18 @@ Page({
     })
   },
 
+  // 切换拍卖售卖列表
   handlePailistType(e) {
-    this.setData({
-      isAuction: e.currentTarget.dataset.index
-    })
-    if (e.currentTarget.dataset.index == 1 && this.data.sellDataList.length <= 0) {
-      this.getSellList()
+    if (e.currentTarget.dataset.index == 1) {
+      this.setData({
+        isAuction: e.currentTarget.dataset.index
+      })
+    } else {
+      wx.showToast({
+        title: '该功能暂未开放',
+        icon: 'none',
+        duration: 2000
+      })
     }
   },
 
@@ -524,14 +531,24 @@ Page({
   // 售卖商品跳转
   handleToSellDetails(e) {
     const {openid, productid} = e.currentTarget.dataset
+    console.log(openid, productid)
     if (getApp().globalData.openid) {
       wx.navigateTo({
-        url: '/pages/auctionDetails/auctionDetails?auctionOrSale=1&productId=' + productid + '&openid=' + openid
+        url: "/pages/auctionDetails/auctionDetails?auctionOrSale=1&productId=" + productid + "&openid=" + openid
       })
     } else {
-
-      wx.navigateTo({
-        url: '/pages/login_phone/login_phone'
+      wx.showToast({
+        title: '请授权登录！',
+        icon: 'none',
+        duration: 1500,
+        success: ()=> {
+     //定时器，未授权1.5秒后跳转授权页面
+        setTimeout(()=> {
+          wx.navigateTo({
+            url: '/pages/login_phone/login_phone'
+          })
+         }, 1500);
+        }
       })
     }
   }

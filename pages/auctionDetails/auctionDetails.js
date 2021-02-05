@@ -16,7 +16,7 @@ Page({
     // 推荐商品数据
     rectangleGood: {},
     // table栏选中
-    isTable: 0,
+    isTable: 1,
     // 商品类型： 0 拍卖商品 ， 1 售卖商品
     auctionOrSale: '',
     // 商品id
@@ -41,7 +41,7 @@ Page({
     byTotal: 0,
     // 保留价提示切换
     hint: false,
-    // 正在拍卖或即将开始
+    // 正在拍卖或即将开始 1 - 正在拍卖 2 - 即将开拍 
     buy: '',
     // 导航栏标题
     title: '',
@@ -52,7 +52,11 @@ Page({
     // 中标人昵称
     nickname: '',
     // 是否报名
-    isApply: false
+    isApply: false,
+    // 店主电话
+    phone: '',
+    // 是否收藏
+    collect: '2'
   },
 
   /**
@@ -99,10 +103,10 @@ Page({
         this.getListId()
         // 发送店主数据请求
         this.getUser()
-        // 推荐商品请求
-        this.getRectangleGood()
         // 是否报名
         this.isApply()
+        // 是否报名
+        this.isCollect()
         wx.hideLoading()
       }
     })
@@ -141,6 +145,26 @@ Page({
           category: data.category,
           timeList: TimeList2,
           swiperImg: swiperImg,
+        })
+        // 推荐商品数据
+        wx.request({
+          url: getApp().globalData.baseUrl + 'product/jglProduct/selectDetailRecommendProduct',
+          data: {
+            category: this.data.category
+          },
+          method: "get",
+          header: {
+            "content-type": "application/x-www-form-urlencoded"
+          },
+          success: (res) => {
+            console.log(res)
+            const {
+              data
+            } = res.data
+            this.setData({
+              rectangleGood: data
+            })
+          }
         })
 
         // 判断拍卖页当前价是否为最高价，有就是最高价，没有就是起拍价
@@ -222,7 +246,7 @@ Page({
           let objDay = "bidRecord[" + index + "].objDay"
           let objTime = "bidRecord[" + index + "].objTime"
           this.setData({
-            [objDay]: TimeList2[index].replace(/-/, "."),
+            [objDay]: TimeList2[index],
             [objTime]: TimeList3[index]
           })
         })
@@ -241,40 +265,23 @@ Page({
       },
       method: 'POST',
       success: (res) => {
-        // console.log(res)
+        console.log(res)
         const {
           data
         } = res.data
         this.setData({
           userInfo: data,
-          status: data.status
+          status: data.status,
+          phone: data.phone
         })
       }
     })
   },
 
   // 推荐商品数据
-  getRectangleGood() {
-    wx.request({
-      url: getApp().globalData.baseUrl + 'product/jglProduct/selectDetailRecommendProduct',
-      data: {
-        category: this.data.category
-      },
-      method: "get",
-      header: {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      success: (res) => {
-        // console.log(res)
-        const {
-          data
-        } = res.data
-        this.setData({
-          rectangleGood: data
-        })
-      }
-    })
-  },
+  // getRectangleGood() {
+  //   console.log(this.data.category)
+  // },
 
   // 商品轮播图全屏显示
   handleFullScreen(e) {
@@ -283,6 +290,24 @@ Page({
     wx.previewImage({
       current: e.currentTarget.dataset.image, // 当前显示图片的http链接
       urls: this.data.swiperImg // 需要预览的图片http链接列表
+    })
+  },
+
+  // 是否收藏
+  isCollect() {
+    wx.request({
+      url: getApp().globalData.baseUrl + 'product/jglCollection/selectIsCollection',
+      data: {
+        openid: getApp().globalData.openid,
+        productId: this.data.productId
+      },
+      method: 'POST',
+      success: (res)=> {
+        console.log(res)
+        if (res.data.flag) {
+          this.setData({collect: res.data.data})
+        }
+      }
     })
   },
 
@@ -301,7 +326,7 @@ Page({
   // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx
   renderTime(x) {
     var dateee = new Date(x).toJSON();
-    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/-/g, '/').replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
 
   // 切换拍卖宝贝和售卖宝贝栏
@@ -440,5 +465,46 @@ Page({
     this.setData({
       showDialog: false
     });
+  },
+
+  // 拨打宝主电话
+  headlePhone() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone,
+      success: (res)=> {
+        console.log("成功拨打电话")
+      },
+    })
+  },
+
+  // 收藏按钮
+  headleCollect(e) {
+    const {index} = e.currentTarget.dataset    
+    wx.request({
+      url: getApp().globalData.baseUrl + 'product/jglCollection/clickCollect',
+      data: {
+        "openid": wx.getStorageSync('openid'),
+        "productId": this.data.productId
+      },
+      method: 'POST',
+      success: (res)=>{
+        console.log(res)
+        if (index == 2 && res.data.message == '收藏成功') {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 2000
+          })
+          this.setData({collect: '1'})
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 2000
+          })
+          this.setData({collect: '2'})
+        }
+      }
+    })
   }
 })

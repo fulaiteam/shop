@@ -1,13 +1,13 @@
 const app = getApp();
 Page({
   data: {
-    tabar: '0',
+    tabar: '1',
     releaseList: [], // 发布商品的数据
     actEndTimeList: [], // 商品结束毫秒集合
     actStartTimeList: [], // 商品开始毫秒集合
     normEndTimeList: [], // 商品标准结束时间集合
     normStartTimeList: [], // 商品标准开始时间集合
-    paddingValue: '74rpx'
+    paddingValue: '0rpx'
   },
 
   onLoad() {
@@ -95,13 +95,18 @@ Page({
 
   // 拍卖售卖切换
   handleTabar(e) {
-    this.setData({
-      tabar: e.currentTarget.dataset.index
-    })
-    if (this.data.tabar == '0') {
-      this.setData ({paddingValue: '74rpx'})
-    } else if (this.data.tabar == '1') {
-      this.setData ({paddingValue: 'none'})
+    if (e.currentTarget.dataset.index == '1') {
+      this.setData({
+        tabar: e.currentTarget.dataset.index,
+        paddingValue: 'none'
+      })
+    } else {
+      wx.showToast({
+        title: '该功能暂未开放',
+        icon: 'none',
+        duration: 2000
+      })
+      // this.setData ({paddingValue: '74rpx'})
     }
     this.getreleaseList()
   },
@@ -139,7 +144,7 @@ Page({
   // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx
   renderTime(x) {
     var dateee = new Date(x).toJSON();
-    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/-/g, '/').replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
 
   // 跳转商品详情页

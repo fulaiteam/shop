@@ -34,7 +34,7 @@
   <view class="shop_title shangchuan_title">
     <text class="shangchuan_title_text">商品自述</text>
     <textarea class="areas" name="info"  value='{{info}}'  bindinput="infoinput"
-    placeholder-class="input-placeholder" placeholder='详细描述商品的购买详情、使用情况及出售原因 能够更快的出售商品哟～'> 
+    placeholder-class="input-placeholder" placeholder='详细描述商品的购买详情、使用情况及出售原因 能够更快的出售商品哟～' maxlength="-1"> 
   </textarea>
   </view>
   <!-- 商品照片 -->
@@ -82,11 +82,11 @@ style="width:114rpx;margin-top: 18rpx;"
           placeholder="￥0.00" bindinput="Saleinput"
           style="width:400rpx;margin-top: 20rpx;flex: 1"/>   
          <view class="radio">
-          <view class="radio_xuanze">
+          <!-- <view class="radio_xuanze">
             <view class="xuanze_orage"  wx:if="{{!show}}" bindtap="show"></view>
             <view class="xuanze_white"  wx:else="{{isshow}}" bindtap="isshow"></view>
             拍卖
-          </view>
+          </view> -->
           <view class="radio_no">
             <view class="no_orage" wx:if="{{shoumai}}" bindtap="shoumai"></view>
             <view class="no_white" wx:else="{{!isshoumai}}" bindtap="isshoumai"></view>

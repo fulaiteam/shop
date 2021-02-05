@@ -1,6 +1,6 @@
 Page({
     data: {
-        tabar: '0',
+        tabar: '1',
         list: [],
         userinfo: '',
     },
@@ -12,9 +12,17 @@ Page({
 
     // 拍卖售卖切换
     handleTabar(e) {
-        this.setData({
-          tabar: e.currentTarget.dataset.index
-        })
+        if (e.currentTarget.dataset.index == '1') {
+            this.setData({
+                tabar: e.currentTarget.dataset.index
+            })
+          } else {
+            wx.showToast({
+              title: '该功能暂未开放',
+              icon: 'none',
+              duration: 2000
+            })
+          }
         this.selectByList()
     },
 

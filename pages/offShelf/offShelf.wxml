@@ -7,10 +7,10 @@
         <!-- 切换栏 -->
         <view class="my_release_table">
             <view class="my_release_table_box">
-                <view class="my_release_table_word_auction {{tabar == 0? 'my_release_table_word_pitch': ''}}"
-                    bindtap="handleTabar" data-index="0"><text>拍卖</text> </view>
                 <view class="my_release_table_word_sell {{tabar == 1? 'my_release_table_word_pitch': ''}}"
                     bindtap="handleTabar" data-index="1"><text>售卖</text></view>
+                <view class="my_release_table_word_auction {{tabar == 0? 'my_release_table_word_pitch': ''}}"
+                    bindtap="handleTabar" data-index="0"><text>拍卖</text> </view>
             </view>
         </view>
         <!-- 下架项目白色区域开始 -->
@@ -29,7 +29,7 @@
                 <!-- 项目中间区域开始 -->
                 <view class='shelf_item_middle' bindtap="handleNavigateTo" data-openid="{{item.openid}}" data-productid="{{item.productId}}" data-auctionorsale="{{item.auctionOrSale}}">
                     <!-- 项目中间区域左半部分开始 -->
-                    <image class='shelf_item_middle_left' src='{{item.thumbnail}}'>
+                    <image class='shelf_item_middle_left' src='{{item.thumbnail}}' mode="aspectFill">
 
                     </image>
                     <!-- 项目中间区域左半部分结束 -->

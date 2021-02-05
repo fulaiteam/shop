@@ -21,7 +21,7 @@
       <block wx:for="{{slideShowList}}" wx:key="index">
         <swiper-item>
           <navigator>
-            <image src="{{item.imgUrl}}" class="swiper_img" mode="aspectFit"></image>
+            <image src="{{item.imgUrl}}" class="swiper_img" mode="aspectFill"></image>
           </navigator>
         </swiper-item>
       </block>
@@ -71,7 +71,7 @@
             data-index="{{index}}"
           >
             <view class='img'>
-              <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
+              <image src="{{item.thumbnail}}" mode="aspectFill" lazy-load="true" />
             </view>
             <view class='info'>
               <view class='title'>{{item.title}}</view>
@@ -176,8 +176,8 @@
             <view class="list_box_current">当前选择：</view>
             <view class="list_box_line">
               <view class="list_one {{form_num === index? 'list_one_click': ''}}" wx:for="{{btns}}" wx:key="index"
-                catchtap="myselect" data-name="{{item}}" data-index="{{index}}">
-                {{item}}
+                catchtap="myselect" data-name="{{item.name}}" data-index="{{index}}">
+                {{item.name}}
               </view>
             </view>
           </view>
@@ -193,7 +193,7 @@
             data-productId="{{item.productId}}"
             data-openid="{{item.openid}}"
           >
-            <image src="{{item.thumbnail}}" mode="scaleToFill" lazy-load="true" />
+            <image src="{{item.thumbnail}}" mode="aspectFill" lazy-load="true" />
             <view class='info'>
               <view class='title'>{{item.title}}</view>
               <view class="info_price">

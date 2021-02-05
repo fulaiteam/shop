@@ -7,7 +7,7 @@ Page({
         birthday: '',
         date: "请选择",
         havephone:false,
-        
+        isOpenid: false,
        
         top_arr: [
             {
@@ -62,24 +62,26 @@ Page({
         console.log(e.detail.query)
     },
     onShow: function () {
-        console.log(getApp().globalData.openid,3333)
         if(wx.getStorageSync('openid')){
             getApp().globalData.openid = wx.getStorageSync('openid')
             this.getUserInfoByOpenid()
+            this.setData({isOpenid: true})
+        } else {
+            this.setData({isOpenid: false})
         }
     },
     bindDateChange: function (event) {
         let that =this;
         this.setData({
-          date: event.detail.value,
-          birthday:event.detail.value
+            date: event.detail.value,
+            birthday:event.detail.value
         })
         wx.request({
             // 请求用户地址列表
             url: getApp().globalData.baseUrl + '/user/jglUser/updateUser',
             header: {
                 'content-type': 'application/json' // 默认值
-              },
+            },
             method: 'post',
             data: {
                 openid: wx.getStorageSync('openid'),
@@ -90,31 +92,59 @@ Page({
             }
         })
         console.log(event.detail.value);
-    
       },
     toPage: function (e) {
-        var path = e.currentTarget.dataset.path;
-        wx.navigateTo({
-            url: path
-        })
+        if (wx.getStorageSync('openid')) {
+            var path = e.currentTarget.dataset.path;
+            wx.navigateTo({
+                url: path
+            })
+        } else {
+            wx.showToast({
+              title: '请先登录',
+              icon: 'none',
+              duration: 2000
+            })
+        }
     },
     toConfirmName :function(){
-       if(this.data.authentication==0) {
-        wx.navigateTo({
-            url: '/pages/confirmName/confirmName'
-        })
-       } else {
-        wx.showToast({
-            title: '已认证',
-            icon: 'success',
-            duration: 2000
-           })
-       }
+        if (wx.getStorageSync('openid')) {
+            if(this.data.authentication==0) {
+                wx.navigateTo({
+                    url: '/pages/confirmName/confirmName'
+                })
+            } else {
+            wx.showToast({
+                title: '已认证',
+                icon: 'success',
+                duration: 2000
+                })
+            }
+        } else {
+            wx.showToast({
+              title: '请先登录',
+              icon: 'none',
+              duration: 2000
+            })
+        }
     },
     toAuction :function(){
-        wx.navigateTo({
-            url: '/pages/auction/auction'
-        })
+        if (wx.getStorageSync('openid')) {
+            wx.showToast({
+                title: '该功能暂未开放',
+                icon: 'none',
+                duration: 2000
+              })
+            // wx.navigateTo({
+            //     url: '/pages/auction/auction'
+            // })
+        } else {
+            wx.showToast({
+              title: '请先登录',
+              icon: 'none',
+              duration: 2000
+            })
+        }
     },
     toService:function(){
         wx.navigateTo({

@@ -37,12 +37,11 @@ page {
     width: 210rpx;
     height: 52rpx;
     box-sizing: border-box;
-    font-size: 26rpx;
+    font-size: 28rpx;
     color: #FF7F7F;
     background: #fff;
+    border-radius: 0 20rpx 20rpx 0;
     border: 2rpx solid #FF7F7F;
-    border-radius: 20rpx 0 0 20rpx;
-    margin-right: 4rpx;
   }
   .my_release_table_word_sell{
     display: flex;
@@ -52,11 +51,12 @@ page {
     width: 210rpx;
     height: 52rpx;
     box-sizing: border-box;
-    font-size: 28rpx;
+    font-size: 26rpx;
     color: #FF7F7F;
     background: #fff;
-    border-radius: 0 20rpx 20rpx 0;
     border: 2rpx solid #FF7F7F;
+    border-radius: 20rpx 0 0 20rpx;
+    margin-right: 4rpx;
   }
   .my_release_table_word_pitch {
     color: #fff;
@@ -131,7 +131,9 @@ page {
 }
 .shelf_item_middle_right_title{
     width: 314rpx;
-    font-size: 25rpx;
+    height: 68rpx;
+    line-height: 34rpx;
+    font-size: 28rpx;
     font-family: Source Han Sans CN;
     font-weight: 400;
     color: #333333;
@@ -151,14 +153,14 @@ page {
 }
 .shelf_item_middle_right_param_item{
     line-height: 16rpx;
-    font-size: 17rpx;
+    font-size: 22rpx;
     margin-right:35rpx;
     font-family: Source Han Sans CN;
     font-weight: 400;
     color: #999999;
 }
 .shelf_item_middle_right_param_price{
-    margin-top:78rpx;
+    margin-top:42rpx;
     float: right;
     margin-right:34rpx;
     font-size: 33rpx;

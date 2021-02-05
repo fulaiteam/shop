@@ -99,7 +99,8 @@ page {
 .collect_info_title {
   width: 314rpx;
   height: 66rpx;
-  font-size: 25rpx;
+  line-height: 34rpx;
+  font-size: 28rpx;
   color: #333333;
   margin-top: 10rpx;
   overflow: hidden;
@@ -124,7 +125,7 @@ page {
   margin-right: 5rpx;
 }
 .collect_info_browse text {
-  font-size: 21rpx;
+  font-size: 24rpx;
   color: #5E5E5E;
 }
 .collect_info_like {
@@ -133,16 +134,16 @@ page {
   align-items: center;
 }
 .collect_info_like image {
-  width: 21rpx;
-  height: 21rpx;
+  width: 22rpx;
+  height: 22rpx;
   margin-right: 15rpx;
 }
 .collect_info_like text {
-  font-size: 21rpx;
+  font-size: 24rpx;
   color: #5E5E5E;
 }
 .collect_info_price {
-  font-size: 22rpx;
+  font-size: 24rpx;
   color: #FF7F7F;
   margin-bottom: 10rpx;
 }
