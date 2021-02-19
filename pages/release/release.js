@@ -74,7 +74,11 @@ typelist:[1,2,3,4],  //类型数据
 typeName:'',   //商品类型的选中变量   
 typeid:'',//商品类型的选中id   
 takeTime:'1',  //延迟周期
-
+placeholder_title: '商品标题、品牌型号可以帮助搜索',
+placeholder_info: '详细描述商品的购买详情、使用情况及出售原因 能够更快的出售商品哟～',
+placeholder_sellPrice: '0.00',
+placeholder_newPrice: '0.00',
+price_bottom: 0,
 },
 onLoad: function () {
  //设置默认的年份
@@ -592,7 +596,16 @@ listenerActionSheet:function() {
 titleinput:function(e) {
   this.setData({
     title:e.detail.value,
-   
+  })
+},
+inp_focus:function() {
+  this.setData({
+    placeholder_title: ''
+  })
+},
+inp_focusx:function() {
+  this.setData({
+    placeholder_title: '商品标题、品牌型号可以帮助搜索'
   })
 },
 
@@ -600,9 +613,19 @@ titleinput:function(e) {
 infoinput:function(e) {
   this.setData({
     info:e.detail.value,
-   
   })
 },
+info_focus:function() {
+  this.setData({
+    placeholder_info: ''
+  })
+},
+info_focusx:function() {
+  this.setData({
+    placeholder_info: '详细描述商品的购买详情、使用情况及出售原因 能够更快的出售商品哟～'
+  })
+},
+
 // 赋值表单的起拍价
 qipaiinput:function(e) {
   this.setData({
@@ -696,6 +719,20 @@ Sale:e.detail.value,
 })
 
 },
+price_focus: function(e) {
+  let height = e.detail.height;
+  this.setData({
+    placeholder_sellPrice: '',
+    price_bottom: height
+  })
+},
+price_focusx: function(e) {
+  this.setData({
+    placeholder_sellPrice: '0.00',
+    price_bottom: 0
+  })
+},
+
 // 获取新品加
 xinpininput:function(e) {
   this.setData({
@@ -703,6 +740,17 @@ xinpininput:function(e) {
   })
   console.log(e.detail.value);
   },
+  newPrice_focus: function() {
+    this.setData({
+      placeholder_newPrice: ''
+    })
+  },
+  newPrice_focusx: function() {
+    this.setData({
+      placeholder_newPrice: '0.00'
+    })
+  },
+
 //  主图
   getImg: function (e) {
     var _this = this;

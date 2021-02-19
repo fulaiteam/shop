@@ -22,6 +22,7 @@ font-weight: 400;
 color: #1E1E1E;
 }
 .header {
+  padding-top: 16rpx;
   height: 250rpx;
   background-color: #fff;
   border-radius: 10rpx 10rpx 0 0;
@@ -57,19 +58,19 @@ margin: auto;
   display: flex;
   line-height: 63rpx;
   border-bottom:8rpx solid #eee;
-  display: flex;
   align-items: center;
+  padding: 0 20rpx 0 31rpx;
+  box-sizing: border-box;
 }
 .shangchuan_title_text {
   width: 150rpx;
-margin-left: 31rpx;
   font-size: 25rpx;
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #1E1E1E;
 }
 .shangchuan_title .weui-input {
-  width: 360rpx;
+  flex: 1;
   height: 26rpx;
   font-size: 24rpx;
   font-family: Source Han Sans CN;
@@ -83,7 +84,7 @@ margin-left: 31rpx;
   margin: 0 auto;
   display: flex;
 align-items: center;
-padding: 60rpx 0;
+padding: 60rpx 20rpx 60rpx 31rpx;
 box-sizing: border-box;
 }
 .areas{
@@ -188,7 +189,7 @@ margin-bottom:2px
 }
 .typelist {
   
-font-size: 21rpx;
+font-size: 24rpx;
 font-family: Source Han Sans CN;
 font-weight: 400;
 color: #666666;
@@ -351,9 +352,7 @@ color: #232220;
 }
 .radio {
   display: flex;
-width: 400rpx;
-flex: 2;
-padding-left:157rpx;
+  align-items: center;
 justify-content: flex-end;
 margin-right: 73rpx;
 }
@@ -391,7 +390,7 @@ margin-top: 23rpx;
   background-color: #FFA325;
 border: 1rpx solid #FFA325;
 border-radius: 50%;
-margin-top: 23rpx;
+margin-top: 28rpx;
 margin-left:15rpx;
 }
 .no_white {
