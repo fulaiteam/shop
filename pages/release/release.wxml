@@ -1,8 +1,11 @@
 <navbar page-name="商品发布" show-nav="{{false}}"></navbar>
 <view class="content">
+  <view class="tab_head">
+    <view class="release_btn {{isAuction == 0? 'btn_click': ''}}" bindtap="handleBtn" data-index="0">发布</view>
+    <view class="buy_btn {{isAuction == 1? 'btn_click': ''}}" bindtap="handleBtn" data-index="1">求购</view>
+  </view>
   <!-- 发布信息 -->
-
-  <view class="shop_shangchuan">
+  <view class="shop_shangchuan" wx:if="{{isAuction == 0}}">
     <view class="header">
       <!-- 上传 -->
       <text class="shop_shangchuan_text">上传主图</text>
@@ -262,5 +265,59 @@
 
   </view>
 
+  <!-- 求购信息 -->
+  <view class="shop_ask_buy" wx:elif="{{isAuction == 1}}">
+    <view class="shop_ask_buy_top">
+      <!-- 标题 -->
+      <view class="shop_ask_buy_top_titile">
+        <view class="shop_ask_buy_top_titile_font">标题</view>
+        <view class="shop_ask_buy_top_titile_content">
+          <input type="text" class="shop_ask_buy_top_titile_content_input" placeholder="{{buy_placeholder_title}}" placeholder-style="color: rgb(179, 179, 179)"/>
+        </view>
+      </view>
+      <!-- 商品备注 -->
+      <view class="shop_ask_buy_top_remark">
+        <view class="shop_ask_buy_top_remark_font">商品备注</view>
+        <view class="shop_ask_buy_top_remark_content">
+          <textarea class="shop_ask_buy_top_titile_content_textarea" placeholder="{{buy_placeholder_info}}"  placeholder-style="color: rgb(179, 179, 179)" maxlength="-1"></textarea>
+        </view>
+      </view>
+    </view>
+    <view class="shop_ask_buy_center">
+      <!-- 预算 -->
+      <view class="shop_ask_buy_center_budget">
+        <view class="shop_ask_buy_center_budget_font">预算</view>
+        <view class="shop_ask_buy_center_budget_content">
+          <view class="shop_ask_buy_center_budget_content_price">
+            <view class="shop_ask_buy_center_budget_content_price_font">最低价</view>
+            <input type="text" class="shop_ask_buy_center_budget_content_price_input"/>
+          </view>
+          <view class="shop_ask_buy_center_budget_content_box"></view>
+          <view class="shop_ask_buy_center_budget_content_price">
+            <view class="shop_ask_buy_center_budget_content_price_font">最高价</view>
+            <input type="text" class="shop_ask_buy_center_budget_content_price_input"/>
+          </view>
+        </view>
+      </view>
+      <!-- 商品类型 -->
+      <view class="shop_ask_buy_center_type">
+        <view class="shop_ask_buy_center_type_font">商品类型</view>
+        <view class="shop_ask_buy_center_type_content">
+          <view class="shop_ask_buy_center_type_content_btn" bindtap="actionSheetTap"> 选择 ></view>
+          <action-sheet hidden="{{actionSheet}}" bindchange="type_buy">
+            <block wx:for="{{3}}" wx:key="index">
+              <action-sheet-item>
+                <view class="typelist">头盔</view>
+              </action-sheet-item>
+            </block>
+            <action-sheet-item class="typelist">取消</action-sheet-item>
+          </action-sheet>
+        </view>
+      </view>
+    </view>
+    <view class="btn" bindtap="shopJump">
+      确定提交
+    </view>
+  </view>
 
 </view>

@@ -1,0 +1,12 @@
+<navbar page-name="搜索"></navbar>
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png"></image>
+<!-- 主题内容 -->
+<view class="search_box">
+  <view class="search_box_top">
+    <view class="search_box_top_box">
+      <image src='https://jgl.oss-cn-beijing.aliyuncs.com/seach.png' class='search_box_top_box_icon'></image>
+      <input class='search_box_top_box_input' value="{{searchInput}}" placeholder="大家都在搜" placeholder-style="color: rgb(179, 179, 179)"/>
+    </view>
+  </view>
+</view>

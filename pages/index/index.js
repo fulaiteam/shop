@@ -488,11 +488,8 @@ Page({
     }
   },
 
-  //获取输入框的内容
-  getInputContent: function (e) {
-    this.setData({
-      searchInput: e.detail.value
-    })
+  clickSeach() {
+    
   },
 
   toggle: function (e) {

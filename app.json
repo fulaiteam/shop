@@ -24,7 +24,8 @@
     "pages/share/share",
     "pages/bidRecord/bidRecord",
     "pages/payment/payment",
-    "pages/user_info/user_info"
+    "pages/user_info/user_info",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

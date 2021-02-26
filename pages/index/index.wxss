@@ -54,7 +54,7 @@
   font-size: 19rpx;
   font-family: Aktiv Grotesk CNSG;
   font-weight: 400;
-  border-radius: 15rpx;
+  border-radius: 25rpx;
   color: rgba(173, 171, 170, 1);
 }
 

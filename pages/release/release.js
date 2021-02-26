@@ -46,6 +46,7 @@ Page({
  
 
   data: {
+    isAuction: 0,  // 发布和求购切换
     lock:false,
     multiArray: [years, months, days, hours, minutes],
     multiIndex: [0, 9, 16, 10, 17],
@@ -79,6 +80,12 @@ placeholder_info: '详细描述商品的购买详情、使用情况及出售原�
 placeholder_sellPrice: '0.00',
 placeholder_newPrice: '0.00',
 price_bottom: 0,
+
+
+buy_placeholder_title: '商品标题、品牌型号可以帮助搜索',
+buy_placeholder_info: '详细描述想要商品的详情，能够更快的找到想要的宝贝哟～',
+actionSheet: true,  // 控制求购页商品类型底部框弹出
+
 },
 onLoad: function () {
  //设置默认的年份
@@ -148,6 +155,13 @@ onShow : function() {
       }
     })
   }
+},
+
+// 顶部切换栏点击事件
+handleBtn(e) {
+  this.setData({
+    isAuction: e.currentTarget.dataset.index
+  })
 },
 
 bindMultijieshuPickerChange: function(e) {
@@ -488,6 +502,13 @@ type:function() {
     showtype: !this.data.showtype
   })
 },
+
+type_buy:function() {
+  this.setData({
+    actionSheet: !this.data.actionSheet
+  })
+},
+
 // 拍卖与售卖的切换
 show:function() {
   this.setData({
@@ -852,6 +873,14 @@ xinpininput:function(e) {
    },
   })
  },
+
+
+ // 求购页点击商品类型选择
+ actionSheetTap() {
+   this.setData({
+      actionSheet: false
+   })
+ }
 
 })
 
