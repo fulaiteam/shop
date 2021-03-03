@@ -1,0 +1,63 @@
+<navbar page-name="求购信息"></navbar>
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+</image>
+<!-- 主体内容 -->
+<view class="search_box">
+
+  <!-- 求购内容主体部分 -->
+  <view class="buy_box_content">
+
+    <!-- 求购信息 -->
+    <view class="buy_box_content_top">
+      <view class="buy_box_content_top_title">求AGV k1摩特车头盔求AGV k1摩特车头盔求AGV k1摩特车头盔求AGV k1摩特车头盔</view>
+      <view class="buy_box_content_top_id">
+        <view class="buy_box_content_top_id_info">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
+          <view class="buy_box_content_top_id_info_name">发表人：<text>加菲猫2</text></view>
+        </view>
+        <view class="buy_box_content_top_id_data">2020-04-07</view>
+      </view>
+      <view class="buy_box_content_top_particulars">质量好些,高价求，有的请回复我一下</view>
+      <view class="buy_box_content_top_need">
+        <view class="buy_box_content_top_need_list buy_box_content_top_need_margin">
+          <view class="buy_box_content_top_need_type">预算</view>
+          <view class="buy_box_content_top_need_info">
+            <text>最低价</text>
+            <text>￥22</text>
+            <text>-</text>
+            <text>最高价</text>
+            <text>￥666</text>
+          </view>
+        </view>
+        <view class="buy_box_content_top_need_list">
+          <view class="buy_box_content_top_need_type">商品类型</view>
+          <view class="buy_box_content_top_need_info">头盔</view>
+        </view>
+      </view>
+      <view class="buy_box_content_top_icon">
+        <view class="buy_box_content_top_icon_box">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E8%AF%84%E8%AE%BA%20%E6%8B%B7%E8%B4%9D%402x.png" mode="aspectFill" class="buy_box_content_top_icon_box_img_comment"></image>
+          <view class="buy_box_content_top_icon_box_count">2923</view>
+        </view>
+        <view class="buy_box_content_top_icon_box">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%9C%BC%E7%9D%9B%402x.png" mode="aspectFill" class="buy_box_content_top_icon_box_img_look"></image>
+          <view class="buy_box_content_top_icon_box_count">2923</view>
+        </view>
+        <view class="buy_box_content_top_icon_box">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_top_icon_box_img_collect"></image>
+          <view class="buy_box_content_top_icon_box_count">2923</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 评论区域 -->
+    <view class="buy_box_content_comment">
+      
+    </view>
+
+  </view>  
+
+</view>
+
+

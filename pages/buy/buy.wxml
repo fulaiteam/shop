@@ -1,0 +1,111 @@
+<navbar page-name="求购大厅" show-nav="{{false}}"></navbar>
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+</image>
+<!-- 主体内容 -->
+<view class="search_box">
+
+  <!-- 顶部搜索部分 -->
+  <view class="search_box_top">
+    <view class="search_box_top_box">
+      <image src='https://jgl.oss-cn-beijing.aliyuncs.com/seach.png' class='search_box_top_box_icon'></image>
+      <view class='search_box_top_box_cancel' bindtap="handleCancel"></view>
+      <input class='search_box_top_box_input' value="{{searchInput}}" placeholder="大家都在搜" placeholder-style="color: rgb(179, 179, 179)"/>
+    </view>
+  </view>
+
+  <!-- 求购内容主体部分 -->
+  <view class="buy_box_content">
+    <!-- table栏 -->
+    <view class="buy_box_content_table">
+      <view class="buy_box_content_table_list">
+        <view class="buy_box_content_table_list_box" bindtap="handleTable" data-index="0">
+          <view class="buy_box_content_table_list_box_font {{table_list == 0? 'buy_box_content_table_list_box_pitch': ''}}">热度</view>
+          <view class="buy_box_content_table_list_box_orange" wx:if="{{table_list == 0}}"></view>
+        </view>
+      </view>
+      <view class="buy_box_content_table_list">
+        <view class="buy_box_content_table_list_box" bindtap="handleTable" data-index="1">
+          <view class="buy_box_content_table_list_box_font {{table_list == 1? 'buy_box_content_table_list_box_pitch': ''}}">最新</view>
+          <view class="buy_box_content_table_list_box_orange" wx:if="{{table_list == 1}}"></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 求购信息列表 - 热度 -->
+    <view class="buy_box_content_list" wx:if="{{table_list == 0}}">
+      <view class="buy_box_content_box" wx:for="{{5}}" wx:key="index">
+        <view class="buy_box_content_box_left">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
+        </view>
+        <view class="buy_box_content_box_right">
+          <view class="buy_box_content_box_id">
+            <view class="buy_box_content_box_id_name">糖醋排骨</view>
+            <view class="buy_box_content_box_id_date">2020-04-07</view>
+          </view>
+          <view class="buy_box_content_box_title" bindtap="handleList" data-index="{{index}}">
+            <view class="buy_box_content_box_title_font">求AGV k1摩特车头盔</view>
+            <view class="buy_box_content_box_title_particulars">质量好些,高价求，有的请回复我一下</view>
+            <view class="buy_box_content_box_title_all">阅读全部</view>
+          </view>
+          <view class="buy_box_content_box_icon">
+            <view class="buy_box_content_box_icon_box">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E8%AF%84%E8%AE%BA%20%E6%8B%B7%E8%B4%9D%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_comment"></image>
+              <view class="buy_box_content_box_icon_box_count">2923</view>
+            </view>
+            <view class="buy_box_content_box_icon_box">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%9C%BC%E7%9D%9B%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_look"></image>
+              <view class="buy_box_content_box_icon_box_count">2923</view>
+            </view>
+            <view class="buy_box_content_box_icon_box">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect"></image>
+              <view class="buy_box_content_box_icon_box_count">2923</view>
+            </view>
+          </view>
+        </view>
+        <view class="buy_box_content_box_hot" wx:if="{{index == 0}}">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E6%9C%80%E7%81%AB%402x.png" mode="aspectFill" class="buy_box_content_box_hot_img"></image>
+          <view class="buy_box_content_box_hot_font">HOT1</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 求购信息列表 - 最新 -->
+    <view class="buy_box_content_list" wx:if="{{table_list == 1}}">
+      <view class="buy_box_content_box" wx:for="{{3}}" wx:key="index">
+        <view class="buy_box_content_box_left">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
+        </view>
+        <view class="buy_box_content_box_right">
+          <view class="buy_box_content_box_id">
+            <view class="buy_box_content_box_id_name">STA_BK</view>
+            <view class="buy_box_content_box_id_date">2021-03-02</view>
+          </view>
+          <view class="buy_box_content_box_title">
+            <view class="buy_box_content_box_title_font">STA2021春季BK个人系列藩主毛圈卫衣长裤套装</view>
+            <view class="buy_box_content_box_title_particulars">数少保有，peace</view>
+            <view class="buy_box_content_box_title_all">阅读全部</view>
+          </view>
+          <view class="buy_box_content_box_icon">
+            <view class="buy_box_content_box_icon_box">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E8%AF%84%E8%AE%BA%20%E6%8B%B7%E8%B4%9D%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_comment"></image>
+              <view class="buy_box_content_box_icon_box_count">0</view>
+            </view>
+            <view class="buy_box_content_box_icon_box">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%9C%BC%E7%9D%9B%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_look"></image>
+              <view class="buy_box_content_box_icon_box_count">1</view>
+            </view>
+            <view class="buy_box_content_box_icon_box">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect"></image>
+              <view class="buy_box_content_box_icon_box_count">0</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+
+  </view>  
+
+</view>
+

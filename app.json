@@ -25,7 +25,9 @@
     "pages/bidRecord/bidRecord",
     "pages/payment/payment",
     "pages/user_info/user_info",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/buy/buy",
+    "pages/buy_info/buy_info"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,7 +38,7 @@
   },
   "tabBar": {
     "color": "#868686",
-    "selectedColor": "#8BB63B",
+    "selectedColor": "#ff6f61",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
@@ -51,6 +53,12 @@
         "iconPath": "./images/index/secure.png",
         "selectedIconPath": "./images/index/secure_cover.png",
         "text": "发布"
+      },
+      {
+        "pagePath": "pages/buy/buy",
+        "iconPath": "./images/index/buy.png",
+        "selectedIconPath": "./images/index/buy_cover.png",
+        "text": "求购"
       },
       {
         "pagePath": "pages/personal/personal",

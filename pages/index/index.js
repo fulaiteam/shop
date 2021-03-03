@@ -489,7 +489,9 @@ Page({
   },
 
   clickSeach() {
-    
+    wx.navigateTo({
+      url: '/pages/search/search'
+    })
   },
 
   toggle: function (e) {

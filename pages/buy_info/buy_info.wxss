@@ -1,0 +1,128 @@
+.top_img {
+  z-index: -1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 417rpx;
+}
+
+.search_box {
+  width: 100%;
+  padding: 50rpx 40rpx 40rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.buy_box_content {
+  background-color: #fff;
+  border-radius: 20rpx;
+  border: 1px solid #fa955e;
+}
+
+.buy_box_content_list {
+  width: 100%;
+}
+.buy_box_content_top {
+  width: 100%;
+  padding: 47rpx 50rpx;
+  box-sizing: border-box;
+  border-bottom: 7rpx solid #EEEEEE;
+}
+.buy_box_content_top_title {
+  width: 460rpx;
+  font-size: 35rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 50rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.buy_box_content_top_id {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+.buy_box_content_top_id_info {
+  display: flex;
+  align-items: center;
+}
+.buy_box_content_top_id_info image {
+  width: 48rpx;
+  height: 48rpx;
+  display: block;
+  border-radius: 50%;
+  margin-right: 14rpx;
+}
+.buy_box_content_top_id_info_name {
+  font-size: 20rpx;
+  color: #252525;
+}
+.buy_box_content_top_id_info_name text{
+  font-weight: 600;
+}
+.buy_box_content_top_id_data {
+  font-size: 21rpx;
+  color: #5C5C5C;
+}
+.buy_box_content_top_particulars {
+  font-size: 27rpx;
+  margin-bottom: 70rpx;
+}
+.buy_box_content_top_need {
+  margin-bottom: 60rpx;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 16rpx;
+  box-sizing: border-box;
+}
+.buy_box_content_top_need_list {
+  display: flex;
+  color: rgb(141, 139, 139);
+}
+.buy_box_content_top_need_margin {
+  margin-bottom: 8rpx;
+}
+.buy_box_content_top_need_type {
+  width: 120rpx;
+  font-size: 21rpx;
+}
+.buy_box_content_top_need_info {
+  font-size: 21rpx;
+}
+.buy_box_content_top_need_info text{
+  font-size: 21rpx;
+  margin-right: 12rpx;
+}
+
+.buy_box_content_top_icon {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 49rpx;
+  box-sizing: border-box;
+}
+.buy_box_content_top_icon_box {
+  width: 94rpx;
+  display: flex;
+  align-items: center;
+}
+.buy_box_content_top_icon_box_img_comment {
+  width: 31rpx;
+  height: 27rpx;
+}
+.buy_box_content_top_icon_box_img_look {
+  width: 31rpx;
+  height: 19rpx;
+}
+.buy_box_content_top_icon_box_img_collect {
+  width: 26rpx;
+  height: 22rpx;
+}
+.buy_box_content_top_icon_box_count {
+  font-size: 19rpx;
+  color: #888;
+  margin-left: 13rpx;
+}

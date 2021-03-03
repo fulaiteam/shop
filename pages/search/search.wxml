@@ -1,12 +1,101 @@
 <navbar page-name="搜索"></navbar>
 <!-- 背景图 -->
 <image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png"></image>
-<!-- 主题内容 -->
+<!-- 主体内容 -->
 <view class="search_box">
+
+  <!-- 顶部搜索部分 -->
   <view class="search_box_top">
     <view class="search_box_top_box">
       <image src='https://jgl.oss-cn-beijing.aliyuncs.com/seach.png' class='search_box_top_box_icon'></image>
+      <view class='search_box_top_box_cancel' bindtap="handleCancel"></view>
       <input class='search_box_top_box_input' value="{{searchInput}}" placeholder="大家都在搜" placeholder-style="color: rgb(179, 179, 179)"/>
     </view>
   </view>
+
+  <!-- 主体内容部分-热门 -->
+  <view class="search_box_content" wx:if="{{ifSearch == 0}}">
+    <!-- 历史搜索 -->
+    <view class="search_box_content_history">
+      <view class="search_box_content_history_title">历史搜索</view>
+      <view class="search_box_content_history_tag">
+        <view class="search_box_content_history_tag_box"
+          wx:for="{{history_tag}}"
+          wx:key="index"
+        >
+        {{item}}
+        </view>
+      </view>
+    </view>
+    <!-- 热门搜索 -->
+    <view class="search_box_content_hot">
+      <view class="search_box_content_hot_title">热门搜索</view>
+      <view class="search_box_content_hot_goods">
+        <view class="search_box_content_hot_goods_box"
+          wx:for="{{hotGoodsInfo}}"
+          wx:key="index"
+        >
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/search/src%3Dhttp_%252F%252Fimg16.hc360.cn%252F16%252Fproduct%252F593%252F683%252Fb%252F16-59368336.jpg%26refer%3Dhttp_%252F%252Fimg16.hc360%402x.png" mode="aspectFill" lazy-load="true" />
+          <view class='search_box_content_hot_goods_info'>
+            <view class='search_box_content_hot_goods_title'>{{item.title}}</view>
+            <view class='search_box_content_hot_goods_price'>售价：￥{{item.pirce}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主体内容部分-搜索结果 -->
+  <view class="search_box_content" wx:if="{{ifSearch == 1}}">
+    <!-- 搜索结果 -->
+    <view class="search_box_content_hot_title" wx:if="{{searchResult == 1}}">
+      <view class="search_box_content_hot_title">搜索结果</view>
+      <view class="search_box_content_hot_goods">
+        <view class="search_box_content_hot_goods_box"
+          wx:for="{{hotGoodsInfo}}"
+          wx:key="index"
+        >
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/search/u%3D2234750609%2C847429364%26fm%3D26%26gp%3D0%402x.png" mode="aspectFill" lazy-load="true" />
+          <view class='search_box_content_hot_goods_info'>
+            <view class='search_box_content_hot_goods_title'>{{item.title}}</view>
+            <view class='search_box_content_hot_goods_price'>售价：￥{{item.pirce}}</view>
+          </view>
+        </view>
+      </view>
+      <!-- 提示信息 -->
+      <!-- 加载 -->
+      <view class="hint_info">
+        <view class="hint_load_info">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/bidRecord/%E5%8A%A0%E8%BD%BD.png"></image>
+          <view>下拉更多出价</view>
+        </view>
+      </view>
+      <!-- 无商品 -->
+      <view class="hint_info">
+        <view>已经到底了</view>
+      </view>
+    </view>
+    <!-- 搜索结果 - 无相关内容 -->
+    <view class="no_recommend"  wx:elif="{{searchResult == 0}}">
+      <!-- 为您推荐搜索 -->
+      <view class="search_box_content_history">
+        <view class="search_box_content_history_title">为您推荐搜索</view>
+        <view class="search_box_content_history_tag">
+          <view class="search_box_content_history_tag_box"
+            wx:for="{{recommend_tag}}"
+            wx:key="index"
+          >
+          {{item}}
+          </view>
+        </view>
+      </view>
+      <!-- 无搜索结果提示 -->
+      <view class="no_recommend_hint">
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/search/%E8%A1%A8%E6%83%85-%E9%9A%BE%E8%BF%87%402x.png"></image>
+        <view class="no_recommend_hint_sorry">抱歉，没有搜到任何有关内容</view>
+        <view class="no_recommend_hint_change">换个关键词再试试</view>
+      </view>
+    </view>
+  </view>
+
 </view>
