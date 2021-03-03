@@ -34,7 +34,7 @@
 
     <!-- 求购信息列表 - 热度 -->
     <view class="buy_box_content_list" wx:if="{{table_list == 0}}">
-      <view class="buy_box_content_box" wx:for="{{5}}" wx:key="index">
+      <view class="buy_box_content_box" wx:for="{{1}}" wx:key="index">
         <view class="buy_box_content_box_left">
           <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
         </view>
@@ -68,6 +68,7 @@
           <view class="buy_box_content_box_hot_font">HOT1</view>
         </view>
       </view>
+      <view class="buy_box_content_none">暂无求购信息</view>
     </view>
 
     <!-- 求购信息列表 - 最新 -->
@@ -102,6 +103,7 @@
           </view>
         </view>
       </view>
+      <view class="buy_box_content_none">暂无求购信息</view>
     </view>
     
 

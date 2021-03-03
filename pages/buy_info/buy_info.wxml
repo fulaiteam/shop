@@ -53,11 +53,58 @@
 
     <!-- 评论区域 -->
     <view class="buy_box_content_comment">
-      
+
+      <view class="buy_box_content_comment_title">
+        <view class="buy_box_content_comment_title_box">评论(3)</view>
+      </view>
+
+      <view class="buy_box_content_comment_line">
+        <view class="buy_box_content_comment_line_box" wx:for="{{3}}" wx:key="index">
+
+          <view class="buy_box_content_comment_line_box_top">
+
+            <view class="buy_box_content_comment_line_left">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
+            </view>
+  
+            <view class="buy_box_content_comment_line_right">
+              <view class="buy_box_content_comment_line_right_id">
+                <view class="buy_box_content_comment_line_right_id_name">XIMALUYAMAO</view>
+                <view class="buy_box_content_comment_line_right_id_data">2021-02-07 12:00</view>
+              </view>
+              <view class="buy_box_content_comment_line_right_content">
+                <view class="buy_box_content_comment_line_right_content_font">这里有</view>
+                <view class="buy_box_content_comment_line_right_content_reply">回复</view>
+              </view>
+            </view>
+
+          </view>
+
+          <view class="buy_box_content_comment_line_reply">
+            <view class="buy_box_content_comment_line_reply_row" wx:for="{{3}}" wx:key="index">
+              <view class="buy_box_content_comment_line_reply_id"><text class="buy_box_content_comment_line_reply_font">加菲猫</text><text class="buy_box_content_comment_line_reply_reply">回复:</text>好的了解</view>
+            </view>
+          </view>
+        </view>
+
+        <view class="buy_box_content_comment_line_nont">暂无评论</view>
+
+      </view>
+
     </view>
 
   </view>  
 
 </view>
+
+<!-- 发布评论 -->
+<view class="write_comment">
+  <view class="write_comment_left">
+    <input type="text" placeholder="发表你的评论"/>
+  </view>
+  <view class="write_comment_right">发布</view>
+</view>
+
+
 
 
