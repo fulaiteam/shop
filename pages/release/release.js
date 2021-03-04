@@ -85,6 +85,11 @@ price_bottom: 0,
 buy_placeholder_title: '商品标题、品牌型号可以帮助搜索',
 buy_placeholder_info: '详细描述想要商品的详情，能够更快的找到想要的宝贝哟～',
 actionSheet: true,  // 控制求购页商品类型底部框弹出
+buy_title: '',
+buy_miaoshu: '',
+buy_pricemax: '',
+buy_pricemin: '',
+buy_categoryid: '选择',
 
 },
 onLoad: function () {
@@ -150,6 +155,12 @@ onShow : function() {
           title:"",
           imgpath: [], 
           img_arr:[], 
+
+          buy_title: '',
+          buy_miaoshu: '',
+          buy_pricemax: '',
+          buy_pricemin: '',
+          buy_categoryid: '选择',
         })
         wx.hideLoading()
       }
@@ -162,6 +173,31 @@ handleBtn(e) {
   this.setData({
     isAuction: e.currentTarget.dataset.index
   })
+  if (this.data.isAuction == 0) {
+    this.setData({
+      buy_title: '',
+      buy_miaoshu: '',
+      buy_pricemax: '',
+      buy_pricemin: '',
+      buy_categoryid: '选择',
+    })
+  } else {
+    this.setData({
+      fudong:'',
+      auctionOrSale:1,
+      typeid:'',
+      info:"",
+      baozhengjin:'',
+      xinpin:'',
+      qipai:'', 
+      baoliu:'',
+      Sale:'', 
+      takeTime:'1',
+      title:"",
+      imgpath: [], 
+      img_arr:[], 
+    })
+  }
 },
 
 bindMultijieshuPickerChange: function(e) {
@@ -880,7 +916,84 @@ xinpininput:function(e) {
    this.setData({
       actionSheet: false
    })
- }
+ },
+
+ // 求购标题信息
+ handleBuyTitle(e) {
+  this.setData({
+    buy_title: e.detail.value
+  })
+ },
+
+ // 求购备注信息
+ handleBuyRemark(e) {
+  this.setData({
+    buy_miaoshu: e.detail.value
+  })
+ },
+
+ // 求购最低价信息
+ handleBuyPriceMin(e) {
+  this.setData({
+    buy_pricemin: e.detail.value
+  })
+ },
+
+ // 求购最高价信息
+ handleBuyPriceMax(e) {
+  this.setData({
+    buy_pricemax: e.detail.value
+  })
+ },
+
+ // 求购商品类型
+ handleTypeName(e) {
+  console.log(e.currentTarget.dataset.name)
+  this.setData({
+    buy_categoryid: e.currentTarget.dataset.name,
+    actionSheet: true
+  })
+ },
+
+ // 点击求购商品类型弹出栏的取消
+ handleTypeCancel() {
+  this.setData({
+    actionSheet: true
+  })
+ },
+
+ // 点击确认提交按钮
+ shopJump() {
+   wx.request({
+     url: getApp().globalData.baseUrl + '/product/jglQiugou/insert',
+     method: 'POST',
+     data: {
+      categoryid: this.data.buy_categoryid,
+      createTime: "",
+      miaoshu: this.data.buy_miaoshu,
+      openid: getApp().globalData.openid,
+      pricemax: this.data.buy_pricemax,
+      pricemin: this.data.buy_pricemin,
+      title: this.data.buy_title
+     },
+     success: (res)=> {
+       if (res.data.flag) {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'success',
+            duration: 2000
+          })
+          this.setData({
+            buy_title: '',
+            buy_miaoshu: '',
+            buy_pricemax: '',
+            buy_pricemin: '',
+            buy_categoryid: '选择'
+          })
+       }
+     }
+   })
+ },
 
 })
 

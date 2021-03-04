@@ -187,6 +187,9 @@
   color: #888;
   margin-left: 13rpx;
 }
+.buy_box_content_box_icon_box_count_like {
+  color: #FFB03F;
+}
 .buy_box_content_box_hot {
   position: absolute;
   top: 50rpx;

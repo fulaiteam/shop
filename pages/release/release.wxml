@@ -272,14 +272,14 @@
       <view class="shop_ask_buy_top_titile">
         <view class="shop_ask_buy_top_titile_font">标题</view>
         <view class="shop_ask_buy_top_titile_content">
-          <input type="text" class="shop_ask_buy_top_titile_content_input" placeholder="{{buy_placeholder_title}}" placeholder-style="color: rgb(179, 179, 179)"/>
+          <input type="text" class="shop_ask_buy_top_titile_content_input" placeholder="{{buy_placeholder_title}}" placeholder-style="color: rgb(179, 179, 179)" bindinput="handleBuyTitle" value="{{buy_title}}"/>
         </view>
       </view>
       <!-- 商品备注 -->
       <view class="shop_ask_buy_top_remark">
         <view class="shop_ask_buy_top_remark_font">商品备注</view>
         <view class="shop_ask_buy_top_remark_content">
-          <textarea class="shop_ask_buy_top_titile_content_textarea" placeholder="{{buy_placeholder_info}}"  placeholder-style="color: rgb(179, 179, 179)" maxlength="-1"></textarea>
+          <textarea class="shop_ask_buy_top_titile_content_textarea" placeholder="{{buy_placeholder_info}}"  placeholder-style="color: rgb(179, 179, 179)" maxlength="-1" bindinput="handleBuyRemark" value="{{buy_miaoshu}}"></textarea>
         </view>
       </view>
     </view>
@@ -290,12 +290,12 @@
         <view class="shop_ask_buy_center_budget_content">
           <view class="shop_ask_buy_center_budget_content_price">
             <view class="shop_ask_buy_center_budget_content_price_font">最低价</view>
-            <input type="text" class="shop_ask_buy_center_budget_content_price_input"/>
+            <input type="text" class="shop_ask_buy_center_budget_content_price_input" bindinput="handleBuyPriceMin" value="{{buy_pricemin}}"/>
           </view>
           <view class="shop_ask_buy_center_budget_content_box"></view>
           <view class="shop_ask_buy_center_budget_content_price">
             <view class="shop_ask_buy_center_budget_content_price_font">最高价</view>
-            <input type="text" class="shop_ask_buy_center_budget_content_price_input"/>
+            <input type="text" class="shop_ask_buy_center_budget_content_price_input" bindinput="handleBuyPriceMax" value="{{buy_pricemax}}"/>
           </view>
         </view>
       </view>
@@ -303,14 +303,14 @@
       <view class="shop_ask_buy_center_type">
         <view class="shop_ask_buy_center_type_font">商品类型</view>
         <view class="shop_ask_buy_center_type_content">
-          <view class="shop_ask_buy_center_type_content_btn" bindtap="actionSheetTap"> 选择 ></view>
+          <view class="shop_ask_buy_center_type_content_btn" bindtap="actionSheetTap"> {{buy_categoryid}}  ></view>
           <action-sheet hidden="{{actionSheet}}" bindchange="type_buy">
-            <block wx:for="{{3}}" wx:key="index">
+            <block wx:for="{{typelist}}" wx:key="index" wx:if="{{index>0}}">
               <action-sheet-item>
-                <view class="typelist">头盔</view>
+                <view class="typelist" bindtap="handleTypeName" data-name="{{item.name}}">{{item.name}}</view>
               </action-sheet-item>
             </block>
-            <action-sheet-item class="typelist">取消</action-sheet-item>
+            <action-sheet-item class="typelist" bindtap="handleTypeCancel">取消</action-sheet-item>
           </action-sheet>
         </view>
       </view>

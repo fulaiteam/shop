@@ -19,47 +19,48 @@
     <!-- table栏 -->
     <view class="buy_box_content_table">
       <view class="buy_box_content_table_list">
-        <view class="buy_box_content_table_list_box" bindtap="handleTable" data-index="0">
-          <view class="buy_box_content_table_list_box_font {{table_list == 0? 'buy_box_content_table_list_box_pitch': ''}}">热度</view>
-          <view class="buy_box_content_table_list_box_orange" wx:if="{{table_list == 0}}"></view>
+        <view class="buy_box_content_table_list_box" bindtap="handleTable" data-index="1">
+          <view class="buy_box_content_table_list_box_font {{table_list == 1? 'buy_box_content_table_list_box_pitch': ''}}">热度</view>
+          <view class="buy_box_content_table_list_box_orange" wx:if="{{table_list == 1}}"></view>
         </view>
       </view>
       <view class="buy_box_content_table_list">
-        <view class="buy_box_content_table_list_box" bindtap="handleTable" data-index="1">
-          <view class="buy_box_content_table_list_box_font {{table_list == 1? 'buy_box_content_table_list_box_pitch': ''}}">最新</view>
-          <view class="buy_box_content_table_list_box_orange" wx:if="{{table_list == 1}}"></view>
+        <view class="buy_box_content_table_list_box" bindtap="handleTable" data-index="2">
+          <view class="buy_box_content_table_list_box_font {{table_list == 2? 'buy_box_content_table_list_box_pitch': ''}}">最新</view>
+          <view class="buy_box_content_table_list_box_orange" wx:if="{{table_list == 2}}"></view>
         </view>
       </view>
     </view>
 
     <!-- 求购信息列表 - 热度 -->
-    <view class="buy_box_content_list" wx:if="{{table_list == 0}}">
-      <view class="buy_box_content_box" wx:for="{{1}}" wx:key="index">
+    <view class="buy_box_content_list" wx:if="{{table_list == 1}}">
+      <view class="buy_box_content_box" wx:for="{{contentList}}" wx:key="index">
         <view class="buy_box_content_box_left">
-          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
+          <image src="{{item.headimgurl}}"></image>
         </view>
         <view class="buy_box_content_box_right">
           <view class="buy_box_content_box_id">
-            <view class="buy_box_content_box_id_name">糖醋排骨</view>
-            <view class="buy_box_content_box_id_date">2020-04-07</view>
+            <view class="buy_box_content_box_id_name">{{item.nickname}}</view>
+            <view class="buy_box_content_box_id_date">{{item.objTime}}</view>
           </view>
-          <view class="buy_box_content_box_title" bindtap="handleList" data-index="{{index}}">
-            <view class="buy_box_content_box_title_font">求AGV k1摩特车头盔</view>
-            <view class="buy_box_content_box_title_particulars">质量好些,高价求，有的请回复我一下</view>
+          <view class="buy_box_content_box_title" bindtap="handleList" data-id="{{item.id}}">
+            <view class="buy_box_content_box_title_font">{{item.title}}</view>
+            <view class="buy_box_content_box_title_particulars">{{item.miaoshu}}</view>
             <view class="buy_box_content_box_title_all">阅读全部</view>
           </view>
           <view class="buy_box_content_box_icon">
             <view class="buy_box_content_box_icon_box">
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E8%AF%84%E8%AE%BA%20%E6%8B%B7%E8%B4%9D%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_comment"></image>
-              <view class="buy_box_content_box_icon_box_count">2923</view>
+              <view class="buy_box_content_box_icon_box_count">{{item.pinglun}}</view>
             </view>
             <view class="buy_box_content_box_icon_box">
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%9C%BC%E7%9D%9B%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_look"></image>
-              <view class="buy_box_content_box_icon_box_count">2923</view>
+              <view class="buy_box_content_box_icon_box_count">{{item.pv}}</view>
             </view>
-            <view class="buy_box_content_box_icon_box">
-              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect"></image>
-              <view class="buy_box_content_box_icon_box_count">2923</view>
+            <view class="buy_box_content_box_icon_box" bindtap="handleLike" data-id="{{item.id}}" data-index="{{index}}">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect" wx:if="{{!item.isdianzan}}"></image>
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect" wx:else></image>
+              <view class="buy_box_content_box_icon_box_count {{item.isdianzan? 'buy_box_content_box_icon_box_count_like': ''}}">{{item.dianzan}}</view>
             </view>
           </view>
         </view>
@@ -68,42 +69,43 @@
           <view class="buy_box_content_box_hot_font">HOT1</view>
         </view>
       </view>
-      <view class="buy_box_content_none">暂无求购信息</view>
+      <view class="buy_box_content_none" wx:if="{{hotContentList.length <= 0}}">暂无求购信息</view>
     </view>
 
     <!-- 求购信息列表 - 最新 -->
-    <view class="buy_box_content_list" wx:if="{{table_list == 1}}">
-      <view class="buy_box_content_box" wx:for="{{3}}" wx:key="index">
+    <view class="buy_box_content_list" wx:if="{{table_list == 2}}">
+      <view class="buy_box_content_box" wx:for="{{contentList}}" wx:key="index">
         <view class="buy_box_content_box_left">
           <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
         </view>
         <view class="buy_box_content_box_right">
           <view class="buy_box_content_box_id">
-            <view class="buy_box_content_box_id_name">STA_BK</view>
-            <view class="buy_box_content_box_id_date">2021-03-02</view>
+            <view class="buy_box_content_box_id_name">{{item.nickname}}</view>
+            <view class="buy_box_content_box_id_date">{{item.objTime}}</view>
           </view>
           <view class="buy_box_content_box_title">
-            <view class="buy_box_content_box_title_font">STA2021春季BK个人系列藩主毛圈卫衣长裤套装</view>
-            <view class="buy_box_content_box_title_particulars">数少保有，peace</view>
+            <view class="buy_box_content_box_title_font">{{item.title}}</view>
+            <view class="buy_box_content_box_title_particulars">{{item.miaoshu}}</view>
             <view class="buy_box_content_box_title_all">阅读全部</view>
           </view>
           <view class="buy_box_content_box_icon">
             <view class="buy_box_content_box_icon_box">
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E8%AF%84%E8%AE%BA%20%E6%8B%B7%E8%B4%9D%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_comment"></image>
-              <view class="buy_box_content_box_icon_box_count">0</view>
+              <view class="buy_box_content_box_icon_box_count">{{item.pinglun}}</view>
             </view>
             <view class="buy_box_content_box_icon_box">
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%9C%BC%E7%9D%9B%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_look"></image>
-              <view class="buy_box_content_box_icon_box_count">1</view>
+              <view class="buy_box_content_box_icon_box_count">{{item.pv}}</view>
             </view>
-            <view class="buy_box_content_box_icon_box">
-              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect"></image>
-              <view class="buy_box_content_box_icon_box_count">0</view>
+            <view class="buy_box_content_box_icon_box" bindtap="handleLike" data-id="{{item.id}}" data-index="{{index}}">
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect" wx:if="{{!item.isdianzan}}"></image>
+              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect" wx:else></image>
+              <view class="buy_box_content_box_icon_box_count {{item.isdianzan? 'buy_box_content_box_icon_box_count_like': ''}}">{{item.dianzan}}</view>
             </view>
           </view>
         </view>
       </view>
-      <view class="buy_box_content_none">暂无求购信息</view>
+      <view class="buy_box_content_none" wx:if="{{hotContentList.length <= 0}}">暂无求购信息</view>
     </view>
     
 
