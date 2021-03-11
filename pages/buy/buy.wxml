@@ -43,7 +43,7 @@
             <view class="buy_box_content_box_id_name">{{item.nickname}}</view>
             <view class="buy_box_content_box_id_date">{{item.objTime}}</view>
           </view>
-          <view class="buy_box_content_box_title" bindtap="handleList" data-id="{{item.id}}">
+          <view class="buy_box_content_box_title" bindtap="handleList" data-id="{{item.qiugouid}}">
             <view class="buy_box_content_box_title_font">{{item.title}}</view>
             <view class="buy_box_content_box_title_particulars">{{item.miaoshu}}</view>
             <view class="buy_box_content_box_title_all">阅读全部</view>
@@ -57,7 +57,7 @@
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%9C%BC%E7%9D%9B%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_look"></image>
               <view class="buy_box_content_box_icon_box_count">{{item.pv}}</view>
             </view>
-            <view class="buy_box_content_box_icon_box" bindtap="handleLike" data-id="{{item.id}}" data-index="{{index}}">
+            <view class="buy_box_content_box_icon_box" bindtap="handleLike" data-id="{{item.qiugouid}}" data-index="{{index}}">
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect" wx:if="{{!item.isdianzan}}"></image>
               <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect" wx:else></image>
               <view class="buy_box_content_box_icon_box_count {{item.isdianzan? 'buy_box_content_box_icon_box_count_like': ''}}">{{item.dianzan}}</view>
@@ -83,7 +83,7 @@
             <view class="buy_box_content_box_id_name">{{item.nickname}}</view>
             <view class="buy_box_content_box_id_date">{{item.objTime}}</view>
           </view>
-          <view class="buy_box_content_box_title">
+          <view class="buy_box_content_box_title" bindtap="handleList" data-id="{{item.id}}">
             <view class="buy_box_content_box_title_font">{{item.title}}</view>
             <view class="buy_box_content_box_title_particulars">{{item.miaoshu}}</view>
             <view class="buy_box_content_box_title_all">阅读全部</view>

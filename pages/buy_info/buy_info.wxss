@@ -127,6 +127,9 @@
   color: #888;
   margin-left: 13rpx;
 }
+.buy_box_content_top_icon_box_count_like {
+  color: #FFB03F;
+}
 
 
 .buy_box_content_comment_title {
@@ -196,7 +199,7 @@
   width: 44rpx;
   font-size: 22rpx;
   color: #036FF5;
-  margin-left: 12rpx;
+  margin-left: 40rpx;
 }
 .buy_box_content_comment_line_reply {
   width: 100%;

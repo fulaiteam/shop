@@ -69,6 +69,10 @@
             </view>
         </view>
         <!-- 已登录右侧结束 -->
+        <!-- 消息提示 - 无消息 -->
+        <image class='top_login_area_news'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/%E8%AF%84%E8%AE%BA%402x.png' bindtap="toNewsPage" ></image>
+        <!-- 消息提示 - 有消息 -->
+        <image class='top_login_area_news'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/%E6%A4%AD%E5%9C%86%201037%402x.png' bindtap="toNewsPage" ></image>
     </view>
     <!-- 登录区域结束 -->
     </view>

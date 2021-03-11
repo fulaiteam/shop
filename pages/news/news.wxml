@@ -1,0 +1,27 @@
+<navbar page-name="消息中心"></navbar>
+<!-- 背景图 -->
+<image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
+</image>
+<!-- 主体内容 -->
+<view class="search_box">
+  <!-- 消息内容主体部分 -->
+  <view class="news_box_content">
+    <!-- 消息列表 -->
+    <!-- <view class="news_box_content_list">
+      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg"></image>
+      <view class="news_box_content_list_right">
+        <view class="news_box_content_list_right_name">加菲猫</view>
+        <view class="news_box_content_list_right_font">评论了您</view>
+      </view>
+      <view class="news_box_content_list_right_time">3.10</view>
+    </view> -->
+    <view class="news_box_content_list_line">
+      <view class="news_box_content_list_font">AGVk1摩特车头盔12345664548646466</view>
+      <view class="news_box_content_list_num">1</view>
+    </view>
+    <view class="news_box_content_list_line">
+      <view class="news_box_content_list_font">求捷凯头盔电动摩托车赛车灰,质量好些,高价求，有的请回复我一下</view>
+      <view class="news_box_content_list_num">99</view>
+    </view>
+  </view>
+</view>

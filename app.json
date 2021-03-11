@@ -27,7 +27,8 @@
     "pages/user_info/user_info",
     "pages/search/search",
     "pages/buy/buy",
-    "pages/buy_info/buy_info"
+    "pages/buy_info/buy_info",
+    "pages/news/news"
   ],
   "window": {
     "backgroundTextStyle": "light",

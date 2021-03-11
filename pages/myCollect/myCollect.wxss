@@ -30,7 +30,7 @@ page {
   box-sizing: border-box;
   background: #fff;
   border-radius: 20rpx 20rpx 0 0;
-  border-bottom: 1px solid #999999;
+  border-bottom: 1px solid #E8E8E8;
 }
 .collect_table_word {
   margin: 0 30rpx;
@@ -74,7 +74,7 @@ page {
   padding: 20rpx;
   box-sizing: border-box;
   width: 100%;
-  border-bottom: 1px solid #999999;
+  border-bottom: 1px solid #E8E8E8;
 }
 .collect_info_last_box {
   border-radius: 0 0 20rpx 20rpx;

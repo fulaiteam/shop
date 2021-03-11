@@ -211,6 +211,13 @@
     color: #FFFFFF;
     opacity: 0.8;
 }
+.top_login_area_news {
+    position: absolute;
+    z-index: 6;
+    width: 45rpx;
+    height: 47rpx;
+    top: 30rpx;
+}
 .bottom_module_area{
     width:675rpx;
     overflow: hidden;

@@ -30,7 +30,7 @@ Page({
             openid: getApp().globalData.openid
           },
           success: (res)=>{
-            // console.log(res)
+            console.log(res)
             this.setData({
               contentList: res.data.data
             })
@@ -61,6 +61,7 @@ Page({
   handleLike(e) {
     const qiugouid = e.currentTarget.dataset.id
     const index = e.currentTarget.dataset.index
+    console.log(qiugouid, index, e)
     wx.request({
       url: getApp().globalData.baseUrl+ 'product/jglQiugou/dianzan',
       method: 'POST',
@@ -69,7 +70,7 @@ Page({
         openid: getApp().globalData.openid,
       },
       success: (res)=> {
-        // console.log(res)
+        console.log(res)
         let dianzanState = "contentList[" + index + "].isdianzan"
         let dianzanNum = "contentList[" + index + "].dianzan"
         if (res.data.message == '收藏成功') {

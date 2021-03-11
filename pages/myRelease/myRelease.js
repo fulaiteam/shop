@@ -100,6 +100,11 @@ Page({
         tabar: e.currentTarget.dataset.index,
         paddingValue: 'none'
       })
+    } else if (e.currentTarget.dataset.index == '2'){
+      this.setData({
+        tabar: e.currentTarget.dataset.index,
+        paddingValue: 'none'
+      })
     } else {
       wx.showToast({
         title: '该功能暂未开放',

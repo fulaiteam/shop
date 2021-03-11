@@ -201,4 +201,19 @@ Page({
         })
     },
 
+    // 跳转到消息中心页
+    toNewsPage() {
+        if (wx.getStorageSync('openid')) {
+            wx.navigateTo({
+                url: '/pages/news/news'
+              })
+        } else {
+            wx.showToast({
+              title: '请先登录',
+              icon: 'none',
+              duration: 2000
+            })
+        }
+    }
+
 })

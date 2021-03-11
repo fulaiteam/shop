@@ -10,43 +10,44 @@
 
     <!-- 求购信息 -->
     <view class="buy_box_content_top">
-      <view class="buy_box_content_top_title">求AGV k1摩特车头盔求AGV k1摩特车头盔求AGV k1摩特车头盔求AGV k1摩特车头盔</view>
+      <view class="buy_box_content_top_title">{{buy_info.jglQiugou.title}}</view>
       <view class="buy_box_content_top_id">
         <view class="buy_box_content_top_id_info">
-          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
-          <view class="buy_box_content_top_id_info_name">发表人：<text>加菲猫2</text></view>
+          <image src="{{buy_info.headimgurl}}"></image>
+          <view class="buy_box_content_top_id_info_name">发表人：<text>{{buy_info.nickname}}</text></view>
         </view>
-        <view class="buy_box_content_top_id_data">2020-04-07</view>
+        <view class="buy_box_content_top_id_data">{{buy_info.jglQiugou.objTime}}</view>
       </view>
-      <view class="buy_box_content_top_particulars">质量好些,高价求，有的请回复我一下</view>
+      <view class="buy_box_content_top_particulars">{{buy_info.jglQiugou.miaoshu}}</view>
       <view class="buy_box_content_top_need">
         <view class="buy_box_content_top_need_list buy_box_content_top_need_margin">
           <view class="buy_box_content_top_need_type">预算</view>
           <view class="buy_box_content_top_need_info">
             <text>最低价</text>
-            <text>￥22</text>
+            <text>￥{{buy_info.jglQiugou.pricemin}}</text>
             <text>-</text>
             <text>最高价</text>
-            <text>￥666</text>
+            <text>￥{{buy_info.jglQiugou.pricemax}}</text>
           </view>
         </view>
         <view class="buy_box_content_top_need_list">
           <view class="buy_box_content_top_need_type">商品类型</view>
-          <view class="buy_box_content_top_need_info">头盔</view>
+          <view class="buy_box_content_top_need_info">{{buy_info.jglQiugou.categoryid}}</view>
         </view>
       </view>
       <view class="buy_box_content_top_icon">
         <view class="buy_box_content_top_icon_box">
           <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E8%AF%84%E8%AE%BA%20%E6%8B%B7%E8%B4%9D%402x.png" mode="aspectFill" class="buy_box_content_top_icon_box_img_comment"></image>
-          <view class="buy_box_content_top_icon_box_count">2923</view>
+          <view class="buy_box_content_top_icon_box_count">{{buy_info.pinglun}}</view>
         </view>
         <view class="buy_box_content_top_icon_box">
           <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%9C%BC%E7%9D%9B%402x.png" mode="aspectFill" class="buy_box_content_top_icon_box_img_look"></image>
-          <view class="buy_box_content_top_icon_box_count">2923</view>
+          <view class="buy_box_content_top_icon_box_count">{{buy_info.pv}}</view>
         </view>
-        <view class="buy_box_content_top_icon_box">
-          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_top_icon_box_img_collect"></image>
-          <view class="buy_box_content_top_icon_box_count">2923</view>
+        <view class="buy_box_content_top_icon_box" bindtap="handleLike">
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_top_icon_box_img_collect" wx:if="{{!buy_info.isdianzan}}"></image>
+          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x.png" mode="aspectFill" class="buy_box_content_top_icon_box_img_collect" wx:else></image>
+          <view class="buy_box_content_top_icon_box_count {{buy_info.isdianzan? 'buy_box_content_top_icon_box_count_like': ''}}">{{buy_info.dianzan}}</view>
         </view>
       </view>
     </view>
@@ -55,39 +56,39 @@
     <view class="buy_box_content_comment">
 
       <view class="buy_box_content_comment_title">
-        <view class="buy_box_content_comment_title_box">评论(3)</view>
+        <view class="buy_box_content_comment_title_box">评论({{buy_info.parents.length}})</view>
       </view>
 
       <view class="buy_box_content_comment_line">
-        <view class="buy_box_content_comment_line_box" wx:for="{{3}}" wx:key="index">
+        <view class="buy_box_content_comment_line_box" wx:for="{{buy_info.parents}}" wx:key="index">
 
           <view class="buy_box_content_comment_line_box_top">
 
             <view class="buy_box_content_comment_line_left">
-              <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
+              <image src="{{item.jglQiugoumiaoshuDTO.headImgUrl}}" mode="aspectFill"></image>
             </view>
   
             <view class="buy_box_content_comment_line_right">
               <view class="buy_box_content_comment_line_right_id">
-                <view class="buy_box_content_comment_line_right_id_name">XIMALUYAMAO</view>
-                <view class="buy_box_content_comment_line_right_id_data">2021-02-07 12:00</view>
+                <view class="buy_box_content_comment_line_right_id_name">{{item.jglQiugoumiaoshuDTO.nickname}}</view>
+                <view class="buy_box_content_comment_line_right_id_data">{{item.jglQiugoumiaoshuDTO.createTime}}</view>
               </view>
               <view class="buy_box_content_comment_line_right_content">
-                <view class="buy_box_content_comment_line_right_content_font">这里有</view>
-                <view class="buy_box_content_comment_line_right_content_reply">回复</view>
+                <view class="buy_box_content_comment_line_right_content_font">{{item.jglQiugoumiaoshuDTO.context}}</view>
+                <view class="buy_box_content_comment_line_right_content_reply" bindtap="handleReply" data-pinglunid="{{item.jglQiugoumiaoshuDTO.pinglunid}}">回复</view>
               </view>
             </view>
 
           </view>
 
-          <view class="buy_box_content_comment_line_reply">
-            <view class="buy_box_content_comment_line_reply_row" wx:for="{{3}}" wx:key="index">
-              <view class="buy_box_content_comment_line_reply_id"><text class="buy_box_content_comment_line_reply_font">加菲猫</text><text class="buy_box_content_comment_line_reply_reply">回复:</text>好的了解</view>
+          <view class="buy_box_content_comment_line_reply" wx:if="{{item.lists.length > 0}}">
+            <view class="buy_box_content_comment_line_reply_row" wx:for="{{item.lists}}" wx:key="subIndex" wx:for-item="comment" wx:for-index="subIndex">
+              <view class="buy_box_content_comment_line_reply_id"><text class="buy_box_content_comment_line_reply_font">{{comment.nickname}}</text><text class="buy_box_content_comment_line_reply_reply">回复:</text>{{comment.context}}</view>
             </view>
           </view>
         </view>
 
-        <view class="buy_box_content_comment_line_nont">暂无评论</view>
+        <view class="buy_box_content_comment_line_nont" wx:if="{{buy_info.parents.length <= 0}}">暂无评论</view>
 
       </view>
 
@@ -98,11 +99,18 @@
 </view>
 
 <!-- 发布评论 -->
-<view class="write_comment">
+<view class="write_comment" wx:if="{{!replySwitch}}">
   <view class="write_comment_left">
-    <input type="text" placeholder="发表你的评论"/>
+    <input type="text" placeholder="发表你的评论" value="{{commentValue}}" bindinput="changeVal"/>
   </view>
-  <view class="write_comment_right">发布</view>
+  <view class="write_comment_right" bindtap="commentPublish">发布</view>
+</view>
+<!-- 回复评论 -->
+<view class="write_comment" wx:else>
+  <view class="write_comment_left">
+    <input type="text" value="{{replyValue}}" bindinput="changeReplyVal" focus="ifFocus" bindblur="blurFocus"/>
+  </view>
+  <view class="write_comment_right" bindtap="replyPublish">回复</view>
 </view>
 
 
