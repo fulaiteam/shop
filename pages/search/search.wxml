@@ -8,23 +8,33 @@
   <view class="search_box_top">
     <view class="search_box_top_box">
       <image src='https://jgl.oss-cn-beijing.aliyuncs.com/seach.png' class='search_box_top_box_icon'></image>
-      <view class='search_box_top_box_cancel' bindtap="handleCancel"></view>
-      <input class='search_box_top_box_input' value="{{searchInput}}" placeholder="大家都在搜" placeholder-style="color: rgb(179, 179, 179)"/>
+      <view class='search_box_top_box_cancel' bindtap="handleCancel" wx:if="{{haveFont}}"></view>
+      <input class='search_box_top_box_input' value="{{searchInput}}" placeholder="大家都在搜" placeholder-style="color: rgb(179, 179, 179)" bindinput="handleInput" focus="{{isFoucs}}" confirm-type="search" bindconfirm="handleSearch"/>
     </view>
+    <!-- <view bindtap="handleSearch">搜索</view> -->
   </view>
 
   <!-- 主体内容部分-热门 -->
   <view class="search_box_content" wx:if="{{ifSearch == 0}}">
     <!-- 历史搜索 -->
     <view class="search_box_content_history">
-      <view class="search_box_content_history_title">历史搜索</view>
-      <view class="search_box_content_history_tag">
+      <view class="search_box_content_history_box">
+        <view class="search_box_content_history_title">历史搜索</view>
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E5%88%A0%E9%99%A4.png" bindtap="handleremove" wx:if="{{listarr.length > 0}}"></image>
+      </view>
+      <view class="search_box_content_history_tag" wx:if="{{listarr.length > 0}}">
         <view class="search_box_content_history_tag_box"
-          wx:for="{{history_tag}}"
+          wx:for="{{listarr}}"
           wx:key="index"
+          bindtap="this_value"
+          data-text="{{item}}"
+          wx:if="{{index < 10}}"
         >
         {{item}}
         </view>
+      </view>
+      <view class="search_box_content_history_none" wx:else>
+        <view class="search_box_content_history_none_box">暂无记录</view>
       </view>
     </view>
     <!-- 热门搜索 -->
@@ -32,7 +42,7 @@
       <view class="search_box_content_hot_title">热门搜索</view>
       <view class="search_box_content_hot_goods">
         <view class="search_box_content_hot_goods_box"
-          wx:for="{{hotGoodsInfo}}"
+          wx:for="{{18}}"
           wx:key="index"
         >
           <image src="https://jgl.oss-cn-beijing.aliyuncs.com/search/src%3Dhttp_%252F%252Fimg16.hc360.cn%252F16%252Fproduct%252F593%252F683%252Fb%252F16-59368336.jpg%26refer%3Dhttp_%252F%252Fimg16.hc360%402x.png" mode="aspectFill" lazy-load="true" />
@@ -54,24 +64,27 @@
         <view class="search_box_content_hot_goods_box"
           wx:for="{{hotGoodsInfo}}"
           wx:key="index"
+          bindtap="handleToSellDetails"
+          data-productId="{{item.productId}}"
+          data-openid="{{item.openid}}"
         >
-          <image src="https://jgl.oss-cn-beijing.aliyuncs.com/search/u%3D2234750609%2C847429364%26fm%3D26%26gp%3D0%402x.png" mode="aspectFill" lazy-load="true" />
+          <image src="{{item.thumbnail}}" mode="aspectFill" lazy-load="true" />
           <view class='search_box_content_hot_goods_info'>
             <view class='search_box_content_hot_goods_title'>{{item.title}}</view>
-            <view class='search_box_content_hot_goods_price'>售价：￥{{item.pirce}}</view>
+            <view class='search_box_content_hot_goods_price'>售价：￥{{item.salePrice}}</view>
           </view>
         </view>
       </view>
       <!-- 提示信息 -->
       <!-- 加载 -->
-      <view class="hint_info">
+      <view class="hint_info" wx:if="{{!hasMore}}">
         <view class="hint_load_info">
           <image src="https://jgl.oss-cn-beijing.aliyuncs.com/bidRecord/%E5%8A%A0%E8%BD%BD.png"></image>
           <view>下拉更多出价</view>
         </view>
       </view>
       <!-- 无商品 -->
-      <view class="hint_info">
+      <view class="hint_info" wx:else>
         <view>已经到底了</view>
       </view>
     </view>

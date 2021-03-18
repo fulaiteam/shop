@@ -1,3 +1,7 @@
+page {
+  width: 100%;
+  height: 100%;
+}
 .top_img {
   z-index: -1;
   position: fixed;
@@ -5,6 +9,10 @@
   top: 0;
   width: 100%;
   height: 417rpx;
+}
+.page {
+  width: 100%;
+  height: 100%;
 }
 
 .search_box {
@@ -62,7 +70,6 @@
 .buy_box_content_table {
   display: flex;
   width: 100%;
-  border-bottom: 7rpx solid #EEEEEE;
 }
 .buy_box_content_table_list {
   display: flex;
@@ -90,6 +97,11 @@
 .buy_box_content_table_list_box_pitch {
   color: #FFA120;
 }
+.buy_box_content_table_title {
+  height: 42rpx;
+  margin: 22rpx 0 8rpx 36rpx;
+  font-size: 25rpx;
+}
 
 .buy_box_content_list {
   width: 100%;
@@ -100,10 +112,7 @@
   width: 100%;
   padding: 47rpx 50rpx;
   box-sizing: border-box;
-  border-bottom: 7rpx solid #EEEEEE;
-}
-.buy_box_content_box:last-child {
-  border: none;
+  border-top: 7rpx solid #EEEEEE;
 }
 .buy_box_content_box_left {
   width: 48rpx;

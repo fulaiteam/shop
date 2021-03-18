@@ -8,6 +8,7 @@ Page({
         date: "请选择",
         havephone:false,
         isOpenid: false,
+        newInfos: 0,  // 新消息条数
        
         top_arr: [
             {
@@ -69,6 +70,7 @@ Page({
         } else {
             this.setData({isOpenid: false})
         }
+        this.getByCount()
     },
     bindDateChange: function (event) {
         let that =this;
@@ -214,6 +216,24 @@ Page({
               duration: 2000
             })
         }
-    }
+    },
+
+    // 消息列表数字显示
+    getByCount() {
+        wx.request({
+            url: getApp().globalData.baseUrl + 'product/jglQiugou/selectByCount',
+            method: 'POST',
+            data: {
+                'openid': getApp().globalData.openid,
+            },
+            header: {
+                'content-type': 'application/x-www-form-urlencoded' //query
+            },
+            success: (res)=> {
+                console.log(res)
+                this.setData({newInfos: res.data.data})
+            }
+        })
+    },
 
 })

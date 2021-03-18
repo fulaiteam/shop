@@ -211,12 +211,30 @@
     color: #FFFFFF;
     opacity: 0.8;
 }
-.top_login_area_news {
+.top_login_area_news_box {
     position: absolute;
     z-index: 6;
     width: 45rpx;
     height: 47rpx;
+    left: 540rpx;
     top: 30rpx;
+}
+.top_login_area_news {
+    width: 100%;
+    height: 100%;
+}
+.top_login_area_news_num {
+    position: absolute;
+    right: -10rpx;
+    top: -10rpx;
+    width: 30rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    text-align: center;
+    background: #ff6f61;
+    color: #fff;
+    font-size: 18rpx;
+    border-radius: 50%;
 }
 .bottom_module_area{
     width:675rpx;

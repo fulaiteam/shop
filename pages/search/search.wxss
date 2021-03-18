@@ -26,7 +26,7 @@
   margin-top: -13.5rpx;
   padding-right: 10rpx;
   display: block;
-  width: 27rpx;
+  width: 22rpx;
   height: 27rpx;
   border-right: 2px solid #FFCF51;
 }
@@ -62,11 +62,21 @@
 .search_box_content_history {
   margin-bottom: 20rpx;
 }
+.search_box_content_history_box {
+  display: flex;
+  justify-content: space-between;
+}
 .search_box_content_history_title {
   font-size: 25rpx;
   font-weight: 600;
   color: #1E1E1E;
   margin-bottom: 31rpx;
+}
+.search_box_content_history_box image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 24rpx;
+  margin-top: 6rpx;
 }
 .search_box_content_history_tag {
   display: flex;
@@ -83,6 +93,16 @@
   font-size: 21rpx;
   color: #666666;
 }
+.search_box_content_history_none {
+  display: flex;
+  align-items: center;
+  margin-bottom: 54rpx;
+}
+.search_box_content_history_none_box {
+  color: rgb(187, 182, 182);
+  font-size: 20rpx;
+}
+
 .search_box_content_hot_title {
   font-size: 25rpx;
   font-weight: 600;

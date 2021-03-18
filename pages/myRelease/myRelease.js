@@ -1,19 +1,23 @@
 const app = getApp();
 Page({
   data: {
-    tabar: '1',
+    tabar: '1',  // tabar切换， 1 是售卖， 2 是求购， 0 是拍卖
     releaseList: [], // 发布商品的数据
     actEndTimeList: [], // 商品结束毫秒集合
     actStartTimeList: [], // 商品开始毫秒集合
     normEndTimeList: [], // 商品标准结束时间集合
     normStartTimeList: [], // 商品标准开始时间集合
-    paddingValue: '0rpx'
+    paddingValue: '0rpx',
+
+    buyInfo: [], // 求购信息数据
+    pagenum: 1,  // 当前页面
+    isLoading: false,   // 判断是否正在加载
   },
 
   onLoad() {
     this.getreleaseList()
-    
   },
+
   // 获取发布商品的数据
   getreleaseList() {
     wx.request({
@@ -67,6 +71,26 @@ Page({
     })
   },
 
+  // 获取求购信息数据
+  getBuyInfo() {
+    wx.request({
+      url: getApp().globalData.baseUrl + 'product/jglQiugou/selectByQiuGou',
+      data: {
+        "currentPage": this.data.pagenum,
+        "pageSize": 10,
+        "query": {
+          "openid": getApp().globalData.openid,
+          "status": 1
+        }
+      },
+      method: 'POST',
+      success: (res)=> {
+        console.log(res)
+        this.setData({buyInfo: res.data.data})
+      }
+    })
+  },
+
   // 判断拍卖情况
   aucitonSituation() {
     // 获取当前时间，同时得到活动结束时间数组
@@ -100,11 +124,13 @@ Page({
         tabar: e.currentTarget.dataset.index,
         paddingValue: 'none'
       })
+      this.getreleaseList()
     } else if (e.currentTarget.dataset.index == '2'){
       this.setData({
         tabar: e.currentTarget.dataset.index,
         paddingValue: 'none'
       })
+      this.getBuyInfo()
     } else {
       wx.showToast({
         title: '该功能暂未开放',
@@ -113,7 +139,6 @@ Page({
       })
       // this.setData ({paddingValue: '74rpx'})
     }
-    this.getreleaseList()
   },
 
   // 下架
@@ -135,7 +160,7 @@ Page({
               'content-type': 'application/json' //query
             },
             success: (res)=> {
-              console.log(res)
+              // console.log(res)
               if (res.data.flag) {
                 this.getreleaseList()
               }
@@ -157,6 +182,44 @@ Page({
     const {openid, productid, auctionorsale} = e.currentTarget.dataset
     wx.navigateTo({
       url: '/pages/auctionDetails/auctionDetails?auctionOrSale=' + auctionorsale + '&productId=' + productid + '&openid=' + openid,
+    })
+  },
+
+  // 删除
+  handleBuyRemove(e) {
+    const {qiugouid} = e.currentTarget.dataset
+    console.log(qiugouid)
+    wx.showModal({
+      title: '确定要删除求购吗',
+      showCancel: 'true',
+      success: (res)=> {
+        if (res.confirm) {
+          wx.request({
+            url: getApp().globalData.baseUrl + 'product/jglQiugou/upandDown',
+            data: {
+              'qiugouid': qiugouid
+            },
+            method: 'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded' //query
+            },
+            success: (res)=> {
+              // console.log(res)
+              if (res.data.flag) {
+                this.getBuyInfo()
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+
+  // 跳转求购详情页
+  handleToBuy(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/buy_info/buy_info?id=' + id
     })
   }
 })

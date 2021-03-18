@@ -15,7 +15,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log(options)
+    // console.log(options)
     this.setData({
       qiugouid: options.id
     })
@@ -38,10 +38,12 @@ Page({
             openid: getApp().globalData.openid
           },
           success: (res)=> {
-            console.log(res)
+            // console.log(res)
             if (res.data.flag) {
+              let obj = res.data.data
+              obj.parents.reverse()
               this.setData({
-                buy_info: res.data.data
+                buy_info: obj
               })
             }
 
@@ -68,7 +70,7 @@ Page({
         openid: getApp().globalData.openid,
       },
       success: (res)=> {
-        console.log(res)
+        // console.log(res)
         let dianzanState = "buy_info.isdianzan"
         let dianzanNum = "buy_info.dianzan"
         if (res.data.message == '收藏成功') {
@@ -106,25 +108,33 @@ Page({
 
   // 发布评论
   commentPublish() {
-    wx.request({
-      url: getApp().globalData.baseUrl+ 'product/jglQiugou/liuyan',
-      method: 'POST',
-      data: {
-        context: this.data.commentValue,
-        openid: getApp().globalData.openid,
-        parentid: '',
-        qiugouid: this.data.qiugouid
-      },
-      success: (res)=> {
-        console.log(res)
-        if (res.data.flag) {
-          this.setData({
-            commentValue: ''
-          })
-          this.getBuyInfo()
+    if (this.data.commentValue.trim() == '') {
+      wx.showToast({
+        title: '评论不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      wx.request({
+        url: getApp().globalData.baseUrl+ 'product/jglQiugou/liuyan',
+        method: 'POST',
+        data: {
+          context: this.data.commentValue,
+          openid: getApp().globalData.openid,
+          parentid: '',
+          qiugouid: this.data.qiugouid
+        },
+        success: (res)=> {
+          console.log(res)
+          if (res.data.flag) {
+            this.setData({
+              commentValue: ''
+            })
+            this.getBuyInfo()
+          }
         }
-      }
-    })
+      })
+    }
   },
   
   // 点击回复
@@ -155,27 +165,36 @@ Page({
 
   // 发布回复
   replyPublish() {
-    wx.request({
-      url: getApp().globalData.baseUrl+ 'product/jglQiugou/liuyan',
-      method: 'POST',
-      data: {
-        context: this.data.replyValue,
-        openid: getApp().globalData.openid,
-        parentid: this.data.pinglunid_one,
-        qiugouid: this.data.qiugouid
-      },
-      success: (res)=> {
-        // console.log(res)
-        if (res.data.flag) {
-          this.setData({
-            replyValue: '',
-            replySwitch: false,
-            ifFocus: false
-          })
-          this.getBuyInfo()
+    console.log(1)
+    if (this.data.replyValue.trim() == '') {
+      wx.showToast({
+        title: '回复不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      wx.request({
+        url: getApp().globalData.baseUrl+ 'product/jglQiugou/liuyan',
+        method: 'POST',
+        data: {
+          context: this.data.replyValue,
+          openid: getApp().globalData.openid,
+          parentid: this.data.pinglunid_one,
+          qiugouid: this.data.qiugouid
+        },
+        success: (res)=> {
+          console.log(res)
+          if (res.data.flag) {
+            this.setData({
+              replyValue: '',
+              replySwitch: false,
+              ifFocus: false
+            })
+            this.getBuyInfo()
+          }
         }
-      }
-    })
+      })
+    }
   }
 
 })

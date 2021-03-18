@@ -89,7 +89,7 @@ Page({
           },
           method: 'POST',
           success: (res) => {
-            console.log(res)
+            // console.log(res)
             const {
               rows,
               total
@@ -198,7 +198,7 @@ Page({
       url: getApp().globalData.baseUrl + 'product/jglClassify/selectClassify',
       method: 'GET',
       success: (res)=> {
-        console.log(res)
+        // console.log(res)
         const {data, flag} = res.data
         if (flag) {
           this.setData({btns: data})
@@ -210,7 +210,7 @@ Page({
   // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx
   renderTime(x) {
     var dateee = new Date(x).toJSON();
-    console.log(dateee)
+    // console.log(dateee)
     return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/-/g, '/').replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
   },
   //小于10的格式化函数
@@ -461,7 +461,7 @@ Page({
         },
         method: 'POST',
         success: (res)=>{
-          console.log(res)
+          // console.log(res)
           if (res.data.message == '收藏成功') {
             wx.showToast({
               title: res.data.message,
@@ -530,7 +530,7 @@ Page({
   // 售卖商品跳转
   handleToSellDetails(e) {
     const {openid, productid} = e.currentTarget.dataset
-    console.log(openid, productid)
+    // console.log(openid, productid)
     if (getApp().globalData.openid) {
       wx.navigateTo({
         url: "/pages/auctionDetails/auctionDetails?auctionOrSale=1&productId=" + productid + "&openid=" + openid
