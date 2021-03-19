@@ -1,8 +1,9 @@
 .all_grey{
+    position: absolute;
     width:100%;
     overflow: hidden;
     /* padding-bottom:210rpx; */
-    background: #EEEEEE;
+    z-index: 5;
 }
 .top_bg{
     width:100%;
@@ -36,6 +37,7 @@
     justify-content: center;
     align-items: center;
     top:178rpx;
+    z-index: 5;
 }
 .top_white_function_area{
     z-index: 3;
@@ -213,20 +215,23 @@
 }
 .top_login_area_news_box {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 6;
-    width: 45rpx;
-    height: 47rpx;
+    width: 90rpx;
+    height: 90rpx;
     left: 540rpx;
-    top: 30rpx;
+    top: 13rpx;
 }
 .top_login_area_news {
-    width: 100%;
-    height: 100%;
+    width: 45rpx;
+    height: 47rpx;
 }
 .top_login_area_news_num {
     position: absolute;
-    right: -10rpx;
-    top: -10rpx;
+    right: 13rpx;
+    top: 13rpx;
     width: 30rpx;
     height: 30rpx;
     line-height: 30rpx;
@@ -246,6 +251,7 @@
     margin:0 auto;
     margin-top: 150rpx;
     background:white;
+    z-index: 5;
 }
 .bottom_module_item{
     padding-left:17rpx;

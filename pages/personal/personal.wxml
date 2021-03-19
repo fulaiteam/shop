@@ -69,12 +69,12 @@
             </view>
         </view>
         <!-- 已登录右侧结束 -->
-        <view class="top_login_area_news_box">
+        <view class="top_login_area_news_box" bindtap="toNewsPage">
             <!-- 消息提示 - 有消息 -->
-            <image class='top_login_area_news'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/%E6%A4%AD%E5%9C%86%201037%402x.png' bindtap="toNewsPage" wx:if="{{newInfos > 0}}"></image>
+            <image class='top_login_area_news'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/%E6%A4%AD%E5%9C%86%201037%402x.png' wx:if="{{newInfos > 0}}"></image>
             <view class="top_login_area_news_num" wx:if="{{newInfos > 0}}">{{newInfos}}</view>
             <!-- 消息提示 - 无消息 -->
-            <image class='top_login_area_news'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/%E8%AF%84%E8%AE%BA%402x.png' bindtap="toNewsPage" wx:else></image>
+            <image class='top_login_area_news'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/%E8%AF%84%E8%AE%BA%402x.png' wx:else></image>
         </view>
         
     </view>

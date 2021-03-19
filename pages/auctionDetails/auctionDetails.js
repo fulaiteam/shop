@@ -331,10 +331,19 @@ Page({
 
   // 切换拍卖宝贝和售卖宝贝栏
   handleClick(e) {
-    this.setData({
-      isTable: e.currentTarget.dataset.index
-    })
-    this.getUser()
+    if (e.currentTarget.dataset.index == 1) {
+      this.setData({
+        isTable: e.currentTarget.dataset.index
+      })
+      this.getUser()
+    } else {
+      wx.showToast({
+        title: '该功能暂未开放',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    
   },
 
   // 参与出价

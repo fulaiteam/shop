@@ -12,7 +12,7 @@ Page({
     authentication:function() {
         let that =this;
         wx.request({
-            url:getApp().globalData.baseUrl+ '/user/jglUser/authentication', 
+            url:getApp().globalData.baseUrl+ 'user/jglUser/authentication', 
             data: {
                 name:that.data.username,
                 openid:getApp().globalData.openid,//oS5bk5DPJKHDc6UwrR8xcUb3Ri8w
@@ -28,23 +28,23 @@ Page({
             },
             success: function(res) {
               console.log(res)
-             console.log(res.data.flag);
-             if(res.data.flag==true) {
-              wx.switchTab({
-                url:"/pages/personal/personal"
-            })
-              wx.showToast({
-                title: '认证成功',
-                icon: 'success',
-                duration: 2000
-               })
-             } else {
-              wx.showToast({
-                title: '认证失败',
-                icon: 'none',
-                duration: 2000
-               })
-             }
+              console.log(res.data.flag);
+              if(res.data.flag==true) {
+                  wx.switchTab({
+                    url:"/pages/personal/personal"
+                  })
+                  wx.showToast({
+                    title: '认证成功',
+                    icon: 'success',
+                    duration: 2000
+                  })
+              } else {
+                wx.showToast({
+                  title: '认证失败',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
             }
           })
       
@@ -62,8 +62,10 @@ Page({
          //   // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
            var imgpath=res.tempFilePaths  
            _this.setData({  
-            imgpath: _this.data.imgpath.concat(res.tempFilePaths)  
+            // imgpath: _this.data.imgpath.concat(res.tempFilePaths)  
+            imgpath: res.tempFilePaths[0]
            }) 
+           console.log(_this.data.imgpath)
          for (var i = 0; i < imgpath.length;i++){
            wx.uploadFile({
              url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
@@ -84,6 +86,7 @@ Page({
           },
         })
       },
+
     //   上传反面身份证
 
       upgetImg:function(e){
@@ -94,11 +97,12 @@ Page({
           sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
           success: function (res) {
-            console.log(res);
+            // console.log(res);
          //   // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
            var upimgpath=res.tempFilePaths  
            _this.setData({  
-            upimgpath: _this.data.upimgpath.concat(res.tempFilePaths)  
+            // upimgpath: _this.data.upimgpath.concat(res.tempFilePaths) 
+            upimgpath: res.tempFilePaths[0]
            }) 
          for (var i = 0; i < upimgpath.length;i++){
            wx.uploadFile({
@@ -109,11 +113,11 @@ Page({
                "Content-Type": "multipart/form-data"
              },
              success(res) {
-             console.log(res);
+            //  console.log(res);
          var data = JSON.parse(res.data).data;
-               console.log(data);
+              //  console.log(data);
                upimgadds.push(data)
-               console.log(upimgadds);
+              //  console.log(upimgadds);
              },
            })
          }
@@ -126,7 +130,7 @@ Page({
         username:e.detail.value,
     
     })
-    console.log(e.detail.value);
+    // console.log(e.detail.value);
   },
     // 获取用户输入的身份证
     usernameIdinput:function(e) {
@@ -134,7 +138,7 @@ Page({
             usernameId:e.detail.value,
         
         })
-        console.log(e.detail.value);
+        // console.log(e.detail.value);
       },
     onLoad: function (){
 

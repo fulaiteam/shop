@@ -433,10 +433,13 @@ Jump:function() {
                       icon: 'none',
                       duration: 2000,
                       success:(res)=>{
-                        console.log(res)
-                        wx.reLaunch({
-                          url: '/pages/index/index'
-                        })
+                        // console.log(res)
+                        setTimeout(function() {
+                          wx.reLaunch({
+                            url: '/pages/index/index'
+                          })
+                       }, 1500);
+                        
                       }
                     })
                     
@@ -978,11 +981,6 @@ xinpininput:function(e) {
      },
      success: (res)=> {
        if (res.data.flag) {
-          wx.showToast({
-            title: res.data.message,
-            icon: 'success',
-            duration: 2000
-          })
           this.setData({
             buy_title: '',
             buy_miaoshu: '',
@@ -990,6 +988,20 @@ xinpininput:function(e) {
             buy_pricemin: '',
             buy_categoryid: '选择'
           })
+          wx.showToast({
+            title: res.data.message,
+            icon: 'success',
+            duration: 2000,
+            success: (res)=> {
+              setTimeout(function() {
+                wx.reLaunch({
+                  url: '/pages/buy/buy',
+                })
+              }, 1500);
+              
+            }
+          })
+          
        }
      }
    })

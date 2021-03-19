@@ -25,7 +25,7 @@
 }
 .buy_box_content_top {
   width: 100%;
-  padding: 47rpx 50rpx;
+  padding: 47rpx 50rpx 20rpx;
   box-sizing: border-box;
   border-bottom: 7rpx solid #EEEEEE;
 }
@@ -71,10 +71,10 @@
 }
 .buy_box_content_top_particulars {
   font-size: 27rpx;
-  margin-bottom: 70rpx;
+  margin-bottom: 104rpx;
 }
 .buy_box_content_top_need {
-  margin-bottom: 60rpx;
+  margin-bottom: 20rpx;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
   padding: 16rpx;
@@ -116,7 +116,7 @@
 }
 .buy_box_content_top_icon_box_img_look {
   width: 31rpx;
-  height: 19rpx;
+  height: 21rpx;
 }
 .buy_box_content_top_icon_box_img_collect {
   width: 26rpx;
@@ -135,6 +135,7 @@
 .buy_box_content_comment_title {
   width: 100%;
   padding: 24rpx 60rpx 0;
+  box-sizing: border-box;
 }
 .buy_box_content_comment_title_box {
   border-left: 7rpx solid #FF991A;

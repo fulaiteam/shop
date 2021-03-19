@@ -10,6 +10,7 @@ Page({
     ifLike: false,  // 是否点赞
     pagenum: 1,  // 当前页面
     isLoading: false,   // 判断是否正在加载
+    hasMore: false,  // 是否到了最后一页
     ifPage: 0,  // 进入页面开关 - （正常情况为0，进入求购详情时为1 - 实现tabber页面切换会刷新，进入详情页退回时不刷新）
 
     searchInput: '',  // 输入框输入内容
@@ -21,12 +22,25 @@ Page({
 
   onShow() {
     if (this.data.ifPage == 0) {
-      this.acquireBuyList()
       this.setData({
-        table_list: 1
+        table_list: 1,
+        pagenum: 1,
+        hasMore: false,
+        contentList: [],
       })
+      this.acquireBuyList()
     } else {
-      this.setData({ifPage: 0})
+      this.setData({
+        ifPage: 0,
+      })
+      if (this.data.ifSearch == 0) {
+        this.setData({
+          pagenum: 1,
+          hasMore: false,
+          contentList: [],
+        })
+        this.acquireBuyList()
+      }
     }
   },
 
@@ -37,6 +51,7 @@ Page({
         pagenum: 1,
         haveFont: false,
         searchInput: '',
+        hasMore: false,
         contentList: [],
       })
     }
@@ -54,6 +69,7 @@ Page({
         this.setData({
           pagenum: 1,
           ifSearch: 0,
+          hasMore: false,
           contentList: [],
         })
         this.acquireBuyList()
@@ -69,73 +85,90 @@ Page({
       searchInput: '',
       haveFont: false,
       isFoucs: true,
-      ifSearch: 0,
-      pagenum: 1,
-      contentList: [],
     })
-    this.acquireBuyList()
+    if (this.data.ifSearch == 1) {
+      this.setData({
+        ifSearch: 0,
+        pagenum: 1,
+        hasMore: false,
+        contentList: [],
+      })
+      this.acquireBuyList()
+    }
+    
   },
 
   // 点击搜索
   handleSearch() {
-    this.setData({
-      ifSearch: 1,
-      pagenum: 1,
-      contentList: []
-    })
 
-    //如果开关时正在加载状态，直接返回
-    if (this.data.isLoading) return ;
-    // 否则打开开关
-    this.data.isLoading = true;
-
-    wx.showLoading({
-      title: '加载中',
-      success: (res)=> {
-        wx.request({
-          url: getApp().globalData.baseUrl+ 'product/jglQiugou/selectByMohu',
-          method: 'POST',
-          data: {
-            "currentPage": this.data.pagenum,
-            "pageSize": 5,
-            "query": {
-              "openid": getApp().globalData.openid,
-              "title": this.data.searchInput
-            }
-          },
-          success: (res)=> {
-            console.log(res)
-            const {result, total} = res.data.data
-            this.setData({
-              contentList: [...this.data.contentList, ...result],
-              searchLength: total
-            })
-            // 页数加一，解决了不会同时存在多个请求，避免服务器的奔溃
-            this.data.pagenum ++;
-            // 关灯 表示加载完毕
-            this.data.isLoading = false;
-
-            // 添加分割后的时间数据
-            let arr = this.data.contentList
-            arr.forEach((item, index) => {
-              let objTime = "contentList[" + index + "].objTime"
+    if(this.data.searchInput.trim() == '') {
+      wx.showToast({
+        title: '内容不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      this.setData({
+        ifSearch: 1,
+        pagenum: 1,
+        hasMore: false,
+        contentList: []
+      })
+  
+      //如果开关时正在加载状态，直接返回
+      if (this.data.isLoading) return ;
+      // 否则打开开关
+      this.data.isLoading = true;
+  
+      wx.showLoading({
+        title: '加载中',
+        success: (res)=> {
+          wx.request({
+            url: getApp().globalData.baseUrl+ 'product/jglQiugou/selectByMohu',
+            method: 'POST',
+            data: {
+              "currentPage": this.data.pagenum,
+              "pageSize": 5,
+              "query": {
+                "openid": getApp().globalData.openid,
+                "title": this.data.searchInput
+              }
+            },
+            success: (res)=> {
+              console.log(res)
+              const {result, total} = res.data.data
               this.setData({
-                [objTime]: item.create_time.substring(0,10)
+                contentList: [...this.data.contentList, ...result],
+                searchLength: total
               })
-            })
+              // 页数加一，解决了不会同时存在多个请求，避免服务器的奔溃
+              this.data.pagenum ++;
+              // 关灯 表示加载完毕
+              this.data.isLoading = false;
+  
+              // 添加分割后的时间数据
+              let arr = this.data.contentList
+              arr.forEach((item, index) => {
+                let objTime = "contentList[" + index + "].objTime"
+                this.setData({
+                  [objTime]: item.create_time.substring(0,10)
+                })
+              })
+  
+              wx.hideLoading()
+            }
+          })
+        }
+      })
+    }
 
-            wx.hideLoading()
-          }
-        })
-      }
-    })
   },
 
   // 获取求购列表
   acquireBuyList() {
 
     //如果开关时正在加载状态，直接返回
-    if (this.data.isLoading) return ;
+    if (this.data.isLoading || this.data.hasMore) return ;
     // 否则打开开关
     this.data.isLoading = true;
 
@@ -155,7 +188,7 @@ Page({
           },
           success: (res)=>{
             console.log(res)
-            const {result} = res.data.data
+            const {result, total} = res.data.data
             this.setData({
               contentList: [...this.data.contentList, ...result],
             })
@@ -163,6 +196,12 @@ Page({
             this.data.pagenum ++;
             // 关灯 表示加载完毕
             this.data.isLoading = false;
+
+            // 是否加载完毕
+            if(this.data.contentList.length >= total){
+              // 已经到了最后一页
+              this.setData({hasMore: true});
+            }
 
 
             // 添加分割后的时间数据
@@ -186,6 +225,7 @@ Page({
     this.setData({
       table_list: e.currentTarget.dataset.index,
       pagenum: 1,
+      hasMore: false,
       contentList: []
     })
     this.acquireBuyList()
@@ -207,25 +247,33 @@ Page({
         console.log(res)
         let dianzanState = "contentList[" + index + "].isdianzan"
         let dianzanNum = "contentList[" + index + "].dianzan"
-        if (res.data.message == '收藏成功') {
+        if (res.data.flag == true) {
+          if (res.data.message == '收藏成功') {
+            wx.showToast({
+              title: '添加喜好成功',
+              icon: 'none',
+              duration: 2000
+            })
+            this.setData({
+              [dianzanState]: true,
+              [dianzanNum]: Number(this.data.contentList[index].dianzan) + 1,
+            })
+          } else {
+            wx.showToast({
+              title: '取消喜好成功',
+              icon: 'none',
+              duration: 2000
+            })
+            this.setData({
+              [dianzanState]: false,
+              [dianzanNum]: Number(this.data.contentList[index].dianzan) - 1,
+            })
+          }
+        } else if (res.data.flag == false) {
           wx.showToast({
-            title: '添加喜好成功',
+            title: res.data.message,
             icon: 'none',
             duration: 2000
-          })
-          this.setData({
-            [dianzanState]: true,
-            [dianzanNum]: Number(this.data.contentList[index].dianzan) + 1,
-          })
-        } else {
-          wx.showToast({
-            title: '取消喜好成功',
-            icon: 'none',
-            duration: 2000
-          })
-          this.setData({
-            [dianzanState]: false,
-            [dianzanNum]: Number(this.data.contentList[index].dianzan) - 1,
           })
         }
       }

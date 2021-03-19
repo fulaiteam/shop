@@ -1,8 +1,9 @@
 .all_grey{
+    position: absolute;
     width:100%;
     overflow: hidden;
     padding-bottom:30rpx;
-    background: #EEEEEE;
+    z-index: 5;
 }
 .top_area{
     z-index: 1;
@@ -97,7 +98,6 @@
     border: 1rpx solid #CCCCCC;
 }
 .bottom_white_area_pic_center{
-    width:81rpx;
     height:90rpx;
     display: flex;
     flex-direction: column;
@@ -109,10 +109,12 @@
     height:48rpx;
 }
 .bottom_white_area_pic_center_text{
+    width: 120rpx;
     font-size: 21rpx;
     font-family: Source Han Sans CN;
     font-weight: 400;
     color: #DEBB91;
+    text-align: center;
 }
 .confirm_btn{
     text-align: center;
@@ -132,5 +134,5 @@
     position: absolute;
     top: 0;
     width: 492rpx;
-    height: 270rpx;
+    height: 274rpx;
 }

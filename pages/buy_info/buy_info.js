@@ -12,6 +12,7 @@ Page({
     ifFocus: false,  // 回复评论获取焦点开关
     replyValue: '',  // 回复文字
     pinglunid_one: '',  // 主评论id
+    buyTimeList: [],  // 评论时间集合
   },
 
   onLoad(options) {
@@ -38,16 +39,32 @@ Page({
             openid: getApp().globalData.openid
           },
           success: (res)=> {
-            // console.log(res)
+            console.log(res)
             if (res.data.flag) {
               let obj = res.data.data
-              obj.parents.reverse()
+              obj.parents.reverse()  // 翻转数组
+
+              let obj2 = res.data.data.parents
+              obj2.forEach(n => {
+                n.lists.reverse()
+              })
+
+              let timeList = []
+              obj.parents.forEach(o => {
+                // console.log(o)
+                timeList.push(o.jglQiugoumiaoshuDTO.createTime)
+              })
+              let timeList2 = timeList.map(x => {
+                return this.renderTime(x).substring(0,16)
+              })
+
               this.setData({
-                buy_info: obj
+                buy_info: obj,
+                buyTimeList: timeList2,
               })
             }
 
-            // 添加分割后的时间数据
+            // 添加分割后的时间数据 - 标题处时间
             let objTime = "buy_info.jglQiugou.objTime"
             this.setData({
               [objTime]: this.data.buy_info.jglQiugou.createTime.substring(0,10)
@@ -60,6 +77,13 @@ Page({
     })    
   },
 
+  // 时间格式转换 - 转换成 2021-xx-xx xx:xx:xx
+  renderTime(x) {
+    var dateee = new Date(x).toJSON();
+    // console.log(dateee)
+    return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+  },
+
   // 点赞
   handleLike() {
     wx.request({
@@ -70,30 +94,39 @@ Page({
         openid: getApp().globalData.openid,
       },
       success: (res)=> {
-        // console.log(res)
+        console.log(res)
         let dianzanState = "buy_info.isdianzan"
         let dianzanNum = "buy_info.dianzan"
-        if (res.data.message == '收藏成功') {
+        if (res.data.flag == true) {
+          if (res.data.message == '收藏成功') {
+            wx.showToast({
+              title: '添加喜好成功',
+              icon: 'none',
+              duration: 2000
+            })
+            this.setData({
+              [dianzanState]: true,
+              [dianzanNum]: Number(this.data.buy_info.dianzan) + 1,
+            })
+          } else {
+            wx.showToast({
+              title: '取消喜好成功',
+              icon: 'none',
+              duration: 2000
+            })
+            this.setData({
+              [dianzanState]: false,
+              [dianzanNum]: Number(this.data.buy_info.dianzan) - 1,
+            })
+          }
+        } else if (res.data.flag == false) {
           wx.showToast({
-            title: '添加喜好成功',
+            title: res.data.message,
             icon: 'none',
             duration: 2000
-          })
-          this.setData({
-            [dianzanState]: true,
-            [dianzanNum]: Number(this.data.buy_info.dianzan) + 1,
-          })
-        } else {
-          wx.showToast({
-            title: '取消喜好成功',
-            icon: 'none',
-            duration: 2000
-          })
-          this.setData({
-            [dianzanState]: false,
-            [dianzanNum]: Number(this.data.buy_info.dianzan) - 1,
           })
         }
+        
       }
     })
   },
@@ -165,7 +198,6 @@ Page({
 
   // 发布回复
   replyPublish() {
-    console.log(1)
     if (this.data.replyValue.trim() == '') {
       wx.showToast({
         title: '回复不能为空',

@@ -71,7 +71,7 @@
             <view class="buy_box_content_comment_line_right">
               <view class="buy_box_content_comment_line_right_id">
                 <view class="buy_box_content_comment_line_right_id_name">{{item.jglQiugoumiaoshuDTO.nickname}}</view>
-                <view class="buy_box_content_comment_line_right_id_data">{{item.jglQiugoumiaoshuDTO.createTime}}</view>
+                <view class="buy_box_content_comment_line_right_id_data">{{buyTimeList[index]}}</view>
               </view>
               <view class="buy_box_content_comment_line_right_content">
                 <view class="buy_box_content_comment_line_right_content_font">{{item.jglQiugoumiaoshuDTO.context}}</view>
@@ -101,14 +101,14 @@
 <!-- 发布评论 -->
 <view class="write_comment" wx:if="{{!replySwitch}}">
   <view class="write_comment_left">
-    <input type="text" placeholder="发表你的评论" value="{{commentValue}}" bindinput="changeVal"/>
+    <input type="text" placeholder="发表你的评论" value="{{commentValue}}" bindinput="changeVal" cursor-spacing="40"/>
   </view>
   <view class="write_comment_right" bindtap="commentPublish">发布</view>
 </view>
 <!-- 回复评论 -->
 <view class="write_comment" wx:else>
   <view class="write_comment_left">
-    <input type="text" value="{{replyValue}}" bindinput="changeReplyVal" focus="ifFocus" bindblur="blurFocus"/>
+    <input type="text" value="{{replyValue}}" bindinput="changeReplyVal" focus="ifFocus" bindblur="blurFocus" cursor-spacing="40"/>
   </view>
   <view class="write_comment_right" bindtap="replyPublish">回复</view>
 </view>

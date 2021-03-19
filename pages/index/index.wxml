@@ -94,7 +94,7 @@
 
 
     <!-- 售卖列表情况 -->
-    <view wx:if="{{isAuction == 1}}">
+    <view wx:if="{{isAuction == 1}}" class="buyBox">
       <!-- 分割条 -->
       <view class="split_box">
         <image

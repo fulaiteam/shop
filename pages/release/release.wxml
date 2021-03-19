@@ -69,7 +69,7 @@
         <text>价格</text>
         <!--触发action-sheet事件-->
         <!-- <text class="shop_money_seclect" bindtap="listenerButton"> 选择 > </text> -->
-        <input type="text" name="type" value="{{Sale}}" style="width:92rpx;margin-top: 18rpx;" placeholder=" 选择 >"
+        <input type="text" name="type" value="{{Sale}}" style="width:100rpx;margin-top: 18rpx;" placeholder=" 选择 >"
           class="shop_money_seclect" bindtap="Salebtn" disabled="true" />
         <!-- 售卖价格 -->
         <action-sheet hidden="{{actionSheetHidden}}" bindchange="shoumaijiage" wx:if="{{shoumai}}">
@@ -215,7 +215,7 @@
       <view class="status" style="border-radius: 0 0 10rpx 10rpx;">
         <text>商品类型</text>
         <!-- <text class="shop_money_seclect" bindtap="typebtn"> 选择 > </text> -->
-        <input type="text" name="type" value="{{typeName.name}}" style="width:92rpx; margin-top: 15rpx;"
+        <input type="text" name="type" value="{{typeName.name}}" style="width:100rpx; margin-top: 15rpx;"
           placeholder=" 选择 >" class="shop_money_seclect" bindtap="typebtn" disabled="true" />
         <!--默认action-sheet为隐藏，由button触发-->
         <action-sheet hidden="{{showtype}}" bindchange="type">

@@ -1,145 +1,148 @@
 <navbar page-name="我发布的"></navbar>
 <image class="top_img" src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%A4%AD%E5%9C%86%202.png">
 </image>
-<view class='all_grey'>
-    <!-- 顶部背景区域结束 -->
-    <!-- 发布产品区域开始 -->
-    <view class='my_release_area'>
-        <!-- 切换栏 -->
-        <!-- <view class="my_release_table">
-            <view class="my_release_table_box">
-                <view class="my_release_table_word_sell {{tabar == 1? 'my_release_table_word_pitch': ''}}"
-                    bindtap="handleTabar" data-index="1">
-                    <text>售卖</text>
+
+<scroll-view class="page" scroll-y="true" bindscrolltolower="handleBottom">
+    <view class='all_grey'>
+        <!-- 顶部背景区域结束 -->
+        <!-- 发布产品区域开始 -->
+        <view class='my_release_area'>
+            <!-- 切换栏 -->
+            <!-- <view class="my_release_table">
+                <view class="my_release_table_box">
+                    <view class="my_release_table_word_sell {{tabar == 1? 'my_release_table_word_pitch': ''}}"
+                        bindtap="handleTabar" data-index="1">
+                        <text>售卖</text>
+                    </view>
+                    <view class="my_release_table_word_auction {{tabar == 0? 'my_release_table_word_pitch': ''}}"
+                        bindtap="handleTabar" data-index="0">
+                        <text>拍卖</text>
+                    </view>
                 </view>
-                <view class="my_release_table_word_auction {{tabar == 0? 'my_release_table_word_pitch': ''}}"
-                    bindtap="handleTabar" data-index="0">
-                    <text>拍卖</text>
+            </view> -->
+            <view class="my_release_table_new">
+                <view class="my_release_table_list">
+                    <view class="my_release_table_list_box {{tabar == 1? 'my_release_table_list_select': ''}}" bindtap="handleTabar" data-index="1">售卖</view>
+                    <view class="my_release_table_list_box {{tabar == 2? 'my_release_table_list_select': ''}}" bindtap="handleTabar" data-index="2">求购</view>
+                    <view class="my_release_table_list_box {{tabar == 0? 'my_release_table_list_select': ''}}" bindtap="handleTabar" data-index="0">拍卖</view>
                 </view>
             </view>
-        </view> -->
-        <view class="my_release_table_new">
-            <view class="my_release_table_list">
-                <view class="my_release_table_list_box {{tabar == 1? 'my_release_table_list_select': ''}}" bindtap="handleTabar" data-index="1">售卖</view>
-                <view class="my_release_table_list_box {{tabar == 2? 'my_release_table_list_select': ''}}" bindtap="handleTabar" data-index="2">求购</view>
-                <view class="my_release_table_list_box {{tabar == 0? 'my_release_table_list_select': ''}}" bindtap="handleTabar" data-index="0">拍卖</view>
-            </view>
-        </view>
-        <!-- 切换栏结束 -->
-
-        <!-- 售卖信息 -->
-        <view class="my_release_info" wx:if="{{tabar == 1}}">
-            <view class="my_release_box" wx:if="{{releaseList.length > 0}}">
-                <!-- 一项产品开始  -->
-                <view class='my_release_item' wx:for='{{releaseList}}' wx:key='index'
-                    style="padding-bottom: {{paddingValue}};">
-                    <!-- 项目中间区域开始 -->
-                    <view class='shelf_item_middle' bindtap="handleNavigateTo" data-openid="{{item.openid}}" data-productid="{{item.productId}}" data-auctionorsale="{{item.auctionOrSale}}">
-                        <!-- 项目中间区域左半部分开始 -->
-                        <image class='shelf_item_middle_left' src='{{item.thumbnail}}' mode="aspectFill">
-
-                        </image>
-                        <!-- 项目中间区域左半部分结束 -->
-                        <!-- 项目中间区域右半部分开始 -->
-                        <view class='shelf_item_middle_right'>
-                            <!-- 项目中间区域右半部分标题开始 -->
-                            <view class='shelf_item_middle_right_title'>
-                                {{item.title}}
-                            </view>
-                            <!-- 项目中间区域右半部分标题结束 -->
-                            <!-- 项目中间区域右半部分参数开始 -->
-                            <view class='shelf_item_middle_right_param'>
-                                <view class='shelf_item_middle_right_param_item'>
-                                    想买
-                                    <text wx:if="{{item.collectCount <= 10000}}">{{item.collectCount}}</text>
-                                    <text wx:elif="{{item.collectCount > 10000}}">10000+</text>
+            <!-- 切换栏结束 -->
+    
+            <!-- 售卖信息 -->
+            <view class="my_release_info" wx:if="{{tabar == 1}}">
+                <view class="my_release_box" wx:if="{{releaseList.length > 0}}">
+                    <!-- 一项产品开始  -->
+                    <view class='my_release_item' wx:for='{{releaseList}}' wx:key='index'
+                        style="padding-bottom: {{paddingValue}};">
+                        <!-- 项目中间区域开始 -->
+                        <view class='shelf_item_middle' bindtap="handleNavigateTo" data-openid="{{item.openid}}" data-productid="{{item.productId}}" data-auctionorsale="{{item.auctionOrSale}}">
+                            <!-- 项目中间区域左半部分开始 -->
+                            <image class='shelf_item_middle_left' src='{{item.thumbnail}}' mode="aspectFill">
+    
+                            </image>
+                            <!-- 项目中间区域左半部分结束 -->
+                            <!-- 项目中间区域右半部分开始 -->
+                            <view class='shelf_item_middle_right'>
+                                <!-- 项目中间区域右半部分标题开始 -->
+                                <view class='shelf_item_middle_right_title'>
+                                    {{item.title}}
                                 </view>
-                                <view class='shelf_item_middle_right_param_item'>
-                                    浏览
-                                    <text wx:if="{{item.pv <= 10000 && item.pv != null}}">{{item.pv}}</text>
-                                    <text wx:elif="{{item.pv > 10000}}">10000+</text>
-                                    <text wx:elif="{{!item.pv}}">0</text>
+                                <!-- 项目中间区域右半部分标题结束 -->
+                                <!-- 项目中间区域右半部分参数开始 -->
+                                <view class='shelf_item_middle_right_param'>
+                                    <view class='shelf_item_middle_right_param_item'>
+                                        想买
+                                        <text wx:if="{{item.collectCount <= 10000}}">{{item.collectCount}}</text>
+                                        <text wx:elif="{{item.collectCount > 10000}}">10000+</text>
+                                    </view>
+                                    <view class='shelf_item_middle_right_param_item'>
+                                        浏览
+                                        <text wx:if="{{item.pv <= 10000 && item.pv != null}}">{{item.pv}}</text>
+                                        <text wx:elif="{{item.pv > 10000}}">10000+</text>
+                                        <text wx:elif="{{!item.pv}}">0</text>
+                                    </view>
                                 </view>
+                                <!-- 项目中间区域右半部分参数结束 -->
+                                <!-- 项目中间区域右半部分价格开始 -->
+                                <view class='shelf_item_middle_right_param_price'>
+                                    ￥{{item.price}}
+                                </view>
+                                <!-- 项目中间区域右半部分价格结束 -->
+    
+                                
+                                <view class='shelf_item_middle_right_param_btn' catchtap="handleSoldOut"
+                                    data-productid="{{item.productId}}">
+                                    下架
+                                </view>
+    
+    
                             </view>
-                            <!-- 项目中间区域右半部分参数结束 -->
-                            <!-- 项目中间区域右半部分价格开始 -->
-                            <view class='shelf_item_middle_right_param_price'>
-                                ￥{{item.price}}
+                            <!-- 项目中间区域右半部分结束 -->
+                        </view>
+                        <!-- 项目中间区域结束 -->
+    
+                        <!-- 提示信息 -->
+                        <view wx:if="{{tabar == 0}}">
+                            <!-- 即将进行 -->
+                            <view class="collect_remind" wx:if="{{item.selected == 2}}">
+                                <image
+                                    src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png"
+                                    class="remind_img"></image>
+                                <text class="remind_font">即将进行</text>
+                                <text class="remind_font">{{normStartTimeList[index]}} 开始</text>
                             </view>
-                            <!-- 项目中间区域右半部分价格结束 -->
-
-                            
-                            <view class='shelf_item_middle_right_param_btn' catchtap="handleSoldOut"
-                                data-productid="{{item.productId}}">
-                                下架
+                            <!-- 正在进行 -->
+                            <view class="collect_remind" wx:elif="{{item.selected == 1}}">
+                                <image
+                                    src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png"
+                                    class="remind_img"></image>
+                                <text class="remind_font">正在进行</text>
+                                <text class="remind_font">{{normEndTimeList[index]}} 结束</text>
                             </view>
-
-
-                        </view>
-                        <!-- 项目中间区域右半部分结束 -->
-                    </view>
-                    <!-- 项目中间区域结束 -->
-
-                    <!-- 提示信息 -->
-                    <view wx:if="{{tabar == 0}}">
-                        <!-- 即将进行 -->
-                        <view class="collect_remind" wx:if="{{item.selected == 2}}">
-                            <image
-                                src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png"
-                                class="remind_img"></image>
-                            <text class="remind_font">即将进行</text>
-                            <text class="remind_font">{{normStartTimeList[index]}} 开始</text>
-                        </view>
-                        <!-- 正在进行 -->
-                        <view class="collect_remind" wx:elif="{{item.selected == 1}}">
-                            <image
-                                src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png"
-                                class="remind_img"></image>
-                            <text class="remind_font">正在进行</text>
-                            <text class="remind_font">{{normEndTimeList[index]}} 结束</text>
-                        </view>
-                        <!-- 已结束 -->
-                        <view class="collect_remind remind_gray" wx:elif="{{item.selected == 3}}">
-                            <image
-                                src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png"
-                                class="remind_img"></image>
-                            <text class="remind_font">拍卖已结束</text>
-                            <text class="remind_font">{{normEndTimeList[index]}} 结束</text>
+                            <!-- 已结束 -->
+                            <view class="collect_remind remind_gray" wx:elif="{{item.selected == 3}}">
+                                <image
+                                    src="https://jgl.oss-cn-beijing.aliyuncs.com/jiangelou_img/myCollect/%E6%97%B6%E9%97%B4.png"
+                                    class="remind_img"></image>
+                                <text class="remind_font">拍卖已结束</text>
+                                <text class="remind_font">{{normEndTimeList[index]}} 结束</text>
+                            </view>
                         </view>
                     </view>
                 </view>
+    
+                <!-- 一项产品结束 -->
+                <view class="my_release_none" wx:elif="{{releaseList.length == 0}}">暂无商品</view>
             </view>
-
-            <!-- 一项产品结束 -->
-            <view class="my_release_none" wx:elif="{{releaseList.length == 0}}">暂无商品</view>
-        </view>
-
-        <!-- 求购信息 -->
-        <view class="my_release_info" wx:if="{{tabar == 2}}">
-            <view class="my_release_box">
-                <view class="my_release_box_buy" wx:for="{{buyInfo}}" wx:key="index" bindtap="handleToBuy" data-id="{{item.qiugouid}}">
-                    <view class="my_release_box_title">
-                        <view class="my_release_box_title_font">{{item.title}}</view>
-                        <view class="my_release_box_title_particulars">{{item.miaoshu}}</view>
-                    </view>
-                    <view class="my_release_box_icon">
-                        <view class="my_release_box_icon_box">
-                            <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E8%AF%84%E8%AE%BA%20%E6%8B%B7%E8%B4%9D%402x.png" mode="aspectFill" class="my_release_box_icon_box_img_comment"></image>
-                            <view class="my_release_box_icon_box_count">{{item.pinglun}}</view>
+    
+            <!-- 求购信息 -->
+            <view class="my_release_info" wx:if="{{tabar == 2}}">
+                <view class="my_release_box">
+                    <view class="my_release_box_buy" wx:for="{{buyInfo}}" wx:key="index" bindtap="handleToBuy" data-id="{{item.qiugouid}}">
+                        <view class="my_release_box_title">
+                            <view class="my_release_box_title_font">{{item.title}}</view>
+                            <view class="my_release_box_title_particulars">{{item.miaoshu}}</view>
                         </view>
-                        <view class="my_release_box_icon_box">
-                            <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="my_release_box_icon_box_img_collect"></image>
-                            <view class="my_release_box_icon_box_count">{{item.dianzan}}</view>
+                        <view class="my_release_box_icon">
+                            <view class="my_release_box_icon_box">
+                                <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E8%AF%84%E8%AE%BA%20%E6%8B%B7%E8%B4%9D%402x.png" mode="aspectFill" class="my_release_box_icon_box_img_comment"></image>
+                                <view class="my_release_box_icon_box_count">{{item.pinglun}}</view>
+                            </view>
+                            <view class="my_release_box_icon_box">
+                                <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="my_release_box_icon_box_img_collect"></image>
+                                <view class="my_release_box_icon_box_count">{{item.dianzan}}</view>
+                            </view>
+                            <view class="my_release_box_icon_remove" catchtap="handleBuyRemove" data-qiugouid="{{item.qiugouid}}">删除</view>
                         </view>
-                        <view class="my_release_box_icon_remove" catchtap="handleBuyRemove" data-qiugouid="{{item.qiugouid}}">删除</view>
                     </view>
                 </view>
+                <view class="my_release_none" wx:if="{{buyInfo.length <= 0}}">暂无求购</view>
             </view>
-            <view class="my_release_none" wx:if="{{buyInfo.length <= 0}}">暂无求购</view>
+            
         </view>
-        
+        <!-- 发布产品区域结束 -->
+    
+    
     </view>
-    <!-- 发布产品区域结束 -->
-
-
-</view>
+</scroll-view>

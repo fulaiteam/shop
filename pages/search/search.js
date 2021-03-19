@@ -43,6 +43,7 @@ Page({
       this.setData({
         haveFont: false,
         ifSearch: 0,
+        pagenum: 1
       })
     } else {
       this.setData({haveFont: true})
@@ -55,7 +56,9 @@ Page({
       searchInput: '',
       haveFont: false,
       isFoucs: true,
-      ifSearch: 0
+      ifSearch: 0,
+      hasMore: false,
+      pagenum: 1
     })
   },
 
@@ -123,15 +126,30 @@ Page({
   // 点击搜索
   handleSearch() {
 
-    this.getStorages()
+    if(this.data.searchInput.trim() == '') {
+      wx.showToast({
+        title: '内容不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      this.getStorages()
 
-    this.setData({
-      ifSearch: 1,
-      searchResult: 1,
-      hasMore: false,
-      hotGoodsInfo: [],
-    })
-    // console.log(this.data.isLoading, this.data.hasMore)
+      this.setData({
+        ifSearch: 1,
+        searchResult: 1,
+        hasMore: false,
+        pagenum: 1,
+        hotGoodsInfo: [],
+      })
+      // console.log(this.data.isLoading, this.data.hasMore)
+      this.getSearchList()
+    }
+    
+  },
+
+  // 获取搜索结果数据
+  getSearchList() {
     //如果开关时正在加载状态，直接返回
     if (this.data.isLoading || this.data.hasMore) return ;
     // 否则打开开关
@@ -181,14 +199,13 @@ Page({
         })
       }
     })
-    
   },
 
   // 删除历史搜索
   handleremove() {
     wx.showModal({
       title: '确定删除记录吗',
-      showCancel: 'true',
+      showCancel: true,
       success: (res)=> {
         if (res.confirm) {
           //清除当前数据
@@ -210,6 +227,8 @@ Page({
     let value = e.currentTarget.dataset.text
     this.setData({
       haveFont: true,
+      pagenum: 1,
+      hasMore: false,
       searchInput: value
     })
     this.handleSearch()
@@ -238,6 +257,11 @@ Page({
         }
       })
     }
-  }
+  },
+
+  // 触底事件
+  handleBottom() {
+    this.getSearchList()
+  },
 
 })

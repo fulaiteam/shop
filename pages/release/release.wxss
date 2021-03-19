@@ -224,14 +224,13 @@ margin-bottom:2px
   font-family: Source Han Sans CN;
   font-weight: 400;
   color: #232220;
-margin-bottom:2px
+  margin-bottom:2px
 }
 .typelist {
-  
-font-size: 24rpx;
-font-family: Source Han Sans CN;
-font-weight: 400;
-color: #666666;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
 }
 .shop_money_seclect {
   position: absolute;

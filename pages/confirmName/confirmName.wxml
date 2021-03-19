@@ -1,94 +1,97 @@
 <navbar page-name="实名认证"></navbar>
+ <!-- 顶部背景图开始 -->
+ <image class='top_yellow_bg' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'></image>
 <view class='all_grey'>
-<!-- 顶部区域开始 -->
-<view  class='top_area' >
-<!-- 顶部背景图开始 -->
-<image  class='top_yellow_bg'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/confirm_topbg.png'  ></image>
-<!-- 顶部背景图结束 -->
-<!-- 顶部白色区域开始 -->
-<view   class='top_white_area'  >
-    <!-- 图片区域开始 -->
-    <image  class='top_white_area_img'   src='https://jgl.oss-cn-beijing.aliyuncs.com/person/idCard_bg.png'  ></image>
-    <!-- 图片区域结束 -->
-    <!-- 真实姓名区域开始 -->
-    <view  class='real_name_area' >
-        <view  class='real_name_area_left' >
-            真实姓名
+    <!-- 顶部区域开始 -->
+    <view class='top_area'>
+       
+        <!-- 顶部背景图结束 -->
+        <!-- 顶部白色区域开始 -->
+        <view class='top_white_area'>
+            <!-- 图片区域开始 -->
+            <image class='top_white_area_img' src='https://jgl.oss-cn-beijing.aliyuncs.com/person/idCard_bg.png'>
+            </image>
+            <!-- 图片区域结束 -->
+            <!-- 真实姓名区域开始 -->
+            <view class='real_name_area'>
+                <view class='real_name_area_left'>
+                    真实姓名
+                </view>
+                <input class='real_name_area_input' type="text" value='{{username}}' bindinput="usernameinput"></input>
+            </view>
+            <!-- 真实姓名区域结束 -->
+            <!-- 身份证号区域开始 -->
+            <view class='real_name_area margin_top56'>
+                <view class='real_name_area_left'>
+                    身份证号
+                </view>
+                <input class='real_name_area_input' type="text" value="{{usernameId}}"
+                    bindinput="usernameIdinput"></input>
+            </view>
+            <!-- 身份证号区域结束 -->
         </view>
-        <input  class='real_name_area_input' type="text" value='{{username}}' bindinput="usernameinput"></input>
+        <!-- 顶部白色区域结束 -->
     </view>
-    <!-- 真实姓名区域结束 -->
-    <!-- 身份证号区域开始 -->
-    <view  class='real_name_area margin_top56' >
-        <view  class='real_name_area_left' >
-            身份证号
+    <!-- 顶部区域结束 -->
+
+    <!-- 底部白色区域开始 -->
+    <view class='bottom_white_area'>
+        <!-- 文字区域开始 -->
+        <view class='bottom_white_area_text'>
+            上传身份证照片
         </view>
-        <input  class='real_name_area_input'   type="text" value="{{usernameId}}" bindinput="usernameIdinput"></input>
+
+        <!-- 文字区域结束 -->
+        <!-- 上传图片区域开始 -->
+        <view class='bottom_white_area_pic' bindtap='getImg' style="position: relative;">
+            <image src='{{imgpath}}' class="shangchuan_img_img" style="position: absolute;"></image>
+
+            <!-- 中间点击区域开始 -->
+            <view class='bottom_white_area_pic_center'>
+                <!-- 图片区域开始 -->
+                <image class='bottom_white_area_pic_center_img'
+                    src='https://jgl.oss-cn-beijing.aliyuncs.com/person/camera.png'></image>
+
+                <!-- 图片区域结束 -->
+                <!-- 文字区域开始 -->
+                <view class='bottom_white_area_pic_center_text'>
+                    正面照片
+                </view>
+                <!-- 文字区域结束 -->
+            </view>
+
+            <!-- 中间点击区域结束 -->
+        </view>
+        <!-- 上传图片区域结束 -->
+
+        <!-- 上传图片区域开始 -->
+        <view class='bottom_white_area_pic' bindtap='upgetImg' style="position: relative;">
+            <image src='{{upimgpath}}' class="shangchuan_img_img" style="position: absolute;"></image>
+            <!-- 中间点击区域开始 -->
+            <view class='bottom_white_area_pic_center'>
+                <!-- 图片区域开始 -->
+                <image class='bottom_white_area_pic_center_img'
+                    src='https://jgl.oss-cn-beijing.aliyuncs.com/person/camera.png'></image>
+                <!-- 图片区域结束 -->
+                <!-- 文字区域开始 -->
+                <view class='bottom_white_area_pic_center_text'>
+                    反面照片
+                </view>
+                <!-- 文字区域结束 -->
+            </view>
+            <!-- 中间点击区域结束 -->
+        </view>
+        <!-- 上传图片区域结束 -->
+
+        <!-- 认证按钮开始  -->
+        <view class='confirm_btn' bindtap="authentication">
+            立即认证
+        </view>
+        <!-- 认真按钮结束 -->
+
+
     </view>
-    <!-- 身份证号区域结束 -->
-</view>
-<!-- 顶部白色区域结束 -->
-</view>
-<!-- 顶部区域结束 -->
-
-<!-- 底部白色区域开始 -->
-<view class='bottom_white_area' >
-<!-- 文字区域开始 -->
-<view  class='bottom_white_area_text'  >
-    上传身份证照片
-</view>
-
-<!-- 文字区域结束 -->
-<!-- 上传图片区域开始 -->
-<view  class='bottom_white_area_pic'  bindtap='getImg' style="position: relative;">
-    <image src='{{imgpath}}' class="shangchuan_img_img" style="position: absolute;"></image>
-
-<!-- 中间点击区域开始 -->
-<view  class='bottom_white_area_pic_center' >
-<!-- 图片区域开始 -->
-<image  class='bottom_white_area_pic_center_img'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/camera.png'  ></image>
-
-<!-- 图片区域结束 -->
-<!-- 文字区域开始 -->
-<view  class='bottom_white_area_pic_center_text'  >
-    正面照片
-</view>
-<!-- 文字区域结束 -->
-</view>
-
-<!-- 中间点击区域结束 -->
-</view>
-<!-- 上传图片区域结束 -->
-
-<!-- 上传图片区域开始 -->
-<view  class='bottom_white_area_pic' bindtap='upgetImg' style="position: relative;" >
-    <image src='{{upimgpath}}' class="shangchuan_img_img" style="position: absolute;"></image>
-    <!-- 中间点击区域开始 -->
-    <view  class='bottom_white_area_pic_center' >
-    <!-- 图片区域开始 -->
-    <image  class='bottom_white_area_pic_center_img'  src='https://jgl.oss-cn-beijing.aliyuncs.com/person/camera.png'  ></image>
-    <!-- 图片区域结束 -->
-    <!-- 文字区域开始 -->
-    <view  class='bottom_white_area_pic_center_text'  >
-        反面照片
-    </view>
-    <!-- 文字区域结束 -->
-    </view>
-    <!-- 中间点击区域结束 -->
-    </view>
-<!-- 上传图片区域结束 -->
-
-<!-- 认证按钮开始  -->
-<view  class='confirm_btn' bindtap="authentication">
-    立即认证
-</view>
-<!-- 认真按钮结束 -->
+    <!-- 底部白色区域结束 -->
 
 
 </view>
-<!-- 底部白色区域结束 -->
-
-
-</view>
-
-

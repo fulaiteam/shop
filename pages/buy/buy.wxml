@@ -81,14 +81,14 @@
       <view class="buy_box_content_list" wx:if="{{table_list == 2}}">
         <view class="buy_box_content_box" wx:for="{{contentList}}" wx:key="index">
           <view class="buy_box_content_box_left">
-            <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg" mode="aspectFill"></image>
+            <image src="{{item.headimgurl}}"></image>
           </view>
           <view class="buy_box_content_box_right">
             <view class="buy_box_content_box_id">
               <view class="buy_box_content_box_id_name">{{item.nickname}}</view>
               <view class="buy_box_content_box_id_date">{{item.objTime}}</view>
             </view>
-            <view class="buy_box_content_box_title" bindtap="handleList" data-id="{{item.id}}">
+            <view class="buy_box_content_box_title" bindtap="handleList" data-id="{{item.qiugouid}}">
               <view class="buy_box_content_box_title_font">{{item.title}}</view>
               <view class="buy_box_content_box_title_particulars">{{item.miaoshu}}</view>
               <view class="buy_box_content_box_title_all">阅读全部</view>
