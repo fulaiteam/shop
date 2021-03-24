@@ -2,7 +2,7 @@
 const app = getApp();
 Page({
     data: {
-        authentication:'已认证',
+        authentication:'',
         haveShu: true,   //生日是否有值
         birthday: '',
         date: "请选择",
@@ -110,8 +110,9 @@ Page({
         }
     },
     toConfirmName :function(){
+        console.log(this.data.authentication)
         if (wx.getStorageSync('openid')) {
-            if(this.data.authentication==0) {
+            if(this.data.authentication == '0') {
                 wx.navigateTo({
                     url: '/pages/confirmName/confirmName'
                 })
@@ -173,8 +174,8 @@ Page({
         })
     },
     // 请求后台返回接口
-    getUserInfoByOpenid:function(){
-            var that = this;
+    getUserInfoByOpenid(){
+            
             wx.request({
             // 请求用户地址列表
             url: getApp().globalData.baseUrl + 'user/jglUser/selectByOpenid',
@@ -185,10 +186,10 @@ Page({
             data: {
                 openid: wx.getStorageSync('openid')
             },
-            success(res) {
+            success:(res)=> {
                 console.log(res);
                 if(res.data.flag){
-                    that.setData({
+                    this.setData({
                         BaseInfo:res.data.data,
                         authentication:res.data.data.isRealname,
                         haveShu: res.data.data.isBirthday ? true : false,

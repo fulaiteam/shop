@@ -11,42 +11,49 @@ Page({
     },
     authentication:function() {
         let that =this;
-        wx.request({
-            url:getApp().globalData.baseUrl+ 'user/jglUser/authentication', 
-            data: {
-                name:that.data.username,
-                openid:getApp().globalData.openid,//oS5bk5DPJKHDc6UwrR8xcUb3Ri8w
-                idNumber:that.data.usernameId,
-                backimg:upimgadds[0].url,
-                fontimg:imgadds[0].url
-                // fontimg:JSON.stringify(imgadds)
-            },
-           
-            method:'post',
-            header: {
-                'content-type': 'application/json' // 默认值
-            },
-            success: function(res) {
-              console.log(res)
-              console.log(res.data.flag);
-              if(res.data.flag==true) {
-                  wx.switchTab({
-                    url:"/pages/personal/personal"
-                  })
+        wx.showLoading({
+          title: '认证中',
+          mask: true,
+          success:(res)=> {
+            wx.request({
+              url:getApp().globalData.baseUrl+ 'user/jglUser/authentication', 
+              data: {
+                  name:that.data.username,
+                  openid:getApp().globalData.openid,//oS5bk5DPJKHDc6UwrR8xcUb3Ri8w
+                  idNumber:that.data.usernameId,
+                  backimg:upimgadds[0].url,
+                  fontimg:imgadds[0].url
+                  // fontimg:JSON.stringify(imgadds)
+              },
+             
+              method:'post',
+              header: {
+                  'content-type': 'application/json' // 默认值
+              },
+              success: function(res) {
+                console.log(res)
+                console.log(res.data.flag);
+                if(res.data.flag==true) {
+                    wx.switchTab({
+                      url:"/pages/personal/personal"
+                    })
+                    wx.showToast({
+                      title: '认证成功',
+                      icon: 'success',
+                      duration: 2000
+                    })
+                } else {
                   wx.showToast({
-                    title: '认证成功',
-                    icon: 'success',
+                    title: res.data.message,
+                    icon: 'none',
                     duration: 2000
                   })
-              } else {
-                wx.showToast({
-                  title: '认证失败',
-                  icon: 'none',
-                  duration: 2000
-                })
+                }
+                wx.hideLoading()
               }
-            }
-          })
+            })
+          }
+        })
       
       },
     // 上传身份证正面
@@ -67,21 +74,37 @@ Page({
            }) 
            console.log(_this.data.imgpath)
          for (var i = 0; i < imgpath.length;i++){
-           wx.uploadFile({
-             url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
-             name: 'imgFile',
-             filePath: imgpath[0],//第几张图片
-             header: {
-               "Content-Type": "multipart/form-data"
-             },
-             success(res) {
-             console.log(res);
-         var data = JSON.parse(res.data).data;
-               console.log(data);
-               imgadds.push(data)
-               console.log(imgadds);
-             },
+           wx.showLoading({
+             title: '加载中',
+             mask: true,
+             success: (res)=> {
+              wx.uploadFile({
+                url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
+                name: 'imgFile',
+                filePath: imgpath[0],//第几张图片
+                header: {
+                  "Content-Type": "multipart/form-data"
+                },
+                success(res) {
+                console.log(res);
+            var data = JSON.parse(res.data).data;
+                  console.log(data);
+                  if (imgadds.length == 0) {
+                     imgadds.push(data)
+                  } else {
+                   imgadds = imgadds.map(t => {
+                     return data
+                   })
+                  }
+                  
+                  console.log(imgadds);
+
+                  wx.hideLoading()
+                },
+              })
+             }
            })
+           
          }
           },
         })
@@ -105,21 +128,36 @@ Page({
             upimgpath: res.tempFilePaths[0]
            }) 
          for (var i = 0; i < upimgpath.length;i++){
-           wx.uploadFile({
-             url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
-             name: 'imgFile',
-             filePath: upimgpath[0],//第几张图片
-             header: {
-               "Content-Type": "multipart/form-data"
-             },
-             success(res) {
-            //  console.log(res);
-         var data = JSON.parse(res.data).data;
-              //  console.log(data);
-               upimgadds.push(data)
-              //  console.log(upimgadds);
-             },
+           wx.showLoading({
+             title: '加载中',
+             mask: true,
+              success: (res)=> {
+                wx.uploadFile({
+                  url: getApp().globalData.baseUrl + '/product/upload/uploadImg', //开发者服务器地址,//自己的接口地址,
+                  name: 'imgFile',
+                  filePath: upimgpath[0],//第几张图片
+                  header: {
+                    "Content-Type": "multipart/form-data"
+                  },
+                  success(res) {
+                  //  console.log(res);
+                  var data = JSON.parse(res.data).data;
+                  //  console.log(data);
+                  if (upimgadds.length == 0) {
+                    upimgadds.push(data)
+                  } else {
+                    upimgadds = upimgadds.map(t => {
+                      return data
+                    })
+                  }
+                    console.log(upimgadds);
+
+                    wx.hideLoading()
+                  },
+                })
+              }
            })
+           
          }
           },
         })

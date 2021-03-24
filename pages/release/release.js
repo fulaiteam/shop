@@ -658,6 +658,8 @@ titleinput:function(e) {
     title:e.detail.value,
   })
 },
+
+// 动态 placeholder
 inp_focus:function() {
   this.setData({
     placeholder_title: ''
@@ -675,6 +677,7 @@ infoinput:function(e) {
     info:e.detail.value,
   })
 },
+// 动态 placeholder
 info_focus:function() {
   this.setData({
     placeholder_info: ''
@@ -967,44 +970,52 @@ xinpininput:function(e) {
 
  // 点击确认提交按钮
  shopJump() {
-   wx.request({
-     url: getApp().globalData.baseUrl + '/product/jglQiugou/insert',
-     method: 'POST',
-     data: {
-      categoryid: this.data.buy_categoryid,
-      createTime: "",
-      miaoshu: this.data.buy_miaoshu,
-      openid: getApp().globalData.openid,
-      pricemax: this.data.buy_pricemax,
-      pricemin: this.data.buy_pricemin,
-      title: this.data.buy_title
-     },
-     success: (res)=> {
-       if (res.data.flag) {
-          this.setData({
-            buy_title: '',
-            buy_miaoshu: '',
-            buy_pricemax: '',
-            buy_pricemin: '',
-            buy_categoryid: '选择'
-          })
-          wx.showToast({
-            title: res.data.message,
-            icon: 'success',
-            duration: 2000,
-            success: (res)=> {
-              setTimeout(function() {
-                wx.reLaunch({
-                  url: '/pages/buy/buy',
-                })
-              }, 1500);
-              
-            }
-          })
-          
-       }
-     }
-   })
+   if (this.data.buy_categoryid == '' || this.data.buy_title == '' || this.data.buy_miaoshu == '' || this.data.buy_pricemax == '' || this.data.buy_pricemin == '') {
+    wx.showToast({
+      title: '提交信息不能为空',
+      icon: 'none',
+      duration: 2000
+    })
+   } else {
+    wx.request({
+      url: getApp().globalData.baseUrl + '/product/jglQiugou/insert',
+      method: 'POST',
+      data: {
+       categoryid: this.data.buy_categoryid,
+       createTime: "",
+       miaoshu: this.data.buy_miaoshu,
+       openid: getApp().globalData.openid,
+       pricemax: this.data.buy_pricemax,
+       pricemin: this.data.buy_pricemin,
+       title: this.data.buy_title
+      },
+      success: (res)=> {
+        if (res.data.flag) {
+           this.setData({
+             buy_title: '',
+             buy_miaoshu: '',
+             buy_pricemax: '',
+             buy_pricemin: '',
+             buy_categoryid: '选择'
+           })
+           wx.showToast({
+             title: res.data.message,
+             icon: 'success',
+             duration: 2000,
+             success: (res)=> {
+               setTimeout(function() {
+                 wx.reLaunch({
+                   url: '/pages/buy/buy',
+                 })
+               }, 1500);
+               
+             }
+           })
+           
+        }
+      }
+    })
+   }
  },
 
 })

@@ -103,3 +103,11 @@
   font-size: 25rpx;
   color: #5C5C5C;
 }
+
+.more {
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 24rpx;
+  color: rgb(187, 182, 182);
+}

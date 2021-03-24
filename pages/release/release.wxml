@@ -32,13 +32,13 @@
     <view class="shangchuan_title">
       <text class="shangchuan_title_text">标题</text>
       <input class="weui-input" placeholder="{{placeholder_title}}" name="title" type='text' value='{{title}}'
-        bindinput="titleinput" catchfocus="inp_focus" bindblur="inp_focusx"></input>
+        bindinput="titleinput" placeholder-style="color: rgb(179, 179, 179)"></input>
     </view>
     <!-- 商品描述 -->
     <view class="shop_title shangchuan_title">
       <text class="shangchuan_title_text">商品自述</text>
       <textarea class="areas" name="info" value='{{info}}' bindinput="infoinput" placeholder-class="input-placeholder"
-        placeholder="{{placeholder_info}}" maxlength="-1" catchfocus="info_focus" bindblur="info_focusx">
+        placeholder="{{placeholder_info}}" maxlength="-1"  placeholder-style="color: rgb(179, 179, 179)">
   </textarea>
     </view>
     <!-- 商品照片 -->

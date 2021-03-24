@@ -113,9 +113,8 @@ margin: auto;
   height: 26rpx;
   font-size: 24rpx;
   font-family: Source Han Sans CN;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 26rpx;
-  color: #858585;
 }
 .shop_title {
   width: 100%;
@@ -133,8 +132,6 @@ box-sizing: border-box;
   font-size: 24rpx;
   font-family: Source Han Sans CN;
   font-weight: 300;
-  color: #858585;
-  opacity: 0.8;
 }
 .shop_img {
   position: relative;

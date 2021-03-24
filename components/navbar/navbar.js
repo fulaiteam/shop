@@ -15,7 +15,7 @@ Component({
     },
     bgColor:{
       type: String,
-      value: '#fff'
+      value: '#eee'
     },
     iconColor:{
       type: String,

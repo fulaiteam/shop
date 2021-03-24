@@ -74,7 +74,7 @@
             <view class="buy_box_content_box_hot_font">HOT1</view>
           </view>
         </view>
-        <view class="buy_box_content_none" wx:if="{{hotContentList.length <= 0}}">暂无求购信息</view>
+        <view class="buy_box_content_none" wx:if="{{contentList.length <= 0}}">暂无求购信息</view>
       </view>
 
       <!-- 求购信息列表 - 最新 -->
@@ -102,7 +102,7 @@
                 <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%9C%BC%E7%9D%9B%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_look"></image>
                 <view class="buy_box_content_box_icon_box_count">{{item.pv}}</view>
               </view>
-              <view class="buy_box_content_box_icon_box" bindtap="handleLike" data-id="{{item.id}}" data-index="{{index}}">
+              <view class="buy_box_content_box_icon_box" bindtap="handleLike" data-id="{{item.qiugouid}}" data-index="{{index}}">
                 <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x(1).png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect" wx:if="{{!item.isdianzan}}"></image>
                 <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/%E7%88%B1%E5%BF%83%402x.png" mode="aspectFill" class="buy_box_content_box_icon_box_img_collect" wx:else></image>
                 <view class="buy_box_content_box_icon_box_count {{item.isdianzan? 'buy_box_content_box_icon_box_count_like': ''}}">{{item.dianzan}}</view>
@@ -110,7 +110,7 @@
             </view>
           </view>
         </view>
-        <view class="buy_box_content_none" wx:if="{{hotContentList.length <= 0}}">暂无求购信息</view>
+        <view class="buy_box_content_none" wx:if="{{contentList.length <= 0}}">暂无求购信息</view>
       </view>
 
       <!-- 无搜索信息 -->

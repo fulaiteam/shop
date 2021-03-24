@@ -111,10 +111,10 @@
       <view class="tabs">
 
         <view class="tabs_title_box" catchtap="bindHot">
-          <view class="tabs_title {{tableHeat? 'tabs_title_box_click': ''}}">
+          <view class="tabs_title {{tableHeat == 1? 'tabs_title_box_click': ''}}">
             <text>热度</text>
             <view class="triangle_box">
-              <view class="{{tableHeat? 'triangle_right': 'triangle_bottom'}}"></view>
+              <view class="{{tableHeat == 1? 'triangle_right': 'triangle_bottom'}}"></view>
             </view>
           </view>
         </view>

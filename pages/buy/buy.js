@@ -234,6 +234,7 @@ Page({
   // 点赞
   handleLike(e) {
     const qiugouid = e.currentTarget.dataset.id
+    
     const index = e.currentTarget.dataset.index
     // console.log(qiugouid, index, e)
     wx.request({
@@ -283,11 +284,28 @@ Page({
   // 点击进入求购信息页
   handleList(e) {
     // console.log(e)
-    this.setData({ifPage: 1})
-    let id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/buy_info/buy_info?id=' + id
-    })
+    if (getApp().globalData.openid) {
+      this.setData({ifPage: 1})
+      let id = e.currentTarget.dataset.id
+      wx.navigateTo({
+        url: '/pages/buy_info/buy_info?id=' + id
+      })
+    } else {
+      wx.showToast({
+        title: '请授权登录！',
+        icon: 'none',
+        duration: 1500,
+        success: ()=> {
+          //定时器，未授权1.5秒后跳转授权页面
+          setTimeout(()=> {
+            wx.navigateTo({
+              url: '/pages/login_phone/login_phone'
+            })
+          }, 1500);
+        }
+      })
+    }
+    
   },
 
   // 触底事件

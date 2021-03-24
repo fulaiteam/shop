@@ -4,25 +4,33 @@
 </image>
 <!-- 主体内容 -->
 <view class="search_box">
-  <!-- 消息内容主体部分 -->
-  <view class="news_box_content" wx:if="{{dataList.length > 0}}">
-    <!-- 消息列表 -->
-    <!-- <view class="news_box_content_list">
-      <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg"></image>
-      <view class="news_box_content_list_right">
-        <view class="news_box_content_list_right_name">加菲猫</view>
-        <view class="news_box_content_list_right_font">评论了您</view>
+  <view class="search_box_list">
+    <!-- 消息内容主体部分 -->
+    <view class="news_box_content" wx:if="{{dataList.length > 0}}">
+      <!-- 消息列表 -->
+      <!-- <view class="news_box_content_list">
+        <image src="https://jgl.oss-cn-beijing.aliyuncs.com/buy/20210302110706.jpg"></image>
+        <view class="news_box_content_list_right">
+          <view class="news_box_content_list_right_name">加菲猫</view>
+          <view class="news_box_content_list_right_font">评论了您</view>
+        </view>
+        <view class="news_box_content_list_right_time">3.10</view>
+      </view> -->
+      <view class="news_box_content_list_line" wx:for="{{dataList}}" wx:key="index" bindtap="handleList" data-qiugouid="{{item.qiugouid}}">
+        <view class="news_box_content_list_font">{{item.title}}</view>
+        <view class="news_box_content_list_num" wx:if="{{item.xinzengshu > 0}}">{{item.xinzengshu}}</view>
       </view>
-      <view class="news_box_content_list_right_time">3.10</view>
-    </view> -->
-    <view class="news_box_content_list_line" wx:for="{{dataList}}" wx:key="index" bindtap="handleList" data-qiugouid="{{item.qiugouid}}">
-      <view class="news_box_content_list_font">{{item.title}}</view>
-      <view class="news_box_content_list_num">{{item.xinzengshu}}</view>
+    </view>
+
+    <!-- 无消息提醒 -->
+    <view class="news_box_none" wx:else>
+      <view class="news_box_none_title">暂无消息</view>
     </view>
   </view>
 
-  <!-- 无消息提醒 -->
-  <view class="news_box_none" wx:else>
-    <view class="news_box_none_title">暂无消息</view>
-  </view>
+  <!-- 加载更多 -->
+  <view class="more" bindtap="handleMore" wx:if="{{isMore}}">点击加载更多</view>
+  
 </view>
+
+
